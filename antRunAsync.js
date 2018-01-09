@@ -23,7 +23,7 @@
 var WshShell = WScript.CreateObject("WScript.Shell");
 var exeStr = "%comspec% /c";
 var arg = "";
-var windowStyle = 1;
+var windowStyle = 7;
 var WshProcessEnv = WshShell.Environment("PROCESS");
 var windowTitle = WshProcessEnv("ANTRUN_TITLE");
 var outputFile = WshProcessEnv("ANTRUN_OUTPUT");
