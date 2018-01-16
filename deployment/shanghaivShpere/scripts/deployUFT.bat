@@ -6,10 +6,10 @@ wusa.exe C:\Windows6.1-KB2999226-x64.msu /extract:C:\Windows6.1-KB2999226-x64\
 DISM.exe /Online /Add-Package /PackagePath:C:\Windows6.1-KB2999226-x64\Windows6.1-KB2999226-x64.cab
 
 
-REM IF NOT EXIST P: ECHO P: was not mounted. mounting it to \\%3\builds & net use P: \\%3\builds /user:WORKGROUP\appsadmin appsadmin /persistent:no
-REM set DVD_Path=P:\%1\DVD
+IF NOT EXIST P: ECHO P: was not mounted. mounting it to \\%3\builds & net use P: \\%3\builds /user:WORKGROUP\appsadmin appsadmin /persistent:no
+set DVD_Path=P:\%1\DVD
 REM SET DVD_Path=\\%3\builds\%1\DVD
-set DVD_Path=C:\DVD
+REM set DVD_Path=C:\DVD
 
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"

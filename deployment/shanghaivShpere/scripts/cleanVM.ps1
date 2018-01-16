@@ -6,18 +6,17 @@ param (
     [string]$OutputDir = $null
 )
 Add-PSSnapin "VMware.VimAutomation.Core"
-$vCenterAcc = Get-Childitem ENV:vCenterAccount
-$vCenterPwd = Get-Childitem ENV:vCenterPassword
-
+Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
+#Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
+$vCenterAcc = $env:vCenterAccount
+$vCenterPwd = $env:vCenterPassword
 if (-Not $vCenterAcc -And -Not $vCenterPwd)
 {
     Write-Host "Can't find vCenter Account and Password Environment Variables"
-    Disconnect-VIServer -Server $ShangHaiVM -Confirm:$false
     exit 1
 }
 
-Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
-#Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
+
 $ShangHaiVM = Connect-VIServer selvc01.hpeswlab.net -user $vCenterAcc.Value -Password $vCenterPwd.Value
 try {
     
