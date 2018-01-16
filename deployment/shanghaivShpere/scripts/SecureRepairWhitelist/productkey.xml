@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type='text/xsl' href='style.xsl'?>
+<!--Product Key List-->
+<ProductKeys>
+ <Product GUID="HP Unified Functional Testing">
+  <Vendor>HP</Vendor> 
+  <ProductName>HPE Unified Functional Testing</ProductName>
+  <ProductGUID>{31E5328B-2751-414E-BA47-406050914A3A}</ProductGUID>
+  <!--<CodeSegment info3="another attribute">
+	<![CDATA[this is untouched code and can contain special characters /\@<>]]>
+  </CodeSegment>-->
+ </Product>
+</ProductKeys>

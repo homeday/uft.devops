@@ -1,0 +1,115 @@
+<?xml version='1.0'?>
+<Deploy>
+	<GlobalProperties>
+		<NOTIFICATION_EMAIL>yguo@hpe.com,ran.bachar@hpe.com</NOTIFICATION_EMAIL>
+		<VM_USER>appsadmin</VM_USER>
+		<VM_PASSWORD>appsadmin</VM_PASSWORD>
+		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
+		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
+		<installscriptfile>deployUFT.bat</installscriptfile>
+	</GlobalProperties>
+<!-- ************************************************** Clean Machines ************************************************************************  -->	
+	<hosts>
+	
+		
+		<host>
+		  <VM_NAME>shcuft021</VM_NAME>
+		  <VM_Description>FT Dev Cluj shcuft021</VM_Description>
+		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<!--<host>
+		  <VM_NAME>shcuft002</VM_NAME>
+		  <VM_Description>Tech UKR shcuft002</VM_Description>
+		  <USER_EMAIL>ftmobile.dev.tech.ukr@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>-->
+		<host>
+		  <VM_NAME>shcuft023</VM_NAME>
+		  <VM_Description>FT Dev Cluj shcuft023</VM_Description>
+		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<!--<host>
+		  <VM_NAME>shcuft004</VM_NAME>
+		  <VM_Description>Front End UKR shcuft004</VM_Description>
+		  <USER_EMAIL>ftmobile.dev.frontend.ukr@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>-->
+		<host>
+		  <VM_NAME>shcuft025</VM_NAME>
+		  <VM_Description>FT Dev Lancer CN shcuft025</VM_Description>
+		  <USER_EMAIL>ftmobile.dev.infra.cn@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<!--<host>
+		  <VM_NAME>shcuft006</VM_NAME>
+		  <VM_Description>Back End shcuft006</VM_Description>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>-->
+		<host>
+		  <VM_NAME>shcuft027</VM_NAME>
+		  <VM_Description>Web shcuft027</VM_Description>
+		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<!--<host>
+		  <VM_NAME>shcuft008</VM_NAME>
+		  <VM_Description>Web shcuft008</VM_Description>
+		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>-->
+		<host>
+		  <VM_NAME>shcuft029</VM_NAME>
+		  <VM_Description>SAP ALL shcuft029</VM_Description>
+		  <USER_EMAIL>ftmobile.uft.dev.sap.all@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN</VM_Template>
+		</host>
+		<host>
+		  <VM_NAME>shcuft030</VM_NAME>
+		  <VM_Description>Functional architects shcuft030</VM_Description>
+		  <USER_EMAIL>ran.bachar@hpe.com,ori.bendet@hpe.com,amit.bezalel@hpe.com,roee@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<host>
+		  <VM_NAME>shcuft031</VM_NAME>
+		  <VM_Description>Documentation shcuft031</VM_Description>
+		  <USER_EMAIL>uft.doc@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<host>
+		  <VM_NAME>shcuft032</VM_NAME>
+		  <VM_Description>SWAT shcuft032</VM_Description>
+		  <USER_EMAIL>datn@hpe.com,tal.halperin@hpe.com,aa.ftvs.cpe.bpt.dev.vn@hpe.com,aa.ftvs.cpe.qtp.dev.vn@hpe.com,aa.ftvs.cpe.st.dev@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<host>
+		  <VM_NAME>shcuft033</VM_NAME>
+		  <VM_Description>Documentation shcuft033</VM_Description>
+		  <USER_EMAIL>uft.doc@hpe.com,yonit.bisk@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_LFT</VM_Template>
+		  <installscriptfile>deployUFT.SALFT.bat</installscriptfile>
+		</host>
+		<host>
+		  <VM_NAME>appsuftqa021</VM_NAME>
+		  <VM_Description>Shanghai QA team appsuftqa021</VM_Description>
+		  <USER_EMAIL>jia.xue2@hpe.com,yi-fanc@hpe.com,xin-yuanc@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<host>
+		  <VM_NAME>appsuftqa022</VM_NAME>
+		  <VM_Description>Shanghai QA team appsuftqa022</VM_Description>
+		  <USER_EMAIL>jia.xue2@hpe.com,yi-fanc@hpe.com,xin-yuanc@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<host>
+		  <VM_NAME>appsuftqa023</VM_NAME>
+		  <VM_Description>Shanghai QA team appsuftqa023</VM_Description>
+		  <USER_EMAIL>hpmc-qa-cn@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		
+	</hosts>
+</Deploy>
+    
