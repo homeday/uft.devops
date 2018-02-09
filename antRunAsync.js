@@ -35,7 +35,7 @@ var isWindowsNT = (OS == "Windows_NT");
 if (isWindowsNT) {
   if (windowTitle == "")
      windowTitle = "Ant - " + WScript.Arguments(i);
-  exeStr += "title " + windowTitle + " &&";
+  exeStr += " title " + windowTitle + " &&";
 }
 
 // Loop through arguments quoting ones with spaces
@@ -56,6 +56,6 @@ if (outputFile != "") {
     exeStr += " 2>&1";
 }
 
-// WScript.Echo(exeStr);
+WScript.Echo(exeStr);
 // WshShell.Run(exeStr);
 WshShell.Run(exeStr, windowStyle, false);
