@@ -1,0 +1,83 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 157266
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+abandoned_path:
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-4-14-hp-mod
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-hp-mod
+
+repos:
+# QTP - legacy
+- display_name: QTP.Legacy
+  git_name: qtp.legacy
+  svn_path_exclude_dir:
+  - build
+  - BuildUtils
+  - components
+  - DevUtils
+  - Doc
+  - SetupBuilder
+  - QTP/Addins/**
+  - QTP/BackEnd
+  - QTP/FrontEnd
+  - QTP/Infra
+  - QTP/Services
+  - QTP/SetupUtils
+  svn_path_exclude_file:
+  - QTP/*
+  git_svn:
+    ignore_path: '(?:(?:build|BuildUtils|components|DevUtils|Doc|SetupBuilder|(?:QTP\/)?BackEnd|(?:QTP\/)?FrontEnd|(?:QTP\/)?Infra|(?:QTP\/)?Services|(?:QTP\/)?SetupUtils)(?:\/.+)*|(?:QTP\/)?Addins\/[^\/]+\/+.*|QTP\/[^\/]+)$'
+    ignore_addition: '^branches\/[^\/]+\/(?:(?:build|BuildUtils|components|DevUtils|Doc|SetupBuilder|(?:QTP\/)?BackEnd|(?:QTP\/)?FrontEnd|(?:QTP\/)?Infra|(?:QTP\/)?Services|(?:QTP\/)?SetupUtils)(?:\/.+)*|(?:QTP\/)?Addins\/[^\/]+\/+.*|QTP\/[^\/]+)$'
+  tags:
+  - legacy
+
+# misc - DevUtils
+- display_name: QTP.DevUtils
+  git_name: qtp.devutils
+  svn_path_base: DevUtils
+  tags:
+  - misc
+  - utils
+
+# misc - Doc
+- display_name: QTP.Doc
+  git_name: qtp.doc
+  svn_path_base: Doc
+  svn_revisions:
+    start: 154700
+  tags:
+  - misc
+  - doc
+
+# QTP - services
+- display_name: QTP.Services
+  git_name: qtp.services
+  svn_path_base: QTP/Services
+  svn_path_exclude_dir:
+  - Utils
+  git_svn:
+    ignore_path: '(?:Utils(?:\/.+)*)$'
+    ignore_addition: '^(?:trunk\/Services|branches\/[^\/]+\/QTP\/Services)\/+(?:Utils(?:\/.+)*)$'
+  tags:
+  - service
+
+# QTP - services--Utils
+- display_name: QTP.Services.Utils
+  git_name: qtp.services.utils
+  svn_path_base: QTP/Services/Utils
+  tags:
+  - service
+  - utils

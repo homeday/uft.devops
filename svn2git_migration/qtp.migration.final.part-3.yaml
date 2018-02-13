@@ -1,0 +1,42 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 157266
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+abandoned_path:
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-4-14-hp-mod
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-hp-mod
+
+repos:
+# QTP - infra
+- display_name: QTP.Infra
+  git_name: qtp.infra
+  svn_path_base: QTP/Infra
+  tags:
+  - infra
+
+# QTP - frontend
+- display_name: QTP.FrontEnd
+  git_name: qtp.frontend
+  svn_path_base: QTP/FrontEnd
+  tags:
+  - frontend
+
+# QTP - backend
+- display_name: QTP.BackEnd
+  git_name: qtp.backend
+  svn_path_base: QTP/BackEnd
+  tags:
+  - backend

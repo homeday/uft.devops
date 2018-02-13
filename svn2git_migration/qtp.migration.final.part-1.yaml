@@ -1,0 +1,79 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 157266
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+abandoned_path:
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-4-14-hp-mod
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-hp-mod
+
+repos:
+# QTP build
+- display_name: QTP.Build
+  git_name: qtp.build
+  svn_path_exclude_dir:
+  - ALI_test
+  - components
+  - DevUtils
+  - Doc
+  - jenkins
+  - SetupBuilder
+  - QTP/Addins
+  - QTP/BackEnd
+  - QTP/build
+  - QTP/FrontEnd
+  - QTP/Infra
+  - QTP/Kobush
+  - QTP/QTP_OUTPUT_DIR
+  - QTP/Services
+  svn_path_exclude_file:
+  - '*.patch'
+  git_svn:
+    ignore_path: '(?:ALI_test|components|DevUtils|Doc|jenkins|SetupBuilder|(?:QTP\/)?Addins|(?:QTP\/)?BackEnd|QTP\/build|(?:QTP\/)?FrontEnd|(?:QTP\/)?Infra|QTP\/Kobush|QTP\/QTP_OUTPUT_DIR|(?:QTP\/)?Services|[^\/]+\.patch)(?:\/.+)*$'
+    ignore_addition: '^branches\/[^\/]+\/(?:ALI_test|components|DevUtils|Doc|jenkins|SetupBuilder|(?:QTP\/)?Addins|(?:QTP\/)?BackEnd|QTP\/build|(?:QTP\/)?FrontEnd|(?:QTP\/)?Infra|QTP\/Kobush|QTP\/QTP_OUTPUT_DIR|(?:QTP\/)?Services|[^\/]+\.patch)(?:\/.+)*$'
+  tags:
+  - build
+
+# QTP build - components
+- display_name: QTP.Components
+  git_name: qtp.components
+  svn_path_base: components
+  tags:
+  - build
+  - components
+
+# QTP build - SetupBuilder
+- display_name: QTP.Build.SetupBuilder
+  git_name: qtp.setup
+  svn_path_base: SetupBuilder
+  svn_path_exclude_dir:
+  - Input/UFT_MLU
+  git_svn:
+    ignore_path: '(?:Input\/UFT_MLU(?:\/.+)*)$'
+    ignore_addition: '^branches\/[^\/]+\/SetupBuilder\/+(?:Input\/UFT_MLU(?:\/.+)*)$'
+  tags:
+  - build
+  - setup
+
+# QTP build - SetupBuilder--MLU
+- display_name: QTP.Build.SetupBuilder.MLU
+  git_name: qtp.mlu
+  svn_path_base: SetupBuilder/Input/UFT_MLU
+  svn_revisions:
+    start: 156995
+  tags:
+  - build
+  - setup
+  - mlu

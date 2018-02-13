@@ -1,0 +1,54 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 157266
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+abandoned_path:
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-4-14-hp-mod
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-hp-mod
+
+repos:
+# QTP - addins
+- display_name: QTP.Addins.TePackage
+  git_name: qtp.addins.te
+  svn_path_base: QTP/Addins/TePackage
+  tags:
+  - addins
+- display_name: QTP.Addins.CoreAddins
+  git_name: qtp.addins.core
+  svn_path_base: QTP/Addins/CoreAddins
+  tags:
+  - addins
+- display_name: QTP.Addins.Flex
+  git_name: qtp.addins.flash
+  svn_path_base: QTP/Addins/Flash
+  svn_path_exclude_dir:
+  - FlexPackage/app/apache-flex-sdk-4-14-hp-mod
+  - FlexPackage/app/apache-flex-sdk-hp-mod
+  git_svn:
+    ignore_path: '(?:FlexPackage\/app\/apache\-flex\-sdk\-4\-14\-hp\-mod(?:\/.+)*|FlexPackage\/app\/apache\-flex\-sdk\-hp\-mod(?:\/.+)*)$'
+    ignore_addition: '^branches\/[^\/]+\/QTP\/Addins\/Flash\/+(?:FlexPackage\/app\/apache\-flex\-sdk\-4\-14\-hp\-mod(?:\/.+)*|FlexPackage\/app\/apache\-flex\-sdk\-hp\-mod(?:\/.+)*)$'
+  tags:
+  - addins
+- display_name: QTP.Addins.IBAPackage
+  git_name: qtp.addins.iba
+  svn_path_base: QTP/Addins/IBAPackage
+  tags:
+  - addins
+- display_name: QTP.Addins.DotNet
+  git_name: qtp.addins.dotnet
+  svn_path_base: QTP/Addins/DotNet
+  tags:
+  - addins

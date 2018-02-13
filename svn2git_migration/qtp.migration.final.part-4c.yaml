@@ -1,0 +1,53 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 157266
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+abandoned_path:
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-4-14-hp-mod
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-hp-mod
+
+repos:
+# QTP - addins
+- display_name: QTP.Addins.Java
+  git_name: qtp.addins.java
+  svn_path_base: QTP/Addins/Java
+  tags:
+  - addins
+- display_name: QTP.Addins.UIAutomation
+  git_name: qtp.addins.uiautomation
+  svn_path_base: QTP/Addins/UIAutomation
+  tags:
+  - addins
+- display_name: QTP.Addins.ERP
+  git_name: qtp.addins.erp
+  svn_path_base: QTP/Addins/ERP
+  tags:
+  - addins
+- display_name: QTP.Addins.Metro
+  git_name: qtp.addins.metro
+  svn_path_base: QTP/Addins/Metro
+  tags:
+  - addins
+- display_name: QTP.Addins.MobilePackage
+  git_name: qtp.addins.mobile
+  svn_path_base: QTP/Addins/MobilePackage
+  tags:
+  - addins
+- display_name: QTP.Addins.TEABased
+  git_name: qtp.addins.teabased
+  svn_path_base: QTP/Addins/TEABased
+  tags:
+  - addins

@@ -1,0 +1,48 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 157266
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+abandoned_path:
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-4-14-hp-mod
+- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-hp-mod
+
+repos:
+# QTP - addins
+- display_name: QTP.Addins.AddinsResources
+  git_name: qtp.addins.resources
+  svn_path_base: QTP/Addins/AddinsResources
+  tags:
+  - addins
+- display_name: QTP.Addins.QTCustSupport
+  git_name: qtp.addins.qtcustsupport
+  svn_path_base: QTP/Addins/QTCustSupport
+  tags:
+  - addins
+- display_name: QTP.Addins.WebServices
+  git_name: qtp.addins.webservices
+  svn_path_base: QTP/Addins/WebServices
+  tags:
+  - addins
+- display_name: QTP.Addins.WinBased
+  git_name: qtp.addins.winbased
+  svn_path_base: QTP/Addins/WinBased
+  tags:
+  - addins
+- display_name: QTP.Addins.WebBased
+  git_name: qtp.addins.webbased
+  svn_path_base: QTP/Addins/WebBased
+  tags:
+  - addins
