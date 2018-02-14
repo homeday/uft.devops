@@ -15,37 +15,7 @@ git:
 git_svn:
   svn_temp_dir: gitmig_poc
 
-abandoned_path:
-- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-4-14-hp-mod
-- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-hp-mod
-
 repos:
-# QTP build
-- display_name: QTP.Build
-  git_name: qtp.build
-  svn_path_exclude_dir:
-  - ALI_test
-  - components
-  - DevUtils
-  - Doc
-  - jenkins
-  - SetupBuilder
-  - QTP/Addins
-  - QTP/BackEnd
-  - QTP/build
-  - QTP/FrontEnd
-  - QTP/Infra
-  - QTP/Kobush
-  - QTP/QTP_OUTPUT_DIR
-  - QTP/Services
-  svn_path_exclude_file:
-  - '*.patch'
-  git_svn:
-    ignore_path: '(?:ALI_test|components|DevUtils|Doc|jenkins|SetupBuilder|(?:QTP\/)?Addins|(?:QTP\/)?BackEnd|QTP\/build|(?:QTP\/)?FrontEnd|(?:QTP\/)?Infra|QTP\/Kobush|QTP\/QTP_OUTPUT_DIR|(?:QTP\/)?Services|[^\/]+\.patch)(?:\/.+)*$'
-    ignore_addition: '^branches\/[^\/]+\/(?:ALI_test|components|DevUtils|Doc|jenkins|SetupBuilder|(?:QTP\/)?Addins|(?:QTP\/)?BackEnd|QTP\/build|(?:QTP\/)?FrontEnd|(?:QTP\/)?Infra|QTP\/Kobush|QTP\/QTP_OUTPUT_DIR|(?:QTP\/)?Services|[^\/]+\.patch)(?:\/.+)*$'
-  tags:
-  - build
-
 # QTP build - components
 - display_name: QTP.Components
   git_name: qtp.components

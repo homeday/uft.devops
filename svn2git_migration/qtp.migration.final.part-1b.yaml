@@ -1,0 +1,36 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 157266
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+repos:
+# QTP build - need merge together after migration
+- display_name: QTP.Build.build
+  git_name: qtp.build.build
+  svn_path_base: build
+  tags:
+  - build
+
+- display_name: QTP.Build.BuildUtils
+  git_name: qtp.build.BuildUtils
+  svn_path_base: BuildUtils
+  tags:
+  - build
+
+- display_name: QTP.Build.QTP-SetupUtils
+  git_name: qtp.build.qtp-SetupUtils
+  svn_path_base: QTP/SetupUtils
+  tags:
+  - build
