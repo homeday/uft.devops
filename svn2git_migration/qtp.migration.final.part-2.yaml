@@ -50,6 +50,43 @@ repos:
 - display_name: QTP.Services.Utils
   git_name: qtp.services.utils
   svn_path_base: QTP/Services/Utils
+  svn_path_exclude_dir:
+  - PlatformUtils/App/obsolete
+  svn_path_exclude_file:
+  - '*.sdf'
+  - '*.exe'
+  - '*.dll'
+  - '*.tlb'
+  - '*.xls'
+  - '*.xlsx'
+  - '*.bmp'
+  - '*.png'
+  - '*.ico'
+  - '*.jpg'
+  - '*.gif'
+  - '*.rtf'
+  - '*.chm'
+  - '*.zip'
+  - '*.*.z'
+  - '*.tsp'
+  - '*.tsr'
+  - '*.bdb'
+  - '*.qrs'
+  - '*.mtr'
+  - '*.lck'
+  - '*.ncb'
+  - '*.ocx'
+  - '*.OLB'
+  - '*.opt'
+  - '*.oca'
+  - '*.aps'
+  - '*.jar'
+  - '*.db'
+  - '*.HLP'
+  - '*.frx'
+  git_svn:
+    ignore_path: '(?:PlatformUtils\/App\/obsolete(?:\/.+)*|.+\.(?:sdf|exe|dll|tlb|xlsx?|png|ico|jpg|gif|rtf|chm|zip|.+\.z|tsp|tsr|bdb|qrs|mtr|lck|ncb|ocx|OLB|opt|oca|aps|jar|db|HLP|frx))$'
+    ignore_addition: '^branches\/[^\/]+\/QTP\/Services\/Utils\/+(?:PlatformUtils\/App\/obsolete(?:\/.+)*|.+\.(?:sdf|exe|dll|tlb|xlsx?|png|ico|jpg|gif|rtf|chm|zip|.+\.z|tsp|tsr|bdb|qrs|mtr|lck|ncb|ocx|OLB|opt|oca|aps|jar|db|HLP|frx))$'
   tags:
   - service
   - utils

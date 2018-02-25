@@ -30,9 +30,22 @@ repos:
   svn_path_base: SetupBuilder
   svn_path_exclude_dir:
   - Input/UFT_MLU
+  svn_path_exclude_file:
+  - '*.exe'
+  - '*.msi'
+  - '*.dll'
+  - '*.doc'
+  - '*.docx'
+  - '*.bmp'
+  - '*.png'
+  - '*.ico'
+  - '*.pdf'
+  - '*.rtf'
+  - '*.lpu'
+  - '*.alpp'
   git_svn:
-    ignore_path: '(?:Input\/UFT_MLU(?:\/.+)*)$'
-    ignore_addition: '^branches\/[^\/]+\/SetupBuilder\/+(?:Input\/UFT_MLU(?:\/.+)*)$'
+    ignore_path: '(?:Input\/UFT_MLU(?:\/.+)*|.+\.(?:exe|msi|dll|docx?|bmp|png|ico|lpu|pdf|rtf|alpp))$'
+    ignore_addition: '^branches\/[^\/]+\/SetupBuilder\/+(?:Input\/UFT_MLU(?:\/.+)*|.+\.(?:exe|msi|dll|docx?|bmp|png|ico|lpu|pdf|rtf|alpp))$'
   tags:
   - build
   - setup

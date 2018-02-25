@@ -26,6 +26,21 @@ repos:
 - display_name: QTP.Build.BuildUtils
   git_name: qtp.build.BuildUtils
   svn_path_base: BuildUtils
+  svn_path_exclude_file:
+  - '**/*.exe'
+  - '**/*.msi'
+  - '**/*.dll'
+  - '**/*.DLL'
+  - '**/*.pdb'
+  - '**/*.docx'
+  - '**/*.tar.gz'
+  - Utilities/**/*.mht
+  - Utilities/**/*.html
+  - Utilities/**/*.htm
+  - Utilities/**/*.png
+  git_svn:
+    ignore_path: '(?:.+\.(?:exe|msi|[dD][lL][lL]|pdb|docx?|tar\.gz)|Utilities\/.+\.(?:mht|html?|png))$'
+    ignore_addition: '^branches\/UFT_12_54\/BuildUtils\/+(?:.+\.(?:exe|msi|[dD][lL][lL]|pdb|docx?|tar\.gz)|Utilities\/.+\.(?:mht|html?|png))$'
   tags:
   - build
 
