@@ -1,0 +1,23 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-st
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 57474
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# ST
+- display_name: ST
+  git_name: st
+  tags:
+  - st
