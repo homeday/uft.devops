@@ -64,15 +64,15 @@ jenkins_job_name=""
 
 
 # Set job name according to repo
-if repo_name == 'uftbase' and branch_name == 'master' :
+if repo_name == 'uft.devops' and branch_name == 'master' :
     jenkins_job_name = "/job/UFTBase.14.50.Build.Launcher"
 elif repo_name == 'st' and branch_name == 'master' :
     jenkins_job_name = "/job/ST.14.50.Build.Launcher"
 else:
     print("Do not know which Jenkins job corresponds to " + repo_name)
     print("Exiting...")
-    #sys.exit()
-print(jenkins_job_name)
+    sys.exit()
+    
 # Actually fire jenkins job
 if jenkins_job_name != "":
     print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/buildWithParameters| params= jenkins_job_params")
