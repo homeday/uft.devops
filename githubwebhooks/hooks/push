@@ -17,6 +17,7 @@ if ref[1] == "tags":
   print("The tag " + branch_name + " is pushed. Exiting...")
   # exit if tag pushed
   sys.exit()
+  
 
 print("Branch name is " + branch_name)
 
