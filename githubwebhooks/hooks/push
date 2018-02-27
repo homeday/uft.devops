@@ -4,22 +4,24 @@ import sys
 import json
 import requests
 
-with open(sys.argv[1], 'r') as jsf:
-  payload = json.loads(jsf.read())
+print("abc ")
 
-repo_name = payload['repository']['name']
-ref = payload['ref'].split('/')
-branch_name = ref[2]
-#
-# Handle push of tags
-#
-if ref[1] == "tags":
-  print("The tag " + branch_name + " is pushed. Exiting...")
-  # exit if tag pushed
-  sys.exit()
+# with open(sys.argv[1], 'r') as jsf:
+#   payload = json.loads(jsf.read())
+
+# repo_name = payload['repository']['name']
+# ref = payload['ref'].split('/')
+# branch_name = ref[2]
+# #
+# # Handle push of tags
+# #
+# if ref[1] == "tags":
+#   print("The tag " + branch_name + " is pushed. Exiting...")
+#   # exit if tag pushed
+#   sys.exit()
 
 
-print("Branch name is " + branch_name)
+# print("Branch name is " + branch_name)
 
 # #
 # # Build list of changed files
