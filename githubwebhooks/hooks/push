@@ -21,8 +21,6 @@ if ref[1] == "tags":
   sys.exit()
 
 
-print("Branch name is " + branch_name)
-
 #
 # Build list of changed files
 #
@@ -72,7 +70,7 @@ else:
     print("Do not know which Jenkins job corresponds to " + repo_name)
     print("Exiting...")
     sys.exit()
-    
+
 # Actually fire jenkins job
 if jenkins_job_name != "":
     print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/buildWithParameters| params= jenkins_job_params")
