@@ -42,6 +42,7 @@ with open('/src/config/official_branches') as official_branches:
 if not branch_is_official :
     print "Not offical branch, existing ... "
     sys.exit()
+    
 #
 # Check if path is in changed files list and raise flag
 #
