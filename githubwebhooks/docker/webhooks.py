@@ -43,7 +43,6 @@ def index():
 
     path = normpath(abspath(dirname(__file__)))
 
-    print "config path = " + path
     # Only POST is implemented
     if request.method != 'POST':
         abort(501)
@@ -54,7 +53,6 @@ def index():
 
     hooks = config.get('hooks_path', join(path, 'hooks'))
 
-    print "hooks = " + hooks
     # Allow Github IPs only
     if config.get('github_ips_only', True):
         src_ip = ip_address(
@@ -172,8 +170,6 @@ def index():
 
     # Run scripts
     ran = {}
-
-    print "run script:" + scripts
 
     for s in scripts:
 
