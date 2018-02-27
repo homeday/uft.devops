@@ -73,10 +73,16 @@ else:
 
 # Actually fire jenkins job
 if jenkins_job_name != "":
-    print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/buildWithParameters| params= jenkins_job_params")
-    r=requests.get("http://" + jenkins_server + ":" + jenkins_port +
-                jenkins_job_name + "/buildWithParameters",
-                params=jenkins_job_params)
+    if len(jenkins_job_params) == 1:
+      print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/buildWithParameters| params= jenkins_job_params")
+      r=requests.get("http://" + jenkins_server + ":" + jenkins_port +
+                  jenkins_job_name + "/buildWithParameters",
+                  params=jenkins_job_params)
+    else:
+      print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/build | params= jenkins_job_params")
+      r=requests.get("http://" + jenkins_server + ":" + jenkins_port +
+                  jenkins_job_name + "/build",
+                  params=jenkins_job_params)
                    
 #
 # Write log file
