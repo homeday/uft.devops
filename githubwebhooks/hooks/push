@@ -18,7 +18,6 @@ if ref[1] == "tags":
   # exit if tag pushed
   sys.exit()
   
-
 print("Branch name is " + branch_name)
 
 #
@@ -68,7 +67,7 @@ elif repo_name == 'st' and branch_name == 'master' :
 else:
     print("Do not know which Jenkins job corresponds to " + repo_name)
     print("Exiting...")
-    sys.exit()
+    #sys.exit()
 
 # Actually fire jenkins job
 if jenkins_job_name != "":
