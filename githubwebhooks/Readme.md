@@ -31,7 +31,6 @@
 
 #### 1. Go to url https://github.houston.softwaregrp.net/organizations/uft/settings/hooks
 
-
 #### 2. Add web hook
 
 #### 3. Settings
@@ -41,6 +40,16 @@
 
     Content type:
         application/json
+
+# Msic
+
+#### Jenkins job need to be enable the remote running setting
+
+#### hooks files like "push" need to be converted as unix format and add exectuable property
+
+
+
+
 
 
 
