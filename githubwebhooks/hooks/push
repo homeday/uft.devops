@@ -42,7 +42,7 @@ with open('/src/config/official_branches') as official_branches:
 if not branch_is_official :
     print "Not offical branch, existing ... "
     sys.exit()
-    
+
 #
 # Check if path is in changed files list and raise flag
 #
@@ -70,7 +70,7 @@ else:
     print("Do not know which Jenkins job corresponds to " + repo_name)
     print("Exiting...")
     #sys.exit()
-
+print(jenkins_job_name)
 # Actually fire jenkins job
 if jenkins_job_name != "":
     print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/buildWithParameters| params= jenkins_job_params")
