@@ -73,7 +73,7 @@ else:
 
 # Actually fire jenkins job
 if jenkins_job_name != "":
-    if len(jenkins_job_params) == 1:
+    if len(jenkins_job_params) > 1:
       print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/buildWithParameters| params= jenkins_job_params")
       r=requests.get("http://" + jenkins_server + ":" + jenkins_port +
                   jenkins_job_name + "/buildWithParameters",
