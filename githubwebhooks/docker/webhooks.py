@@ -54,6 +54,7 @@ def index():
 
     hooks = config.get('hooks_path', join(path, 'hooks'))
 
+    print "hooks = " + hooks
     # Allow Github IPs only
     if config.get('github_ips_only', True):
         src_ip = ip_address(
@@ -171,6 +172,9 @@ def index():
 
     # Run scripts
     ran = {}
+
+    print "run script:" + scripts
+
     for s in scripts:
 
         proc = Popen(
