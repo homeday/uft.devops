@@ -31,10 +31,10 @@
 ### <a name="qtp-build-prep"></a>Build Preparation After Migration: QTP
 Since repositories are splitted, some additional works are required in order to make CI/CD build works.
 
-#### (REQUIRED!) QTP.FrontEnd.RainbowLic & QTP.FrontEnd.License
+#### (OBSOLETE!!) QTP.FrontEnd.RainbowLic & QTP.FrontEnd.License
 This standalone repository has some dependencies on the directories and files in the **QTP\QTP_OUTPUT_DIR** directory. However, with this migration, the entire **QTP\QTP_OUTPUT_DIR** directory will be excluded and no GIT repository will be created.
 
-In this case, the entire directory **QTP\QTP_OUTPUT_DIR\include** shall be moved to `QTP.FrontEnd.RainbowLic` and also repository, except the file **QTP\QTP_OUTPUT_DIR\include\build.cs**. Then add pre-build event(s) in the corresponding project(s) in order to copy the **include** directory in **QTP\QTP_OUTPUT_DIR** before building any project in this repository. It keeps the CI/CD build system unmodified that way.
+The **QTP\QTP_OUTPUT_DIR\include\build.cs** file is obsoleted anyway. The entire directory **QTP\QTP_OUTPUT_DIR\include** is also obsoleted. The corresponding files are available in `QTP.FrontEnd.RainbowLic` and would be copied to **QTP\QTP_OUTPUT_DIR\include**.
 
 #### (REQUIRED!) QTP.Infra
 Since the entire **QTP\QTP_OUTPUT_DIR** directory will be excluded and no GIT repository will be created, the file **QTP\QTP_OUTPUT_DIR\lib\libmercrypt_D.lib** shall be moved in a repository so that those who are using this file can be found it after migration.
