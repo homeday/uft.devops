@@ -59,10 +59,18 @@ jenkins_job_params = {'token': 'UFTBUILDTOKEN'}
 jenkins_job_name=""
 
 # Set job name according to repo
-if repo_name == 'uftbase' and branch_name == 'master' :
+if repo_name == 'uftbase' :
+  if branch_name == 'master' :
     jenkins_job_name = "/job/UFTBase.14.50.Build.Launcher"
-elif repo_name == 'st' and branch_name == 'master' :
+  else:
+    jenkins_job_name = "/job/UFTBase.Build.Launcher"
+    jenkins_job_params = {'token': 'UFTBUILDTOKEN', 'Branch', branch_name}
+elif repo_name == 'st' :
+  if branch_name == 'master' :
     jenkins_job_name = "/job/ST.14.50.Build.Launcher"
+  else:
+    jenkins_job_name = "/job/ST.Build.Launcher"
+    jenkins_job_params = {'token': 'UFTBUILDTOKEN', 'Branch', branch_name}
 else:
     print("Do not know which Jenkins job corresponds to " + repo_name)
     print("Exiting...")
