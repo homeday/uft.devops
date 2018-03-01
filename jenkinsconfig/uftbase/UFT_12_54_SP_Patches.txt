@@ -1,4 +1,5 @@
-BuildMajorVersion=14
-BuildMinorVersion=50
-BuildLabel=UFT_14_50
-BuildPostfix=0
+BuildMajorVersion=12
+BuildMinorVersion=54
+BuildLabel=UFT_12_54_SP_Patches
+BuildPostfix=5
+WSSuffix=.SP.Patches
