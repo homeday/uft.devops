@@ -1,0 +1,9 @@
+docker run -d \
+    --name webhooks \
+    -v $HOME/uftgithooks/config:/src/config \
+    -v $HOME/uftgithooks/out:/src/out \
+    -v $HOME/uftgithooks/hooks:/src/hooks \
+    -p 5000:5000 carlos-jenkins/python-github-webhooks 
+
+
+docker build -t carlos-jenkins/python-github-webhooks .
