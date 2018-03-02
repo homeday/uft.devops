@@ -64,13 +64,13 @@ if repo_name == 'uftbase' :
     jenkins_job_name = "/job/UFTBase.14.50.Build.Launcher"
   else:
     jenkins_job_name = "/job/UFTBase.Build.Launcher"
-    jenkins_job_params = {'token': 'UFTBUILDTOKEN', 'Branch', branch_name}
+    jenkins_job_params = {'token': 'UFTBUILDTOKEN', 'Branch': branch_name}
 elif repo_name == 'st' :
   if branch_name == 'master' :
     jenkins_job_name = "/job/ST.14.50.Build.Launcher"
   else:
     jenkins_job_name = "/job/ST.Build.Launcher"
-    jenkins_job_params = {'token': 'UFTBUILDTOKEN', 'Branch', branch_name}
+    jenkins_job_params = {'token': 'UFTBUILDTOKEN', 'Branch': branch_name}
 else:
     print("Do not know which Jenkins job corresponds to " + repo_name)
     print("Exiting...")
