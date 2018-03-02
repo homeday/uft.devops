@@ -3,5 +3,5 @@ BuildMinorVersion=50
 BuildLabel=UFT_14_50
 BuildPostfix=0
 WSPostfix=
-
+Configuration=win32_release
 
