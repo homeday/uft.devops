@@ -1,0 +1,39 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-uftbase
+  trunk: trunk
+  branches:
+  - branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 0
+    end: 18217
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# UFTBase
+- display_name: UFTBase
+  git_name: uftbase
+  svn_path_exclude_file:
+  - '*.zip'
+  - '*.chm'
+  - '*.psd'
+  - '*.bmp'
+  - '*.pdf'
+  - '*.exe'
+  - '*.dll'
+  - '*.ttf'
+  - '*.eot'
+  - '*.woff'
+  - '*.otf'
+  - '*.svg'
+  git_svn:
+    ignore_path: '(?:.+\.(?:zip|chm|psd|bmp|pdf|exe|dll|ttf|eot|woff|otf|svg))$'
+    ignore_addition: '^branches\/[^\/]+\/+(?:.+\.(?:zip|chm|psd|bmp|pdf|exe|dll|ttf|eot|woff|otf|svg))$'
+  tags:
+  - uftbase
