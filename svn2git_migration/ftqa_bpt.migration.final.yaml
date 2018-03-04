@@ -1,0 +1,38 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: branches/FTQA_BPT
+  branches:
+  - branches/FTQA_BPT_12_53
+  - branches/FTQA_BPT_12_54
+  - branches/FTQA_BPT_12_54_G11N
+  revisions:
+    start: 0
+    end: 156122
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# UFT.Automation
+- display_name: BPT.Automation
+  git_name: bpt.automation
+  svn_path_exclude_dir:
+  - HP.BPT.Action/DLL
+  - HP.BPT.Action/packages
+  svn_path_exclude_file:
+  - '*.jar'
+  - '*.qcp'
+  - '*.exe'
+  - '*.dll'
+  - '*.nupkg'
+  git_svn:
+    ignore_path: '(?:(?:HP\.BPT\.Action\/DLL|HP\.BPT\.Action\/packages)(?:\/.+)*|.+\.(?:jar|qcp|exe|dll|nupkg))$'
+    ignore_addition: '^branches\/FTQA_BPT_12_54_G11N\/+(?:(?:HP\.BPT\.Action\/DLL|HP\.BPT\.Action\/packages)(?:\/.+)*|.+\.(?:jar|qcp|exe|dll|nupkg))$'
+  tags:
+  - automation
+  - bpt

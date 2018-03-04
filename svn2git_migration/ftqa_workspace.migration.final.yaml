@@ -1,0 +1,39 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-st
+  trunk: branches/FTQA_Workspace
+  branches:
+  - branches/FTQA_Workspace_12_54
+  revisions:
+    start: 0
+    end: 57526
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# UFT.Automation
+- display_name: UFT.Automation
+  git_name: uft.automation
+  svn_path_exclude_dir:
+  - JavaComponents
+  - APP/ProjectResources
+  - _UFT
+  svn_path_exclude_file:
+  - '*.msi'
+  - '*.exe'
+  - '*.dll'
+  - '*.zip'
+  - '*.jar'
+  - '*.nupkg'
+  - '*.pdb'
+  git_svn:
+    ignore_path: '(?:(?:JavaComponents|APP\/ProjectResources|_UFT)(?:\/.+)*|.+\.(?:msi|exe|dll|zip|jar|nupkg|pdb))$'
+    ignore_addition: '^(?:branches\/ST_QA\/FTQA_Workspace|branches\/FTQA_Workspace[^\/]*)\/+(?:(?:JavaComponents|APP\/ProjectResources|_UFT)(?:\/.+)*|.+\.(?:msi|exe|dll|zip|jar|nupkg|pdb))$'
+  tags:
+  - automation
+  - uft
