@@ -1,16 +1,15 @@
 FROM python:2.7-alpine
-LABEL maintainer="uft.dev.ops@hpe.com" \
-      version="1.0" \
-      description="Github Enterprise WebHooks (Python)"
+LABEL maintainer="uft.dev.ops@hpe.com"
 
-# install all python requirements
-COPY py-req.txt /tmp/
-RUN pip install --no-cache-dir -r /tmp/py-req.txt
-
-
-# copy all assets to /app
 WORKDIR /app
-COPY . ./
+
+ARG http_proxy=http://web-proxy.il.hpecorp.net:8080
+ARG https_proxy=$http_proxy
+
+COPY requirements.txt /app
+RUN pip install --proxy=$http_proxy -r requirements.txt
+
+COPY . /app
 
 EXPOSE 5000
 CMD ["python", "webhooks.py"]

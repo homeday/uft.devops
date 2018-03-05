@@ -1,33 +1,27 @@
 #!/usr/bin/env python
 
-############################################
-## This script processes git 'push' event
-############################################
-
-from __future__ import print_function
-import os
 import sys
-import tempfile
 import json
 import requests
-import yaml
 
-# this script is called by 'webhooks.py' with arguments:
-# payloadfile event
-
-# test event which must be "push"
-event = sys.argv[2]
-if event != "push":
-  print('The event "{}" is not "push". Exit.'.format(event))
-  sys.exit()
-
-# get payload from file
 with open(sys.argv[1], 'r') as jsf:
   payload = json.loads(jsf.read())
-org_name = payload['organization']['login']
-repo_name = payload['repository']['name']
 
-# build list of changed files
+repo_name = payload['repository']['name']
+ref = payload['ref'].split('/')
+branch_name = ref[2]
+#
+# Handle push of tags
+#
+if ref[1] == "tags":
+  print("The tag " + branch_name + " is pushed. Exiting...")
+  # exit if tag pushed
+  sys.exit()
+
+
+#
+# Build list of changed files
+#
 changed_files =[]
 for commit in payload['commits']:
   added_files = commit['added']
@@ -35,114 +29,79 @@ for commit in payload['commits']:
   removed_files = commit['removed']
   changed_files = list(set(added_files) | set(modified_files) | set(removed_files) | set(changed_files))
 
+#
+# Determine if branch is an official branch
+#
+branch_is_official = False
+with open('/src/config/official_branches') as official_branches:
+  if branch_name in official_branches.read():
+    branch_is_official = True
 
-class InvalidArgument(Exception):
-  """An exception indicates an argument is invalid."""
-  pass
-
-class FileNotFound(Exception):
-  """An exception indicates file is not found."""
-  pass
-
-
-def _load_yaml_file(yaml_file):
-  """Load YAML file and return an object represents the content"""
-
-  if not os.path.exists(yaml_file):
-    raise FileNotFound('File "{}" is not found.'.format(yaml_file))
-
-  content = None
-  with open(yaml_file, 'r') as ymlfile:
-    content = yaml.load(ymlfile)
-
-  return content
-
-
-def _get(obj, field_name, fail_value=None, check=False):
-  '''Return the value of the specified field'''
-
-  ret_value = None
-  if obj and field_name:
-    tmp_value = obj
-    for fld in field_name.split('.'):
-      if not isinstance(tmp_value, dict):
-        raise InvalidArgument('The obj has no such field: {}'.format(field_name))
-      tmp_value = tmp_value.get(fld, {})
-
-    if tmp_value:
-        ret_value = tmp_value
-
-  if not ret_value:
-    if check:
-      raise ValueError('The field "{}" is set to be checked and the field value is None or empty'.format(field_name))
-    else:
-      ret_value = fail_value
-
-  return ret_value
-
-
-
-def _push_action_trigger_jenkins_job(branch_name, push_action_config):
-  jenkins_enabled = _get(push_action_config, 'jenkins.enabled', False)
-  if not jenkins_enabled:
-    print('Jenkins action is either not configured or disabled for the branch "{}" in git repository "{}/{}".'.format(branch_name, org_name, repo_name))
-  else:
-    jenkins_job_url = _get(push_action_config, 'jenkins.job_url')
-    if not jenkins_job_url:
-      print('Jenkins job URL is not configured for the branch "{}" in git repository "{}/{}".'.format(branch_name, org_name, repo_name))
-    else:
-      # trigger jenkins job
-      jenkins_job_params = _get(push_action_config, 'jenkins.job_parameters', {})
-      jenkins_res = requests.get(jenkins_job_url, params=jenkins_job_params)
-      if jenkins_res.status_code != 200:
-        print('Failed to trigger Jenkins job. Status code: {}. URL: {}'.format(jenkins_res.status_code, jenkins_res.url))
-      else:
-        print('Jenkins job is triggered successfully. URL: {}'.format(jenkins_res.url))
-
-
-
-def _process_branch_push(branch_name):
-  # try to download and load config file by org name and repo name
-  webhooks_repo_raw_file_url = os.environ.get('WEBHOOKS_REPO_RAW_FILE_URL', 'https://raw.github.houston.softwaregrp.net/uft/uft.devops')
-  webhooks_repo_branch = os.environ.get('WEBHOOKS_REPO_BRANCH', 'master')
-  config_file_url = '{}/{}/githubwebhooks/config/{}/{}'.format(webhooks_repo_raw_file_url, webhooks_repo_branch, org_name, repo_name)
-
-  # try to request file via url
-  res = requests.get(config_file_url)
-  if res.status_code != 200:
-    print('The webhooks configuration file for git repository "{}/{}" is not found. Exit. Request URL: {}'.format(org_name, repo_name, config_file_url))
+if not branch_is_official :
+    print "Not offical branch, existing ... "
     sys.exit()
+
+#
+# Check if path is in changed files list and raise flag
+#
+# Set sub_tree according to repo - See if ... elif construction below
+#sub_tree = "a/b/c/d"
+#sub_tree_found = "false"
+#if any(sub_tree in x for x in changed_files):
+#  sub_tree_found = "true"
+
+#
+# Fire jenkins job
+#
+jenkins_server="mydtbld0120.hpeswlab.net"
+jenkins_port="8080"
+jenkins_job_params = {'token': 'UFTBUILDTOKEN'}
+jenkins_job_name=""
+
+# Set job name according to repo
+if repo_name == 'uftbase' :
+  if branch_name == 'master' :
+    jenkins_job_name = "/job/UFTBase.14.50.Build.Launcher"
   else:
-    # save the response text to temporary file
-    osfd, tmpfile = tempfile.mkstemp()
-    with os.fdopen(osfd, 'w') as pf:
-        pf.write(res.text)
-    # load the saved temporary file
-    cfg = _load_yaml_file(tmpfile)
-    os.remove(tmpfile)
-    # get config object via branch name and this push event
-    push_action_cfg = _get(cfg, 'git_branches.{}.push'.format(branch_name))
-    if not push_action_cfg:
-      print('No "push" action is configured for the branch "{}" in git repository "{}/{}". Exit.'.format(branch_name, org_name, repo_name))
-      sys.exit()
-    else:
-      # do corresponding action(s)
-      _push_action_trigger_jenkins_job(branch_name, push_action_cfg)
-
-
-
-def _process_tag_push(tag_name):
-  print('The tag "{}" is pushed. Nothing to do. Exit.'.format(tag_name))
-  sys.exit()
-
-
-
-#
-# main procedure
-#
-# Handle push of tags or branches
-ref = payload['ref'].split('/')
-if ref[1] == "tags":
-  _process_tag_push(ref[2])
+    jenkins_job_name = "/job/UFTBase.Build.Launcher"
+    jenkins_job_params = {'token': 'UFTBUILDTOKEN', 'Branch': branch_name}
+elif repo_name == 'st' :
+  if branch_name == 'master' :
+    jenkins_job_name = "/job/ST.14.50.Build.Launcher"
+  else:
+    jenkins_job_name = "/job/ST.Build.Launcher"
+    jenkins_job_params = {'token': 'UFTBUILDTOKEN', 'Branch': branch_name}
 else:
-  _process_branch_push(ref[2])
+    print("Do not know which Jenkins job corresponds to " + repo_name)
+    print("Exiting...")
+    sys.exit()
+
+# Actually fire jenkins job
+if jenkins_job_name != "":
+    if len(jenkins_job_params) > 1:
+      print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/buildWithParameters| params= jenkins_job_params")
+      requests.get("http://" + jenkins_server + ":" + jenkins_port +
+                  jenkins_job_name + "/buildWithParameters",
+                  params=jenkins_job_params)
+    else:
+      print ("Trigger Job http://" + jenkins_server+":"+jenkins_port+jenkins_job_name + "/build | params= jenkins_job_params")
+      requests.get("http://" + jenkins_server + ":" + jenkins_port +
+                  jenkins_job_name + "/build",
+                  params=jenkins_job_params)
+                   
+#
+# Write log file
+#
+outfile = "/src/out/hook-" + repo_name + "-" + branch_name + ".log"
+with open(outfile, 'w') as f:
+    f.write(json.dumps(payload, sort_keys=True, indent=4, separators=(',',': ')))
+    f.write("\nbranch_name = " + branch_name)
+    if branch_is_official:
+      f.write("\nbranch is official")
+    else:
+      f.write("\nbranch is not official")
+    f.write("\nrepo_name = " + repo_name)
+    f.write("\njenkins job name = " + jenkins_job_name)
+    for file in changed_files:
+      f.write("\nchanged file: " + file)
+    f.write("\n")
