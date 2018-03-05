@@ -28,6 +28,8 @@ with open(sys.argv[1], 'r') as jsf:
   payload = json.loads(jsf.read())
 org_name = payload['organization']['login']
 repo_name = payload['repository']['name']
+before_commit_hash = payload['before']
+after_commit_hash = payload['after']
 
 # build list of changed files
 changed_files =[]
@@ -95,6 +97,21 @@ def _push_action_trigger_jenkins_job(branch_name, push_action_config):
     else:
       # trigger jenkins job
       jenkins_job_params = _get(push_action_config, 'jenkins.job_parameters', {})
+      for pkey in jenkins_job_params:
+        pvalue = jenkins_job_params[pkey]
+        if isinstance(pvalue, dict):
+          runtime_var = _get(pvalue, 'runtime')
+          if runtime_var == '_branch_name_':
+            jenkins_job_params[pkey] = branch_name
+          elif runtime_var == '_commit_hash_before_':
+            jenkins_job_params[pkey] = before_commit_hash
+          elif runtime_var == '_commit_hash_after_':
+            jenkins_job_params[pkey] = after_commit_hash
+          else:
+            jenkins_job_params[pkey] = str(pvalue)
+        else:
+          jenkins_job_params[pkey] = str(pvalue)
+
       jenkins_res = requests.get(jenkins_job_url, params=jenkins_job_params)
       if jenkins_res.status_code >= 400:
         print('Failed to trigger Jenkins job. Status code: {}. URL: {}'.format(jenkins_res.status_code, jenkins_res.url), file=sys.stderr)

@@ -11,7 +11,13 @@ git_branches:
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/Samples.Core.Build.Launcher/buildWithParameters'
         job_parameters:
           token: SAMPLETOKEN
-          Branch: master
+          Branch:
+            runtime: _branch_name_
+          CommitHash_Before:
+            runtime: _commit_hash_before_
+          CommitHash_After:
+            runtime: _commit_hash_after_
+
 
   Br_ABC:
     push:
@@ -20,4 +26,9 @@ git_branches:
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/Samples.Core.Build.Launcher/buildWithParameters'
         job_parameters:
           token: SAMPLETOKEN
-          Branch: Br_ABC
+          Branch:
+            runtime: _branch_name_
+          CommitHash_Before:
+            runtime: _commit_hash_before_
+          CommitHash_After:
+            runtime: _commit_hash_after_
