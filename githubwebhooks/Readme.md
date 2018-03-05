@@ -2,50 +2,72 @@
 
 #### 1. Install docker engine
 
-#### 2. Build docker image
-    Copy "docker" sub folder to the CSA machine
+#### 2. Download code assets
+Use `git clone` or directly download zip file.
+* git clone
+    ```bash
+    git clone https://github.houston.softwaregrp.net/uft/uft.devops.git
+    ```
 
-    At CSA machine, go to the "docker" directory
+* download zip file
+    ```bash
+    curl -L https://github.houston.softwaregrp.net/uft/uft.devops/archive/master.zip --output uft.devops.zip
+    ```
 
-    Run command 
-        "docker build -t carlos-jenkins/python-github-webhooks . "
-
+#### 3. Build docker image
+Go to **githubwebhooks** directory and then run the following command lines:
+```bash
+# export http_proxy and https_proxy if necessary
+chmod +x ./build_docker.sh
+./build_docker.sh
+```
 
 # Run web hook
 
-#### 1. Create folder uftgithooks at directory $HOME
+#### 1. Go to "githubwebhooks" directory
 
-#### 2. Copy relevant resouce files to it
-    Copy "config" and "hooks" folders to the $HOME/uftgithooks directory
+#### 2. Run web hook docker container
+```bash
+chmod +x ./run_docker.sh
+./run_docker.sh
+```
 
-#### 3. Run command
-    docker run -d \
-        --name webhooks \
-        -v $HOME/uftgithooks/config:/src/config \
-        -v $HOME/uftgithooks/out:/src/out \
-        -v $HOME/uftgithooks/hooks:/src/hooks \
-        -p 5000:5000 carlos-jenkins/python-github-webhooks 
+The [run_docker.sh](run_docker.sh) CLI:
+```
+run_docker.sh [PORT=5000] [DOCKER_IMAGE=github-pywebhooks]
+```
 
+Supported environment variables:
+- `WEBHOOKS_HOST_PORT`: host port to be published for docker container, if the port is also specified in command line, this environment variable has no effect.
+- `WEBHOOKS_DOCKER_IMAGE`: docker image name with/without tag to launch docker container, if the docker image is also specified in command line, this environment variable has no effect.
+- `WEBHOOKS_REPO_RAW_FILE_URL`: the URL of the git repository in which webhooks requests configuration files. Defaults to `https://raw.github.houston.softwaregrp.net/uft/uft.devops`.
+- `WEBHOOKS_REPO_BRANCH`: the branch name of the git repository in which webhooks requests configuration files. Defaults to `master`.
 
 # Create web hook at organization page
 
-#### 1. Go to url https://github.houston.softwaregrp.net/organizations/uft/settings/hooks
+#### 1. Navigate to either organization hooks setting page or repository hook setting page
 
 #### 2. Add web hook
 
 #### 3. Settings
 
-    Payload URL:
-        http://[CSA machine name]:5000/ "e.g. http://myd-vm07392.hpeswlab.net:5000/"
+- Payload URL:
+    ```
+    http://[CSA-machine-name]:5000
 
-    Content type:
-        application/json
+    for example:
 
-# Msic
+    http://myd-vm07392.hpeswlab.net:5000
+    ```
 
-#### Jenkins job need to be enable the remote running setting
+- Content type:
+    ```
+    application/json
+    ```
 
-#### hooks files like "push" need to be converted as unix format and add exectuable property
+# Misc
+
+* The setting `Trigger builds remotely (e.g., from scripts)` in Jenkins job need to be enabled and configured with a `build token` in order to trigger Jenkins job remotely from webhooks.
 
 
 

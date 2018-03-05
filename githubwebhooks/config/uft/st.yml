@@ -1,0 +1,31 @@
+git_org: uft
+git_repo: st
+
+git_tags:
+
+git_branches:
+  master:
+    push:
+      jenkins:
+        enabled: true
+        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/ST.14.50.Build.Launcher/build'
+        job_parameters:
+          token: UFTBUILDTOKEN
+
+  UFT_12_54_SP_Patches:
+    push:
+      jenkins:
+        enabled: true
+        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/ST.Build.Launcher/buildWithParameters'
+        job_parameters:
+          token: UFTBUILDTOKEN
+          Branch: UFT_12_54_SP_Patches
+
+  UFT_14_03_SP_Patches:
+    push:
+      jenkins:
+        enabled: true
+        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/ST.Build.Launcher/buildWithParameters'
+        job_parameters:
+          token: UFTBUILDTOKEN
+          Branch: UFT_14_03_SP_Patches

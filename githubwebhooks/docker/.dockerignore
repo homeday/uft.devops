@@ -1,0 +1,7 @@
+# the file itself and the corresponding Dockerfile
+.dockerignore
+Dockerfile
+
+# files for Python debugging
+**/__pycache__
+**/*.pyc
