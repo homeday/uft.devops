@@ -11,7 +11,12 @@ git_branches:
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTAutomation.Build.Launcher/buildWithParameters'
         job_parameters:
           token: UFTQABUILDTOKEN
-          Branch: master
+          Branch:
+            runtime: _branch_name_
+          CommitHash_Before:
+            runtime: _commit_hash_before_
+          CommitHash_After:
+            runtime: _commit_hash_after_
 
   UFT_12_54_SP_Patches:
     push:
@@ -20,7 +25,12 @@ git_branches:
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTAutomation.Build.Launcher/buildWithParameters'
         job_parameters:
           token: UFTQABUILDTOKEN
-          Branch: UFT_12_54_SP_Patches
+          Branch:
+            runtime: _branch_name_
+          CommitHash_Before:
+            runtime: _commit_hash_before_
+          CommitHash_After:
+            runtime: _commit_hash_after_
 
   UFT_14_03_SP_Patches:
     push:
@@ -29,4 +39,9 @@ git_branches:
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTAutomation.Build.Launcher/buildWithParameters'
         job_parameters:
           token: UFTQABUILDTOKEN
-          Branch: UFT_14_03_SP_Patches
+          Branch:
+            runtime: _branch_name_
+          CommitHash_Before:
+            runtime: _commit_hash_before_
+          CommitHash_After:
+            runtime: _commit_hash_after_

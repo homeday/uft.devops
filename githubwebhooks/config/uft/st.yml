@@ -19,7 +19,8 @@ git_branches:
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/ST.Build.Launcher/buildWithParameters'
         job_parameters:
           token: UFTBUILDTOKEN
-          Branch: UFT_12_54_SP_Patches
+          Branch:
+            runtime: _branch_name_
 
   UFT_14_03_SP_Patches:
     push:
@@ -28,4 +29,5 @@ git_branches:
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/ST.Build.Launcher/buildWithParameters'
         job_parameters:
           token: UFTBUILDTOKEN
-          Branch: UFT_14_03_SP_Patches
+          Branch:
+            runtime: _branch_name_
