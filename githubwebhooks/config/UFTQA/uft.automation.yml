@@ -19,5 +19,5 @@ git_branches:
           GIT_CommitHash_After:
             runtime: _commit_hash_after_
 
-  UFT_12_54_SP_Patches: *jenkins_action_branch_default
-  UFT_14_03_SP_Patches: *jenkins_action_branch_default
+  FTQA_12_54: *jenkins_action_branch_default
+  FTQA_14_03: *jenkins_action_branch_default
