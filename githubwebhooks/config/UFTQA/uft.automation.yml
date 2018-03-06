@@ -1,0 +1,23 @@
+git_org: UFTQA
+git_repo: uft.automation
+
+git_tags:
+
+git_branches:
+  master: &jenkins_action_branch_default
+    push:
+      jenkins: &jenkins_action_default
+        enabled: true
+        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTAutomation.Build.Launcher/buildWithParameters'
+        job_parameters: &jenkins_action_params_default
+          token: UFTQABUILDTOKEN
+          Build_Type: CI
+          GIT_Branch_Name:
+            runtime: _branch_name_
+          GIT_CommitHash_Before:
+            runtime: _commit_hash_before_
+          GIT_CommitHash_After:
+            runtime: _commit_hash_after_
+
+  UFT_12_54_SP_Patches: *jenkins_action_branch_default
+  UFT_14_03_SP_Patches: *jenkins_action_branch_default
