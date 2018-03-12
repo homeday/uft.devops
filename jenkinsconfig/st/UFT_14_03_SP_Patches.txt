@@ -1,0 +1,8 @@
+BuildMajorVersion=14
+BuildMinorVersion=03
+BuildLabel=UFT_14_03_SP_Patches
+BuildPostfix=1
+WSPostfix=.SP.Patches
+DebugBuild=false
+
+
