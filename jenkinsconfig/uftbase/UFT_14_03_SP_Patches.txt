@@ -1,5 +1,5 @@
 BuildMajorVersion=14
-BuildMinorVersion=03
+BuildMinorVersion=3
 BuildLabel=UFT_14_03_SP_Patches
 BuildPostfix=1
 WSPostfix=.SP.Patches
