@@ -1,0 +1,171 @@
+<?xml version='1.0'?>
+<Deploy>
+	<GlobalProperties>
+		<NOTIFICATION_EMAIL>dotan-goor-arye.lazarovich@hpe.com,roy.komemi@hpe.com,yguo@hpe.com,</NOTIFICATION_EMAIL>
+		<CSA_USER>alm_uft_auto</CSA_USER>
+		<CSA_PASSWORD>W3lcome1</CSA_PASSWORD>
+		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
+		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
+		<buildSystem>jenkins</buildSystem>
+		<component>Deployment</component>
+		<type>Nightly</type>
+		<branch>12.54_QTP</branch>
+		<branchId>12.54_QTP</branchId>
+		<productsToMonitor>"UFT"</productsToMonitor>
+		<machineDomain>HPESWLAB.NET</machineDomain>
+		<links>""</links>
+		<machineLinks>""</machineLinks>
+		<CLEAN_MODE>uninstall</CLEAN_MODE>
+	</GlobalProperties>
+<!-- ************************************************** Clean Machines ************************************************************************  -->	
+	<hosts>
+		<host>
+		  <VM_NAME>myd-vm00651</VM_NAME>
+		  <team>UFT 12.54 - Back End</team>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b52ded01e0153517ee1f471b4</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm00652</VM_NAME>
+		  <team>UFT 12.54 - SWAT</team>
+		  <USER_EMAIL>datn@hpe.com,tal.halperin@hpe.com,aa.ftvs.cpe.bpt.dev.vn@hpe.com,aa.ftvs.cpe.qtp.dev.vn@hpe.com,aa.ftvs.cpe.st.dev@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b52ded01e0153517ece6a6fa1</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm00653</VM_NAME>
+		  <team>UFT 12.54 - Installation</team>
+		  <USER_EMAIL>amit.bezalel@hpe.com,huynh.son@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b52ded01e0153517f93dc777c</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm16358</VM_NAME>
+		  <team>UFT 12.54 - Functional architects</team>
+		  <USER_EMAIL>ran.bachar@hpe.com,ori.bendet@hpe.com,amit.bezalel@hpe.com,roee@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f5f45a713210d</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm16361</VM_NAME>
+		  <team>UFT 12.54 - Back End</team>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f5f45a7232111</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm16418</VM_NAME>
+		  <team>UFT 12.54 - SAP ALL</team>
+		  <USER_EMAIL>ftmobile.uft.dev.sap.all@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f6508cd6130b1</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm16481</VM_NAME>
+		  <team>UFT 12.54 - Web</team>
+		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f6923fd9a5cd0</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm16755</VM_NAME>
+		  <team>UFT 12.54 - L10N Russian</team>
+		  <USER_EMAIL>yaron.bracha@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9c4f3a604f014f8cb4c27d1071</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm16780</VM_NAME>
+		  <team>UFT 12.54 - L10N S.Chinese</team>
+		  <USER_EMAIL>yaron.bracha@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9c4f3a604f014f8e04dfd5099a</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm18471</VM_NAME>
+		  <team>UFT 12.54 - Front End UKR</team>
+		  <USER_EMAIL>ftmobile.dev.frontend.ukr@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b5056b4be01507b02fcb30d54</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm19974</VM_NAME>
+		  <team>UFT 12.54 - Documentation</team>
+		  <USER_EMAIL>uft.doc@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b50d7019f015114abd52b5f6b</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+			<VM_NAME>myd-vm20261</VM_NAME>
+			<team>UFT 12.54 - Tech UKR</team>
+			<USER_EMAIL>ftmobile.dev.tech.ukr@hpe.com</USER_EMAIL>
+			<SUBSCRIPTION_ID>90bc0b9b50d7019f015139c3622209dc</SUBSCRIPTION_ID>
+			<CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm20262</VM_NAME>
+		  <team>UFT 12.54 - Front End UKR</team>
+		  <USER_EMAIL>ftmobile.dev.frontend.ukr@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b50d7019f015139c537fd1868</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm20263</VM_NAME>
+		  <team>UFT 12.54 - Tech UKR</team>
+		  <USER_EMAIL>ftmobile.dev.tech.ukr@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b50d7019f015139c70b1927bb</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm20452</VM_NAME>
+		  <team>UFT 12.54 - Web</team>
+		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b50d7019f015158bc7a9c0d75</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--
+		<host>
+		  <VM_NAME>myd-vm16185</VM_NAME>
+		  <team>UFT 12.54 - CPE</team>
+		  <USER_EMAIL>datn@hpe.com,tal.halperin@hpe.com,aa.ftvs.cpe.bpt.dev.vn@hpe.com,aa.ftvs.cpe.qtp.dev.vn@hpe.com,aa.ftvs.cpe.st.dev@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f464c92dd7ab4</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm16359</VM_NAME>
+		  <team>UFT 12.54 - Tech IL</team>
+		  <USER_EMAIL>ftmobile.dev.tech.il@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f5f45a732211f</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vm16357</VM_NAME>
+		  <team>UFT 12.54 - Sprinter</team>
+		  <USER_EMAIL>elad.malki@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f5f45a7232112</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		
+	-->
+		
+		
+	</hosts>
+</Deploy>
+    
