@@ -2,10 +2,6 @@ svn:
   server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
   project: tsg-bto-apps-qtp
   trunk: branches/FTQA_BPT
-  branches:
-  - branches/FTQA_BPT_12_53
-  - branches/FTQA_BPT_12_54
-  - branches/FTQA_BPT_12_54_G11N
   revisions:
     start: 0
     end: 156122
@@ -18,12 +14,17 @@ git_svn:
   svn_temp_dir: gitmig
 
 repos:
-# UFT.Automation
+# BPT.Automation
 - display_name: BPT.Automation
   git_name: bpt.automation
   svn_path_exclude_dir:
+  - HP.BPT.Action/AutomationBundle
   - HP.BPT.Action/DLL
   - HP.BPT.Action/packages
+  - HP.BPT.Action/HP.BPT.Actions.White
+  - HP.BPT.Action/HP.BPT.Actions.ALM12
+  - HP.BPT.Action/HP.BPT.Actions.ALM1152
+  - HP.BPT.Action/HP.BPT.Actions.OTA
   svn_path_exclude_file:
   - '*.jar'
   - '*.qcp'
@@ -31,8 +32,92 @@ repos:
   - '*.dll'
   - '*.nupkg'
   git_svn:
-    ignore_path: '(?:(?:HP\.BPT\.Action\/DLL|HP\.BPT\.Action\/packages)(?:\/.+)*|.+\.(?:jar|qcp|exe|dll|nupkg))$'
-    ignore_addition: '^branches\/FTQA_BPT_12_54_G11N\/+(?:(?:HP\.BPT\.Action\/DLL|HP\.BPT\.Action\/packages)(?:\/.+)*|.+\.(?:jar|qcp|exe|dll|nupkg))$'
+    ignore_path: '(?:HP\.BPT\.Action\/(?:AutomationBundle|DLL|packages|HP\.BPT\.Actions\.White|HP\.BPT\.Actions\.ALM12|HP\.BPT\.Actions\.ALM1152|HP\.BPT\.Actions\.OTA)(?:\/.+)*|.+\.(?:jar|qcp|exe|dll|nupkg))$'
   tags:
   - automation
+  - bpt
+
+# BPT.Automation.HP.BPT.Actions.OTA
+- display_name: BPT.Automation.HP_BPT_Actions_OTA
+  git_name: bpt.automation.hp_bpt_actions_ota
+  svn_path_base: HP.BPT.Action/HP.BPT.Actions.OTA
+  svn_path_exclude_file:
+  - '*.jar'
+  - '*.qcp'
+  - '*.exe'
+  - '*.dll'
+  - '*.nupkg'
+  git_svn:
+    ignore_path: '(?:.+\.(?:jar|qcp|exe|dll|nupkg))$'
+  tags:
+  - automation
+  - HP.BPT.Actions.OTA
+  - bpt
+
+# BPT.Automation.HP.BPT.Actions.ALM12
+- display_name: BPT.Automation.HP_BPT_Actions_ALM12
+  git_name: bpt.automation.hp_bpt_actions_alm12
+  svn_path_base: HP.BPT.Action/HP.BPT.Actions.ALM12
+  svn_path_exclude_file:
+  - '*.jar'
+  - '*.qcp'
+  - '*.exe'
+  - '*.dll'
+  - '*.nupkg'
+  git_svn:
+    ignore_path: '(?:.+\.(?:jar|qcp|exe|dll|nupkg))$'
+  tags:
+  - automation
+  - HP.BPT.Actions.ALM12
+  - bpt
+
+# BPT.Automation.HP.BPT.Actions.ALM1152
+- display_name: BPT.Automation.HP_BPT_Actions_ALM1152
+  git_name: bpt.automation.hp_bpt_actions_alm1152
+  svn_path_base: HP.BPT.Action/HP.BPT.Actions.ALM1152
+  svn_path_exclude_file:
+  - '*.jar'
+  - '*.qcp'
+  - '*.exe'
+  - '*.dll'
+  - '*.nupkg'
+  git_svn:
+    ignore_path: '(?:.+\.(?:jar|qcp|exe|dll|nupkg))$'
+  tags:
+  - automation
+  - HP.BPT.Actions.ALM1152
+  - bpt
+
+# BPT.Automation.HP.BPT.Actions.White
+- display_name: BPT.Automation.HP_BPT_Actions_White
+  git_name: bpt.automation.hp_bpt_actions_white
+  svn_path_base: HP.BPT.Action/HP.BPT.Actions.White
+  svn_path_exclude_file:
+  - '*.jar'
+  - '*.qcp'
+  - '*.exe'
+  - '*.dll'
+  - '*.nupkg'
+  git_svn:
+    ignore_path: '(?:.+\.(?:jar|qcp|exe|dll|nupkg))$'
+  tags:
+  - automation
+  - HP.BPT.Actions.White
+  - bpt
+
+# BPT.Automation.AutomationBundle
+- display_name: BPT.Automation.AutomationBundle
+  git_name: bpt.automation.automation_bundle
+  svn_path_base: HP.BPT.Action/AutomationBundle
+  svn_path_exclude_file:
+  - '*.jar'
+  - '*.qcp'
+  - '*.exe'
+  - '*.dll'
+  - '*.nupkg'
+  git_svn:
+    ignore_path: '(?:.+\.(?:jar|qcp|exe|dll|nupkg))$'
+  tags:
+  - automation
+  - AutomationBundle
   - bpt
