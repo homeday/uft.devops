@@ -60,3 +60,31 @@ repos:
   - build
   - setup
   - mlu
+
+---
+
+# 14_50 branch migration
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: branches/UFT_14_50
+  revisions:
+    start: 157682
+    end: 157912
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+repos:
+# QTP build - components
+- display_name: QTP.Components_Migration_14_50
+  git_name: qtp.components_mig_14_50
+  svn_path_base: components
+  tags:
+  - build
+  - components
+  - branch_14_50

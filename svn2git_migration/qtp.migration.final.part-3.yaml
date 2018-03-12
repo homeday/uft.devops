@@ -40,3 +40,38 @@ repos:
   svn_path_base: QTP/BackEnd
   tags:
   - backend
+
+---
+
+# 14_50 branch migration
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: branches/UFT_14_50
+  revisions:
+    start: 157682
+    end: 157912
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+repos:
+# QTP - frontend
+- display_name: QTP.FrontEnd_Migration_14_50
+  git_name: qtp.frontend_mig_14_50
+  svn_path_base: QTP/FrontEnd
+  tags:
+  - frontend
+  - branch_14_50
+
+# QTP - backend
+- display_name: QTP.BackEnd_Migration_14_50
+  git_name: qtp.backend_mig_14_50
+  svn_path_base: QTP/BackEnd
+  tags:
+  - backend
+  - branch_14_50
