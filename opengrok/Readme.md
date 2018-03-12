@@ -2,7 +2,7 @@
 
 #### 1. Install opengrok with docker
     
-	docker run -d --name opengrok -v /src:/src -p 8080:8080 nagui/opengrok:latest
+	docker run --restart always -d --name opengrok -v /src:/src -p 8080:8080 nagui/opengrok:latest
 	
 
 #### 2. Pull source code from Git to src folder
