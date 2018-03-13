@@ -15,10 +15,6 @@ git:
 git_svn:
   svn_temp_dir: gitmig_poc
 
-abandoned_path:
-- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-4-14-hp-mod
-- QTP/Addins/Flash/FlexPackage/app/apache-flex-sdk-hp-mod
-
 repos:
 # QTP - addins
 - display_name: QTP.Addins.Java
@@ -51,3 +47,42 @@ repos:
   svn_path_base: QTP/Addins/TEABased
   tags:
   - addins
+
+---
+
+# 14_50 branch migration
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: branches/UFT_14_50
+  revisions:
+    start: 157682
+    end: 157912
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+repos:
+# QTP - addins
+- display_name: QTP.Addins.Java_Migration_14_50
+  git_name: qtp.addins.java_mig_14_50
+  svn_path_base: QTP/Addins/Java
+  tags:
+  - addins
+  - branch_14_50
+- display_name: QTP.Addins.ERP_Migration_14_50
+  git_name: qtp.addins.erp_mig_14_50
+  svn_path_base: QTP/Addins/ERP
+  tags:
+  - addins
+  - branch_14_50
+- display_name: QTP.Addins.MobilePackage_Migration_14_50
+  git_name: qtp.addins.mobile_mig_14_50
+  svn_path_base: QTP/Addins/MobilePackage
+  tags:
+  - addins
+  - branch_14_50

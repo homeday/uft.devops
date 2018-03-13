@@ -46,3 +46,57 @@ repos:
   svn_path_base: QTP/Addins/WebBased
   tags:
   - addins
+
+---
+
+# 12_54 branch migration
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 156670
+    end: 157911
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+repos:
+# QTP - addins
+- display_name: QTP.Addins.WebBased_Migration_12_54
+  git_name: qtp.addins.webbased_mig_12_54
+  svn_path_base: QTP/Addins/WebBased
+  tags:
+  - addins
+  - branch_12_54_SP
+
+---
+
+# 14_50 branch migration
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: branches/UFT_14_50
+  revisions:
+    start: 157682
+    end: 157912
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+repos:
+# QTP - addins
+- display_name: QTP.Addins.WebBased_Migration_14_50
+  git_name: qtp.addins.webbased_mig_14_50
+  svn_path_base: QTP/Addins/WebBased
+  tags:
+  - addins
+  - branch_14_50

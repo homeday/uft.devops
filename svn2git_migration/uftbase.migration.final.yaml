@@ -37,3 +37,45 @@ repos:
     ignore_addition: '^branches\/[^\/]+\/+(?:.+\.(?:zip|chm|psd|bmp|pdf|exe|dll|ttf|eot|woff|otf|svg))$'
   tags:
   - uftbase
+
+---
+
+# 14_50 branch migration
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-uftbase
+  trunk: branches/UFT_14_50
+  revisions:
+    start: 18215
+    end: 18238
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# UFTBase
+- display_name: UFTBase_Migration_14_50
+  git_name: uftbase_mig_14_50
+  svn_path_exclude_file:
+  - '*.zip'
+  - '*.chm'
+  - '*.psd'
+  - '*.bmp'
+  - '*.pdf'
+  - '*.exe'
+  - '*.dll'
+  - '*.ttf'
+  - '*.eot'
+  - '*.woff'
+  - '*.otf'
+  - '*.svg'
+  git_svn:
+    ignore_path: '(?:.+\.(?:zip|chm|psd|bmp|pdf|exe|dll|ttf|eot|woff|otf|svg))$'
+    ignore_addition: '^branches\/[^\/]+\/+(?:.+\.(?:zip|chm|psd|bmp|pdf|exe|dll|ttf|eot|woff|otf|svg))$'
+  tags:
+  - uftbase
+  - branch_14_50
