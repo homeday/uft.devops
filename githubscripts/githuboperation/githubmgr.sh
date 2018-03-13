@@ -94,9 +94,15 @@ update_and_create_ref_by_srctag()
     refname=$4
     srctagtype=$5
     srctag=$6
+    shacode=""
+    ret=0
 
-    shacode=$(get_ref_sha $orgname $reponame $srctagtype $srctag)    
-    ret=$?
+    if [ "${srctagtype}" == "sha" ]; then 
+        shacode=$srctag
+    else
+        shacode=$(get_ref_sha $orgname $reponame $srctagtype $srctag)    
+        ret=$?
+    fi
 
     if [ 0 != $ret ]; then
         return 1
