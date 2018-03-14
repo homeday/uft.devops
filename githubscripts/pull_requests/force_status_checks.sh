@@ -156,3 +156,4 @@ while true; do
         exit 9
     fi
 done
+exit 0
