@@ -7,7 +7,7 @@ refname=$4
 srcreftype=$5
 srcrefname=$6
 
-$re="qtp\..*"
+re="qtp\..*"
 if [ ! "$repo" == "uftbase" ] && [ ! "${repo}" == "st" ] && [ ! "${repo}" == "sprinter" ] && [[ ! $repo =~ $re ]]; then
     echo "not support the repoistory ${repo}!"
     exit 1
