@@ -129,8 +129,8 @@ full_api_url="${base_api_url}${api_endpoint}"
 
 while true; do
     status_check="$1"
-    shift
     if [ -z "${status_check}" ]; then break; fi
+    shift
 
     data='{"state":"success"'
     data="${data},\"context\":\"${status_check}\""
@@ -156,4 +156,3 @@ while true; do
         exit 9
     fi
 done
-exit 0
