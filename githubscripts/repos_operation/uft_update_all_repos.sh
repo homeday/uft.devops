@@ -40,3 +40,5 @@ name='qtp.addins.core'; desc='QTP/Addins/CoreAddins'; "${scfile}" -mrd"$desc" "$
 name='qtp.addins.iba'; desc='QTP/Addins/IBAPackage'; "${scfile}" -mrd"$desc" "$org" "$name"
 
 name='qtp.provision'; desc='Provision QTP repositories'; "${scfile}" -mrd"$desc" "$org" "$name"
+
+name='uft.demo.play'; desc='A demo project in UFT organization free for playing'; "${scfile}" -mrd"$desc" "$org" "$name"
