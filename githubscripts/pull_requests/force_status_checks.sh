@@ -98,7 +98,8 @@ if [ $ret -ne 0 ]; then
     if [ "$OSTYPE" = "msys" -o "$OSTYPE" = "cygwin" ]; then
         curl -sSL "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-win64.exe" -o ./jq
     else
-        curl -sSL "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64" -o ./jq
+        curl -sSL "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64" -o ./jq || \
+            wget -O ./jq "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
         chmod +x ./jq
     fi
     echo "Done"
