@@ -21,6 +21,12 @@ TD.value > SPAN {
 TABLE.t2 TD.value A {
     font-size: 85%;
 }
+SPAN.emphasize {
+    background-color: green;
+    font-weight: bolder;
+    color: white;
+    font-size: 110%;
+}
 </style>
 <body>
 
@@ -74,6 +80,12 @@ def hotfix_uri = "${msi_root_uri}\\HotFix"
         <tr><td class="label">PFTW ${release_num}</td><td class="value"><a href="file:///${uft_msi_uri}">${pftw_setup_uri}</a></td></tr>
         <tr><td class="label">UFT ${release_num} HotFix</td><td class="value"><a href="file:///${uft_msi_uri}">${hotfix_uri}</a></td></tr>
     </table>
+
+    <p>
+        <br/>
+        <b>UFT ${release_num} Sprint ${sprint_num} Sanity</b> code freeze is <span class="emphasize">OFF</span> now.<br/>
+        You can merge your approved pull requests to official branches.
+    </p>
 
     <p>
         <br/>
