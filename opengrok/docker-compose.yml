@@ -1,0 +1,21 @@
+version: '3.5'
+services:
+  opengroksrc:
+    build: ./docker
+    image: opengrokcodeupdate:1.0
+    volumes:
+     - /src:/src
+    container_name: uftopengroksrc
+  opengrok:
+    image: "nagui/opengrok:latest"
+    depends_on:
+     - opengroksrc
+    volumes:
+     - /src:/src
+    container_name: uftopengrok
+    ports:
+     - 8080:8080
+
+
+
+    
