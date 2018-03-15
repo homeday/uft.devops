@@ -109,8 +109,8 @@ if [ "${remove_protection}" = "true" ]; then
     req_method="DELETE"
     while true; do
         branch_name="$1"
-        shift
         if [ -z "${branch_name}" ]; then break; fi
+        shift
 
         api_endpoint="/repos/${repo_full_name}/branches/${branch_name}/protection"
         full_api_url="${base_api_url}${api_endpoint}"
@@ -178,8 +178,8 @@ else
 
     while true; do
         branch_name="$1"
-        shift
         if [ -z "${branch_name}" ]; then break; fi
+        shift
 
         api_endpoint="/repos/${repo_full_name}/branches/${branch_name}/protection"
         full_api_url="${base_api_url}${api_endpoint}"

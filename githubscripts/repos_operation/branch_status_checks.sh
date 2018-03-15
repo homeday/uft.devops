@@ -96,8 +96,8 @@ contexts="["
 first_ctx="true"
 while true; do
     ctx="$1"
-    shift
     if [ -z "$ctx" ]; then break; fi
+    shift
 
     if [ "${first_ctx}" = "true" ]; then
         first_ctx="false"
