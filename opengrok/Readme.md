@@ -34,3 +34,41 @@
     ```
 	bash operate_opengrok_src.sh UFT_14_50 delete UFT_14_03_SP_Patches
 
+
+#### 4. deploy the docker containor for updating the source code from GitHub
+
+- navigate to the docker folder
+
+    ```
+    cd ./docker
+    ```
+
+- change the bash file "build_dockerimage.sh" to unix formate and run it
+
+    ```
+    dos2unix build_dockerimage.sh
+    bash build_dockerimage.sh
+    ```
+
+- deploy the docker containor
+
+    ```
+    bash run_dockercontainor.sh
+    ```
+
+#### 5. Deploy with docker-compose
+
+- install docker-compose
+
+    ```
+    curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    ```
+
+- run docker-compose command
+
+    ```
+    docker-compose up -d
+    ```
+
+
