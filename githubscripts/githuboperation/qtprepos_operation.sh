@@ -1,8 +1,5 @@
 source ./githubmgr.sh
 
-export GITHUB_SERVER=github.houston.softwaregrp.net
-export GITHUB_USER_TOKEN=ed7d1f40911d99d86dcdfa160a8ecf393d4dfbf7
-
 label=$1
 operate=$2
 reftype=$3
