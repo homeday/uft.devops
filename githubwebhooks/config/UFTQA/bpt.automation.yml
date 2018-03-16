@@ -1,0 +1,17 @@
+git_org: UFTQA
+git_repo: bpt.automation
+
+git_tags:
+
+git_branches:
+  master: &jenkins_action_branch_default
+    push:
+      jenkins: &jenkins_action_default
+        enabled: true
+        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/BPT.Automation.ALM.Build/buildWithParameters'
+        job_parameters: &jenkins_action_params_default
+          token: UFTQABUILDTOKEN
+          Branch:
+            runtime: _branch_name_
+
+
