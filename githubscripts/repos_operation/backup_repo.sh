@@ -95,7 +95,10 @@ while IFS='' read -r remote_branch || [[ -n "${remote_branch}" ]]; do
     br=$(echo "${br_no_space#$rn}")
 
     # skip "origin/HEAD -> origin/master"
-    if [[ "$br" =~ ^HEAD\ +\-\>\ .* ]]; then echo "The '${br_no_space}' remote ref is not a branch, skipped."; fi
+    if [[ "$br" =~ ^HEAD\ +\-\>\ .* ]]; then
+        echo "The '${br_no_space}' remote ref is not a branch, skipped."
+        continue
+    fi
 
     # for a remote branch, checkout and pull
     echo "Checking out remote branch '${br_no_space}' and pulling ..."
