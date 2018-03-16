@@ -1,0 +1,17 @@
+git_org: uft
+git_repo: qtp.addins.webbased
+
+git_tags:
+
+git_branches:
+  master:
+    push:
+      jenkins: &jenkins_action_build_default
+        enabled: true
+        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFT.Agents.Build/buildWithParameters'
+        job_parameters: &jenkins_action_params_default
+          token: UFTBUILDTOKEN
+          Branch:
+            runtime: _branch_name_
+
+  UFT_14_03_SP_Patches: *jenkins_action_branch_default
