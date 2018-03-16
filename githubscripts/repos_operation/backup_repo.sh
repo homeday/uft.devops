@@ -74,6 +74,7 @@ repo_clone_url="${base_url}/${repo_full_name}.git"
 echo "Cloning git repository via: ${repo_clone_url} ..."
 if [ ! -d "${target_dir}" ]; then mkdir -p "${target_dir}"; fi
 git clone "${repo_clone_url}" "${target_dir}"
+if [ $? -ne 0 ]; then exit 2; fi
 
 
 pushd "${target_dir}" >/dev/null
