@@ -55,17 +55,22 @@ update_and_create_ref_by_sha()
     repourl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/git/refs/${reftype}/${refname}"
     rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" -L ${repourl})
     if [ "200" == "${rspcode}" ]; then
+        if [ "heads" != "${reftype}" ]; then
     #########################################################################
-    #				Update ref with commit
+    #				Update tags with commit
     #########################################################################
-        reqdata="{\"sha\": \"${shacode}\", \"force\": true}"
-        rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request PATCH -L "${repourl}" -d "${reqdata}")
-        if [ "200" != "${rspcode}" ]; then 
-            echo "Update ${reponame} ref error - ${rspcode}"
-            return 1
+            reqdata="{\"sha\": \"${shacode}\", \"force\": true}"
+            rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request PATCH -L "${repourl}" -d "${reqdata}")
+            if [ "200" != "${rspcode}" ]; then 
+                echo "Update ${reponame} ref error - ${rspcode}"
+                return 1
+            fi
+            echo "Update ${reponame} ref ${refname} successfully"
+            return 0
+        else
+            echo "The heads ${refname} already exists!"
+            return 0
         fi
-        echo "Update ${reponame} ref ${refname} successfully"
-        return 0
     elif [ "404" == "${rspcode}" ]; then
     #########################################################################
     #				Create a ref
