@@ -9,7 +9,7 @@ h2 { color:black; }
 h3 { color:black; }
 TD.bg1 { color:white; background-color:#0000C0; font-size:120% }
 TD.bg5 { color:white; background-color:#a08eb2; font-size:120% }
-TD.bg1_ { color:blue; background-color:#ECECFF; font-size:110% }
+TD.bg1_ { color:#4d4d4d; background-color:#CCCCFF; font-size:115% }
 TD.bg2 { color:blue; background-color:#ECECFF; font-size:110% }
 TD.bg4 { color:blue; background-color:#ECECFF; font-size:105% }
 TD.bg3 { color:white; background-color:#8080FF; }
@@ -568,16 +568,16 @@ gitfiles.each {
     if (committers1.logentry != null && committers1.logentry.size() > 0) {
     %>
     
-    <TR><TD class="bg1_" colspan="3"><B>${repoName}</B></TD></TR>
+    <TR><TD class="bg1_" colspan="3"><B>-- ${repoName} --</B></TD></TR>
     <%
       committers1.logentry.each {
         it2 ->
         try {
       %>
         <TR>
-        <TD class="bg2"> Revision <B> ${it2.@revision} </B> by ${it2.author[0].text()}</TD>
-        <TD class="bg2"> Date <B> ${it2.date}</B></TD>
-        <TD class="bg2"><B> Message  ${it2.msg.text()} </B></TD>
+        <TD class="bg2"> Revision <I>${it2.@revision}</I> by <B> ${it2.author[0].text()}</B></TD>
+        <TD class="bg2"> <B> ${it2.date}</B></TD>
+        <TD class="bg2"> <B> ${it2.msg.text()} </B></TD>
         </TR>
         <TR>
         </TR>
