@@ -1,0 +1,8 @@
+BuildMajorVersion=14
+BuildMinorVersion=50
+BuildLabel=UFT_14_50_REBRANDING
+BuildPostfix=99
+WSPostfix=.Rebranding
+DebugBuild=false
+
+
