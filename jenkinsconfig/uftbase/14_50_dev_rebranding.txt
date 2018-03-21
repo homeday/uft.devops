@@ -2,7 +2,7 @@ BuildMajorVersion=14
 BuildMinorVersion=50
 BuildLabel=UFT_14_50_REBRANDING
 BuildPostfix=99
-WSPostfix=.SP.Patches
+WSPostfix=.Rebranding
 DebugBuild=false
 
 
