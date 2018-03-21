@@ -42,53 +42,94 @@ delete_ref()
     return 0
 }
 
-update_and_create_ref_by_sha()
+update_and_create_branch_by_sha()
 {
     orgname=$1
     reponame=$2
     reftype=$3
     refname=$4
-    shacode=$5
+    shacode=$5    
+    if [ ! "heads" == "$reftype" ]; then
+        echo "reference type is wrong! ${reftype}"
+        return 1
+    fi
+    repourl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/branches/${refname}"
+    rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" -L ${repourl})
+    if [ "200" == "${rspcode}" ]; then
+        #found branch
+        echo "The branch ${refname} already exists!"
+        return 0
+    elif [ "404" == "${rspcode}" ]; then
+        #########################################################################
+        #				Create a branch
+        #########################################################################
+        reqdata="{\"ref\": \"refs/${reftype}/${refname}\", \"sha\": \"${shacode}\"}"
+        repourl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/git/refs"
+        rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request POST -L "${repourl}" -d "${reqdata}")
+        if [ "201" != "${rspcode}" ]; then 
+            echo "Create ${reponame} branch ${refname} error : ${rspcode}"
+            return 1
+        fi
+        echo "Create ${reponame} branch ${refname} successfully"
+        return 0
+    else
+        echo "Query ${reponame} branch ${refname} error - ${rspcode}"
+        return 1
+    fi
+    return 0
+}
+
+update_and_create_tag_by_sha()
+{
+    orgname=$1
+    reponame=$2
+    reftype=$3
+    refname=$4
+    shacode=$5    
+    if [ ! "tags" == "$reftype" ]; then
+        echo "reference type is wrong! ${reftype}"
+        return 1
+    fi
     #########################################################################
-    #				Check whethere ref exists
+    #				Check whethere tag exists
     #########################################################################
     repourl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/git/refs/${reftype}/${refname}"
     rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" -L ${repourl})
     if [ "200" == "${rspcode}" ]; then
-        if [ "heads" != "${reftype}" ]; then
     #########################################################################
     #				Update tags with commit
     #########################################################################
-            reqdata="{\"sha\": \"${shacode}\", \"force\": true}"
-            rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request PATCH -L "${repourl}" -d "${reqdata}")
-            if [ "200" != "${rspcode}" ]; then 
-                echo "Update ${reponame} ref error - ${rspcode}"
-                return 1
-            fi
-            echo "Update ${reponame} ref ${refname} successfully"
-            return 0
-        else
-            echo "The heads ${refname} already exists!"
-            return 0
+        reqdata="{\"sha\": \"${shacode}\", \"force\": true}"
+        rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request PATCH -L "${repourl}" -d "${reqdata}")
+        if [ "200" != "${rspcode}" ]; then 
+            echo "Update ${reponame} tag error - ${rspcode}"
+            return 1
         fi
+        echo "Update ${reponame} tag ${refname} successfully"
+        return 0
     elif [ "404" == "${rspcode}" ]; then
     #########################################################################
-    #				Create a ref
+    #				Create a tag
     #########################################################################
         reqdata="{\"ref\": \"refs/${reftype}/${refname}\", \"sha\": \"${shacode}\"}"
         repourl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/git/refs"
         rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request POST -L "${repourl}" -d "${reqdata}")
         if [ "201" != "${rspcode}" ]; then 
-            echo "Create ${reponame} ref ${refname} error"
+            echo "Create ${reponame} tag ${refname} error : ${rspcode}"
             return 1
         fi
-        echo "Create ${reponame} ref ${refname} successfully"
+        echo "Create ${reponame} tag ${refname} successfully"
         return 0
     else
-        echo "Query ${reponame} ref ${refname} error - ${rspcode}"
+        echo "Query ${reponame} tag ${refname} error - ${rspcode}"
         return 1
     fi
     return 0
+}
+
+update_and_create_ref_by_sha()
+{  
+    update_and_create_branch_by_sha "$@" || update_and_create_tag_by_sha "$@"
 }
 
 update_and_create_ref_by_srctag()
