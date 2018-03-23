@@ -42,3 +42,5 @@ name='qtp.addins.iba'; "${scfile}" -pdsr "$org/$name" master UFT_12_54_SP_Patche
 name='qtp.provision'; "${scfile}" -pdsr "$org/$name" master
 
 name='uft.demo.play'; "${scfile}" -pdsra "$org/$name" master UFT_12_54_SP_Patches UFT_14_03_SP_Patches
+
+name='sprinter'; "${scfile}" -pdsr "$org/$name" master Sprinter_12_54
