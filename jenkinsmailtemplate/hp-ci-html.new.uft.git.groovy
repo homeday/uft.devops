@@ -550,7 +550,7 @@ if ( build.getEnvironment().BUILD_FAILURE == "Compilation Failed" ||  build.getE
 
 <!-- CHANGE SET -->
 <TABLE width="100%">
-<TR><TD class="bg1" colspan="3"><B>GIT Changes</B></TD></TR><BR/>
+<TR><TD class="bg1" colspan="4"><B>GIT Changelogs</B></TD></TR><BR/>
 
 <% 
 
@@ -562,34 +562,36 @@ def repoName = ""
 gitfiles.each {
   try {
     repoName = it.getBaseName().replace("Build_", "").replace("_Git_Commits", "")
+    def repoUrl = "https://github.houston.softwaregrp.net/uft/${repoName}"
     gitfile = it.readToString()  %>
     <%
     def committers1 = new XmlSlurper().parseText(gitfile)
     if (committers1.logentry != null && committers1.logentry.size() > 0) {
     %>
     
-    <TR><TD class="bg1_" colspan="3"><B>-- ${repoName} --</B></TD></TR>
+    <TR><TD class="bg1_" colspan="4"><B>-- ${repoName} --</B></TD></TR>
     <%
       committers1.logentry.each {
         it2 ->
         try {
       %>
         <TR>
-        <TD class="bg2"> Revision <I>${it2.@revision}</I> by <B> ${it2.author[0].text()}</B></TD>
-        <TD class="bg2"> <B> ${it2.date}</B></TD>
-        <TD class="bg2"> <B> ${it2.msg.text()} </B></TD>
+        <TD class="bg2"><A href="${repoUrl}/commit/${it2.@revision}"><I>${it2.@revision}</I></A></TD>
+        <TD class="bg2"><B> ${it2.author[0].text()}</B></TD>
+        <TD class="bg2">${it2.date}</TD>
+        <TD class="bg2"><B> ${it2.msg.text()} </B></TD>
         </TR>
         <TR>
         </TR>
       <%}
         catch (Exception e) {%>
-            <TR><TD class="bg2" colspan="3"><B>${e.getMessage()}</B></TD></TR>
+            <TR><TD class="bg2" colspan="4"><B>${e.getMessage()}</B></TD></TR>
         <%}
       }
     }
   }
   catch (Exception e) {%>
-    <TR><TD class="bg2" colspan="3"><B>${e.getMessage()}</B></TD></TR>
+    <TR><TD class="bg2" colspan="4"><B>${e.getMessage()}</B></TD></TR>
 <%}
 }%>
 
