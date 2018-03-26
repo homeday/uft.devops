@@ -23,12 +23,12 @@ git_branches:
               runtime: _head_repo_clone_url_
             Head_Branch:
               runtime: _head_branch_
+            Head_sha:
+              runtime: _head_sha_
             Base_Branch:
               runtime: _base_branch_
             Git_PullRequest_ID:
               runtime: _pull_request_id_
-            Skip_DebugConfig: false
-            Dry_Run: true
       reopened:
         jenkins: *jenkins_action_pull_request_compile_only
       synchronize:

@@ -33,6 +33,7 @@ repo_name = payload['repository']['name']
 
 src_repo_clone_url = payload['pull_request']['head']['repo']['clone_url']
 src_repo_head_branch = payload['pull_request']['head']['ref']
+src_repo_head_sha = payload['pull_request']['head']['sha']
 dest_repo_base_branch = payload['pull_request']['base']['ref']
 
 
@@ -102,6 +103,8 @@ def _pull_request_action_trigger_jenkins_job(pull_request_action_type, base_bran
             jenkins_job_params[pkey] = src_repo_clone_url
           elif runtime_var == '_head_branch_':
             jenkins_job_params[pkey] = src_repo_head_branch
+          elif runtime_var == '_head_sha_':
+            jenkins_job_params[pkey] = src_repo_head_sha
           elif runtime_var == '_base_branch_':
             jenkins_job_params[pkey] = base_branch_name
           elif runtime_var == '_pull_request_id_':
