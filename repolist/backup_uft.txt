@@ -29,6 +29,7 @@ qtp.provision
 qtp.legacy
 uftbase
 st
+sprinter
 uft.dev.guidelines
 uft.devops
 uft.demo.play

@@ -1,0 +1,55 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-sprinter
+  trunk: trunk
+  branches:
+  - branches/Sprinter_12_54
+  revisions:
+    start: 0
+    end: 48191
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# Sprinter
+- display_name: Sprinter
+  git_name: sprinter
+  svn_path_exclude_dir:
+  - AutomationTests
+  - assets/MirrorTesting/AutomationTests
+  - assets/MirrorTesting/Dependencies
+  - assets/MirrorTesting/Installations
+  - build/scripts/QTP_FilesVersionUpdate
+  - build/DVD/Sprinter/EN/prerequisites
+  svn_path_exclude_file:
+  - '*.exe'
+  - '*.EXE'
+  - '*.msi'
+  - '*.dll'
+  - '*.pdb'
+  - '*.jar'
+  - '*.chm'
+  - '*.doc'
+  - '*.docx'
+  - '*.ppt'
+  - '*.pptx'
+  - '*.gif'
+  - '*.bmp'
+  - '*.png'
+  - '*.ico'
+  - '*.pdf'
+  - '*.rtf'
+  - '*.lpu'
+  - '*.HLP'
+  - '*.vsd'
+  - '*.suo'
+  git_svn:
+    ignore_path: '(?:(?:AutomationTests|assets\/MirrorTesting\/AutomationTests|assets\/MirrorTesting\/Dependencies|assets\/MirrorTesting\/Installations|build\/scripts\/QTP_FilesVersionUpdate|build\/DVD\/Sprinter\/EN\/prerequisites)(?:\/.+)*|.+\.(?:exe|EXE|msi|dll|pdb|jar|chm|docx?|pptx?|gif|bmp|png|ico|pdf|rtf|lpu|HLP|vsd|suo))$'
+    ignore_addition: '^branches\/[^\/]+\/+(?:(?:AutomationTests|assets\/MirrorTesting\/AutomationTests|assets\/MirrorTesting\/Dependencies|assets\/MirrorTesting\/Installations|build\/scripts\/QTP_FilesVersionUpdate|build\/DVD\/Sprinter\/EN\/prerequisites)(?:\/.+)*|.+\.(?:exe|EXE|msi|dll|pdb|jar|chm|docx?|pptx?|gif|bmp|png|ico|pdf|rtf|lpu|HLP|vsd|suo))$'
+  tags:
+  - sprinter

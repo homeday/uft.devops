@@ -1,0 +1,158 @@
+#!/usr/bin/env python
+
+###################################################
+## This script processes git 'pull_request' event
+###################################################
+
+from __future__ import print_function
+import os
+import sys
+import tempfile
+import json
+import requests
+import yaml
+
+# this script is called by 'webhooks.py' with arguments:
+# payloadfile event
+
+exit_code=0
+
+# test event which must be "pull_request"
+event = sys.argv[2]
+if event != "pull_request":
+  print('This script file does not process the event "{}" which is not the expected one "pull_request". Exit.'.format(event))
+  sys.exit()
+
+# get payload from file
+with open(sys.argv[1], 'r') as jsf:
+  payload = json.loads(jsf.read())
+pr_action = payload['action']
+pr_number = payload['number']
+org_name = payload['organization']['login']
+repo_name = payload['repository']['name']
+
+src_repo_clone_url = payload['pull_request']['head']['repo']['clone_url']
+src_repo_head_branch = payload['pull_request']['head']['ref']
+src_repo_head_sha = payload['pull_request']['head']['sha']
+dest_repo_base_branch = payload['pull_request']['base']['ref']
+
+
+class InvalidArgument(Exception):
+  """An exception indicates an argument is invalid."""
+  pass
+
+class FileNotFound(Exception):
+  """An exception indicates file is not found."""
+  pass
+
+
+def _load_yaml_file(yaml_file):
+  """Load YAML file and return an object represents the content"""
+
+  if not os.path.exists(yaml_file):
+    raise FileNotFound('File "{}" is not found.'.format(yaml_file))
+
+  content = None
+  with open(yaml_file, 'r') as ymlfile:
+    content = yaml.load(ymlfile)
+
+  return content
+
+
+def _get(obj, field_name, fail_value=None, check=False):
+  '''Return the value of the specified field'''
+
+  ret_value = None
+  if obj and field_name:
+    tmp_value = obj
+    for fld in field_name.split('.'):
+      if not isinstance(tmp_value, dict):
+        raise InvalidArgument('The obj has no such field: {}'.format(field_name))
+      tmp_value = tmp_value.get(fld, {})
+
+    if tmp_value:
+        ret_value = tmp_value
+
+  if not ret_value:
+    if check:
+      raise ValueError('The field "{}" is set to be checked and the field value is None or empty'.format(field_name))
+    else:
+      ret_value = fail_value
+
+  return ret_value
+
+
+def _pull_request_action_trigger_jenkins_job(pull_request_action_type, base_branch_name, action_config):
+  jenkins_enabled = _get(action_config, 'jenkins.enabled', False)
+  if not jenkins_enabled:
+    print('Jenkins action is either not configured or disabled for the PR action "{}" for the branch "{}" in git repository "{}/{}".'.format(
+      pull_request_action_type, base_branch_name, org_name, repo_name))
+  else:
+    jenkins_job_url = _get(action_config, 'jenkins.job_url')
+    if not jenkins_job_url:
+      print('Jenkins job URL is not configured for the PR action "{}" for the branch "{}" in git repository "{}/{}".'.format(
+        pull_request_action_type, base_branch_name, org_name, repo_name))
+    else:
+      # trigger jenkins job
+      jenkins_job_params = _get(action_config, 'jenkins.job_parameters', {})
+      for pkey in jenkins_job_params:
+        pvalue = jenkins_job_params[pkey]
+        if isinstance(pvalue, dict):
+          runtime_var = _get(pvalue, 'runtime')
+          if runtime_var == '_head_repo_clone_url_':
+            jenkins_job_params[pkey] = src_repo_clone_url
+          elif runtime_var == '_head_branch_':
+            jenkins_job_params[pkey] = src_repo_head_branch
+          elif runtime_var == '_head_sha_':
+            jenkins_job_params[pkey] = src_repo_head_sha
+          elif runtime_var == '_base_branch_':
+            jenkins_job_params[pkey] = base_branch_name
+          elif runtime_var == '_pull_request_id_':
+            jenkins_job_params[pkey] = pr_number
+          else:
+            jenkins_job_params[pkey] = str(pvalue)
+        else:
+          jenkins_job_params[pkey] = str(pvalue)
+
+      jenkins_res = requests.get(jenkins_job_url, params=jenkins_job_params)
+      if jenkins_res.status_code >= 400:
+        print('Failed to trigger Jenkins job. Status code: {}. URL: {}'.format(jenkins_res.status_code, jenkins_res.url), file=sys.stderr)
+        global exit_code
+        exit_code = jenkins_res.status_code
+      else:
+        print('Jenkins job is triggered successfully. URL: {}'.format(jenkins_res.url))
+
+
+
+#
+# main procedure
+#
+# Handle pull_request event
+# try to download and load config file by org name and repo name
+webhooks_repo_raw_file_url = os.environ.get('WEBHOOKS_REPO_RAW_FILE_URL', 'https://raw.github.houston.softwaregrp.net/uft/uft.devops')
+webhooks_repo_branch = os.environ.get('WEBHOOKS_REPO_BRANCH', 'master')
+config_file_url = '{}/{}/githubwebhooks/config/{}/{}.yml'.format(webhooks_repo_raw_file_url, webhooks_repo_branch, org_name, repo_name)
+
+# try to request file via url
+res = requests.get(config_file_url)
+if res.status_code != 200:
+  print('The webhooks configuration file for git repository "{}/{}" is not found. Exit. Request URL: {}'.format(org_name, repo_name, config_file_url))
+  sys.exit()
+else:
+  # save the response text to temporary file
+  osfd, tmpfile = tempfile.mkstemp()
+  with os.fdopen(osfd, 'w') as pf:
+      pf.write(res.text)
+  # load the saved temporary file
+  cfg = _load_yaml_file(tmpfile)
+  os.remove(tmpfile)
+  # get config object via base branch name and pull_request event type
+  action_cfg = _get(cfg, 'git_branches.{}.pull_request.{}'.format(dest_repo_base_branch, pr_action))
+  if not action_cfg:
+    print('No "pull_request ({})" action is configured for the branch "{}" in git repository "{}/{}". Exit.'.format(pr_action, dest_repo_base_branch, org_name, repo_name))
+    sys.exit()
+  else:
+    # do corresponding action(s)
+    _pull_request_action_trigger_jenkins_job(pr_action, dest_repo_base_branch, action_cfg)
+
+
