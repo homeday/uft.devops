@@ -1,0 +1,18 @@
+git_org: uft
+git_repo: sprinter
+
+git_tags:
+
+git_branches:
+  master:
+    push:
+      jenkins: &jenkins_action_build_default
+        enabled: true
+        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/Sprinter.Build.Launcher/'
+        job_parameters: &jenkins_action_params_default
+          token: UFTBUILDTOKEN
+          Type: CI
+          Branch:
+            runtime: _branch_name_
+
+

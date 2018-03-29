@@ -164,7 +164,7 @@ def _process_tag_push(tag_name):
 # Handle push of tags or branches
 ref = payload['ref'].split('/')
 if ref[1] == "tags":
-  _process_tag_push(ref[2])
+  _process_tag_push('/'.join(ref[2:]))
 else:
-  _process_branch_push(ref[2])
+  _process_branch_push('/'.join(ref[2:]))
 sys.exit(exit_code)
