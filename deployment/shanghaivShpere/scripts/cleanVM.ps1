@@ -10,6 +10,7 @@ Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
 #Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
 $vCenterAcc = $env:vCenterAccount
 $vCenterPwd = $env:vCenterPassword
+
 if (-Not $vCenterAcc -And -Not $vCenterPwd)
 {
     Write-Host "Can't find vCenter Account and Password Environment Variables"
@@ -23,13 +24,14 @@ try {
     $VMs = Get-VM -Name $vmName
     if ($null -eq $VMs) {
         write-host "there is no such VM " + $vmName
+        throw [Exception] "VM : $vmName is not found."
     }
     $VM = $VMs[0]
     $snapshotName = $vmName + "_Snapshot"
     $snapshot = Get-Snapshot -VM $VM -Name $snapshotName
-    Set-VM -VM $VM -Snapshot $snapshot -Confirm:$false
+    Set-VM -VM $VM -Snapshot $snapshot -Confirm:$false | Select-Object -Property PowerState, Guest | Format-Table
     $ParamFile = $vmName + "_parm.txt"
-    start-sleep -s 60
+    start-sleep -s 5
 
     $VMs = Get-VM -Name $vmName
     $VM = $VMs[0]
@@ -39,28 +41,32 @@ try {
     if ($PowerState -eq "PoweredOff")
     {
         write-host "Power On $VM"
-        Start-VM -VM $VM -Confirm:$false 
-        start-sleep -s 120
+        Start-VM -VM $VM -Confirm:$false | Select-Object -Property PowerState, Guest | Format-Table
+        start-sleep -s 10
     }
     
     $VMs = Get-VM -Name $vmName
-	if ($null -eq $VMs) {
-        write-host "there is no such VM " + $vmName
-    }
     $VM = $VMs[0]
     $PowerState = $VM.PowerState
     write-host "$PowerState"
 
-    if ($PowerState -eq "PoweredOff")
-    {
-        start-sleep -s 180
-    }
-	$IPv4 = $VM.Guest.IPAddress | where {([IPAddress]$_).AddressFamily -eq [System.Net.Sockets.AddressFamily]::InterNetwork}
+    $IPv4=""
+    $i=0
+    Do {
+        start-sleep -s 30
+        $VMs = Get-VM -Name $vmName
+        $VM = $VMs[0]
+        $IPv4 = $VM.Guest.IPAddress | Where-Object {([IPAddress]$_).AddressFamily -eq [System.Net.Sockets.AddressFamily]::InterNetwork}
+        $i = $i + 1
+        
+    } # End of 'Do'
+    Until (($IPv4 -and $IPv4 -ne "") -or $i -ge 3) 
+	
     write-host $IPv4
 	
-    Test-Connection -ComputerName $IPv4 -Count 3
-    #$VMGuest = Get-VMGuest -VM $VM
-    #write-host $VMGuest.IPAddress
+    if ($IPv4 -and $IPv4 -ne "") {
+        Test-Connection -ComputerName $IPv4 -Count 3 | Format-Table
+    }
     write-host $IPv4
     $Param = "VM_IP=" + $IPv4
     $CurrentDir = (Get-Location).Path
