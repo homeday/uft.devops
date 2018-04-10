@@ -1,0 +1,21 @@
+svn:
+  server_url: https://csvnisr2-pro.il.hpecorp.net:18180/svn
+  project: svn-hpsw-globalization-infra
+  trunk: trunk
+  revisions:
+    start: 0
+    end: 422
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# svn-hpsw-globalization-infra
+- display_name: Globalization.Infra
+  git_name: globalization.infra
+  tags:
+  - g11n
