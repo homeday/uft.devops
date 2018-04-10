@@ -50,7 +50,7 @@ update_and_create_branch_by_sha()
     refname=$4
     shacode=$5    
     if [ ! "heads" == "$reftype" ]; then
-        echo "reference type is wrong! ${reftype}"
+        echo "Warning: reference type '${reftype}' does not equal to 'heads', update_and_create_branch_by_sha is skipped."
         return 1
     fi
     repourl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/branches/${refname}"
