@@ -56,3 +56,33 @@ repos:
   - patches
   - branch_12_54_SP
 
+---
+
+# 12_54 branch migration (second migration)
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 157854
+    end: 157951
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+repos:
+# QTP Patches
+- display_name: QTP.Patches.12_54_Migration_3
+  git_name: qtp.patches.12_54_mig_3
+  svn_path_base: Patches
+  svn_path_exclude_dir:
+  - UFT_*/Logs
+  git_svn:
+    ignore_path: '(?:UFT_[^\/]+\/Logs(?:\/.+)*)$'
+  tags:
+  - patches
+  - branch_12_54_SP

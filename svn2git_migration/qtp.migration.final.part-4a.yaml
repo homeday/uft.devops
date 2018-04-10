@@ -76,6 +76,33 @@ repos:
 
 ---
 
+# 12_54 branch migration (second migration)
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-qtp
+  trunk: branches/UFT_12_54_SP_Patches
+  revisions:
+    start: 157910
+    end: 157951
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig_poc
+
+repos:
+# QTP - addins
+- display_name: QTP.Addins.WebBased_Migration_12_54_2nd
+  git_name: qtp.addins.webbased_mig_12_54_2nd
+  svn_path_base: QTP/Addins/WebBased
+  tags:
+  - addins
+  - branch_12_54_SP
+
+---
+
 # 14_50 branch migration
 svn:
   server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
