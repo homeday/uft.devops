@@ -99,7 +99,8 @@ class CSAMachineDeploy {
     [Boolean]InstallApplication(
         [string]$BuildVersion
     ) {
-        ([CSAMachineDeploy]$this).CopyFileToMachine("$($env:WORKSPACE)\installUFT_LeanFT.bat", "C:\")
+        Write-Host "Installing old uft now!"
+        ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\installUFT_LeanFT.bat", "C:\")
         $sb = [scriptblock]::Create(
             "c:\installUFT_LeanFT.bat ${BuildVersion} mama.hpeswlab.net"
         )
@@ -135,9 +136,10 @@ class CSAMachineDeployUninstall : CSAMachineDeploy {
     [Void]UninstallApplication(
 
     ) {
+        Write-Host "Removing old uft now!"
         #Copy the uninstaller tool to the machine
-        ([CSAMachineDeploy]$this).CopyFileToMachine("$($env:WORKSPACE)\del.bat", "C:\")
-        ([CSAMachineDeploy]$this).CopyFileToMachine("$($env:WORKSPACE)\UFTUninstaller_v2.0", "C:\UFTUninstaller_v2.0")
+        ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\del.bat", "C:\")
+        ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\UFTUninstaller_v2.0", "C:\UFTUninstaller_v2.0")
         Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
         { `
             D:\del.bat `
