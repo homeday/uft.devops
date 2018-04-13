@@ -76,6 +76,8 @@ class CSAMachineDeploy {
         }
 
         Net Use "\\$this.CSAName\IPC`$ `/D"
+
+        Write-Host "UFT exists ${IsAppexist}"
         return $IsAppexist
     }
 
@@ -102,7 +104,7 @@ class CSAMachineDeploy {
         Write-Host "Installing old uft now!"
         ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\installUFT_LeanFT.bat", "C:\")
         $sb = [scriptblock]::Create(
-            "c:\installUFT_LeanFT.bat ${BuildVersion} mama.hpeswlab.net"
+            "C:\installUFT_LeanFT.bat ${BuildVersion} mama.hpeswlab.net"
         )
         Invoke-Command -Credential $this.CSACredential -ComputerName $this.CSAName -ScriptBlock $sb
 
@@ -142,7 +144,7 @@ class CSAMachineDeployUninstall : CSAMachineDeploy {
         ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\UFTUninstaller_v2.0", "C:\UFTUninstaller_v2.0")
         Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
         { `
-            D:\del.bat `
+            C:\del.bat `
         } 
         #([CSAMachineDeploy]$this).RestartMachine()
         #Set-Item WSMan:\localhost\Client\TrustedHosts -Value ([CSAMachineDeploy]$this).CSAName -Force
@@ -150,7 +152,7 @@ class CSAMachineDeployUninstall : CSAMachineDeploy {
             #Invoke the application to remove the UFT
             Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
             { `
-                Start-Process -FilePath C:\UFTUninstaller_v2.0 -ArgumentList -silent -Wait `
+                Start-Process -FilePath C:\UFTUninstaller_v2.0\UFTUninstaller.exe -ArgumentList -silent -Wait `
             } 
         }
         ([CSAMachineDeploy]$this).RestartMachine()
