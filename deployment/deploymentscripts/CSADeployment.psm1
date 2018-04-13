@@ -65,14 +65,18 @@ class CSAMachineDeploy {
         Net Use "\\$($this.CSAName)\IPC`$ `/USER:$($this.CSAAccount) $($this.CSAPassword)"
         $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe"
         $IsAppexist=Test-Path -Path $ApplicationDir
+        Write-Host "UFT exists in the directory ${ApplicationDir} is ${IsAppexist}"
+
         if (-Not $IsAppexist) {
             $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe"
             $IsAppexist=Test-Path -Path $ApplicationDir
+            Write-Host "UFT exists in the directory ${ApplicationDir} is ${IsAppexist}"
         }
 
         if (-Not $IsAppexist) {
             $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\HP\Unified Functional Testing\bin\UFT.exe"
             $IsAppexist=Test-Path -Path $ApplicationDir
+            Write-Host "UFT exists in the directory ${ApplicationDir} is ${IsAppexist}"
         }
 
         Net Use "\\$this.CSAName\IPC`$ `/D"
