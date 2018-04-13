@@ -16,7 +16,11 @@ $txtpwd=$env:CSAPassword
 switch($CleanMode) 
 {
     "resnapshot" {break}
-    "uninstall" {}
+    "uninstall" {
+        $csaDeployment = [CSAMachineDeployUninstall]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+        $csaDeployment.DeployWithBuildVersion($BuidlVersion)
+        break
+    }
     default {
         $csaDeployment = [CSAMachineDeployUninstall]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
         $csaDeployment.DeployWithBuildVersion($BuidlVersion)
