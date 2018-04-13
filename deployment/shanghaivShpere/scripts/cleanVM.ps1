@@ -18,7 +18,7 @@ if (-Not $vCenterAcc -And -Not $vCenterPwd)
 }
 
 
-$ShangHaiVM = Connect-VIServer selvc01.hpeswlab.net -user $vCenterAcc.Value -Password $vCenterPwd.Value
+$ShangHaiVM = Connect-VIServer selvc01.hpeswlab.net -user $vCenterAcc -Password $vCenterPwd
 try {
     
     $VMs = Get-VM -Name $vmName
