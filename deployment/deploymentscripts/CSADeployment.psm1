@@ -30,7 +30,8 @@ class CSAMachineDeploy {
             $this.CSAPassword = $CSAPassword
         }
         $this.CSAName=$CSAName
-#        $this.CSACredential = $null
+        $this.CSACredential = $null
+        $this.CSASubscriptionID=$CSASubscriptionID
     }
 
     [System.Management.Automation.PSCredential]SetCredential(
@@ -48,7 +49,6 @@ class CSAMachineDeploy {
 
     ) {
         $this.SetCredential()
-        Write-Host "In the base class"
     }
 
     [Boolean]DeployWithBuildVersion (
@@ -62,26 +62,31 @@ class CSAMachineDeploy {
     [Boolean]CheckAppExist(
     ) {
         $IsAppexist=$false
-        Net Use "\\$($this.CSAName)\IPC`$ `/USER:$($this.CSAAccount) $($this.CSAPassword)"
+        $Arguments=@("/C",
+            "Net Use \\$($this.CSAName)\IPC`$ /USER:$($this.CSAAccount) $($this.CSAPassword)"
+        )
+        Start-Process -FilePath CMD.exe -ArgumentList "${Arguments}" -Wait
         $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe"
         $IsAppexist=Test-Path -Path $ApplicationDir
-        Write-Host "UFT exists in the directory ${ApplicationDir} is ${IsAppexist}"
+        Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}"
 
         if (-Not $IsAppexist) {
             $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe"
             $IsAppexist=Test-Path -Path $ApplicationDir
-            Write-Host "UFT exists in the directory ${ApplicationDir} is ${IsAppexist}"
+            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}"
         }
 
         if (-Not $IsAppexist) {
             $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\HP\Unified Functional Testing\bin\UFT.exe"
             $IsAppexist=Test-Path -Path $ApplicationDir
-            Write-Host "UFT exists in the directory ${ApplicationDir} is ${IsAppexist}"
+            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}"
         }
 
-        Net Use "\\$this.CSAName\IPC`$ `/D"
-
-        Write-Host "UFT exists ${IsAppexist}"
+        $Arguments=@("/C",
+            "Net Use \\$($this.CSAName)\IPC`$ /D"
+        )
+        Start-Process -FilePath CMD.exe -ArgumentList "${Arguments}" -Wait
+        Write-Host "It is ${IsAppexist} UFT exists"
         return $IsAppexist
     }
 
@@ -105,20 +110,21 @@ class CSAMachineDeploy {
     [Boolean]InstallApplication(
         [string]$BuildVersion
     ) {
-        Write-Host "Installing old uft now!"
+        Write-Host "Installing UFT ${BuildVersion} now!"
         ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\installUFT_LeanFT.bat", "C:\")
         $sb = [scriptblock]::Create(
             "C:\installUFT_LeanFT.bat ${BuildVersion} mama.hpeswlab.net"
         )
-        Invoke-Command -Credential $this.CSACredential -ComputerName $this.CSAName -ScriptBlock $sb
-
-        if (-Not $this.CheckAppExist()) {
-            #retry and in case machine needs a reboot
-            Start-Sleep 180
+        $iloop=0
+        $installed=$false
+        do {
             Invoke-Command -Credential $this.CSACredential -ComputerName $this.CSAName -ScriptBlock $sb
-        }
+            Start-Sleep 180
+            $iloop=$iloop+1
+        } until ( ($installed=$this.CheckAppExist()) -eq $true -or $iloop -gt 3)
 
-        return $this.CheckAppExist()
+        Write-Host "UFT ${BuildVersion} is installed - ${installed}"
+        return $installed
     }
     
 }
@@ -145,21 +151,22 @@ class CSAMachineDeployUninstall : CSAMachineDeploy {
         Write-Host "Removing old uft now!"
         #Copy the uninstaller tool to the machine
         ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\del.bat", "C:\")
-        ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\UFTUninstaller_v2.0", "C:\UFTUninstaller_v2.0")
-        Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
-        { `
-            C:\del.bat `
-        } 
-        #([CSAMachineDeploy]$this).RestartMachine()
+        ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\UFTUninstaller_v2.0", "C:\")
+        
         #Set-Item WSMan:\localhost\Client\TrustedHosts -Value ([CSAMachineDeploy]$this).CSAName -Force
         if (([CSAMachineDeploy]$this).CheckAppExist()) {
+            ([CSAMachineDeploy]$this).RestartMachine()
             #Invoke the application to remove the UFT
             Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
             { `
                 Start-Process -FilePath C:\UFTUninstaller_v2.0\UFTUninstaller.exe -ArgumentList -silent -Wait `
             } 
+            ([CSAMachineDeploy]$this).RestartMachine()
         }
-        ([CSAMachineDeploy]$this).RestartMachine()
+        Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
+        { `
+            C:\del.bat `
+        } 
     }
 
 
@@ -172,5 +179,73 @@ class CSAMachineDeployUninstall : CSAMachineDeploy {
 
 }
 
+class CSAMachineDeploySnapShot : CSAMachineDeploy {
 
+    CSAMachineDeploySnapShot (
+        [string]$CSAName,
+        [string]$CSASubscriptionID = "",  
+        [string]$CSAAccount = "",
+        [string]$CSAPassword = ""
+    ) : base(
+        $CSAName,
+        $CSASubscriptionID,
+        $CSAAccount,
+        $CSAPassword) {
+    }
+
+    [Boolean]RevertSnapshot() {
+        $Arguments=@("-jar",
+        "CSAWrapper-5.0.0.jar",
+        "subscriptionId=$(([CSAMachineDeploy]$this).CSASubscriptionID)",
+        "actionName=RevertToSnapshot",
+        "csaOrganization=ADM",
+        "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
+        "csaUsername=$(([CSAMachineDeploy]$this).CSAAccount)",
+        "csaPassword=$(([CSAMachineDeploy]$this).CSAPassword)")
+        $ExecProcess=Start-Process -FilePath java.exe -ArgumentList "${Arguments}" -Wait  -PassThru
+        Start-Sleep 60
+        return 0 -eq $ExecProcess.ExitCode
+    }
+
+    [Void]PrepareMachine(
+
+    ) {
+       ([CSAMachineDeploy]$this).PrepareMachine()
+       $this.RevertSnapshot()
+    }
+}
+
+function Install-Application {
+    [CmdletBinding(SupportsShouldProcess=$True)]
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]$CSAName = "",
+        [Parameter(Mandatory=$true)]
+        [string]$BuidlVersion = "",
+        [string]$CleanMode = "uninstall",
+        [string]$SUBSCRIPTION_ID = ""
+    )
+    $csaDeployment=$null
+    switch($CleanMode) 
+    {
+        "resnapshot" {
+            $csaDeployment = [CSAMachineDeploySnapShot]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+            break
+        }
+        "uninstall" {
+            $csaDeployment = [CSAMachineDeployUninstall]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+            break
+        }
+        default {
+            $csaDeployment = [CSAMachineDeployUninstall]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+            break
+        }
+    }
+    if ($csaDeployment -ne $null) {
+        $csaDeployment.DeployWithBuildVersion($BuidlVersion)
+    }
+    return $true
+}
+
+Export-ModuleMember -Function Install-Application
 
