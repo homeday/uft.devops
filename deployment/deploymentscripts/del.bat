@@ -12,7 +12,7 @@ echo file=%file%
 )
 GOTO :eof
 
-:DONE2
+:DONE1
 for /D  %%G  IN (C:\UFTUninstaller_v2.0\Backup*) DO (call :subLoop2 %%G)
 GOTO :DONE2
 :subLoop2
