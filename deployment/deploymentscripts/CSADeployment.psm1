@@ -75,7 +75,7 @@ class CSAMachineDeploy {
         $NetUseExpression = { Net Use \\$($this.CSAName)\IPC$ /USER:$($this.CSAAccount) $($this.CSAPassword)}
         #$ExpressionResult = Invoke-Expression -Command $NetUseExpression
         $ExpressionResult = Invoke-Command -ScriptBlock $NetUseExpression
-        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe"
         $IsAppexist=Test-Path -Path $ApplicationDir
         Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
@@ -98,7 +98,7 @@ class CSAMachineDeploy {
         #Start-Process -FilePath CMD.exe -ArgumentList "${Arguments}" -Wait
         $NetUseExpression = { Net Use \\$($this.CSAName)\IPC`$ /D }
         $ExpressionResult = Invoke-Command -ScriptBlock $NetUseExpression
-        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Write-Host "It is ${IsAppexist} UFT exists" -ForegroundColor Green -BackgroundColor Black
         Write-Host "CheckAppExist End" -ForegroundColor Green -BackgroundColor Black
         return $IsAppexist
@@ -135,7 +135,7 @@ class CSAMachineDeploy {
         $installed=$false
         do {
             $ExpressionResult = Invoke-Command -Credential $this.CSACredential -ComputerName $this.CSAName -ScriptBlock $sb
-            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             Start-Sleep 180
             $iloop=$iloop+1
         } until ( ($installed=$this.CheckAppExist()) -eq $true -or $iloop -gt 3)
@@ -177,7 +177,7 @@ class CSAMachineDeployUninstall : CSAMachineDeploy {
             { `
                 Start-Process -FilePath C:\UFTUninstaller_v2.0\UFTUninstaller.exe -ArgumentList -silent -Wait `
             } 
-            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             ([CSAMachineDeploy]$this).RestartMachine()
         }
         Write-Host "To delete useless files at remote machine" -ForegroundColor Green -BackgroundColor Black
@@ -185,7 +185,7 @@ class CSAMachineDeployUninstall : CSAMachineDeploy {
         { `
             CMD.exe /C C:\del.bat `
         } 
-        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Write-Host "UninstallApplication End" -ForegroundColor Green -BackgroundColor Black
     }
 
@@ -225,7 +225,7 @@ class CSAMachineDeploySnapShot : CSAMachineDeploy {
             "csaPassword=$(([CSAMachineDeploy]$this).CSAPassword)")
         $JavaExpression = { java $Arguments }
         $ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
-        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         #$ExecProcess=Start-Process -FilePath java.exe -ArgumentList "${Arguments}" -Wait -PassThru 
         Start-Sleep 60
         Write-Host "RevertSnapshot End" -ForegroundColor Green -BackgroundColor Black
