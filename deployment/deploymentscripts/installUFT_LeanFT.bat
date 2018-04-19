@@ -58,43 +58,34 @@ set RestartNeed=true
 IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64BIT) ELSE (GOTO 32BIT)
 
 :64BIT
+IF EXIST "C:\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
+IF EXIST "C:\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
+IF EXIST "C:\Program Files (x86)\HP\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
 
-IF NOT EXIST "C:\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe" GOTO ERRINSTALL
+
+:SUCCESS
 type c:\UFT_Install_Log.txt | findstr /C:%SUCCESS_STRING%>nul
 if NOT "%errorlevel%"=="0" (GOTO ERRINSTALL) ELSE (GOTO END)
+
 
 :32BIT
 
+IF EXIST "C:\Program Files\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
+IF EXIST "C:\Program Files\HPE\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
+IF EXIST "C:\Program Files\HP\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
 
-IF NOT EXIST "C:\Program Files\HPE\Unified Functional Testing\bin\UFT.exe" GOTO ERRINSTALL
+:SUCCESS32
 type c:\UFT_Install_Log.txt | findstr /C:%SUCCESS_STRING%>nul
 if NOT "%errorlevel%"=="0" (GOTO ERRINSTALL) ELSE (GOTO END)
 
+
 :ERRINSTALL
-IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64BIT2) ELSE (GOTO 32BIT2)
-
-:64BIT2
-
-IF NOT EXIST "C:\Program Files (x86)\HP\Unified Functional Testing\bin\UFT.exe" GOTO ERRINSTALL2
-type c:\UFT_Install_Log.txt | findstr /C:%SUCCESS_STRING%>nul
-if NOT "%errorlevel%"=="0" (GOTO ERRINSTALL2) ELSE (GOTO END)
-
-:32BIT2
-
-
-IF NOT EXIST "C:\Program Files\HP\Unified Functional Testing\bin\UFT.exe" GOTO ERRINSTALL2
-type c:\UFT_Install_Log.txt | findstr /C:%SUCCESS_STRING%>nul
-if NOT "%errorlevel%"=="0" (GOTO ERRINSTALL2) ELSE (GOTO END)
-
-:ERRINSTALL2
-echo "HPE Unified Functional Testing -- Installation Failed!"
+echo "Unified Functional Testing -- Installation Failed!"
 exit 1
-
-
 
 :END
 IF NOT "%RestartNeed%" == "true" goto Finished
-Echo "HPE Unified Functional Testing -- Installation completed BUT Restart is needed...."
+Echo "Unified Functional Testing -- Installation completed BUT Restart is needed...."
 exit 0
 :Finished
 echo %SUCCESS_STRING%
