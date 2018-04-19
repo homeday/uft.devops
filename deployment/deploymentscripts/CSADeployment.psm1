@@ -65,6 +65,7 @@ class CSAMachineDeploy {
                 Start-Sleep 120
             }
             $WinRmSvr = Invoke-Command -Credential $this.CSACredential  -ComputerName $this.CSAName -ScriptBlock {Get-Service -Name winrm}
+            Write-Host $WinRmSvr -ForegroundColor Green -BackgroundColor Black
             $iloop = $iloop + 1
         } until (($WinRmSvr -ne $null -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
     }
