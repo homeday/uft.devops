@@ -7,6 +7,7 @@ update_repo()
         do
             if [ -d $d ]; then
                 pushd $d > /dev/nul
+					git remote prune origin
                     git pull > /dev/nul 2>&1
                 popd > /dev/nul
             fi
