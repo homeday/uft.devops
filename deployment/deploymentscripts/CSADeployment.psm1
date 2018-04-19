@@ -52,6 +52,21 @@ class CSAMachineDeploy {
 
     ) {
         $this.SetCredential()
+        $PSExecExpression = {d:\PSTools\psexec.exe -u $($this.CSAAccount) -p $($this.CSAPassword) powershell.exe "enable-psremoting -force"}
+        $ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+        $sb = [scriptblock]::Create(
+            "Get-Service -Name winrm -ComputerName myd-vm08159 | Set-Service -Status Running"
+        )
+        $iloop=0
+        $WinRmSvr = $null
+        do {
+            if ($iloop -ne 0) {
+                Start-Sleep 120
+            }
+            $WinRmSvr = Invoke-Command -Credential $this.CSACredential  -ComputerName $this.CSAName -ScriptBlock {Get-Service -Name winrm}
+            $iloop = $iloop + 1
+        } until (($WinRmSvr -ne $null -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
     }
 
     [Boolean]DeployWithBuildVersion (
@@ -134,9 +149,11 @@ class CSAMachineDeploy {
         $iloop=0
         $installed=$false
         do {
+            if ($iloop -ne 0) {
+                Start-Sleep 120
+            }
             $ExpressionResult = Invoke-Command -Credential $this.CSACredential -ComputerName $this.CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
-            Start-Sleep 180
             $iloop=$iloop+1
         } until ( ($installed=$this.CheckAppExist()) -eq $true -or $iloop -gt 3)
         Write-Host "InstallApplication End - ${installed}" -ForegroundColor Green -BackgroundColor Black
