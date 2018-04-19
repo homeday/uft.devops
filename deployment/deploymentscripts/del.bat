@@ -18,8 +18,8 @@ GOTO :DONE2
 :subLoop2
 SET each=%1
 rd /s /q "%each%"  2>nul 
-)
 GOTO :eof
 
 :DONE2
 @echo on
+

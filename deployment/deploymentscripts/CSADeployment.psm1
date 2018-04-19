@@ -37,10 +37,13 @@ class CSAMachineDeploy {
     [System.Management.Automation.PSCredential]SetCredential(
 
     ){
+        Write-Host "Set Credential Start" -ForegroundColor Green -BackgroundColor Black
         if ($null -eq $this.CSACredential) {
             $SecPwd = ConvertTo-Securestring $this.CSAPassword -AsPlainText -Force
             $this.CSACredential = New-Object System.Management.Automation.PSCredential($this.CSAAccount, $SecPwd)
         }
+        Write-Host "Credential is $($this.CSACredential)" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "Set Credential End" -ForegroundColor Green -BackgroundColor Black
         return $this.CSACredential
     }
 
@@ -54,47 +57,60 @@ class CSAMachineDeploy {
     [Boolean]DeployWithBuildVersion (
         [string]$BuildVersion
     )
-    {    
+    {  
         $this.PrepareMachine()
         return $this.InstallApplication($BuildVersion)
     }
 
     [Boolean]CheckAppExist(
     ) {
+        Write-Host "CheckAppExist Start" -ForegroundColor Green -BackgroundColor Black
         $IsAppexist=$false
-        $Arguments=@("/C",
-            "Net Use \\$($this.CSAName)\IPC`$ /USER:$($this.CSAAccount) $($this.CSAPassword)"
-        )
-        Start-Process -FilePath CMD.exe -ArgumentList "${Arguments}" -Wait
+        #$Arguments=@("/C",
+        #    "Net Use \\$($this.CSAName)\IPC`$ /USER:$($this.CSAAccount) $($this.CSAPassword)"
+        #)
+        #Start-Process -FilePath CMD.exe -ArgumentList "${Arguments}" -Wait -PassThru 
+
+        #$NetUseExpression = "Net Use \\$($this.CSAName)\IPC`$ /USER:$($this.CSAAccount) `"$($this.CSAPassword)`""
+        $NetUseExpression = { Net Use \\$($this.CSAName)\IPC$ /USER:$($this.CSAAccount) $($this.CSAPassword)}
+        #$ExpressionResult = Invoke-Expression -Command $NetUseExpression
+        $ExpressionResult = Invoke-Command -ScriptBlock $NetUseExpression
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
         $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe"
         $IsAppexist=Test-Path -Path $ApplicationDir
-        Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}"
+        Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
 
         if (-Not $IsAppexist) {
             $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe"
             $IsAppexist=Test-Path -Path $ApplicationDir
-            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}"
+            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
         }
 
         if (-Not $IsAppexist) {
             $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\HP\Unified Functional Testing\bin\UFT.exe"
             $IsAppexist=Test-Path -Path $ApplicationDir
-            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}"
+            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
         }
 
-        $Arguments=@("/C",
-            "Net Use \\$($this.CSAName)\IPC`$ /D"
-        )
-        Start-Process -FilePath CMD.exe -ArgumentList "${Arguments}" -Wait
-        Write-Host "It is ${IsAppexist} UFT exists"
+        #$Arguments=@("/C",
+        #    "Net Use \\$($this.CSAName)\IPC`$ /D"
+        #)
+        #Start-Process -FilePath CMD.exe -ArgumentList "${Arguments}" -Wait
+        $NetUseExpression = { Net Use \\$($this.CSAName)\IPC`$ /D }
+        $ExpressionResult = Invoke-Command -ScriptBlock $NetUseExpression
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+        Write-Host "It is ${IsAppexist} UFT exists" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "CheckAppExist End" -ForegroundColor Green -BackgroundColor Black
         return $IsAppexist
     }
 
     [Void]RestartMachine(
 
     ) {
+        Write-Host "RestartMachine Start" -ForegroundColor Green -BackgroundColor Black
         Restart-Computer -ComputerName $this.CSAName  -Credential $this.CSACredential -Wait -Timeout 300 -Force
         Start-Sleep -s 15 
+        Write-Host "RestartMachine End" -ForegroundColor Green -BackgroundColor Black
     }
 
     [Void]CopyFileToMachine(
@@ -110,20 +126,20 @@ class CSAMachineDeploy {
     [Boolean]InstallApplication(
         [string]$BuildVersion
     ) {
-        Write-Host "Installing UFT ${BuildVersion} now!"
+        Write-Host "InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
         ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\installUFT_LeanFT.bat", "C:\")
         $sb = [scriptblock]::Create(
-            "C:\installUFT_LeanFT.bat ${BuildVersion} mama.hpeswlab.net"
+            "CMD.exe /C C:\installUFT_LeanFT.bat ${BuildVersion} mama.hpeswlab.net"
         )
         $iloop=0
         $installed=$false
         do {
-            Invoke-Command -Credential $this.CSACredential -ComputerName $this.CSAName -ScriptBlock $sb
+            $ExpressionResult = Invoke-Command -Credential $this.CSACredential -ComputerName $this.CSAName -ScriptBlock $sb
+            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
             Start-Sleep 180
             $iloop=$iloop+1
         } until ( ($installed=$this.CheckAppExist()) -eq $true -or $iloop -gt 3)
-
-        Write-Host "UFT ${BuildVersion} is installed - ${installed}"
+        Write-Host "InstallApplication End - ${installed}" -ForegroundColor Green -BackgroundColor Black
         return $installed
     }
     
@@ -148,25 +164,29 @@ class CSAMachineDeployUninstall : CSAMachineDeploy {
     [Void]UninstallApplication(
 
     ) {
-        Write-Host "Removing old uft now!"
-        #Copy the uninstaller tool to the machine
+        Write-Host "UninstallApplication Start" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "Copy the uninstaller tool to the machine Start" -ForegroundColor Green -BackgroundColor Black
         ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\del.bat", "C:\")
         ([CSAMachineDeploy]$this).CopyFileToMachine("${PSScriptRoot}\UFTUninstaller_v2.0", "C:\")
-        
+        Write-Host " Copy the uninstaller tool to the machine End" -ForegroundColor Green -BackgroundColor Black
         #Set-Item WSMan:\localhost\Client\TrustedHosts -Value ([CSAMachineDeploy]$this).CSAName -Force
         if (([CSAMachineDeploy]$this).CheckAppExist()) {
             ([CSAMachineDeploy]$this).RestartMachine()
-            #Invoke the application to remove the UFT
-            Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
+            Write-Host "To delete old version UFT with the uninstaller tool" -ForegroundColor Green -BackgroundColor Black
+            $ExpressionResult = Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
             { `
                 Start-Process -FilePath C:\UFTUninstaller_v2.0\UFTUninstaller.exe -ArgumentList -silent -Wait `
             } 
+            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
             ([CSAMachineDeploy]$this).RestartMachine()
         }
-        Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
+        Write-Host "To delete useless files at remote machine" -ForegroundColor Green -BackgroundColor Black
+        $ExpressionResult = Invoke-Command -Credential ([CSAMachineDeploy]$this).CSACredential -ComputerName ([CSAMachineDeploy]$this).CSAName -ScriptBlock `
         { `
-            C:\del.bat `
+            CMD.exe /C C:\del.bat `
         } 
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+        Write-Host "UninstallApplication End" -ForegroundColor Green -BackgroundColor Black
     }
 
 
@@ -193,18 +213,22 @@ class CSAMachineDeploySnapShot : CSAMachineDeploy {
         $CSAPassword) {
     }
 
-    [Boolean]RevertSnapshot() {
+    [Void]RevertSnapshot() {
+        Write-Host "RevertSnapshot Start" -ForegroundColor Green -BackgroundColor Black
         $Arguments=@("-jar",
-        "CSAWrapper-5.0.0.jar",
-        "subscriptionId=$(([CSAMachineDeploy]$this).CSASubscriptionID)",
-        "actionName=RevertToSnapshot",
-        "csaOrganization=ADM",
-        "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
-        "csaUsername=$(([CSAMachineDeploy]$this).CSAAccount)",
-        "csaPassword=$(([CSAMachineDeploy]$this).CSAPassword)")
-        $ExecProcess=Start-Process -FilePath java.exe -ArgumentList "${Arguments}" -Wait  -PassThru
+            "CSAWrapper-5.0.0.jar",
+            "subscriptionId=$(([CSAMachineDeploy]$this).CSASubscriptionID)",
+            "actionName=RevertToSnapshot",
+            "csaOrganization=ADM",
+            "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
+            "csaUsername=$(([CSAMachineDeploy]$this).CSAAccount)",
+            "csaPassword=$(([CSAMachineDeploy]$this).CSAPassword)")
+        $JavaExpression = { java $Arguments }
+        $ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray
+        #$ExecProcess=Start-Process -FilePath java.exe -ArgumentList "${Arguments}" -Wait -PassThru 
         Start-Sleep 60
-        return 0 -eq $ExecProcess.ExitCode
+        Write-Host "RevertSnapshot End" -ForegroundColor Green -BackgroundColor Black
     }
 
     [Void]PrepareMachine(
@@ -242,9 +266,9 @@ function Install-Application {
         }
     }
     if ($csaDeployment -ne $null) {
-        $csaDeployment.DeployWithBuildVersion($BuidlVersion)
+        return $csaDeployment.DeployWithBuildVersion($BuidlVersion)
     }
-    return $true
+    return $false
 }
 
 Export-ModuleMember -Function Install-Application
