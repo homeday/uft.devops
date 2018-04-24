@@ -1,12 +1,12 @@
 
 net use * /delete /y
 
-IF NOT EXIST P: ECHO P: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products & net use P: \\mydastr01.hpeswlab.net\products aid.sat-63 /USER:EMEA\btoabuild
-set DVD_Path=P:\FT\QTP\win32_release\%1\DVD_WIX
+IF NOT EXIST P: ECHO P: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & net use P: \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release %4 /USER:%3
+set DVD_Path=P:\%1\DVD_WIX
 
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"
-pushd P:\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\prerequisites
+pushd P:\%1\SetupBuilder\Output\UFT\prerequisites
 setup.exe /InstallOnlyPrerequisite /s
 popd 
 
@@ -30,7 +30,7 @@ echo %AddinsToInstall%
 
 
 set UFTConfiguration=CONF_MSIE=1 ALLOW_RUN_FROM_ALM=1 ALLOW_RUN_FROM_SCRIPTS=1 DLWN_SCRIPT_DBGR=1
-set LeanFTConfiguration=LeanFT,LeanFT_Engine,LeanFT_Client,Vs2013Addin,EclipseAddin  ECLIPSE_INSTALLDIR="c:\eclipse"
+set LeanFTConfiguration=LeanFT,LeanFT_Engine,LeanFT_Client,Vs2012Addin,Vs2013Addin,EclipseAddin  ECLIPSE_INSTALLDIR="C:\DevTools\eclipse"
 set LicenseAddress=%2
 
 
@@ -45,7 +45,13 @@ IF %THREE_LETTER_LANG%==ENU (
 	)
 ECHO ##%LOCALE_STRING%##
 
+IF "%5" == "" (
+echo installing UFT
 MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%
+) ELSE (
+echo installing UFT and LFT as a feature	
+MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+)
 
 
 if %errorlevel% EQU 3010 goto RESTART

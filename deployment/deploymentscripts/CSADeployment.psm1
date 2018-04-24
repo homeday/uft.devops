@@ -1,5 +1,5 @@
-
-
+using module '.\CSAPreparation.psm1'
+using module '.\CSAInstallApp.psm1'
 
 
 class CSAMachineDeploy {
@@ -257,6 +257,130 @@ class CSAMachineDeploySnapShot : CSAMachineDeploy {
     }
 }
 
+# function Install-Application {
+#     [CmdletBinding(SupportsShouldProcess=$True)]
+#     param (
+#         [Parameter(Mandatory=$true)]
+#         [string]$CSAName = "",
+#         [Parameter(Mandatory=$true)]
+#         [string]$BuidlVersion = "",
+#         [string]$CleanMode = "uninstall",
+#         [string]$SUBSCRIPTION_ID = ""
+#     )
+#     $csaDeployment=$null
+#     switch($CleanMode) 
+#     {
+#         "resnapshot" {
+#             $csaDeployment = [CSAMachineDeploySnapShot]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+#             break
+#         }
+#         "uninstall" {
+#             $csaDeployment = [CSAMachineDeployUninstall]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+#             break
+#         }
+#         default {
+#             $csaDeployment = [CSAMachineDeployUninstall]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+#             break
+#         }
+#     }
+#     if ($csaDeployment -ne $null) {
+#         return $csaDeployment.DeployWithBuildVersion($BuidlVersion)
+#     }
+#     return $false
+# }
+
+
+#############################################################################
+#Refactoring
+#############################################################################
+class CSADeployment {
+
+    hidden [string]$CSAName
+    [ValidatePattern("^[a-fA-F\d]{32}")]
+    hidden [string]$CSASubscriptionID
+    hidden [string]$CSAAccount
+    hidden [string]$CSAPassword
+    hidden [string]$ApplicationName
+    hidden [System.Management.Automation.PSCredential]$CSACredential
+    hidden [CSAPreparation]$CSAPreparation
+    hidden [CSAInstallApp]$CSAInstallApp
+    CSADeployment(
+        [string]$CSAName,
+        [string]$CSASubscriptionID
+    ){
+        
+        $this.CSAAccount = ${env:CSAAccount}    
+        $this.CSAPassword = ${env:CSAPassword}
+        $this.CSAName=$CSAName
+        $this.CSACredential = $null
+        $this.CSASubscriptionID=$CSASubscriptionID
+        $this.CSAPreparation = $null
+        $this.CSAInstallApp = $null
+        $this.SetCredential()
+    }
+
+    CSADeployment(
+        [string]$CSAName,
+        [string]$CSASubscriptionID,  
+        [string]$CSAAccount,
+        [string]$CSAPassword
+    ){
+        if ( $CSAAccount -eq $null -or $CSAAccount  -eq "") {
+            $this.CSAAccount = ${env:CSAAccount}
+        } else {
+            $this.CSAAccount = $CSAAccount
+        }
+        
+        if ( $CSAPassword -eq $null -or $CSAPassword  -eq "") {
+            $this.CSAPassword = ${env:CSAPassword}
+        } else {
+            $this.CSAPassword = $CSAPassword
+        }
+        $this.CSAName=$CSAName
+        $this.CSACredential = $null
+        $this.CSASubscriptionID=$CSASubscriptionID
+        $this.CSAPreparation = $null
+        $this.CSAInstallApp = $null
+        $this.SetCredential()
+    }
+
+    [System.Management.Automation.PSCredential]SetCredential(
+
+    ){
+        Write-Host "CSADeployment::SetCredential Start" -ForegroundColor Green -BackgroundColor Black
+        if ($null -eq $this.CSACredential) {
+            $SecPwd = ConvertTo-Securestring $this.CSAPassword -AsPlainText -Force
+            $this.CSACredential = New-Object System.Management.Automation.PSCredential($this.CSAAccount, $SecPwd)
+        }
+        Write-Host "Credential is $($this.CSACredential)" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "CSADeployment::SetCredential End" -ForegroundColor Green -BackgroundColor Black
+        return $this.CSACredential
+    }
+
+    [Void]SetCSAPreparation([CSAPreparation]$CSAPreparation) {
+        $this.CSAPreparation = $CSAPreparation
+    }
+
+
+    [Void]SetCSAInstallApp([CSAInstallApp]$CSAInstallApp) {
+        $this.CSAInstallApp = $CSAInstallApp
+    }
+
+    [Void]PrepareMachine() {
+        $this.CSAPreparation.doAction($this.CSAName, $this.CSAAccount,$this.CSAPassword, $this.CSACredential, $this.CSASubscriptionID)
+    }
+
+    [Void]InstallApplication(
+        [string]$BuildVersion
+    ) {
+        $this.CSAInstallApp.InstallApplication($this.CSAName, $this.CSAAccount,$this.CSAPassword, $this.CSACredential, $BuildVersion)
+    }
+
+    
+}
+
+
+
 function Install-Application {
     [CmdletBinding(SupportsShouldProcess=$True)]
     param (
@@ -264,30 +388,49 @@ function Install-Application {
         [string]$CSAName = "",
         [Parameter(Mandatory=$true)]
         [string]$BuidlVersion = "",
+        [Parameter(Mandatory=$true)]
+        [string]$Application = "uft",
         [string]$CleanMode = "uninstall",
         [string]$SUBSCRIPTION_ID = ""
     )
-    $csaDeployment=$null
+    
+    $csaDeployment = [CSADeployment]::new($CSAName, $SUBSCRIPTION_ID)
+    $csaPreparation = $null
+    $csaInstallApp = $null
     switch($CleanMode) 
     {
         "resnapshot" {
-            $csaDeployment = [CSAMachineDeploySnapShot]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
             break
         }
         "uninstall" {
-            $csaDeployment = [CSAMachineDeployUninstall]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+            $csaPreparation = [CSAPreparationUninstallUFT]::GetInstance()
             break
         }
         default {
-            $csaDeployment = [CSAMachineDeployUninstall]::new($CSAName,$SUBSCRIPTION_ID,$txtuser,$txtpwd)
+            $csaPreparation = [CSAPreparationUninstallUFT]::GetInstance()
             break
         }
     }
-    if ($csaDeployment -ne $null) {
-        return $csaDeployment.DeployWithBuildVersion($BuidlVersion)
+
+    switch($Application) 
+    {
+        "uft" {
+            $csaInstallApp = [CSAInstallUFT]::GetInstance()
+            break
+        }
+        default {
+            $csaInstallApp = [CSAInstallUFT]::GetInstance()
+            break
+        }
     }
-    return $false
+
+    $csaDeployment.SetCSAPreparation([CSAPreparation]$csaPreparation)
+    $csaDeployment.PrepareMachine()
+    $csaDeployment.SetCSAInstallApp([CSAInstallApp]$csaInstallApp)
+    return $csaDeployment.InstallApplication($BuidlVersion)
 }
+
+
 
 Export-ModuleMember -Function Install-Application
 

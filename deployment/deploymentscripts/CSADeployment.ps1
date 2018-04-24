@@ -10,10 +10,11 @@ param (
     [string]$SUBSCRIPTION_ID = ""
 )
 
+
 Import-Module -Force ".\CSADeployment.psm1"
 
 Write-Host "Install ${BuidlVersion} at machine ${CSAName} with ${CleanMode} mode Start" -ForegroundColor Green -BackgroundColor Black
-$result = Install-Application -CSAName $CSAName -BuidlVersion $BuidlVersion -CleanMode $CleanMode -SUBSCRIPTION_ID $SUBSCRIPTION_ID
+$result = Install-Application -CSAName $CSAName -BuidlVersion $BuidlVersion -CleanMode $CleanMode -SUBSCRIPTION_ID $SUBSCRIPTION_ID -Application "uft"
 if ($result -eq $true) {
     Write-Host "It is successful to install ${BuidlVersion} at machine ${CSAName} with ${CleanMode} mode " -ForegroundColor Green -BackgroundColor Black
     exit 0
