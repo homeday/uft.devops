@@ -400,6 +400,7 @@ function Install-Application {
     switch($CleanMode) 
     {
         "resnapshot" {
+            $csaPreparation = [CSAPreparationRevertMachine]::GetInstance()
             break
         }
         "uninstall" {

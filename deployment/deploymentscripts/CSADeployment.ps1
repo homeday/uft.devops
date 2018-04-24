@@ -11,7 +11,7 @@ param (
     [string]$Application = "uft"
 )
 
-
+#subscription id = 8a471d9161ccf744016261c2513543e5
 Import-Module -Force ".\CSADeployment.psm1"
 
 Write-Host "Install ${BuidlVersion} at machine ${CSAName} with ${CleanMode} mode Start" -ForegroundColor Green -BackgroundColor Black
