@@ -13,9 +13,9 @@ $GlobalPropertiesSTR = ""
 $GlobalPropXML.ChildNodes | ForEach-Object { $GlobalDict.Set_Item($_.Name, $_.InnerText)} # $GlobalPropertiesSTR += $_.Name + "=" + $_.InnerText + "`n" }
 <# ---------------------------------------------------------------- #>
 
-$GlobalDictForItem = $GlobalDict.Clone()
 $DeployXML.SelectNodes("//hosts/host") | 
 ForEach-Object { 
+    $GlobalDictForItem = $GlobalDict.Clone()
     $HostName = ""
     $machineDomain = $GlobalDictForItem["CSADomain"]
     $_.ChildNodes | 
