@@ -1,11 +1,11 @@
 <?xml version='1.0'?>
 <Deploy>
 	<GlobalProperties>
-		<environmentName>UFT 14 03 @ trunk</environmentName>
+		<environmentName>UFT 14 50 @ trunk</environmentName>
 		<EmailRole>Nightly</EmailRole>
 		<NOTIFICATION_EMAIL>ran.bachar@hpe.com,yguo@hpe.com,yuanhai.xu@hpe.com</NOTIFICATION_EMAIL>
-		<CSA_USER>alm_uft_auto</CSA_USER>
-		<CSA_PASSWORD>W3lcome1</CSA_PASSWORD>
+		<CSAAccount>alm_uft_auto</CSAAccount>
+		<CSAPassword>W3lcome1</CSAPassword>
 		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
 		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
 		<buildSystem>jenkins</buildSystem>
@@ -14,13 +14,14 @@
 		<branch>14.03_QTP</branch>
 		<branchId>14.03_QTP</branchId>
 		<productsToMonitor>"UFT"</productsToMonitor>
-		<machineDomain>HPESWLAB.NET</machineDomain>
+		<CSADomain>HPESWLAB.NET</CSADomain>
 		<links>""</links>
 		<machineLinks>""</machineLinks>
 		<CLEAN_MODE>uninstall</CLEAN_MODE>
 		<DevOpsPortalIP>16.60.153.127</DevOpsPortalIP>
 		<DevOpsPortalPort>80</DevOpsPortalPort>
 		<DevOpsPortalPath>/devenvs</DevOpsPortalPath>
+		<Application>uft</Application>
 	</GlobalProperties>
 <!-- ************************************************** Clean Machines ************************************************************************  -->	
 	<hosts>
@@ -107,6 +108,14 @@
 		  <USER_EMAIL>ran.bachar@hpe.com,ori.bendet@hpe.com,amit.bezalel@hpe.com,tal.halperin@hpe.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>90bc0b9c5c536144015ca6eb322f3aa2</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		<host>
+		<VM_NAME>myd-vm08474</VM_NAME>
+		  <team>Anton</team>
+		  <USER_EMAIL>ftmobile.leanft.dev.roman.il@hpe.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90bc0b9c61cc97030162f626bcd10fd8</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+			<Application>lftasfeature</Application>
 		</host>
 		<host>
 		  <VM_NAME>myd-vm24529</VM_NAME>

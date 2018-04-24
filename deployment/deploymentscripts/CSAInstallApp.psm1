@@ -107,3 +107,43 @@ class CSAInstallUFT : CSAInstallApp {
         return $IsAppexist
     }
 }
+
+class CSAInstallLFTAsFt : CSAInstallUFT {
+
+    CSAInstallLFTAsFt(
+    ) : base(
+    ) {
+        Write-Host "CSAInstallLFTAsFt::constructor" -ForegroundColor Green -BackgroundColor Black
+    }
+    static [CSAInstallLFTAsFt] $instance
+    static [CSAInstallLFTAsFt] GetInstance() {
+        if ([CSAInstallLFTAsFt]::instance -eq $null) { 
+            [CSAInstallLFTAsFt]::instance = [CSAInstallLFTAsFt]::new() 
+        }
+        return [CSAInstallLFTAsFt]::instance
+    }
+    [Boolean]InstallApplication(
+        [string]$CSAName,
+        [string]$CSAAccount,
+        [string]$CSAPwd,        
+        [System.Management.Automation.PSCredential]$CSACredential,
+        [string]$BuildVersion
+    ) {
+        Write-Host "CSAInstallLFTAsFt::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
+        $sb = [scriptblock]::Create(
+            "CMD.exe /C C:\installUFT.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password} true" 
+        )
+        $iloop=0
+        $installed=$false
+        do {
+            if ($iloop -ne 0) {
+                Start-Sleep 120
+            }
+            $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
+            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+            $iloop=$iloop+1
+        } until ( ($installed=([CSAInstallUFT]$this).CheckUFTExist($CSAName, $CSAAccount, $CSAPwd)) -eq $true -or $iloop -gt 3)
+        Write-Host "CSAInstallLFTAsFt::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
+        return $installed
+    }
+}

@@ -370,10 +370,10 @@ class CSADeployment {
         $this.CSAPreparation.doAction($this.CSAName, $this.CSAAccount,$this.CSAPassword, $this.CSACredential, $this.CSASubscriptionID)
     }
 
-    [Void]InstallApplication(
+    [Boolean]InstallApplication(
         [string]$BuildVersion
     ) {
-        $this.CSAInstallApp.InstallApplication($this.CSAName, $this.CSAAccount,$this.CSAPassword, $this.CSACredential, $BuildVersion)
+        return $this.CSAInstallApp.InstallApplication($this.CSAName, $this.CSAAccount,$this.CSAPassword, $this.CSACredential, $BuildVersion)
     }
 
     
@@ -414,6 +414,9 @@ function Install-Application {
 
     switch($Application) 
     {
+        "lftasfeature" {
+            $csaInstallApp = [CSAInstallLFTAsFt]::GetInstance()
+        }
         "uft" {
             $csaInstallApp = [CSAInstallUFT]::GetInstance()
             break

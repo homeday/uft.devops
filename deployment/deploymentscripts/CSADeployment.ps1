@@ -3,18 +3,19 @@
 [CmdletBinding(SupportsShouldProcess=$True)]
 param (
 	[Parameter(Mandatory=$true)]
-    [string]$CSAName = "",
+    [string]$CSAName,
     [Parameter(Mandatory=$true)]
-    [string]$BuidlVersion = "",
+    [string]$BuidlVersion,
     [string]$CleanMode = "uninstall",
-    [string]$SUBSCRIPTION_ID = ""
+    [string]$SUBSCRIPTION_ID = "",
+    [string]$Application = "uft"
 )
 
 
 Import-Module -Force ".\CSADeployment.psm1"
 
 Write-Host "Install ${BuidlVersion} at machine ${CSAName} with ${CleanMode} mode Start" -ForegroundColor Green -BackgroundColor Black
-$result = Install-Application -CSAName $CSAName -BuidlVersion $BuidlVersion -CleanMode $CleanMode -SUBSCRIPTION_ID $SUBSCRIPTION_ID -Application "uft"
+$result = Install-Application -CSAName $CSAName -BuidlVersion $BuidlVersion -CleanMode $CleanMode -SUBSCRIPTION_ID $SUBSCRIPTION_ID -Application $Application
 if ($result -eq $true) {
     Write-Host "It is successful to install ${BuidlVersion} at machine ${CSAName} with ${CleanMode} mode " -ForegroundColor Green -BackgroundColor Black
     exit 0
