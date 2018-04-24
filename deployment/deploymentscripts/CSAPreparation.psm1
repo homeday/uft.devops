@@ -219,7 +219,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
             "csaOrganization=ADM",
             "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
             "csaUsername=$CSAAccount",
-            "CSAPwd=$CSAPwd")
+            "csaPassword=$CSAPwd")
         $JavaExpression = { java $Arguments }
         $ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
@@ -231,7 +231,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
             "csaOrganization=ADM",
             "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
             "csaUsername=$CSAAccount",
-            "CSAPwd=$CSAPwd")
+            "csaPassword=$CSAPwd")
         $JavaExpression = { java $Arguments }
         $ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
