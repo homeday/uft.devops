@@ -45,9 +45,8 @@ class CSAInstallUFT : CSAInstallApp {
         [string]$BuildVersion
     ) {
         Write-Host "CSAInstallUFT::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
-        #TODO:The batch script file need to be enhanced
         $sb = [scriptblock]::Create(
-            "CMD.exe /C C:\installUFT_LeanFT.bat ${BuildVersion} mama.hpeswlab.net"
+            "CMD.exe /C C:\installUFT.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password}"
         )
         $iloop=0
         $installed=$false

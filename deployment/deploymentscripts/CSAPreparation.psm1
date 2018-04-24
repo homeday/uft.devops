@@ -62,8 +62,7 @@ class CSAPreparation {
         $ConnSession = New-PSSession -ComputerName $CSAName -Credential $CSACredential 
         Copy-Item "${PSScriptRoot}\del.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         Copy-Item "${PSScriptRoot}\UFTUninstaller_v2.0" -Destination "C:\" -ToSession $ConnSession -Recurse
-        #TODO:Enhance the install batch script
-        Copy-Item "${PSScriptRoot}\installUFT_LeanFT.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
+        Copy-Item "${PSScriptRoot}\installUFT.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         if ($null -ne $ConnSession) {
             Remove-PSSession -Session $ConnSession
         }
