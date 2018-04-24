@@ -4,7 +4,7 @@
 		<environmentName>UFT 14 50 @ trunk</environmentName>
 		<EmailRole>Nightly</EmailRole>
 		<NOTIFICATION_EMAIL>ran.bachar@hpe.com,yguo@hpe.com,yuanhai.xu@hpe.com</NOTIFICATION_EMAIL>
-		<CSAAccount>alm_uft_auto</CSAAccount>
+		<CSAAccount>HPESWLAB.NET\alm_uft_auto</CSAAccount>
 		<CSAPassword>W3lcome1</CSAPassword>
 		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
 		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
@@ -112,7 +112,7 @@
 		<host>
 		<VM_NAME>myd-vm08474</VM_NAME>
 		  <team>Anton</team>
-		  <USER_EMAIL>ftmobile.leanft.dev.roman.il@hpe.com</USER_EMAIL>
+		  <NOTIFICATION_EMAIL>ftmobile.leanft.dev.roman.il@hpe.com</NOTIFICATION_EMAIL>
 		  <SUBSCRIPTION_ID>90bc0b9c61cc97030162f626bcd10fd8</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 			<Application>lftasfeature</Application>
