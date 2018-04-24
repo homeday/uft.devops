@@ -67,7 +67,7 @@ class CSAInstallUFT : CSAInstallApp {
         [string]$CSAAccount,
         [string]$CSAPwd
     ) {
-        Write-Host "CSAPreparationUninstallUFT::CheckUFTExist Start" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "CSAInstallUFT::CheckUFTExist Start" -ForegroundColor Green -BackgroundColor Black
         $IsAppexist=$false
         #$Arguments=@("/C",
         #    "Net Use \\$($this.CSAName)\IPC`$ /USER:$($this.CSAAccount) $($this.CSAPwd)"
@@ -103,7 +103,7 @@ class CSAInstallUFT : CSAInstallApp {
         $ExpressionResult = Invoke-Command -ScriptBlock $NetUseExpression
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Write-Host "It is ${IsAppexist} UFT exists" -ForegroundColor Green -BackgroundColor Black
-        Write-Host "CSAPreparationUninstallUFT::CheckUFTExist End" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "CSAInstallUFT::CheckUFTExist End" -ForegroundColor Green -BackgroundColor Black
         return $IsAppexist
     }
 }
