@@ -309,7 +309,7 @@ class CSADeployment {
         [string]$CSASubscriptionID
     ){
         
-        if ( ${env:CSADomain} -eq "") {
+        if (${env:CSADomain} -eq $null -Or ${env:CSADomain} -eq "") {
             $this.CSAAccount = ${env:CSAAccount}
         } else {
             $this.CSAAccount = "${env:CSADomain}\${env:CSAAccount}"
@@ -384,6 +384,16 @@ class CSADeployment {
         return $this.CSAInstallApp.InstallApplication($this.CSAName, $this.CSAAccount,$this.CSAPassword, $this.CSACredential, $BuildVersion)
     }
 
+
+    [Boolean]InstallPatch(
+        [string]$BuildVersion,
+        [string]$PatchID
+    ) {
+        return $this.CSAInstallApp.InstallPatch($this.CSAName, $this.CSACredential, $BuildVersion, $PatchID)
+    }
+
+
+
     
 }
 
@@ -399,12 +409,15 @@ function Install-Application {
         [Parameter(Mandatory=$true)]
         [string]$Application = "uft",
         [string]$CleanMode = "uninstall",
-        [string]$SUBSCRIPTION_ID = ""
+        [string]$SUBSCRIPTION_ID = "",
+        [string]$GAVersion = "",
+        [string]$PatchID = ""
     )
     
     $csaDeployment = [CSADeployment]::new($CSAName, $SUBSCRIPTION_ID)
     $csaPreparation = $null
     $csaInstallApp = $null
+    $installed=$false
     switch($CleanMode) 
     {
         "resnapshot" {
@@ -426,6 +439,9 @@ function Install-Application {
         "lftasfeature" {
             $csaInstallApp = [CSAInstallLFTAsFt]::GetInstance()
         }
+        "uftpatch" {
+            $csaInstallApp = [CSAInstallPatch]::GetInstance()
+        }
         "uft" {
             $csaInstallApp = [CSAInstallUFT]::GetInstance()
             break
@@ -439,7 +455,17 @@ function Install-Application {
     $csaDeployment.SetCSAPreparation([CSAPreparation]$csaPreparation)
     $csaDeployment.PrepareMachine()
     $csaDeployment.SetCSAInstallApp([CSAInstallApp]$csaInstallApp)
-    return $csaDeployment.InstallApplication($BuidlVersion)
+    if ( "" -ne $GAVersion ) {
+       $installed = $csaDeployment.InstallApplication($GAVersion)
+    } else {
+       $installed = $csaDeployment.InstallApplication($BuidlVersion)
+    }
+    if (-Not $installed) { return $false } 
+    if ( "" -ne $GAVersion) {
+        $installed = $csaDeployment.InstallPatch($BuidlVersion, $PatchID)
+    }
+    return $installed
+    
 }
 
 

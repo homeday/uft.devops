@@ -20,6 +20,22 @@ class CSAInstallApp {
         Write-Host "CSAInstallApp::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
         return $false
     }
+
+    [Boolean]InstallPatch(
+        [string]$CSAName,      
+        [System.Management.Automation.PSCredential]$CSACredential,
+        [string]$BuildVersion,
+        [string]$PatchID
+    ) {
+        Write-Host "CSAInstallApp::InstallPatch Start" -ForegroundColor Green -BackgroundColor Black
+        $type = $this.GetType()
+        if ($this.GetType() -eq [CSAInstallApp])
+        {
+            throw("Class $type must be inherited")
+        }
+        Write-Host "CSAInstallApp::InstallPatch End" -ForegroundColor Green -BackgroundColor Black
+        return $true
+    }
 }
 
 
@@ -145,5 +161,38 @@ class CSAInstallLFTAsFt : CSAInstallUFT {
         } until ( ($installed=([CSAInstallUFT]$this).CheckUFTExist($CSAName, $CSAAccount, $CSAPwd)) -eq $true -or $iloop -gt 3)
         Write-Host "CSAInstallLFTAsFt::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
         return $installed
+    }
+}
+
+
+class CSAInstallPatch : CSAInstallUFT {
+
+    CSAInstallPatch(
+    ) : base(
+    ) {
+        Write-Host "CSAInstallPatch::constructor" -ForegroundColor Green -BackgroundColor Black
+    }
+    static [CSAInstallPatch] $instance
+    static [CSAInstallPatch] GetInstance() {
+        if ([CSAInstallPatch]::instance -eq $null) { 
+            [CSAInstallPatch]::instance = [CSAInstallPatch]::new() 
+        }
+        return [CSAInstallPatch]::instance
+    }
+
+    [Boolean]InstallPatch(
+        [string]$CSAName,      
+        [System.Management.Automation.PSCredential]$CSACredential,
+        [string]$BuildVersion,
+        [string]$PatchID
+    ) {
+        Write-Host "CSAInstallPatch::InstallPatch Start" -ForegroundColor Green -BackgroundColor Black
+        $sb = [scriptblock]::Create(
+            "CMD.exe /C C:\installUFT_Patch.bat ${BuildVersion} ${PatchID} ${env:Rubicon_Username} ${env:Rubicon_Password}" 
+        )
+        $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+ 		Write-Host "CSAInstallPatch::InstallPatch End" -ForegroundColor Green -BackgroundColor Black
+        return $true
     }
 }

@@ -63,6 +63,7 @@ class CSAPreparation {
         Copy-Item "${PSScriptRoot}\del.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         Copy-Item "${PSScriptRoot}\UFTUninstaller_v2.0" -Destination "C:\" -ToSession $ConnSession -Recurse
         Copy-Item "${PSScriptRoot}\installUFT.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
+        Copy-Item "${PSScriptRoot}\installUFT_Patch.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         if ($null -ne $ConnSession) {
             Remove-PSSession -Session $ConnSession
         }
