@@ -360,7 +360,7 @@ class CSADeployment {
             $SecPwd = ConvertTo-Securestring $this.CSAPassword -AsPlainText -Force
             $this.CSACredential = New-Object System.Management.Automation.PSCredential($this.CSAAccount, $SecPwd)
         }
-        Write-Host "Credential is $($this.CSACredential)" -ForegroundColor Green -BackgroundColor Black
+        Write-Host $this.CSACredential -ForegroundColor Green -BackgroundColor Black
         Write-Host "CSADeployment::SetCredential End" -ForegroundColor Green -BackgroundColor Black
         return $this.CSACredential
     }
