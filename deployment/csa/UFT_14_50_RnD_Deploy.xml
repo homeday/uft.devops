@@ -4,7 +4,7 @@
 		<environmentName>UFT 14 50 @ trunk</environmentName>
 		<EmailRole>Nightly</EmailRole>
 		<NOTIFICATION_EMAIL>ran.bachar@hpe.com,yguo@hpe.com,yuanhai.xu@hpe.com</NOTIFICATION_EMAIL>
-		<CSAAccount>HPESWLAB.NET\alm_uft_auto</CSAAccount>
+		<CSAAccount>alm_uft_auto</CSAAccount>
 		<CSAPassword>W3lcome1</CSAPassword>
 		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
 		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
@@ -14,7 +14,7 @@
 		<branch>14.03_QTP</branch>
 		<branchId>14.03_QTP</branchId>
 		<productsToMonitor>"UFT"</productsToMonitor>
-		<CSADomain>HPESWLAB.NET</CSADomain>
+		<CSADomain>hpeswlab.net</CSADomain>
 		<links>""</links>
 		<machineLinks>""</machineLinks>
 		<CLEAN_MODE>uninstall</CLEAN_MODE>
