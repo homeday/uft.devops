@@ -2,16 +2,22 @@
 param (
     [Parameter(Mandatory=$true)]
     [string]$DeployFile = "UFT_14_50_RnD_Deploy.xml",
-    [string]$GAVersion = ""
+    [Parameter(Mandatory=$true)]
+    [string]$BUILD_NUMBER = "UFT_14_50_Setup_Last"   
 )
 $GlobalDict=@{}
 $DeployXML = [xml] (Get-Content $DeployFile)
-
 <#---------------------- Get Global Variables --------------------- #>
 $GlobalPropXML = $DeployXML.SelectSingleNode("//GlobalProperties")
 $GlobalPropertiesSTR = ""
-$GlobalPropXML.ChildNodes | ForEach-Object { $GlobalDict.Set_Item($_.Name, $_.InnerText)} # $GlobalPropertiesSTR += $_.Name + "=" + $_.InnerText + "`n" }
+$GlobalPropXML.ChildNodes | 
+    ForEach-Object { 
+        $GlobalDict.Set_Item($_.Name, $_.InnerText)
+    } # $GlobalPropertiesSTR += $_.Name + "=" + $_.InnerText + "`n" }
+    $GlobalDict.Set_Item("BUILD_NUMBER", $BUILD_NUMBER)
 <# ---------------------------------------------------------------- #>
+
+
 
 $DeployXML.SelectNodes("//hosts/host") | 
 ForEach-Object { 
@@ -30,6 +36,7 @@ ForEach-Object {
     }
     $PerHostSTR = ""
     $PerHostSTR += "VM_IP=" + (Test-Connection -ComputerName "${HostName}.${machineDomain}" -count 1).IPV4Address.IPAddressToString + "`n"
+    $GlobalDictForItem.Set_Item("MAIL_SUBJECT", "UFT Deployment: ${HostName} $($GlobalDictForItem["BUILD_NUMBER"]) Deployment is")
 
     $GlobalDictForItem.GetEnumerator() | ForEach-Object {
         $PerHostSTR  += $_.Name + "=" + $_.Value + "`n"

@@ -50,7 +50,7 @@ class CSAPreparation {
         [System.Management.Automation.PSCredential]$CSACredential
     ) {
         Write-Host "RestartMachine Start" -ForegroundColor Green -BackgroundColor Black
-        Restart-Computer -ComputerName $CSAName  -Credential $CSACredential -Wait -Timeout 300 -Force
+        Restart-Computer -ComputerName $CSAName  -Credential $CSACredential -Wait -Timeout 600 -Force
         Start-Sleep -s 15 
         Write-Host "RestartMachine End" -ForegroundColor Green -BackgroundColor Black
     }

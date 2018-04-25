@@ -309,7 +309,11 @@ class CSADeployment {
         [string]$CSASubscriptionID
     ){
         
-        $this.CSAAccount = ${env:CSAAccount}    
+        if ( ${env:CSADomain} -eq "") {
+            $this.CSAAccount = ${env:CSAAccount}
+        } else {
+            $this.CSAAccount = "${env:CSADomain}\${env:CSAAccount}"
+        } 
         $this.CSAPassword = ${env:CSAPassword}
         $this.CSAName=$CSAName
         $this.CSACredential = $null
@@ -326,7 +330,11 @@ class CSADeployment {
         [string]$CSAPassword
     ){
         if ( $CSAAccount -eq $null -or $CSAAccount  -eq "") {
-            $this.CSAAccount = ${env:CSAAccount}
+            if ( ${env:CSADomain} -eq "") {
+                $this.CSAAccount = ${env:CSAAccount}
+            } else {
+                $this.CSAAccount = "${env:CSADomain}\${env:CSAAccount}"
+            }
         } else {
             $this.CSAAccount = $CSAAccount
         }
