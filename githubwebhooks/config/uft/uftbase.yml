@@ -25,4 +25,5 @@ git_branches:
 
   UFT_14_03_SP_Patches: *jenkins_action_branch_default
   14_50/dev/rebranding: *jenkins_action_branch_default
+  14_50/dev/vc_dependency: *jenkins_action_branch_default  
   
