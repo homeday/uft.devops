@@ -50,7 +50,7 @@ while IFS='' read -r line; do
             echo ${dstbranch} >> errorreposities.txt
             continue
         fi
-        git push
+        #git push
         popd
         echo ----------------------------merge of repoistory $line end------------------------------
     fi
@@ -62,7 +62,7 @@ if [ -f errorreposities.txt ]; then
     cat errorreposities.txt
     exit 1
 fi
- echo ----------------------------merge repositories successfully------------------------------
+echo ----------------------------merge repositories successfully------------------------------
 exit 0
 
 
