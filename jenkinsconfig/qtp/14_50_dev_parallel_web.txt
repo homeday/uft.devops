@@ -1,0 +1,13 @@
+BuildLabel=UFT_14_50_Parallel_Web
+BuildMajorVersion=14
+BuildMinorVersion=50
+BuildPostfix=77
+CodeSign=false
+SignMethod=default
+Deploy=false
+Fortify_Compile=false
+Create_LeanFT=false
+01_CreateMLU=true
+repo_inclusion=-include=.repos/qtp.build -include=.repos/qtp.components -include=.repos/qtp.backend -include=.repos/qtp.addins.webbased 
+
+
