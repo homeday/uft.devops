@@ -18,9 +18,9 @@ class CSAPreparation {
         {
             throw("Class $type must be inherited")
         }
-        $PSExecExpression = {D:\PSTools\PsExec.exe \\$CSAName -u $CSAAccount -p $CSAPwd powershell.exe "enable-psremoting -force"}
-        $ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
-        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+        #$PSExecExpression = {D:\PSTools\PsExec.exe \\$CSAName -u $CSAAccount -p $CSAPwd powershell.exe "enable-psremoting -force"}
+        #$ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
+        #Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         $iloop=0
         $WinRmSvr = $null
         do {
