@@ -8,6 +8,10 @@ Deploy=false
 Fortify_Compile=false
 Create_LeanFT=false
 01_CreateMLU=true
+AlignWighAgents=true
+srf_agents_sync=false
+srf_windows_executor=false
+MailToList=yun-sheng.liu@hpe.com,shuhui.fu@hpe.com,chu-jun.dong@hpe.com,yguo@hpe.com,yuanhai.xu@hpe.com
 repo_inclusion=-include=.repos/qtp.build -include=.repos/qtp.components -include=.repos/qtp.backend -include=.repos/qtp.addins.webbased 
 
 
