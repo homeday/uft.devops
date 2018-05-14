@@ -12,13 +12,6 @@ param (
     
 )
 
-
-$env:VM_USER = "appsadmin"
-$env:VM_PASSWORD = "appsadmin"
-$env:vCenterAccount = "ASIAPACIFIC\guoyibi"
-$env:vCenterPassword = "`$rfv5tgb6yhn"
-$env:vCenterServer = "selvc01.hpeswlab.net"
-
 Import-Module -Force ".\vSphereDeployment.psm1"
 
 Write-Host "Install ${BuidlVersion} ${Application} at machine ${MachineName} with ${CleanMode} mode Start" -ForegroundColor Green -BackgroundColor Black
