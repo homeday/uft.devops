@@ -22,9 +22,9 @@ class VSpherePreparation {
         { 
             $MachineName = "${MachineName}.${env:VM_DOMAIN}"
         }
-        #$PSExecExpression = {D:\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
-        #$ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
-        #Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+        $PSExecExpression = {C:\tools\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
+        $ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         $iloop=0
         $WinRmSvr = $null
         do {

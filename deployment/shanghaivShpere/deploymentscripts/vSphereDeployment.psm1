@@ -1,4 +1,5 @@
 using module '.\vSpherePreparation.psm1'
+using module '.\vSphereInstallApp.psm1'
 
 class VShpereDeploy {
 
@@ -45,19 +46,19 @@ class VShpereDeploy {
     }
 
 
-    # [Void]SetCSAInstallApp([CSAInstallApp]$CSAInstallApp) {
-    #     $this.CSAInstallApp = $CSAInstallApp
-    # }
+    [Void]SetInstallApp([VSphereInstallApp]$vSphereInstallApp) {
+        $this.vSphereInstallApp = $vSphereInstallApp
+    }
 
     [Void]PrepareMachine() {
         $this.vSpherePreparation.doAction($this.MachineName, $this.UserName,$this.Password, $this.Credential)
     }
 
-    # [Boolean]InstallApplication(
-    #     [string]$BuildVersion
-    # ) {
-    #     return $this.CSAInstallApp.InstallApplication($this.MachineName, $this.UserName,$this.Password, $this.Credential, $BuildVersion)
-    # }
+    [Boolean]InstallApplication(
+        [string]$BuildVersion
+    ) {
+        return $this.vSphereInstallApp.InstallApplication($this.MachineName, $this.UserName, $this.Password, $this.Credential, $BuildVersion)
+    }
 
 
     # [Boolean]InstallPatch(
@@ -105,32 +106,32 @@ function Install-Application {
         }
     }
 
-    # switch($Application) 
-    # {
-    #     "lftasfeature" {
-    #         $csaInstallApp = [CSAInstallLFTAsFt]::GetInstance()
-    #     }
-    #     "uftpatch" {
-    #         $csaInstallApp = [CSAInstallPatch]::GetInstance()
-    #     }
-    #     "uft" {
-    #         $csaInstallApp = [CSAInstallUFT]::GetInstance()
-    #         break
-    #     }
-    #     default {
-    #         $csaInstallApp = [CSAInstallUFT]::GetInstance()
-    #         break
-    #     }
-    # }
+    switch($Application) 
+    {
+        "lft" {
+            $vSphereInstallApp = [VSphereInstallSALFT]::GetInstance()
+        }
+        # "uftpatch" {
+        #     $vSphereInstallApp = [CSAInstallPatch]::GetInstance()
+        # }
+        "uft" {
+            $vSphereInstallApp = [VSphereInstallUFT]::GetInstance()
+            break
+        }
+        default {
+            $vSphereInstallApp = [VSphereInstallUFT]::GetInstance()
+            break
+        }
+    }
 
     $vSphereDeploy.SetPreparation([VSpherePreparation]$vSpherePreparation)
     $vSphereDeploy.PrepareMachine()
-    # $csaDeployment.SetCSAInstallApp([CSAInstallApp]$csaInstallApp)
-    # if ( "" -ne $GAVersion ) {
-    #    $installed = $csaDeployment.InstallApplication($GAVersion)
-    # } else {
-    #    $installed = $csaDeployment.InstallApplication($BuidlVersion)
-    # }
+    $vSphereDeploy.SetCSAInstallApp([VSphereInstallApp]$vSphereInstallApp)
+    if ( "" -ne $GAVersion ) {
+       $installed = $vSphereDeploy.InstallApplication($GAVersion)
+    } else {
+       $installed = $vSphereDeploy.InstallApplication($BuidlVersion)
+    }
     # if (-Not $installed) { return $false } 
     # if ( "" -ne $GAVersion) {
     #     $installed = $csaDeployment.InstallPatch($BuidlVersion, $PatchID)
