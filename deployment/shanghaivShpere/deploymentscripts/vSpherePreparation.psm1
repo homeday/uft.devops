@@ -12,11 +12,15 @@ class VSpherePreparation {
         [string]$Password,
         [PSCredential]$MachineCredential
     ) {
-         
+        Write-Host "VSpherePreparation::doAction Start" -ForegroundColor Green -BackgroundColor Black
         $type = $this.GetType()
         if ($this.GetType() -eq [VSpherePreparation])
         {
             throw("Class $type must be inherited")
+        }
+        if (Test-Path 'env:VM_DOMAIN')
+        { 
+            $MachineName = "${MachineName}.${env:VM_DOMAIN}"
         }
         #$PSExecExpression = {D:\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
         #$ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
@@ -42,23 +46,24 @@ class VSpherePreparation {
             CMD.exe /C C:\del.bat `
         } 
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
-        Write-Host "CSAPreparation::End Start" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "VSpherePreparation::doAction End" -ForegroundColor Green -BackgroundColor Black
     }
 
     [Void]RestartMachine(
         [string]$MachineName,
         [System.Management.Automation.PSCredential]$MachMachineCredential
     ) {
-        Write-Host "RestartMachine Start" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "VSpherePreparation::RestartMachine Start" -ForegroundColor Green -BackgroundColor Black
         Restart-Computer -ComputerName $MachineName  -Credential $MachMachineCredential -Wait -Timeout 600 -Force
         Start-Sleep -s 15 
-        Write-Host "RestartMachine End" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "VSpherePreparation::RestartMachine End" -ForegroundColor Green -BackgroundColor Black
     }
 
     [Void]CopyRelatedFiles(
         [string]$MachineName,
         [System.Management.Automation.PSCredential]$MachMachineCredential
     ) {
+        Write-Host "VSpherePreparation::CopyRelatedFiles Start" -ForegroundColor Green -BackgroundColor Black
         $ConnSession = New-PSSession -ComputerName $MachineName -Credential $MachMachineCredential 
         Copy-Item "${PSScriptRoot}\del.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         Copy-Item "${PSScriptRoot}\deploySALFT.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
@@ -67,6 +72,7 @@ class VSpherePreparation {
         if ($null -ne $ConnSession) {
             Remove-PSSession -Session $ConnSession
         }
+        Write-Host "VSpherePreparation::CopyRelatedFiles End" -ForegroundColor Green -BackgroundColor Black
     }
 }
 
@@ -100,7 +106,6 @@ class VSphereRevertMachine : VSpherePreparation {
         Write-Host "VSphereRevertMachine::doAction Start" -ForegroundColor Green -BackgroundColor Black
         $this.RevertSnapshot($MachineName)
         ([VSpherePreparation]$this).doAction($MachineName, $UserName,$Password, $MachineCredential)
-        
         Write-Host "VSphereRevertMachine::doAction End" -ForegroundColor Green -BackgroundColor Black
     }
 
@@ -122,11 +127,10 @@ class VSphereRevertMachine : VSpherePreparation {
         $snapshotName = $MachineName + "_Snapshot"
         $snapshot = Get-Snapshot -VM $VM -Name $snapshotName
         Set-VM -VM $VM -Snapshot $snapshot -Confirm:$false | Select-Object -Property PowerState, Guest | Format-Table
-        $ParamFile = $MachineName + "_parm.txt"
         start-sleep -s 5
         $this.WaitForMachinePowerOn($MachineName)
-        Write-Host "VSphereRevertMachine::RevertSnapshot End" -ForegroundColor Green -BackgroundColor Black
         Disconnect-VIServer -Server $ShangHaiVM -Confirm:$false
+        Write-Host "VSphereRevertMachine::RevertSnapshot End" -ForegroundColor Green -BackgroundColor Black
         return $true
       
     }
@@ -135,6 +139,7 @@ class VSphereRevertMachine : VSpherePreparation {
         [string]$MachineName
     ) {
         
+        Write-Host "VSphereRevertMachine::WaitForMachinePowerOn Start" -ForegroundColor Green -BackgroundColor Black
         $VMs = Get-VM -Name $MachineName
         $VM = $VMs[0]
         $PowerState = $VM.PowerState
@@ -144,7 +149,6 @@ class VSphereRevertMachine : VSpherePreparation {
         {
             Write-Host "VSphereRevertMachine::WaitForMachinePowerOn power on the machine ${MachineName}" -ForegroundColor Green -BackgroundColor Black
             Start-VM -VM $VM -Confirm:$false | Select-Object -Property PowerState, Guest | Format-Table
-            #start-sleep -s 10
         }
         
         #$VMs = Get-VM -Name $MachineName
@@ -165,7 +169,8 @@ class VSphereRevertMachine : VSpherePreparation {
             $i = $i + 1
             
         } # End of 'Do'
-        Until (($IPv4 -and $IPv4 -ne "" -and $PowerState -eq "PoweredOn") -or $i -ge 4) 
+        Until (($IPv4 -and $IPv4 -ne "" -and $PowerState -eq "PoweredOn") -or $i -ge 10) 
+        Write-Host "VSphereRevertMachine::WaitForMachinePowerOn End" -ForegroundColor Green -BackgroundColor Black
     }
 }
 
