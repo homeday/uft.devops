@@ -9,6 +9,7 @@ class VShpereDeploy {
     hidden [string]$ApplicationName
     hidden [System.Management.Automation.PSCredential]$Credential
     hidden [VSpherePreparation]$vSpherePreparation
+    hidden [VSphereInstallApp]$vSphereInstallApp
 
 
     VShpereDeploy() {
