@@ -109,7 +109,7 @@ class VSphereRevertMachine : VSpherePreparation {
     ) {
         Write-Host "VSphereRevertMachine::RevertSnapshot Start" -ForegroundColor Green -BackgroundColor Black
         [string[]] $Server = [VSphereRevertMachine]::vCenterSvr
-        $ShangHaiVM = Connect-VIServer -Server $Server #-User "$([VSphereRevertMachine]::vCenterAcc)" -Password "$([VSphereRevertMachine]::vCenterPwd)"
+        $ShangHaiVM = Connect-VIServer -Server $Server -User "$([VSphereRevertMachine]::vCenterAcc)" -Password "$([VSphereRevertMachine]::vCenterPwd)"
 
         $VMs = Get-VM -Name $MachineName
         if ($null -eq $VMs) {
