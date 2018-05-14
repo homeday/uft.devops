@@ -126,7 +126,7 @@ function Install-Application {
 
     $vSphereDeploy.SetPreparation([VSpherePreparation]$vSpherePreparation)
     $vSphereDeploy.PrepareMachine()
-    $vSphereDeploy.SetCSAInstallApp([VSphereInstallApp]$vSphereInstallApp)
+    $vSphereDeploy.SetInstallApp([VSphereInstallApp]$vSphereInstallApp)
     if ( "" -ne $GAVersion ) {
        $installed = $vSphereDeploy.InstallApplication($GAVersion)
     } else {
