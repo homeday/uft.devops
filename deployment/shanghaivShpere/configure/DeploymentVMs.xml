@@ -7,7 +7,7 @@
 		<VM_DOMAIN>hpeswlab.net</VM_DOMAIN>
 		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
 		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
-		<installscriptfile>deployUFT.bat</installscriptfile>
+		<Application>uft</Application>
 	</GlobalProperties>
 <!-- ************************************************** Clean Machines ************************************************************************  -->	
 	<hosts>
@@ -90,7 +90,7 @@
 		  <VM_Description>Documentation shcuft033</VM_Description>
 		  <USER_EMAIL>uft.doc@hpe.com,yonit.bisk@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_LFT</VM_Template>
-		  <installscriptfile>deployUFT.SALFT.bat</installscriptfile>
+		  <Application>lft</Application>
 		</host>
 		<host>
 		  <VM_NAME>appsuftqa021</VM_NAME>
