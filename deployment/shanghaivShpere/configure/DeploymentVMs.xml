@@ -4,6 +4,7 @@
 		<NOTIFICATION_EMAIL>yguo@hpe.com,ran.bachar@hpe.com</NOTIFICATION_EMAIL>
 		<VM_USER>appsadmin</VM_USER>
 		<VM_PASSWORD>appsadmin</VM_PASSWORD>
+		<VM_DOMAIN>hpeswlab.net</VM_DOMAIN>
 		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
 		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
 		<installscriptfile>deployUFT.bat</installscriptfile>

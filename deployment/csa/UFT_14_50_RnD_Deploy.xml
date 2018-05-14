@@ -1,4 +1,6 @@
 <?xml version='1.0'?>
+<!--svn export http://.../svn/Repo/trunk/Folder C:\AnotherFolder-->
+<!--https://jpmelos.com/articles/how-use-chrome-selenium-inside-docker-container-running-python/-->
 <Deploy>
 	<GlobalProperties>
 		<environmentName>UFT 14 50 @ trunk</environmentName>
