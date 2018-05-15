@@ -334,6 +334,7 @@ if (-Not $vCenterAcc -Or -Not $vCenterPwd) {
 
 $createVSphereMachine=[CreateVSphereMachine]::GetInstance()
 $result = $createVSphereMachine.DoAction($MachineName, $TemplateName)
+$createVSphereMachine.DisConnectVIServer()
 if ($result)
 {
     exit 0
