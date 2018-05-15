@@ -7,8 +7,8 @@ param (
     [string]$TemplateName
     
 )
-Get-Module -ListAvailable | Where-Object { $_.Name -Like "VMware.VimAutomation*" } |  Import-Module
-Add-Type -AssemblyName  "VMware.VimAutomation.Core"
+#Get-Module -ListAvailable | Where-Object { $_.Name -Like "VMware.VimAutomation*" } |  Import-Module
+#Add-Type -AssemblyName  "VMware.VimAutomation.Core"
 #Add-PSSnapin "VMware.VimAutomation.Core"
 
 #Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
