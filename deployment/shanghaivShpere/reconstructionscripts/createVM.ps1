@@ -7,9 +7,13 @@ param (
     [string]$TemplateName
     
 )
-#Add-PSSnapin "VMware.VimAutomation.Core"
 
-#Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
+Add-PSSnapin "VMware.VimAutomation.Core"
+
+Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
+
+
+
 #Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
 
 
