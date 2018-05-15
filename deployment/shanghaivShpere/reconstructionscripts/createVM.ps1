@@ -8,9 +8,10 @@ param (
     
 )
 
-Add-PSSnapin "VMware.VimAutomation.Core"
+#Add-PSSnapin "VMware.VimAutomation.Core"
 
-Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
+#Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
+Get-Module -ListAvailable | Where-Object { $_.Name -Like "VMware.VimAutomation*" } |  Import-Module
 
 
 
@@ -23,28 +24,6 @@ $vCenterPwd = $env:vCenterPassword
 if (-Not $vCenterAcc -Or -Not $vCenterPwd) {
     Write-Host "Can't find vCenter Account or Password or Server Address Environment Variables"
     exit 1
-}
-
-
-$vCenterAddr = $env:vCenterAddr
-$vCenterFolder = $env:vCenterFolder
-$vCenterHost = $env:vCenterHost
-$vCenterDataStore = $env:vCenterDataStore
-
-if (!$vCenterFolder) {
-    $vCenterFolder="DEVOPS"
-}
-
-if (!$vCenterHost) {
-    $vCenterHost="shc-gsts-esx03.hpeswlab.net"
-}
-
-if (!$vCenterAddr){
-    $vCenterAddr="selvc01.hpeswlab.net"
-}
-
-if (!$vCenterDataStore) {
-    $vCenterDataStore="SHCADMLUN03"
 }
 
 class CreateVSphereMachine {
