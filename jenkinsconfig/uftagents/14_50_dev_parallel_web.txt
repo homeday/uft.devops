@@ -4,5 +4,5 @@ BuildLabel=UFT_14_50_Parallel_Web
 BuildPostfix=77
 WSPostfix=.ParallelWeb
 Configuration=win32_release
-repo_inclusion=-include=.repos/qtp.build -include=.repos/qtp.components -include=.repos/qtp.backend -include=.repos/qtp.addins.webbased 
+repo_inclusion=-include=.repos/qtp.build -include=.repos/qtp.components -include=.repos/qtp.addins.webbased 
 
