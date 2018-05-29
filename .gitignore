@@ -4,7 +4,3 @@
 # ignore binary files
 /githubscripts/pull_requests/jq
 
-## unignore git config files
-!/.gitignore
-!/.gitattributes
-
