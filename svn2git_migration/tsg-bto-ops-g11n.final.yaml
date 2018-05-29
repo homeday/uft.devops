@@ -1,0 +1,40 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-ops-g11n
+  trunk: trunk
+  branches:
+  - branches/Passolo2011
+  - branches/QuickTest/QuickTest_11_G11N_GA
+  - branches/QuickTest/UFT_11.50_G11N_GA
+  - branches/QuickTest/UFT_11.51_SP_G11N_GA
+  - branches/QuickTest/UFT_11.52_SP_G11N_GA
+  - branches/QuickTest/UFT_11.53_SP_G11N_GA
+  revisions:
+    start: 0
+    end: 7699
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# tsg-bto-ops-g11n
+- display_name: tsg-bto-ops-g11n
+  git_name: globalization.ops
+  svn_path_exclude_dir:
+  - LB-BSM
+  - LoadRunner
+  - OMW
+  - PC
+  - PE
+  - QuickTest
+  - Storm
+  - Valor
+  git_svn:
+    ignore_path: '(?:LB-BSM|LoadRunner|OMW|PC|PE|QuickTest|Storm|Valor)(?:\/.+)*$'
+    ignore_addition: '^(?:branches\/Passolo2011|branches\/QuickTest\/[^\/]+)\/+(?:LB-BSM|LoadRunner|OMW|PC|PE|QuickTest|Storm|Valor)(?:\/.+)*$'
+  tags:
+  - g11n

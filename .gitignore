@@ -1,7 +1,10 @@
-# ignore all except provision assets
+# ignore all vscode assets
 /**/.vscode
 
-## unignore provision assets
+# ignore binary files
+/githubscripts/pull_requests/jq
+
+## unignore git config files
 !/.gitignore
 !/.gitattributes
 
