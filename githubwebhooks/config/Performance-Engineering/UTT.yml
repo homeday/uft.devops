@@ -10,7 +10,7 @@ git_branches:
         enabled: true
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UTT.Build.Launcher/buildWithParameters'
         job_parameters: &jenkins_action_params_default
-          token: UFTQABUILDTOKEN
+          token: UFTBUILDTOKEN
           Branch:
             runtime: _branch_name_
 
