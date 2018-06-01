@@ -107,7 +107,7 @@
 		<host>
 		  <VM_NAME>myd-vm04297</VM_NAME>
 		  <team>Functional architects</team>
-		  <USER_EMAIL>ran.bachar@hpe.com,ori.bendet@hpe.com,amit.bezalel@hpe.com,tal.halperin@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ran.bachar@hpe.com,tsachi.ben-zur@hpe.com,tal.halperin@hpe.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>90bc0b9c5c536144015ca6eb322f3aa2</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>
@@ -200,16 +200,6 @@
 		</host>
 		<host>
 		  <VM_NAME>myd-vma00415</VM_NAME>
-		  <team>Functional architects Sanity</team>
-		  <USER_EMAIL>ran.bachar@hpe.com,tsachi.ben-zur@hpe.com,tal.halperin@hpe.com</USER_EMAIL>
-		  <CSAAccount>_ft_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93bce56744c</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>
-		<host>
-		  <VM_NAME>myd-vma00415</VM_NAME>
 		  <team>Jason</team>
 		  <USER_EMAIL>ftmobile.dev.sap.cn@hpe.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
@@ -239,17 +229,7 @@
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
 		<host>
-		  <VM_NAME>myd-vma00417</VM_NAME>
-		  <team>Sagi</team>
-		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
-		  <CSAAccount>_ft_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b9469948024b</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>
-		<host>
-		  <VM_NAME>myd-vma00417</VM_NAME>
+		  <VM_NAME>myd-vma00418</VM_NAME>
 		  <team>Bogdan</team>
 		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
