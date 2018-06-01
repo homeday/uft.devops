@@ -177,34 +177,88 @@
 		
 		
 		
-		
-		
-		<!--
+		<!--CSA in New Domain start-->
 		<host>
-		  <VM_NAME>myd-vm16185</VM_NAME>
-		  <team>CPE</team>
-		  <USER_EMAIL>datn@hpe.com,tal.halperin@hpe.com,aa.ftvs.cpe.bpt.dev.vn@hpe.com,aa.ftvs.cpe.qtp.dev.vn@hpe.com,aa.ftvs.cpe.st.dev@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f464c92dd7ab4</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		  <VM_NAME>myd-vma00413</VM_NAME>
+		  <team>Easton</team>
+		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93af6a16ec1</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
 		<host>
-		  <VM_NAME>myd-vm16359</VM_NAME>
-		  <team>Tech IL</team>
-		  <USER_EMAIL>ftmobile.dev.tech.il@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f5f45a732211f</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		  <VM_NAME>myd-vma00414</VM_NAME>
+		  <team>Functional architects Sanity</team>
+		  <USER_EMAIL>ran.bachar@hpe.com,tsachi.ben-zur@hpe.com,tal.halperin@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93bce56744c</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
 		<host>
-		  <VM_NAME>myd-vm16357</VM_NAME>
-		  <team>Sprinter</team>
-		  <USER_EMAIL>elad.malki@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9b4f3a601b014f5f45a7232112</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		  <VM_NAME>myd-vma00415</VM_NAME>
+		  <team>Functional architects Sanity</team>
+		  <USER_EMAIL>ran.bachar@hpe.com,tsachi.ben-zur@hpe.com,tal.halperin@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93bce56744c</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
-		
-	-->
-		
-		
+		<host>
+		  <VM_NAME>myd-vma00415</VM_NAME>
+		  <team>Jason</team>
+		  <USER_EMAIL>ftmobile.dev.sap.cn@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93ca5e87707</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>	
+		<host>
+		  <VM_NAME>myd-vma00416</VM_NAME>
+		  <team>Lancer</team>
+		  <USER_EMAIL>ftmobile.dev.infra.cn@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93f8f267d3d</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>		
+		<host>
+		  <VM_NAME>myd-vma00417</VM_NAME>
+		  <team>Sagi</team>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b9469948024b</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vma00417</VM_NAME>
+		  <team>Sagi</team>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b9469948024b</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vma00417</VM_NAME>
+		  <team>Bogdan</team>
+		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d9262f2fa5f0163b969680557cd</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>
+		<!--CSA in New Domain end-->
 	</hosts>
 </Deploy>
     
