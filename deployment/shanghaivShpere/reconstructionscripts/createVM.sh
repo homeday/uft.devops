@@ -19,7 +19,10 @@ wait_for_vm_guest_tool_on()
         let COUNTER=$COUNTER+1
         sleep 30
     done
-    return ret
+    if [ "$ret" == "0" ]; then
+        return 0
+    fi
+    return 1
 }
 
 wait_for_vm_power_state() 
