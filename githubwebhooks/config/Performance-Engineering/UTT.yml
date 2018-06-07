@@ -4,7 +4,7 @@ git_repo: UTT
 git_tags:
 
 git_branches:
-  master: &jenkins_action_branch_default
+  UFT_14_02: &jenkins_action_branch_default
     push:
       jenkins: &jenkins_action_default
         enabled: true
@@ -14,4 +14,4 @@ git_branches:
           Branch:
             runtime: _branch_name_
 
-
+  UFT_14_03_SP_Patches: *jenkins_action_branch_default
