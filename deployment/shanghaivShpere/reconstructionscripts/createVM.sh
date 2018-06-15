@@ -58,7 +58,7 @@ if [ $vmcount -ne 0 ] ; then
 fi
 
 echo "cloning machine ${VM_NAME}"
-./govc.exe vm.clone -vm $VM_Template -ds="SHCADMLUN03" -folder="DEVOPS" -host="shcappsesx03.hpeswlab.net" -on=true $VM_NAME
+./govc.exe vm.clone -vm $VM_Template -ds="SHCADMLUN08_GSTS_3PAR" -folder="DEVOPS" -host="shcappsesx03.hpeswlab.net" -on=true $VM_NAME
 sleep 30
 vmcount=$(./govc.exe find -json . -type m -name $VM_NAME | jq length)
 if [ $vmcount -eq 0 ]; then
