@@ -15,21 +15,29 @@
 # specific language governing permissions and limitations
 # under the License.
 
+from __future__ import print_function
+
 import logging
+from os import access, X_OK, remove, fdopen, environ
+from os.path import isfile, abspath, normpath, dirname, join, basename
+logfile = environ.get('WEBHOOKS_LOG_FILE', '/logs/webhooks.log')
+verbose = environ.get('WEBHOOK_VERBOSE', 'false') == 'true'
+loglevel = logging.DEBUG if verbose else logging.INFO
+logging.basicConfig(filename=logfile,level=loglevel)
+logging.info('Logging starts with verbose: {}'.format(verbose))
+
 from sys import stderr, hexversion
-logging.basicConfig(stream=stderr)
 
 import hmac
 from hashlib import sha1
 from json import loads, dumps
 from subprocess import Popen, PIPE
 from tempfile import mkstemp
-from os import access, X_OK, remove, fdopen
-from os.path import isfile, abspath, normpath, dirname, join, basename
 
 import requests
 from ipaddress import ip_address, ip_network
 from flask import Flask, request, abort
+from datetime import datetime
 
 
 application = Flask(__name__)
@@ -43,6 +51,8 @@ def index():
 
     path = normpath(abspath(dirname(__file__)))
 
+    logging.debug('[{} UTC] Request is received: {} {}'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), request.method, request.url))
+
     # Only POST is implemented
     if request.method != 'POST':
         abort(501)
@@ -52,6 +62,7 @@ def index():
         config = loads(cfg.read())
 
     hooks = config.get('hooks_path', join(path, 'hooks'))
+    logging.debug('[{} UTC] Hook scripts path: {}'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), hooks))
 
     # Allow Github IPs only
     if config.get('github_ips_only', True):
@@ -98,6 +109,7 @@ def index():
     # Implement ping
     event = request.headers.get('X-GitHub-Event', 'ping')
     if event == 'ping':
+        logging.debug('[{} UTC] Response ping event. msg: pong'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")))
         return dumps({'msg': 'pong'})
 
     # Gather data
@@ -106,6 +118,12 @@ def index():
     except Exception:
         logging.warning('Request parsing failed')
         abort(400)
+
+    t = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    if payload:
+        logging.debug('[{} UTC] Payload is detected and not empty'.format(t))
+    else:
+        logging.debug('[{} UTC] Payload is detected but empty!'.format(t))
 
     # Determining the branch is tricky, as it only appears for certain event
     # types an at different levels
@@ -133,9 +151,12 @@ def index():
         # the branch name
         pass
 
+    logging.debug('[{} UTC] Branch name: {}'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), branch))
+
     # All current events have a repository, but some legacy events do not,
     # so let's be safe
     name = payload['repository']['name'] if 'repository' in payload else None
+    logging.debug('[{} UTC] Repo name: {}'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), name))
 
     meta = {
         'name': name,
@@ -158,15 +179,22 @@ def index():
     scripts.append(join(hooks, '{event}'.format(**meta)))
     scripts.append(join(hooks, 'all'))
 
+    logging.debug('[{} UTC] Try to search any of these script files: {}'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), ','.join(scripts)))
+
     # Check permissions
     scripts = [s for s in scripts if isfile(s) and access(s, X_OK)]
     if not scripts:
+        logging.debug('[{} UTC] No script to run, exit. status: nop'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")))
         return dumps({'status': 'nop'})
+
+    logging.debug('[{} UTC] Scripts permission check passed'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")))
 
     # Save payload to temporal file
     osfd, tmpfile = mkstemp()
     with fdopen(osfd, 'w') as pf:
         pf.write(dumps(payload))
+
+    logging.debug('[{} UTC] Payload is saved to temporal file: {}'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), tmpfile))
 
     # Run scripts
     ran = {}
@@ -177,7 +205,12 @@ def index():
             [s, tmpfile, event],
             stdout=PIPE, stderr=PIPE
         )
+
+        logging.debug('[{} UTC] Popen with args: {}'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), ' '.join([s, tmpfile, event])))
+
         stdout, stderr = proc.communicate()
+
+        logging.debug('[{} UTC] Proc (pid: {}) completed with return code: {}'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), proc.pid, proc.returncode))
 
         ran[basename(s)] = {
             'returncode': proc.returncode,
@@ -200,6 +233,9 @@ def index():
 
     output = dumps(ran, sort_keys=True, indent=4)
     logging.info(output)
+
+    logging.debug('[{} UTC] Done'.format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")))
+
     return output
 
 
