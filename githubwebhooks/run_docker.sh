@@ -5,6 +5,8 @@
 # supported environment variables
 # - WEBHOOKS_REPO_RAW_FILE_URL (defaults to "https://raw.github.houston.softwaregrp.net/uft/uft.devops")
 # - WEBHOOKS_REPO_BRANCH (defaults to "master")
+# - WEBHOOKS_LOG_FILE (defaults to "/logs/webhooks.log")
+# - WEBHOOK_VERBOSE (defaults to "false")
 
 script_dir=$(dirname $(readlink -f $0))
 sh_name=$0
@@ -25,5 +27,8 @@ docker run -d \
     --restart always \
     -e WEBHOOKS_REPO_RAW_FILE_URL \
     -e WEBHOOKS_REPO_BRANCH \
+    -e WEBHOOKS_LOG_FILE \
+    -e WEBHOOK_VERBOSE \
     -v ${script_dir}/hooks:/src/hooks:ro \
+    -v ${script_dir}/logs:/logs \
     -p ${host_port}:5000 "${docker_image}"
