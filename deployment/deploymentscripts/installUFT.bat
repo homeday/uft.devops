@@ -1,7 +1,7 @@
 
 net use * /delete /y
 
-IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydanas01.swinfra.net\products\FT\QTP\win32_release & net use X: \\mydanas01.swinfra.net\products\FT\QTP\win32_release %4 /USER:%3
+IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & net use X: \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release %4 /USER:%3
 set DVD_Path=X:\%1\DVD_WIX
 
 set SEE_MASK_NOZONECHECKS=1
