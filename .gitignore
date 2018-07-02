@@ -1,5 +1,6 @@
 # ignore all vscode assets
 /**/.vscode
+node_modules
 
 # ignore binary files
 /githubscripts/pull_requests/jq
