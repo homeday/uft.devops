@@ -1,0 +1,36 @@
+svn:
+  server_url: https://csvn1-pro.il.hpecorp.net:19181/svn
+  project: tsg-bto-apps-iba
+  trunk: trunk
+  revisions:
+    start: 0
+    end: 25262
+git:
+  github:
+    base_url: https://github.houston.softwaregrp.net
+    api_base_url: https://github.houston.softwaregrp.net/api/v3
+    org: uft-poc
+git_svn:
+  svn_temp_dir: gitmig
+
+repos:
+# IBA
+- display_name: IBA
+  git_name: iba
+  svn_path_exclude_dir:
+  - _ExternalThirdParty
+  - Design
+  - Tests
+  - _Dev/hpgiThirdParty/boost_1_42_0
+  - _Dev/hpgiThirdParty/boost_1_54_0
+  - _Dev/hpgiThirdParty/OpenCV-2.1.0
+  - _Dev/hpgiThirdParty/OpenCV-2.4.3
+  - _Dev/hpgiThirdParty/OpenCV-2.4.6
+  - _Dev/hpgiThirdParty/TextRecognition
+  - _Dev/hpgiThirdParty/QTP
+  - _Dev/hpgiThirdParty/tbb30_20100406oss
+  git_svn:
+    ignore_path: '(?:_ExternalThirdParty|Design|Tests|_Dev\/hpgiThirdParty\/boost_1_42_0|_Dev\/hpgiThirdParty\/boost_1_54_0|_Dev\/hpgiThirdParty\/OpenCV-2.1.0|_Dev\/hpgiThirdParty\/OpenCV-2.4.3|_Dev\/hpgiThirdParty\/OpenCV-2.4.6|_Dev\/hpgiThirdParty\/TextRecognition|_Dev\/hpgiThirdParty\/QTP|_Dev\/hpgiThirdParty\/tbb30_20100406oss)$'
+    ignore_addition: '^branches\/[^\/]+\/+(?:_ExternalThirdParty|Design|Tests|_Dev\/hpgiThirdParty\/boost_1_42_0|_Dev\/hpgiThirdParty\/boost_1_54_0|_Dev\/hpgiThirdParty\/OpenCV-2.1.0|_Dev\/hpgiThirdParty\/OpenCV-2.4.3|_Dev\/hpgiThirdParty\/OpenCV-2.4.6|_Dev\/hpgiThirdParty\/TextRecognition|_Dev\/hpgiThirdParty\/QTP|_Dev\/hpgiThirdParty\/tbb30_20100406oss)$'
+  tags:
+  - iba
