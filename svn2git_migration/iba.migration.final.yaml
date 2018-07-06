@@ -9,7 +9,7 @@ git:
   github:
     base_url: https://github.houston.softwaregrp.net
     api_base_url: https://github.houston.softwaregrp.net/api/v3
-    org: uft-poc
+    org: uft
 git_svn:
   svn_temp_dir: gitmig
 
