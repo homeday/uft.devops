@@ -30,7 +30,7 @@ repos:
   - _Dev/hpgiThirdParty/QTP
   - _Dev/hpgiThirdParty/tbb30_20100406oss
   git_svn:
-    ignore_path: '(?:_ExternalThirdParty|Design|Tests|_Dev\/hpgiThirdParty\/boost_1_42_0|_Dev\/hpgiThirdParty\/boost_1_54_0|_Dev\/hpgiThirdParty\/OpenCV-2.1.0|_Dev\/hpgiThirdParty\/OpenCV-2.4.3|_Dev\/hpgiThirdParty\/OpenCV-2.4.6|_Dev\/hpgiThirdParty\/TextRecognition|_Dev\/hpgiThirdParty\/QTP|_Dev\/hpgiThirdParty\/tbb30_20100406oss)$'
-    ignore_addition: '^branches\/[^\/]+\/+(?:_ExternalThirdParty|Design|Tests|_Dev\/hpgiThirdParty\/boost_1_42_0|_Dev\/hpgiThirdParty\/boost_1_54_0|_Dev\/hpgiThirdParty\/OpenCV-2.1.0|_Dev\/hpgiThirdParty\/OpenCV-2.4.3|_Dev\/hpgiThirdParty\/OpenCV-2.4.6|_Dev\/hpgiThirdParty\/TextRecognition|_Dev\/hpgiThirdParty\/QTP|_Dev\/hpgiThirdParty\/tbb30_20100406oss)$'
+    ignore_path: '(?:_ExternalThirdParty|Design|Tests|_Dev\/hpgiThirdParty\/boost_1_42_0|_Dev\/hpgiThirdParty\/boost_1_54_0|_Dev\/hpgiThirdParty\/OpenCV-2\.1\.0|_Dev\/hpgiThirdParty\/OpenCV-2\.4\.3|_Dev\/hpgiThirdParty\/OpenCV-2\.4\.6|_Dev\/hpgiThirdParty\/TextRecognition|_Dev\/hpgiThirdParty\/QTP|_Dev\/hpgiThirdParty\/tbb30_20100406oss)(?:\/.+)*$'
+    ignore_addition: '^branches\/[^\/]+\/+(?:_ExternalThirdParty|Design|Tests|_Dev\/hpgiThirdParty\/boost_1_42_0|_Dev\/hpgiThirdParty\/boost_1_54_0|_Dev\/hpgiThirdParty\/OpenCV-2\.1\.0|_Dev\/hpgiThirdParty\/OpenCV-2\.4\.3|_Dev\/hpgiThirdParty\/OpenCV-2\.4\.6|_Dev\/hpgiThirdParty\/TextRecognition|_Dev\/hpgiThirdParty\/QTP|_Dev\/hpgiThirdParty\/tbb30_20100406oss)(?:\/.+)*$'
   tags:
   - iba
