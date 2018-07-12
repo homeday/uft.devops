@@ -51,12 +51,12 @@ pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
 IF "%5" == "" (
 echo installing UFT
 
-MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%
+MsiExec /norestart /qn /i ".\14.50.741.0\DVD_WIX\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%
 
 ) ELSE (
 echo installing UFT and LFT as a feature	
 
-MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+MsiExec /norestart /qn /i ".\14.50.741.0\DVD_WIX\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 
 )
 popd
