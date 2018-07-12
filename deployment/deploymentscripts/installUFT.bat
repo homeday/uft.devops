@@ -9,7 +9,7 @@ set DVD_Path=Z:\%1\DVD_WIX
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\prerequisites
-setup.exe /InstallOnlyPrerequisite /s
+cmd /c setup.exe /InstallOnlyPrerequisite /s
 popd 
 
 SET DVDNUM=%1
@@ -51,12 +51,12 @@ pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
 IF "%5" == "" (
 echo installing UFT
 
-MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\14.50.741.0\DVD_WIX\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\14.50.741.0\DVD_WIX\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%
 
 ) ELSE (
 echo installing UFT and LFT as a feature	
 
-MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\14.50.741.0\DVD_WIX\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\14.50.741.0\DVD_WIX\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 
 )
 popd
