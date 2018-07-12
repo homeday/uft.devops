@@ -1,12 +1,14 @@
 
 net use * /delete /y
 
-IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & net use X: \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release %4 /USER:%3
-set DVD_Path=X:\%1\DVD_WIX
+SET STORAGE_WIN_SERVER=\\mydastr01.hpeswlab.net
+REM IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & net use X: \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release %4 /USER:%3
+net use %STORAGE_WIN_SERVER% %4 /USER:%3
+set DVD_Path=Z:\%1\DVD_WIX
 
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"
-pushd X:\%1\SetupBuilder\Output\UFT\prerequisites
+pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\prerequisites
 setup.exe /InstallOnlyPrerequisite /s
 popd 
 
@@ -47,10 +49,14 @@ ECHO ##%LOCALE_STRING%##
 
 IF "%5" == "" (
 echo installing UFT
+pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\
 MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%
+popd
 ) ELSE (
 echo installing UFT and LFT as a feature	
+pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\
 MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+popd
 )
 
 
