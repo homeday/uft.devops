@@ -47,17 +47,19 @@ IF %THREE_LETTER_LANG%==ENU (
 	)
 ECHO ##%LOCALE_STRING%##
 
+pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
 IF "%5" == "" (
 echo installing UFT
-pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
+
 MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%
-popd
+
 ) ELSE (
 echo installing UFT and LFT as a feature	
-pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
+
 MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
-popd
+
 )
+popd
 
 
 if %errorlevel% EQU 3010 goto RESTART
