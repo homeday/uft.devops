@@ -20,8 +20,8 @@
 		<links>""</links>
 		<machineLinks>""</machineLinks>
 		<CLEAN_MODE>uninstall</CLEAN_MODE>
-		<DevOpsPortalIP>16.60.153.127</DevOpsPortalIP>
-		<DevOpsPortalPort>80</DevOpsPortalPort>
+		<DevOpsPortalIP>localhost</DevOpsPortalIP>
+		<DevOpsPortalPort>8083</DevOpsPortalPort>
 		<DevOpsPortalPath>/devenvs</DevOpsPortalPath>
 		<Application>uft</Application>
 	</GlobalProperties>

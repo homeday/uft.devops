@@ -8,10 +8,42 @@ param (
     [string]$Application = "uft",
     [string]$CleanMode = "resnapshot",
     [string]$GAVersion = "",
-    [string]$PatchID = ""
-    
+    [string]$PatchID = "",
+    [string]$NotifyUri = ""
 )
 
+function Update-DeploymentsToDB {
+    #[CmdletBinding(SupportsProcess=$True)]
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]$NotifyUri,
+        [Parameter(Mandatory=$true)]
+        [string]$name,
+        [Parameter(Mandatory=$true)]
+        [string]$state
+    )
+    if ("" -eq $NotifyUri) {
+        return
+    }
+        
+    $Body = @{
+        name = $name
+        state = $state
+    }
+    $json = $Body | ConvertTo-Json
+    $contentType = "application/json"  
+    $Rsp = $null
+    try {
+        $Rsp = Invoke-WebRequest -Uri $NotifyUri -Method Put -Body $json -ContentType $contentType
+        Write-Host $name ":" $state ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
+    }
+    catch [Exception] {
+        Write-Host $_.Exception | format-list -force -ForegroundColor Red -BackgroundColor Black
+        Write-Host "Update-DeploymentsToDB " $name -ForegroundColor Red -BackgroundColor Black
+    }
+}
+
+Update-DeploymentsToDB -NotifyUri $NotifyUri -name $MachineName.Split(".")[0] -state "deploying"
 Import-Module -Force ".\vSphereDeployment.psm1"
 
 Write-Host "Install ${BuidlVersion} ${Application} at machine ${MachineName} with ${CleanMode} mode Start" -ForegroundColor Green -BackgroundColor Black
@@ -22,7 +54,9 @@ $result = Install-Application -MachineName $MachineName `
             -GAVersion $GAVersion -PatchID $PatchID
 if ($result -eq $true) {
     Write-Host "It is successful to install ${BuidlVersion} at machine ${MachineName} with ${CleanMode} mode " -ForegroundColor Green -BackgroundColor Black
+    Update-DeploymentsToDB -NotifyUri $NotifyUri -name $MachineName.Split(".")[0] -state "success"
     exit 0
 }
 Write-Host "It is failed to install ${BuidlVersion} at machine ${MachineName} with ${CleanMode} mode " -ForegroundColor Red -BackgroundColor Black
+Update-DeploymentsToDB -NotifyUri $NotifyUri -name $MachineName.Split(".")[0] -state "failure"
 exit 1
