@@ -4,7 +4,7 @@ net use * /delete /y
 SET STORAGE_WIN_SERVER=\\mydastr01.hpeswlab.net
 REM IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & net use X: \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release %4 /USER:%3
 net use %STORAGE_WIN_SERVER%\IPC$ %4 /USER:%3
-robocopy /s /e %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\DVD_WIX C:\installation_%1 /MT:16 /MR:5 /NDL /NFL
+robocopy /s /e %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\DVD_WIX C:\installation_%1 /MT:16 /R:5 /NDL /NFL
 set DVD_Path=C:\installation_%1
 
 set SEE_MASK_NOZONECHECKS=1
