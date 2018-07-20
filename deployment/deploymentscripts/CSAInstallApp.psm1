@@ -147,7 +147,7 @@ class CSAInstallLFTAsFt : CSAInstallUFT {
     ) {
         Write-Host "CSAInstallLFTAsFt::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
         $sb = [scriptblock]::Create(
-            "CMD.exe /C C:\installUFT.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password} true" 
+            "CMD.exe /C C:\installUFT_LFTasFeature.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password}" 
         )
         $iloop=0
         $installed=$false
