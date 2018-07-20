@@ -33,6 +33,7 @@ function Update-DeploymentsToDB {
     $Body = @{
         name = $name
         state = $state
+        version = $BuidlVersion
     }
     $json = $Body | ConvertTo-Json
     $contentType = "application/json"  
