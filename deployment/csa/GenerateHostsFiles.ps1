@@ -6,18 +6,18 @@ param (
     [string]$BUILD_NUMBER = "UFT_14_50_Setup_Last"  ,
     [string]$PRODUCT_RELEASE = ""    
 )
-$isReleaseValid=$false
+$HasDeployments=$false
 $DevOpsPortalURL=""
 $DevOpsPortalIP=""
 $DevOpsPortalPort=""
 $GlobalDict=@{}
 
-function Read-IsValid {
+function Read-HasDeployments {
     # [CmdletBinding(SupportsShouldProcess=$True)]
     # param (
     #     [string]$PatchID = ""
     # )
-    $isReleaseValid = $false
+    $HasDeployments = $false
     $ReqUri = $DevOpsPortalURL + $ReleasePath
     try {  
         $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Get
@@ -26,7 +26,7 @@ function Read-IsValid {
             $Content = $Rsp.Content | ConvertFrom-Json
             if ($Content.Length -gt 0) 
             {
-                $isReleaseValid = $Content[0].isvalid
+                $HasDeployments = $Content[0].hasdeployments
             } 
         }  
     }
@@ -34,7 +34,7 @@ function Read-IsValid {
         Write-Host $_.Exception|format-list -force
         Write-Host "Get Rsp error " + $ReqUri 
     }
-    return $isReleaseValid
+    return $HasDeployments
 }
 
 function Read-DeploymentsFromDB {
@@ -141,10 +141,10 @@ $DeploymentsPath="/api/deployments/" + $PRODUCT_RELEASE.ToLower()
 <# ---------------------------------------------------------------- #>
 
 
-$isReleaseValid = Read-IsValid
+$HasDeployments = Read-HasDeployments
 $DeploymentsFromDB=@{}
 $DeploymentsDel=New-Object System.Collections.ArrayList
-if ($isReleaseValid) {
+if ($HasDeployments) {
     Read-DeploymentsFromDB([ref]$DeploymentsFromDB) ([ref]$DeploymentsDel)
 }
 
@@ -165,7 +165,7 @@ ForEach-Object {
         }
     }
 	
-	if ($isReleaseValid -eq $True) {
+	if ($HasDeployments -eq $True) {
 		$GlobalDictForItem.Set_Item("NotifyUri", $DevOpsPortalURL + $DeploymentsPath)
 	}
     $PerHostSTR = ""
@@ -180,12 +180,12 @@ ForEach-Object {
     $PerHostSTR | Out-File -FilePath "$HostName.txt" -Encoding "ASCII"
     Write-Host "$HostName.txt `n===============`n$PerHostSTR"
 
-    if ($isReleaseValid) {
+    if ($HasDeployments) {
         Update-DeploymentsToDB($GlobalDictForItem) ([ref]$DeploymentsDel) ([ref]$DeploymentsFromDB)
     }
 }
 
-if ($isReleaseValid) {
+if ($HasDeployments) {
     Remove-DeploymentsInDB($DeploymentsDel)
 }
 
