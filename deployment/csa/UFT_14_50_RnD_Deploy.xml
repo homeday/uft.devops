@@ -21,7 +21,7 @@
 		<machineLinks>""</machineLinks>
 		<CLEAN_MODE>uninstall</CLEAN_MODE>
 		<DevOpsPortalIP>localhost</DevOpsPortalIP>
-		<DevOpsPortalPort>8083</DevOpsPortalPort>
+		<DevOpsPortalPort>8091</DevOpsPortalPort>
 		<DevOpsPortalPath>/devenvs</DevOpsPortalPath>
 		<Application>uft</Application>
 	</GlobalProperties>
@@ -83,13 +83,13 @@
 		  <SUBSCRIPTION_ID>90bc0b9b5cc94c1a015cf41fe42d66a3</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>
-		<!--<host>
+		<host>
 		  <VM_NAME>myd-vm04310</VM_NAME>
 		  <team>Document</team>
 		  <USER_EMAIL>uft.doc@hpe.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>90bc0b9b5c0aafda015ca72f667e11b7</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>-->
+		</host>
 		<!--<host>
 		  <VM_NAME>myd-vm04305</VM_NAME>
 		  <team>Installation</team>
