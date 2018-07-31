@@ -34,6 +34,7 @@ def rel_minor_num = build.getEnvironment().Release_Minor_Number
 def release_num = rel_major_num + "." + rel_minor_num
 def sprint_num = build.getEnvironment().Sprint_Number
 def branch_name = build.getEnvironment().GIT_Branch_Name
+def code_freeze_phase = "true".equalsIgnoreCase(build.getEnvironment().Code_Freeze_Phase)
 def today = new Date().format('MMM.dd, YYYY')
 def rubicon_install_link = "file:///\\\\mydastr01.hpeswlab.net\\products\\FT\\QTP\\win32_release\\" + build_num + "\\DVD_Wix\\Setup.exe"
 def sh206_install_link = "file:///\\\\10.5.32.206\\Builds\\" + build_num
@@ -48,6 +49,14 @@ def status_checks = "cd/releases/${rel_major_num}_${rel_minor_num}/sprint${sprin
 
     <div class="caption">Code Freeze Reminder</div>
     <div>
+<%
+if (code_freeze_phase) {
+    status_checks = status_checks + " cd/release/${rel_major_num}_${rel_minor_num}/code_freeze"
+%>
+        <span class="emphasize2">SPECIAL REMINDER:</span> <span class="emphasize">WE ARE IN UFT ${release_num} CODE FREEZE PHASE!</span><br/><br/>
+<%
+}
+%>
         We are in <b>UFT ${release_num} Sprint ${sprint_num} Sanity</b> <span class="emphasize">code freeze</span> now.<br/><br/>
         The <b>${branch_name}</b> branch of all <b>QTP</b> repositories, <b>UFTBase</b> and <b>ST</b> are locked and merging to this branch is not allowed,
         however, you are still able to work on the other branches, create and review pull requests.<br/><br/>
