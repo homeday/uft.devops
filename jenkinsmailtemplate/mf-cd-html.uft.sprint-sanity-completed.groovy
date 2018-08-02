@@ -39,7 +39,7 @@ def sprint_num = build.getEnvironment().Sprint_Number
 def branch_name = build.getEnvironment().GIT_Branch_Name
 def code_freeze_phase = "true".equalsIgnoreCase(build.getEnvironment().Code_Freeze_Phase)
 def unlock_job_url = "http://mydtbld0120.hpeswlab.net:8080/view/Products/view/Git/job/Github.PullRequest.StatusChecks.ForceUnlock/build"
-def status_checks = "cd/release/${rel_major_num}_${rel_minor_num}/code_freeze"
+def status_checks = "cd/releases/${rel_major_num}_${rel_minor_num}/code_freeze"
 %>
 
 
@@ -50,9 +50,11 @@ if (code_freeze_phase) {
 %>
     <p>
         <span class="emphasize2">SPECIAL REMINDER:</span> <span class="emphasize3">WE ARE IN UFT ${release_num} CODE FREEZE PHASE!</span><br/><br/>
-        Approvals from <a href="mailto:tsachi.ben-zur@hpe.com"><span class="emphasize2">Tsachi</span></a>,
-        <a href="mailto:peng-ji.yin@hpe.com"><span class="emphasize2">Jerry</span></a> and
-        <a href="mailto:ran.bachar@hpe.com"><span class="emphasize2">Ran</span></a> are required for any exceptions
+        Approvals from <a href="mailto:vika.milgrom@hpe.com"><span class="emphasize2">Vika</span></a>,
+        <a href="mailto:tsachi.ben-zur@hpe.com"><span class="emphasize2">Tsachi</span></a>,
+        <a href="mailto:peng-ji.yin@hpe.com"><span class="emphasize2">Jerry</span></a>,
+        <a href="mailto:ran.bachar@hpe.com"><span class="emphasize2">Ran</span></a> and
+        <a href="mailto:jia.xue2@hpe.com"><span class="emphasize2">James</span></a> are required for any exceptions
         before using <a href="${unlock_job_url}">force unlock job</a> (context: <code>${status_checks}</code>)!
     </p>
 <%

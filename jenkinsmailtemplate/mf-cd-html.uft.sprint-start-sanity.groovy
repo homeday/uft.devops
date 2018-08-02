@@ -51,7 +51,7 @@ def status_checks = "cd/releases/${rel_major_num}_${rel_minor_num}/sprint${sprin
     <div>
 <%
 if (code_freeze_phase) {
-    status_checks = status_checks + " cd/release/${rel_major_num}_${rel_minor_num}/code_freeze"
+    status_checks = status_checks + "; cd/releases/${rel_major_num}_${rel_minor_num}/code_freeze"
 %>
         <span class="emphasize2">SPECIAL REMINDER:</span> <span class="emphasize">WE ARE IN UFT ${release_num} CODE FREEZE PHASE!</span><br/><br/>
 <%
@@ -60,9 +60,11 @@ if (code_freeze_phase) {
         We are in <b>UFT ${release_num} Sprint ${sprint_num} Sanity</b> <span class="emphasize">code freeze</span> now.<br/><br/>
         The <b>${branch_name}</b> branch of all <b>QTP</b> repositories, <b>UFTBase</b> and <b>ST</b> are locked and merging to this branch is not allowed,
         however, you are still able to work on the other branches, create and review pull requests.<br/><br/>
-        Approvals from <a href="mailto:tsachi.ben-zur@hpe.com"><span class="emphasize2">Tsachi</span></a>,
-        <a href="mailto:peng-ji.yin@hpe.com"><span class="emphasize2">Jerry</span></a> and
-        <a href="mailto:ran.bachar@hpe.com"><span class="emphasize2">Ran</span></a> are required for any exceptions
+        Approvals from <a href="mailto:vika.milgrom@hpe.com"><span class="emphasize2">Vika</span></a>,
+        <a href="mailto:tsachi.ben-zur@hpe.com"><span class="emphasize2">Tsachi</span></a>,
+        <a href="mailto:peng-ji.yin@hpe.com"><span class="emphasize2">Jerry</span></a>,
+        <a href="mailto:ran.bachar@hpe.com"><span class="emphasize2">Ran</span></a> and
+        <a href="mailto:jia.xue2@hpe.com"><span class="emphasize2">James</span></a> are required for any exceptions
         before using <a href="${unlock_job_url}">force unlock job</a> (context: <code>${status_checks}</code>)!
     </div>
 
