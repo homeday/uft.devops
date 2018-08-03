@@ -36,7 +36,7 @@ function Update-DeploymentsToDB {
     $Rsp = $null
     try {
         
-        Write-Host "NotifyUri = ${NotifyUri} -ForegroundColor Green -BackgroundColor Black
+        Write-Host "NotifyUri = ${NotifyUri}" -ForegroundColor Green -BackgroundColor Black
         $Rsp = Invoke-WebRequest -Uri $NotifyUri -Method Put -Body $json -ContentType $contentType
         Write-Host $name ":" $state ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
     }
