@@ -26,7 +26,7 @@ function Read-HasDeployments {
             $Content = $Rsp.Content | ConvertFrom-Json
             if ($Content.Length -gt 0) 
             {
-                $HasDeployments = $Content[0].hasdeployments
+                $HasDeployments = $Content[0].hasdeployments -And $Content[0].isvalid
             } 
         }  
     }

@@ -20,8 +20,8 @@
 		<links>""</links>
 		<machineLinks>""</machineLinks>
 		<CLEAN_MODE>uninstall</CLEAN_MODE>
-		<DevOpsPortalIP>localhost</DevOpsPortalIP>
-		<DevOpsPortalPort>8091</DevOpsPortalPort>
+		<DevOpsPortalIP>myd-vma00436.swinfra.net</DevOpsPortalIP>
+		<DevOpsPortalPort>8088</DevOpsPortalPort>
 		<DevOpsPortalPath>/devenvs</DevOpsPortalPath>
 		<Application>uft</Application>
 	</GlobalProperties>
