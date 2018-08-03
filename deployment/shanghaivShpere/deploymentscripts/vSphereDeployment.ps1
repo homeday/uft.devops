@@ -38,7 +38,7 @@ function Update-DeploymentsToDB {
         Write-Host $name ":" $state ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
     }
     catch [Exception] {
-        Write-Host $_.Exception | format-list -force -ForegroundColor Red -BackgroundColor Black
+        Write-Host $_.Exception | format-list
         Write-Host "Update-DeploymentsToDB " $name -ForegroundColor Red -BackgroundColor Black
     }
 }
