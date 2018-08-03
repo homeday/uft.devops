@@ -29,6 +29,7 @@ function Update-DeploymentsToDB {
     $Body = @{
         name = $name
         state = $state
+        version = $BuidlVersion
     }
     $json = $Body | ConvertTo-Json
     $contentType = "application/json"  
@@ -38,7 +39,7 @@ function Update-DeploymentsToDB {
         Write-Host $name ":" $state ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
     }
     catch [Exception] {
-        Write-Host $_.Exception | format-list
+        Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
         Write-Host "Update-DeploymentsToDB " $name -ForegroundColor Red -BackgroundColor Black
     }
 }
