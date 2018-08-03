@@ -8,6 +8,8 @@
 		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
 		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
 		<Application>uft</Application>
+		<DevOpsPortalIP>myd-vma00436.swinfra.net</DevOpsPortalIP>
+		<DevOpsPortalPort>8088</DevOpsPortalPort>
 	</GlobalProperties>
 <!-- ************************************************** Clean Machines ************************************************************************  -->	
 	<hosts>
