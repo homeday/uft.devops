@@ -35,6 +35,8 @@ function Update-DeploymentsToDB {
     $contentType = "application/json"  
     $Rsp = $null
     try {
+        
+        Write-Host "NotifyUri = ${NotifyUri} -ForegroundColor Green -BackgroundColor Black
         $Rsp = Invoke-WebRequest -Uri $NotifyUri -Method Put -Body $json -ContentType $contentType
         Write-Host $name ":" $state ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
     }
@@ -53,6 +55,7 @@ $result = Install-Application -MachineName $MachineName `
             -CleanMode $CleanMode `
             -Application $Application `
             -GAVersion $GAVersion -PatchID $PatchID
+            
 if ($result -eq $true) {
     Write-Host "It is successful to install ${BuidlVersion} at machine ${MachineName} with ${CleanMode} mode " -ForegroundColor Green -BackgroundColor Black
     Update-DeploymentsToDB -NotifyUri $NotifyUri -name $MachineName.Split(".")[0] -state "success"
