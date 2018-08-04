@@ -49,12 +49,19 @@ function Update-DeploymentsToDB {
 Update-DeploymentsToDB -NotifyUri $NotifyUri -name $MachineName.Split(".")[0] -state "deploying"
 Import-Module -Force ".\vSphereDeployment.psm1"
 
-Write-Host "Install ${BuidlVersion} ${Application} at machine ${MachineName} with ${CleanMode} mode Start" -ForegroundColor Green -BackgroundColor Black
-$result = Install-Application -MachineName $MachineName `
+$result=$false
+try {
+	Write-Host "Install ${BuidlVersion} ${Application} at machine ${MachineName} with ${CleanMode} mode Start" -ForegroundColor Green -BackgroundColor Black
+	$result = Install-Application -MachineName $MachineName `
             -BuidlVersion $BuidlVersion `
             -CleanMode $CleanMode `
             -Application $Application `
             -GAVersion $GAVersion -PatchID $PatchID
+}
+catch [Exception] {
+	Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
+	Update-DeploymentsToDB -NotifyUri $NotifyUri -name $MachineName.Split(".")[0] -state "failure"
+}
             
 if ($result -eq $true) {
     Write-Host "It is successful to install ${BuidlVersion} at machine ${MachineName} with ${CleanMode} mode " -ForegroundColor Green -BackgroundColor Black
