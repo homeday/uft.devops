@@ -54,11 +54,18 @@ Update-DeploymentsToDB -NotifyUri $NotifyUri -name $CSAName.Split(".")[0] -state
 Import-Module -Force ".\CSADeployment.psm1"
 
 Write-Host "Install ${BuidlVersion} ${Application} at machine ${CSAName} with ${CleanMode} mode Start" -ForegroundColor Green -BackgroundColor Black
-$result = Install-Application -CSAName $CSAName `
+$result= $false
+try {
+    $result = Install-Application -CSAName $CSAName `
             -BuidlVersion $BuidlVersion `
             -CleanMode $CleanMode `
             -SUBSCRIPTION_ID $SUBSCRIPTION_ID -Application $Application `
             -GAVersion $GAVersion -PatchID $PatchID
+}
+catch [Exception] {
+    Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
+    Update-DeploymentsToDB -NotifyUri $NotifyUri -name $CSAName.Split(".")[0] -state "failure"
+}
 if ($result -eq $true) {
     Write-Host "It is successful to install ${BuidlVersion} at machine ${CSAName} with ${CleanMode} mode " -ForegroundColor Green -BackgroundColor Black
     Update-DeploymentsToDB -NotifyUri $NotifyUri -name $CSAName.Split(".")[0] -state "success"
