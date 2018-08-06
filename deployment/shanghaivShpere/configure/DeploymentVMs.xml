@@ -17,7 +17,7 @@
 		
 		<host>
 		  <VM_NAME>shcuft021</VM_NAME>
-		  <VM_Description>FT Dev Cluj shcuft021</VM_Description>
+		  <VM_Description>Bogdan shcuft021</VM_Description>
 		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
@@ -29,8 +29,8 @@
 		</host>-->
 		<host>
 		  <VM_NAME>shcuft023</VM_NAME>
-		  <VM_Description>FT Dev Cluj shcuft023</VM_Description>
-		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
+		  <VM_Description>Sagi shcuft023</VM_Description>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<!--<host>
@@ -41,7 +41,7 @@
 		</host>-->
 		<host>
 		  <VM_NAME>shcuft025</VM_NAME>
-		  <VM_Description>FT Dev Lancer CN shcuft025</VM_Description>
+		  <VM_Description>Lancer shcuft025</VM_Description>
 		  <USER_EMAIL>ftmobile.dev.infra.cn@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
@@ -53,7 +53,7 @@
 		</host>-->
 		<host>
 		  <VM_NAME>shcuft027</VM_NAME>
-		  <VM_Description>Web shcuft027</VM_Description>
+		  <VM_Description>Easton shcuft027</VM_Description>
 		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
@@ -64,27 +64,27 @@
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>-->
 		<host>
+		  <VM_NAME>shcuft028</VM_NAME>
+		  <VM_Description>Jerry shcuft028</VM_Description>
+		  <USER_EMAIL>ftmobile_uft_dev_sap_infra@hpe.com</USER_EMAIL>
+		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		</host>
+		<host>
 		  <VM_NAME>shcuft029</VM_NAME>
-		  <VM_Description>SAP ALL shcuft029</VM_Description>
-		  <USER_EMAIL>ftmobile.uft.dev.sap.all@hpe.com</USER_EMAIL>
+		  <VM_Description>Jason shcuft029</VM_Description>
+		  <USER_EMAIL>ftmobile.dev.sap.cn@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN</VM_Template>
 		</host>
 		<host>
 		  <VM_NAME>shcuft030</VM_NAME>
 		  <VM_Description>Functional architects shcuft030</VM_Description>
-		  <USER_EMAIL>ran.bachar@hpe.com,ori.bendet@hpe.com,amit.bezalel@hpe.com,roee@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ran.bachar@hpe.com,tal.halperin@hpe.com,tsachi.ben-zur@hpe.com,vika.milgrom@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<host>
 		  <VM_NAME>shcuft031</VM_NAME>
 		  <VM_Description>Documentation shcuft031</VM_Description>
 		  <USER_EMAIL>uft.doc@hpe.com</USER_EMAIL>
-		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
-		</host>
-		<host>
-		  <VM_NAME>shcuft032</VM_NAME>
-		  <VM_Description>SWAT shcuft032</VM_Description>
-		  <USER_EMAIL>datn@hpe.com,tal.halperin@hpe.com,aa.ftvs.cpe.bpt.dev.vn@hpe.com,aa.ftvs.cpe.qtp.dev.vn@hpe.com,aa.ftvs.cpe.st.dev@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<host>
