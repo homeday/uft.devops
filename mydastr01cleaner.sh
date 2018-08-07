@@ -10,6 +10,7 @@ remove_expired_folders()
     basedir=/products/${groupname}/${productname}/${configname}
     if [ ! -d "${basedir}" ]; then
         echo "not existing ${basedir}"
+        return
     fi
     find ${basedir}/ -maxdepth 1 -type l -printf "%f\n" > ${productname}_${configname}_lk.txt
     find ${basedir}/ -maxdepth 1 -mtime +7 -type d -printf "%f\n" > ${productname}_${configname}_dir.txt
@@ -37,16 +38,25 @@ remove_expired_folders()
     cat ${productname}_${configname}_remove_dir.txt
 }
 
-
-for productfolder in /products/${groupfolder}/*; do
-    if [ -d "${productfolder}" ]; then
+find /products/${groupfolder}/* -type d -maxdepth 1 -printf "%f\n" | 
+    while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
         echo "productfolder = ${productfolder}"
-        for cfg in ${arycfg[@]}; do
-            echo "config folder = ${cfg}"
-            remove_expired_folders $groupfolder $productfolder $cfg
-        done
-    fi
-done
+        if [ -d "/products/${groupfolder}/${productfolder}" ]; then
+            for cfg in ${arycfg[@]}; do
+                echo "config folder = ${cfg}"
+                remove_expired_folders $groupfolder $productfolder $cfg
+            done
+        fi   
+    done
+# for productfolder in $(find /products/${groupfolder}/* -type d -maxdepth 1 -printf "%f\n"); do
+#     if [ -d "${productfolder}" ]; then
+#         echo "productfolder = ${productfolder}"
+#         for cfg in ${arycfg[@]}; do
+#             echo "config folder = ${cfg}"
+#             remove_expired_folders $groupfolder $productfolder $cfg
+#         done
+#     fi
+# done
 
 
 
