@@ -51,7 +51,7 @@ find /products/${groupfolder}/* -type d -maxdepth 1 -printf "%f\n" |
     while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
         echo "product folder = ${productfolder}"
         isignore=$(echo $ignoreprods | grep ${productfolder})
-        if [ "$isignore" != "" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
+        if [ "$isignore" == "" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
             for cfg in ${arycfg[@]}; do
                 #echo "config folder = ${cfg}"
                 remove_expired_folders $groupfolder $productfolder $cfg
