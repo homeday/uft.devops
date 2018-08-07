@@ -2,6 +2,22 @@ groupfolder=$1
 
 arycfg=("win32_release" "win32_debug" "master" "linux32_release" "hpux32_release" "sol32_release" "partial_builds" "aix32_release")
 ignoreprods="@LT-PCQC@LT-PCQC-FIST@LeanFT@"
+
+
+search_ignore_list() 
+{
+    productname=$1
+    ignoreprods=("LT-PCQC" "LT-PCQC-FIST" "LeanFT" "STM")
+
+    for ignoreprod in "${ignoreprods[@]}"; do
+        if [[ $productname == "$item" ]]; then
+            return 1
+        fi
+    done    
+
+    return 0
+}
+
 remove_expired_folders()
 {
     groupname=$1
@@ -57,7 +73,8 @@ remove_expired_folders()
 find /products/${groupfolder}/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | 
     while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
         echo "product folder = ${productfolder}"
-        isignore=$(echo $ignoreprods | grep ${productfolder})
+        #isignore=$(echo $ignoreprods | grep ${productfolder})
+        search_ignore_list ${productfolder}
         if [ "$isignore" == "" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
             for cfg in ${arycfg[@]}; do
                 #echo "config folder = ${cfg}"
