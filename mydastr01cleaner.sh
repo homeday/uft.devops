@@ -54,7 +54,7 @@ remove_expired_folders()
 }
 
 
-find /products/FT/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | 
+find /products/${groupfolder}/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | 
     while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
         echo "product folder = ${productfolder}"
         isignore=$(echo $ignoreprods | grep ${productfolder})
