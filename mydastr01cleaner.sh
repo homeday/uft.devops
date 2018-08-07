@@ -14,7 +14,7 @@ remove_expired_folders()
         return
     fi
     find ${basedir}/ -maxdepth 1 -type l -printf "%f\n" > ${outputdir}/${productname}_${configname}_lk.txt
-    find ${basedir}/ -maxdepth 1 -mtime +7 -type d -printf "%f\n" > ${outputdir}/${productname}_${configname}_dir.txt
+    find ${basedir}/ -maxdepth 1 -mtime +7 -type d -name '*[0-9]' -printf "%f\n" | grep '[0-9]\{2\}.[0-9]\{1,4\}.[0-9]\{1,4\}.[0-9]\{1,4\}' > ${outputdir}/${productname}_${configname}_dir.txt
 
 
     if [ -f ${outputdir}/${productname}_${configname}_keep_dir.txt ]; then
