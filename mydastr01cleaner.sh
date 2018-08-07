@@ -41,9 +41,16 @@ remove_expired_folders()
             echo ${line} >> ${outputdir}/${productname}_${configname}_remove_dir.txt
         fi 
     done < "${outputdir}/${productname}_${configname}_dir.txt"
-    echo "folders will be removed! in ${groupname} ${productname} ${configname} start"
-    cat ${outputdir}/${productname}_${configname}_remove_dir.txt
-    echo "folders will be removed! in ${groupname} ${productname} ${configname} end"
+    #echo "removing ${groupname} ${productname} ${configname}"
+    if [ -f ${outputdir}/${productname}_${configname}_remove_dir.txt ]; then
+        while IFS='' read -r line || [[ -n "$line" ]]; do
+            if [ -d ${basedir}/${line} ]; then
+                echo "removing ${basedir}/${line}"
+                rm -rf ${basedir}/${line}
+            fi
+        done < "${outputdir}/${productname}_${configname}_remove_dir.txt"
+    fi
+    
 }
 
 
