@@ -20,6 +20,9 @@ remove_expired_folders()
     if [ -f ${outputdir}/${productname}_${configname}_keep_dir.txt ]; then
         rm -f ${outputdir}/${productname}_${configname}_keep_dir.txt
     fi
+    if [ -f ${outputdir}/${productname}_${configname}_remove_dir.txt ]; then
+        rm -f ${outputdir}/${productname}_${configname}_remove_dir.txt
+    fi
     while IFS='' read -r line || [[ -n "$line" ]]; do
         if [ "" != "$line" ]; then
             readlink ${basedir}/$line >> ${outputdir}/${productname}_${configname}_keep_dir.txt
