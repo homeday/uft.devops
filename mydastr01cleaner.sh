@@ -10,7 +10,7 @@ search_ignore_list()
     ignoreprods=("LT-PCQC" "LT-PCQC-FIST" "LeanFT" "STM")
 
     for ignoreprod in "${ignoreprods[@]}"; do
-        if [[ $productname == "$item" ]]; then
+        if [[ "$productname" == "$ignoreprod" ]]; then
             return 1
         fi
     done    
@@ -75,7 +75,7 @@ find /products/${groupfolder}/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" |
         echo "product folder = ${productfolder}"
         #isignore=$(echo $ignoreprods | grep ${productfolder})
         search_ignore_list ${productfolder}
-        if [ "$isignore" == "" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
+        if [ "$?" == "0" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
             for cfg in ${arycfg[@]}; do
                 #echo "config folder = ${cfg}"
                 remove_expired_folders $groupfolder $productfolder $cfg
