@@ -45,9 +45,9 @@ def build_num = build.getEnvironment().UFT_Build_Number
 def rel_major_num = build.getEnvironment().Release_Major_Number
 def rel_minor_num = build.getEnvironment().Release_Minor_Number
 def release_num = rel_major_num + "." + rel_minor_num
-def sprint_num = build.getEnvironment().Sprint_Number
+def rc_num = build.getEnvironment().RC_Number
 def branch_name = build.getEnvironment().GIT_Branch_Name
-def build_label = "UFT_${rel_major_num}_${rel_minor_num}_SPRINT_${sprint_num}"
+def build_label = "UFT_${rel_major_num}_${rel_minor_num}_RC${rc_num}"
 def build_notes_url = "https://rndwiki.houston.softwaregrp.net/confluence/display/UFT/UFT+${rel_major_num}.${rel_minor_num}+Build+Notes"
 
 def msi_root_uri = "\\\\mydanas01.swinfra.net\\products\\FT\\QTP\\win32_release\\${build_label}"
@@ -71,7 +71,7 @@ if (prepend_msg?.trim()) {
 }
 %>
 
-    <h2>UFT ${release_num} Sprint ${sprint_num} is ready for QA!</h2>
+    <h2>UFT ${release_num} RC${rc_num} is ready for QA!</h2>
 
     <table>
         <tr>
