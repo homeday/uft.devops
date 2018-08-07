@@ -1,7 +1,7 @@
 groupfolder=$1
 
 arycfg=("win32_release" "win32_debug" "master" "linux32_release" "hpux32_release" "sol32_release" "partial_builds" "aix32_release")
-
+ignoreprods="@LT-PCQC@LT-PCQC-FIST@LeanFT@"
 remove_expired_folders()
 {
     groupname=$1
@@ -29,30 +29,35 @@ remove_expired_folders()
         fi
     done < "${outputdir}/${productname}_${configname}_lk.txt"
 
-    echo "keep the folders below:"
-    cat  ${outputdir}/${productname}_${configname}_keep_dir.txt
+    #echo "keep the folders below:"
+    #cat  ${outputdir}/${productname}_${configname}_keep_dir.txt
 
     while IFS='' read -r line || [[ -n "$line" ]]; do
-        findres=$(cat ${outputdir}/${productname}_${configname}_keep_dir.txt | grep ${line})
+        findres=
+        if [ -f "${outputdir}/${productname}_${configname}_keep_dir.txt" ]; then
+            findres=$(cat ${outputdir}/${productname}_${configname}_keep_dir.txt | grep ${line})
+        fi
         if [ "${findres}" == "" ]; then
             echo ${line} >> ${outputdir}/${productname}_${configname}_remove_dir.txt
         fi 
     done < "${outputdir}/${productname}_${configname}_dir.txt"
-
-    echo "folders will be removed! in ${groupname} ${productname} ${configname}"
+    echo "folders will be removed! in ${groupname} ${productname} ${configname} start"
     cat ${outputdir}/${productname}_${configname}_remove_dir.txt
+    echo "folders will be removed! in ${groupname} ${productname} ${configname} end"
 }
+
 
 find /products/${groupfolder}/* -type d -maxdepth 1 -printf "%f\n" | 
     while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
         echo "product folder = ${productfolder}"
-        if [ -d "/products/${groupfolder}/${productfolder}" ]; then
+        isignore=$(echo $ignoreprods | grep ${productfolder})
+        if [ "$isignore" != "" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
             for cfg in ${arycfg[@]}; do
-                echo "config folder = ${cfg}"
+                #echo "config folder = ${cfg}"
                 remove_expired_folders $groupfolder $productfolder $cfg
             done
         else        
-            echo "not existing the product folder ${productfolder}"
+            echo "not existing the product folder ${productfolder} or ignore it"
         fi   
     done
 # for productfolder in $(find /products/${groupfolder}/* -type d -maxdepth 1 -printf "%f\n"); do
