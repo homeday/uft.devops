@@ -13,8 +13,8 @@ remove_expired_folders()
         echo "not existing config folder ${configname}"
         return
     fi
-    find ${basedir}/ -maxdepth 1 -type l -printf "%f\n" > ${outputdir}/${productname}_${configname}_lk.txt
-    find ${basedir}/ -maxdepth 1 -mtime +7 -type d -name '*[0-9]' -printf "%f\n" | grep '[0-9]\{2\}.[0-9]\{1,4\}.[0-9]\{1,4\}.[0-9]\{1,4\}' > ${outputdir}/${productname}_${configname}_dir.txt
+    find ${basedir}/ -maxdepth 1 -mindepth 1 -type l -printf "%f\n" > ${outputdir}/${productname}_${configname}_lk.txt
+    find ${basedir}/ -maxdepth 1 -mindepth 1 -mtime +7 -type d -name '*[0-9]' -printf "%f\n" | grep '[0-9]\{2\}.[0-9]\{1,4\}.[0-9]\{1,4\}.[0-9]\{1,4\}' > ${outputdir}/${productname}_${configname}_dir.txt
 
 
     if [ -f ${outputdir}/${productname}_${configname}_keep_dir.txt ]; then
@@ -54,7 +54,7 @@ remove_expired_folders()
 }
 
 
-find /products/${groupfolder}/* -type d -maxdepth 1 -printf "%f\n" | 
+find /products/FT/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | 
     while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
         echo "product folder = ${productfolder}"
         isignore=$(echo $ignoreprods | grep ${productfolder})
