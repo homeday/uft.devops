@@ -30,7 +30,7 @@ remove_expired_folders()
     cat  ${outputdir}/${productname}_${configname}_keep_dir.txt
 
     while IFS='' read -r line || [[ -n "$line" ]]; do
-        findres=$(cat ${productname}_${configname}_keep_dir.txt | grep ${line})
+        findres=$(cat ${outputdir}/${productname}_${configname}_keep_dir.txt | grep ${line})
         if [ "${findres}" == "" ]; then
             echo ${line} >> ${outputdir}/${productname}_${configname}_remove_dir.txt
         fi 
