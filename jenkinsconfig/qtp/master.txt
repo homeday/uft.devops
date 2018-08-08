@@ -2,9 +2,10 @@ BuildLabel=UFT_14_51
 BuildMajorVersion=14
 BuildMinorVersion=51
 BuildPostfix=0
-CodeSign=true
-SignMethod=AUJAS
 Deploy=true
-Fortify_Compile=false
-Create_LeanFT=false
-01_CreateMLU=true
+srf_windows_executor=false
+srf_agents_sync=true
+DVD_Sync_2_SH=true
+DVD_Sync_2_Cluj=true
+E2E=true
+
