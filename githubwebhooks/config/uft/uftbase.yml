@@ -6,20 +6,19 @@ git_tags:
 git_branches:
   UFT_14_50_Release:
     push:
-      jenkins: &jenkins_action_build_default
+      jenkins:
         enabled: true
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTBase.14.50.Build.Launcher/build'
-        job_parameters: &jenkins_action_params_default
+        job_parameters:
           token: UFTBUILDTOKEN
 
   master:
     push:
-      jenkins: &jenkins_action_buildwithparam_default
-        <<: *jenkins_action_build_default
+      jenkins: &jenkins_action_push_buildwithparam_default
         enabled: true
         job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTBase.Build.Launcher/buildWithParameters'
         job_parameters:
-          <<: *jenkins_action_params_default
+          token: UFTBUILDTOKEN
           Branch:
             runtime: _branch_name_
 
@@ -45,17 +44,11 @@ git_branches:
       synchronize:
         jenkins: *jenkins_action_pull_request_compile_only
 
-  UFT_12_54_SP_Patches: &jenkins_action_branch_default
+  UFT_14_03_SP_Patches:
     push:
-      jenkins: &jenkins_action_buildwithparam_default
-        <<: *jenkins_action_build_default
-        enabled: true
-        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTBase.Build.Launcher/buildWithParameters'
-        job_parameters:
-          <<: *jenkins_action_params_default
-          Branch:
-            runtime: _branch_name_
+      jenkins: *jenkins_action_push_buildwithparam_default
 
-  UFT_14_03_SP_Patches: *jenkins_action_branch_default
- 
+  UFT_12_54_SP_Patches:
+    push:
+      jenkins: *jenkins_action_push_buildwithparam_default
   
