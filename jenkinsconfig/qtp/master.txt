@@ -1,0 +1,10 @@
+BuildLabel=UFT_14_51
+BuildMajorVersion=14
+BuildMinorVersion=51
+BuildPostfix=0
+CodeSign=true
+SignMethod=AUJAS
+Deploy=true
+Fortify_Compile=false
+Create_LeanFT=false
+01_CreateMLU=true

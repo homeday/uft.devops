@@ -1,7 +1,8 @@
 BuildMajorVersion=14
-BuildMinorVersion=51
-BuildLabel=UFT_14_51
+BuildMinorVersion=50
+BuildLabel=UFT_14_50
 BuildPostfix=0
 WSPostfix=
 DebugBuild=true
+
 
