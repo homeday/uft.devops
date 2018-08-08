@@ -156,3 +156,28 @@ update_and_create_ref_by_srctag()
     update_and_create_ref_by_sha $orgname $reponame $reftype $refname $shacode
     return $?
 }
+
+# example: create a pre-release "v0.9" on tag "mytag123" in repository "myorg/demo_repo"
+# create_release_by_tag myorg demo_repo mytag123 v0.9 "test release" pre-release
+create_release_by_tag()
+{
+    orgname=$1
+    reponame=$2
+    tagname=$3
+    relname=$4
+    relmsg=$5
+    release_type=$6 # pre-release | release
+
+    prerelease="false"
+    if [ "${release_type}" = "pre-release" ]; then prerelease="true"; fi
+
+    requrl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/releases"
+    reqdata="{\"tag_name\":\"${tagname}\",\"name\":\"${relname}\",\"body\":\"${relmsg}\",\"prerelease\":${prerelease}}"
+    rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request POST -L "${requrl}" -d "${reqdata}")
+    if [ "201" != "${rspcode}" ]; then 
+        echo "Create ${release_type} '${relname}' from tag '${tagname}' in repository '${orgname}/${reponame}' error : ${rspcode}"
+        return 1
+    fi
+    echo "Create ${release_type} '${relname}' from tag '${tagname}' in repository '${orgname}/${reponame}' successfully"
+    return 0
+}
