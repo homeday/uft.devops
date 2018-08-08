@@ -7,7 +7,7 @@ ignoreprods="@LT-PCQC@LT-PCQC-FIST@LeanFT@"
 search_ignore_list() 
 {
     productname=$1
-    ignoreprods=("LT-PCQC" "LT-PCQC-FIST" "LeanFT" "STM")
+    ignoreprods=("LT-PCQC" "LT-PCQC-FIST" "LeanFT")
 
     for ignoreprod in "${ignoreprods[@]}"; do
         if [[ "$productname" == "$ignoreprod" ]]; then
