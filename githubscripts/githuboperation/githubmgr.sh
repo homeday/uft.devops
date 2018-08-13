@@ -171,13 +171,51 @@ create_release_by_tag()
     prerelease="false"
     if [ "${release_type}" = "pre-release" ]; then prerelease="true"; fi
 
+    # delete existing one
+    delete_release_by_tag "${orgname}" "${reponame}" "${tagname}"
+
+    # create new release
     requrl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/releases"
     reqdata="{\"tag_name\":\"${tagname}\",\"name\":\"${relname}\",\"body\":\"${relmsg}\",\"prerelease\":${prerelease}}"
     rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request POST -L "${requrl}" -d "${reqdata}")
     if [ "201" != "${rspcode}" ]; then 
-        echo "Create ${release_type} '${relname}' from tag '${tagname}' in repository '${orgname}/${reponame}' error : ${rspcode}"
+        echo "Create ${release_type} '${relname}' on tag '${tagname}' in repository '${orgname}/${reponame}' error : ${rspcode}"
         return 1
     fi
-    echo "Create ${release_type} '${relname}' from tag '${tagname}' in repository '${orgname}/${reponame}' successfully"
+    echo "Create ${release_type} '${relname}' on tag '${tagname}' in repository '${orgname}/${reponame}' successfully"
+    return 0
+}
+
+# example: delete a release associated to tag "mytag123" in repository "myorg/demo_repo"
+# delete_release_by_tag myorg demo_repo mytag123
+delete_release_by_tag()
+{
+    orgname=$1
+    reponame=$2
+    tagname=$3
+
+    # first, try to test whether the release already associated to the tag
+    requrl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/releases/tags/${tagname}"
+    rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" -L ${requrl})
+    if [ "200" == "${rspcode}" ]; then
+        # already exists
+        relid=$(curl -s -H "Authorization: token ${GITHUB_USER_TOKEN}" -L ${requrl} | jq -r .id)
+        exist_relname=$(curl -s -H "Authorization: token ${GITHUB_USER_TOKEN}" -L ${requrl} | jq -r .name)
+        echo "A release already exists and associates to tag '${tagname}'. Release: ${exist_relname} (Id: ${relid})"
+
+        # delete it
+        requrl="https://${GITHUB_SERVER}/api/v3/repos/${orgname}/${reponame}/releases/${relid}"
+        rspcode=$(curl -s -o nul -w "%{http_code}" -H "Authorization: token ${GITHUB_USER_TOKEN}" --request DELETE -L "${requrl}")
+        if [ "204" != "${rspcode}" ]; then
+            echo "Failed to delete release associated to tag '${tagname}'. Release: ${exist_relname} (Id: ${relid}). Error: ${rspcode}"
+        else
+            echo "Release '${exist_relname}' (Id: ${relid}) deleted successfully"
+        fi
+    elif [ "404" == "${rspcode}" ]; then
+        echo "Either the tag '${tagname}' does not exist or no release is associated to this tag."
+    else
+        echo "Error occurred. Response code: ${rspcode}"
+        return 1
+    fi
     return 0
 }
