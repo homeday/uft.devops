@@ -1,0 +1,24 @@
+{
+  "name": "Synchronization",
+  "version": "0.1.0",
+  "description": "Synchronize the artifacts to Shanghai site",
+  "main": "index.js",
+  "dependencies": {
+    "q": "^1.1.2",
+    "yargs": "^3.10.0",
+    "node-7z": "^0.4.0",
+    "chai": "^1.9.1"
+  },
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
+    "merge2": "^1.0.1",
+    "vinyl-ftp": "^0.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yguo@hpe.com",
+  "license": "ISC"
+}
