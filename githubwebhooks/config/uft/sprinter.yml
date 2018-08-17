@@ -15,4 +15,7 @@ git_branches:
           Branch:
             runtime: _branch_name_
 
+  Sprinter_14_50_Release:
+    push:
+      jenkins: *jenkins_action_build_default
 
