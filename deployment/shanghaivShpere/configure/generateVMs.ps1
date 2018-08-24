@@ -87,6 +87,18 @@ function Update-DeploymentsToDB {
         domain = $DeploymentItemFile["VM_DOMAIN"]
         team = $DeploymentItemFile["VM_Description"] 
         #comments = "<div><div>username : appsadmin</div><div>password : appsadmin</div></div>"  
+        username = $DeploymentItemFile["VM_USER"]
+        password = $DeploymentItemFile["VM_PASSWORD"] 
+        comments = @(
+            @{
+                key="username"
+                value="Username is {0}" -f $DeploymentItemFile["VM_USER"]
+            }
+            @{
+                key="password"
+                value="Password is {0}" -f $DeploymentItemFile["VM_PASSWORD"] 
+            }
+        )
     }
     $json = $Body | ConvertTo-Json
     $contentType = "application/json"  
