@@ -5,7 +5,7 @@ param (
     [string]$apiurl
 )
 
-$ReleaseURI = "{0}/releases/?hasbuilds=true&isvalid=true" -f $apiurl
+$ReleaseURI = "{0}/releases/?hasdeployments=true&isvalid=true" -f $apiurl
 [MachineContext]::apiurl = $apiurl
 try {
     $Releases = $null
