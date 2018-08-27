@@ -37,8 +37,6 @@ try {
                 Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
             }
 
-
-
         }
         
     }

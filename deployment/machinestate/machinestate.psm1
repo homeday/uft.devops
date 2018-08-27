@@ -290,6 +290,7 @@ class MachineContext {
                     }
                 }
                 $this.State = $this.machineInfo.state 
+                Write-Host "The state is :" $this.State -ForegroundColor Green -BackgroundColor Black
             }
         }
         catch [Exception] {
@@ -308,7 +309,7 @@ class MachineContext {
             $contentType = "application/json; charset=utf-8"  
             $json = $this.MachineInfo  | ConvertTo-Json
             $Rsp = Invoke-WebRequest -Uri $Uri -Method Put -Body $json -ContentType $contentType
-            Write-Host "Put state" $this.MachineInfo.state "for machine :" $this.Release"::"$this.MachineName $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
+            Write-Host "Put state" $state.ToString() "for machine :" $this.Release"::"$this.MachineName $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
             $this.State = $this.machineInfo.state 
         }
         catch [Exception] {
@@ -407,7 +408,7 @@ class SuccessState : InvalidState {
     SuccessState (
     ) : base(
     ) {
-        Write-Host "SuccessState::constructor" -ForegroundColor Green -BackgroundColor Black
+        
     }
     static [SuccessState] $instance
     static [SuccessState] GetInstance() {
