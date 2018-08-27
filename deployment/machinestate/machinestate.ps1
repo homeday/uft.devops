@@ -19,24 +19,25 @@ try {
         $Releases |  Foreach-Object {
             $Release = $_.name
             $DeploymentsURI = "{0}/deployments/{1}" -f $apiurl, $_.name
-            try {
-                $Rsp = Invoke-WebRequest -Uri $DeploymentsURI -Method Get
-                Write-Host "Get all deployments for release" $Release ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
-                $Deployments = $null
-                if ( $Rsp.StatusCode -eq 200 -and $null -ne $Rsp.Content) {
-                    $Deployments = $Rsp.Content | ConvertFrom-Json
-                }
-                if ($null -ne $Deployments ) {
-                    $Deployments |  Foreach-Object {
-                        Write-Host "Updating machine" $_.fullname "for release :" $Release -ForegroundColor Green -BackgroundColor Black
-                        ([MachineContext]::new($_.name, $Release)).doAction()
+            if ("shvcenter" -ne $Release) {
+                try {
+                    $Rsp = Invoke-WebRequest -Uri $DeploymentsURI -Method Get
+                    Write-Host "Get all deployments for release" $Release ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
+                    $Deployments = $null
+                    if ( $Rsp.StatusCode -eq 200 -and $null -ne $Rsp.Content) {
+                        $Deployments = $Rsp.Content | ConvertFrom-Json
+                    }
+                    if ($null -ne $Deployments ) {
+                        $Deployments |  Foreach-Object {
+                            Write-Host "Updating machine" $_.fullname "for release :" $Release -ForegroundColor Green -BackgroundColor Black
+                            ([MachineContext]::new($_.name, $Release)).doAction()
+                        }
                     }
                 }
+                catch [Exception] {
+                    Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
+                }
             }
-            catch [Exception] {
-                Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
-            }
-
         }
         
     }
