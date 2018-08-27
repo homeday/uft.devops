@@ -66,6 +66,7 @@ function Read-DeploymentsFromDB {
     
 }
 
+
 function Update-DeploymentsToDB {
     #[CmdletBinding(SupportsProcess=$True)]
     param (
@@ -80,7 +81,9 @@ function Update-DeploymentsToDB {
         name = $DeploymentItemFile["VM_NAME"]
         ip = $DeploymentItemFile["VM_IP"]
         domain = $DeploymentItemFile["CSADomain"]
-        team = $DeploymentItemFile["team"]  
+        team = $DeploymentItemFile["team"] 
+        username =  "{0}\{1}" -f $DeploymentItemFile["CSADomain"], $DeploymentItemFile["CSAAccount"]
+        password = $DeploymentItemFile["CSAPassword"]
     }
     $json = $Body | ConvertTo-Json
     $contentType = "application/json"  
