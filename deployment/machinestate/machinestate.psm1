@@ -182,34 +182,63 @@ class MachineContext {
     [string]GetRdpusers() {
 
         try {
-            $TmpCredential = $this.GetCredential()
             $RDPUsers = @()
-            $regexa = '.+Domain="(.+)",Name="(.+)"$' 
-            $regexd = '.+LogonId="(\d+)"$' 
-            $Sessions = @(Get-WmiObject -Query "Select * from Win32_LogonSession Where LogonType = 10" -ComputerName $this.MachineInfo.fullname -Credential $TmpCredential)
-            $SessionIDs = @()
-            $Sessions | Foreach-Object { 
-                $SessionIDs += $_.LogonId
+            $Res = Invoke-Command -ComputerName $this.MachineInfo.fullname -Credential $this.GetCredential() -ScriptBlock {cmd /c qwinsta}
+            $Res = $Res | Where-Object {
+                $_ -like "*Active*" 
             }
 
-            if ($SessionIDs.Length -eq 0) {
+            if ($null -eq $Res) {
                 return ""
             }
-            $LogonUsers = @(Get-WmiObject -Query "Select * from win32_loggedonuser" -ComputerName $this.MachineInfo.fullname -Credential $TmpCredential)
-
-            $LogonUsers = $LogonUsers | Where-Object -FilterScript { 
-                $_.dependent -match $regexd > $nul 
-                $SessionID = $matches[1] 
-                return $($SessionIDs | Where-Object {$_ -eq $SessionID}) -gt 0
+            $ResAry = @()
+            if ( $Res -is [System.Array]) {
+                $ResAry = $Res
+            } else {
+                $ResAry += $Res
+            }
+            
+            $ResAry | ForEach-Object {
+                $Tmp = $_
+                $RDPUsers += $($Tmp -split " " |  Where-Object {
+                    $_ -ne ""
+                })[1]
             }
 
-            $LogonUsers | Foreach-Object {
-                $_.Antecedent -match $regexa > $nul 
-                $username = $matches[2] 
-                $RDPUsers += $username 
-                
+            if ( 0 -eq $RDPUsers.Length) {
+                return ""
             }
             return $RDPUsers -join "; "
+
+
+            # $TmpCredential = $this.GetCredential()
+            # $RDPUsers = @()
+            # $regexa = '.+Domain="(.+)",Name="(.+)"$' 
+            # $regexd = '.+LogonId="(\d+)"$' 
+            # $Sessions = @(Get-WmiObject -Query "Select * from Win32_LogonSession Where LogonType = 10" -ComputerName $this.MachineInfo.fullname -Credential $TmpCredential)
+            # $SessionIDs = @()
+            # $Sessions | Foreach-Object { 
+            #     $SessionIDs += $_.LogonId
+            # }
+
+            # if ($SessionIDs.Length -eq 0) {
+            #     return ""
+            # }
+            # $LogonUsers = @(Get-WmiObject -Query "Select * from win32_loggedonuser" -ComputerName $this.MachineInfo.fullname -Credential $TmpCredential)
+
+            # $LogonUsers = $LogonUsers | Where-Object -FilterScript { 
+            #     $_.dependent -match $regexd > $nul 
+            #     $SessionID = $matches[1] 
+            #     return $($SessionIDs | Where-Object {$_ -eq $SessionID}) -gt 0
+            # }
+
+            # $LogonUsers | Foreach-Object {
+            #     $_.Antecedent -match $regexa > $nul 
+            #     $username = $matches[2] 
+            #     $RDPUsers += $username 
+                
+            # }
+            # return $RDPUsers -join "; "
         }
         catch [Exception] {
             return ""
