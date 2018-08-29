@@ -16,7 +16,7 @@ git_branches:
     push:
       jenkins: &jenkins_action_push_buildwithparam_default
         enabled: true
-        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/ST.Build.Launcher/buildWithParameters'
+        job_url: 'http://mydtbld0211.swinfra.net:8080/job/ST.Build.Launcher/buildWithParameters'
         job_parameters:
           token: UFTBUILDTOKEN
           Branch:
