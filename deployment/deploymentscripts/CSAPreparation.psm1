@@ -222,25 +222,34 @@ class CSAPreparationRevertMachine : CSAPreparation {
     ) {
         Write-Host "CSAPreparationRevertMachine::RevertSnapshot Start" -ForegroundColor Green -BackgroundColor Black
         #Revert the machine
-        $Arguments=@("-jar",
-            "csa4.1wrapper-4.0.0.jar",
-            "subscriptionId=$CSASubscriptionID",
-            "actionName=RevertToSnapshot",
-            "csaOrganization=ADM",
-            "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
-            "csaUsername=$CSAAccount",
-            "csaPassword=$CSAPwd")
+        # $Arguments=@("-jar",
+        #     "csa4.1wrapper-4.0.0.jar",
+        #     "subscriptionId=$CSASubscriptionID",
+        #     "actionName=RevertToSnapshot",
+        #     "csaOrganization=ADM",
+        #     "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
+        #     "csaUsername=$CSAAccount",
+        #     "csaPassword=$CSAPwd")
+        $command = "CMD.exe /c java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
+        + $CSASubscriptionID `
+        + " actionName=RevertToSnapshot csaOrganization=ADM csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest csaUsername=" `
+        + $CSAAccount `
+        + " csaPassword=" `
+        + $CSAPwd
         if ( $null -ne ${env:managementPortalUrl} -and ("" -ne ${env:managementPortalUrl})) {
-            $Arguments += "managementPortalUrl=" + ${env:managementPortalUrl}
+            $command += " managementPortalUrl=" + ${env:managementPortalUrl}
         }
         if ( $null -ne ${env:automationUsername} -and ("" -ne ${env:automationUsername})) {
-            $Arguments += "automationUsername=" + ${env:automationUsername}
+            $command += " automationUsername=" + ${env:automationUsername}
         }
         if ( $null -ne ${env:automationPassword} -and ("" -ne ${env:automationPassword})) {
-            $Arguments += "automationPassword=" + ${env:automationPassword}
+            $command += " automationPassword=" + ${env:automationPassword}
         }
-        $JavaExpression = { java $Arguments }
-        $ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
+        #$JavaExpression = { java $Arguments }
+        $sb = [scriptblock]::Create(
+            $command
+        )
+        $ExpressionResult = Invoke-Command -ScriptBlock $sb
         
         if ( (-not ($ExpressionResult -is [System.Array])) -or (-not ($ExpressionResult[$ExpressionResult.Length - 1] -like '*success*'))){
             throw("revert snapshot error")
@@ -249,26 +258,46 @@ class CSAPreparationRevertMachine : CSAPreparation {
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Start-Sleep 60
         #Restart the machine
-        $Arguments=@("-jar",
-            "csa4.1wrapper-4.0.0.jar",
-            "subscriptionId=$CSASubscriptionID",
-            "actionName=Restart",
-            "csaOrganization=ADM",
-            "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
-            "csaUsername=$CSAAccount",
-            "csaPassword=$CSAPwd")
+        $command = "CMD.exe /c java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
+        + $CSASubscriptionID `
+        + " actionName=Restart csaOrganization=ADM csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest csaUsername=" `
+        + $CSAAccount `
+        + " csaPassword=" `
+        + $CSAPwd
         if ( $null -ne ${env:managementPortalUrl} -and ("" -ne ${env:managementPortalUrl})) {
-            $Arguments += "managementPortalUrl=" + ${env:managementPortalUrl}
+            $command += " managementPortalUrl=" + ${env:managementPortalUrl}
         }
         if ( $null -ne ${env:automationUsername} -and ("" -ne ${env:automationUsername})) {
-            $Arguments += "automationUsername=" + ${env:automationUsername}
+            $command += " automationUsername=" + ${env:automationUsername}
         }
         if ( $null -ne ${env:automationPassword} -and ("" -ne ${env:automationPassword})) {
-            $Arguments += "automationPassword=" + ${env:automationPassword}
+            $command += " automationPassword=" + ${env:automationPassword}
         }
-        $JavaExpression = { java $Arguments }
-        Write-Host $Arguments -join " "
-        $ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
+        $sb = [scriptblock]::Create(
+            $command
+        )
+
+        # $Arguments=@("-jar",
+        #     "csa4.1wrapper-4.0.0.jar",
+        #     "subscriptionId=$CSASubscriptionID",
+        #     "actionName=Restart",
+        #     "csaOrganization=ADM",
+        #     "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
+        #     "csaUsername=$CSAAccount",
+        #     "csaPassword=$CSAPwd")
+        # if ( $null -ne ${env:managementPortalUrl} -and ("" -ne ${env:managementPortalUrl})) {
+        #     $Arguments += "managementPortalUrl=" + ${env:managementPortalUrl}
+        # }
+        # if ( $null -ne ${env:automationUsername} -and ("" -ne ${env:automationUsername})) {
+        #     $Arguments += "automationUsername=" + ${env:automationUsername}
+        # }
+        # if ( $null -ne ${env:automationPassword} -and ("" -ne ${env:automationPassword})) {
+        #     $Arguments += "automationPassword=" + ${env:automationPassword}
+        # }
+        # $JavaExpression = { java $Arguments }
+        # Write-Host $Arguments -join " "
+        $ExpressionResult = Invoke-Command -ScriptBlock $sb
+        #$ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         if ( (-not ($ExpressionResult -is [System.Array])) -or (-not ($ExpressionResult[$ExpressionResult.Length - 1] -like '*success*'))){
             throw("Restart machine error")
