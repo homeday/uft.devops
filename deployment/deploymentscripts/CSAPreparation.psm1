@@ -249,6 +249,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
         $sb = [scriptblock]::Create(
             $command
         )
+        Write-Host "revert snapshot command" $command
         $ExpressionResult = Invoke-Command -ScriptBlock $sb
         
         if ( (-not ($ExpressionResult -is [System.Array])) -or (-not ($ExpressionResult[$ExpressionResult.Length - 1] -like '*success*'))){
@@ -276,7 +277,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
         $sb = [scriptblock]::Create(
             $command
         )
-
+        Write-Host "restart command" $command
         # $Arguments=@("-jar",
         #     "csa4.1wrapper-4.0.0.jar",
         #     "subscriptionId=$CSASubscriptionID",
