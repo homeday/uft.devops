@@ -54,8 +54,7 @@ while ($Rsp.StatusCode -eq 200) {
             $result = $Content.result
             break
         }
-        Start-Sleep -seconds 30
-        Write-Output "Job is running now"
+        Start-Sleep -seconds 60
         $Rsp = Invoke-WebRequest -Uri "${JobURL}api/json" -Method Get
     }
     catch [Exception] {
