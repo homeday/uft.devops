@@ -20,7 +20,7 @@ class CSAPreparation {
         }
 
         try {
-            $PSExecExpression = {D:\tools\Pstools\PsExec.exe \\$CSAName -u $CSAAccount -p $CSAPwd powershell.exe "enable-psremoting -force"}
+            $PSExecExpression = {D:\PSTools\PsExec.exe \\$CSAName -u $CSAAccount -p $CSAPwd powershell.exe "enable-psremoting -force"}
             $ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         } catch [Exception] {
