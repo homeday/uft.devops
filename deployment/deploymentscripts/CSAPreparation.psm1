@@ -19,14 +19,14 @@ class CSAPreparation {
             throw("Class $type must be inherited")
         }
 
-        try {
-            $PSExecExpression = {D:\PSTools\PsExec.exe \\$CSAName -u $CSAAccount -p $CSAPwd powershell.exe "enable-psremoting -force"}
-            $ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
-            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
-        } catch [Exception] {
-            Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
-            Write-Host "CSAPreparation::doAction Error " -ForegroundColor Red -BackgroundColor Black
-        }
+        # try {
+        #     $PSExecExpression = {D:\PSTools\PsExec.exe \\$CSAName -u $CSAAccount -p $CSAPwd powershell.exe "enable-psremoting -force"}
+        #     $ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
+        #     Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+        # } catch [Exception] {
+        #     Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
+        #     Write-Host "CSAPreparation::doAction Error " -ForegroundColor Red -BackgroundColor Black
+        # }
         $iloop=0
         $WinRmSvr = $null
         do {
