@@ -230,7 +230,13 @@ class CSAPreparationRevertMachine : CSAPreparation {
         #     "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
         #     "csaUsername=$CSAAccount",
         #     "csaPassword=$CSAPwd")
-        $command = "CMD.exe /c java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
+
+        $aryAcc = $CSAAccount -split "\\"
+        if ($aryAcc -is [System.Array] -and $aryAcc.Length -gt 0) {
+            $CSAAccount = $aryAcc[1]
+        } 
+
+        $command = "java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
         + $CSASubscriptionID `
         + " actionName=RevertToSnapshot csaOrganization=ADM csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest csaUsername=" `
         + $CSAAccount `
@@ -259,7 +265,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Start-Sleep 60
         #Restart the machine
-        $command = "CMD.exe /c java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
+        $command = "java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
         + $CSASubscriptionID `
         + " actionName=Restart csaOrganization=ADM csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest csaUsername=" `
         + $CSAAccount `
@@ -274,9 +280,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
         if ( $null -ne ${env:automationPassword} -and ("" -ne ${env:automationPassword})) {
             $command += " automationPassword=" + ${env:automationPassword}
         }
-        $sb = [scriptblock]::Create(
-            $command
-        )
+        $sb = [scriptblock]::Create($command)
         Write-Host "restart command" $command
         # $Arguments=@("-jar",
         #     "csa4.1wrapper-4.0.0.jar",
