@@ -236,7 +236,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
             $CSAAccount = $aryAcc[1]
         } 
 
-        $command = "java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
+        $command = "cmd /c java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
         + $CSASubscriptionID `
         + " actionName=RevertToSnapshot csaOrganization=ADM csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest csaUsername=" `
         + $CSAAccount `
@@ -265,7 +265,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Start-Sleep 60
         #Restart the machine
-        $command = "java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
+        $command = "cmd /c java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
         + $CSASubscriptionID `
         + " actionName=Restart csaOrganization=ADM csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest csaUsername=" `
         + $CSAAccount `
