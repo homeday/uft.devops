@@ -18,9 +18,15 @@ class CSAPreparation {
         {
             throw("Class $type must be inherited")
         }
-        #$PSExecExpression = {D:\PSTools\PsExec.exe \\$CSAName -u $CSAAccount -p $CSAPwd powershell.exe "enable-psremoting -force"}
-        #$ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
-        #Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+
+        try {
+            $PSExecExpression = {D:\tools\Pstools\PsExec.exe \\$CSAName -u $CSAAccount -p $CSAPwd powershell.exe "enable-psremoting -force"}
+            $ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
+            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+        } catch [Exception] {
+            Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
+            Write-Host "CSAPreparation::doAction Error " -ForegroundColor Red -BackgroundColor Black
+        }
         $iloop=0
         $WinRmSvr = $null
         do {
@@ -195,7 +201,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
         } 
         
         if ( $CSAPwd -eq $null -or $CSAPwd  -eq "") {
-            $CSAPwd = ${env:CSAPwd}
+            $CSAPwd = ${env:CSAPassword}
         }
         if ($null -eq $CSACredential) {
             $SecPwd = ConvertTo-Securestring $CSAPwd -AsPlainText -Force
@@ -215,30 +221,58 @@ class CSAPreparationRevertMachine : CSAPreparation {
         [string]$CSASubscriptionID
     ) {
         Write-Host "CSAPreparationRevertMachine::RevertSnapshot Start" -ForegroundColor Green -BackgroundColor Black
+        #Revert the machine
         $Arguments=@("-jar",
-            "CSAWrapper-5.0.0.jar",
+            "csa4.1wrapper-4.0.0.jar",
             "subscriptionId=$CSASubscriptionID",
             "actionName=RevertToSnapshot",
             "csaOrganization=ADM",
             "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
             "csaUsername=$CSAAccount",
             "csaPassword=$CSAPwd")
+        if ( $null -ne ${env:managementPortalUrl} -and ("" -ne ${env:managementPortalUrl})) {
+            $Arguments += "managementPortalUrl=" + ${env:managementPortalUrl}
+        }
+        if ( $null -ne ${env:automationUsername} -and ("" -ne ${env:automationUsername})) {
+            $Arguments += "automationUsername=" + ${env:automationUsername}
+        }
+        if ( $null -ne ${env:automationPassword} -and ("" -ne ${env:automationPassword})) {
+            $Arguments += "automationPassword=" + ${env:automationPassword}
+        }
         $JavaExpression = { java $Arguments }
         $ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
+        
+        if ( (-not ($ExpressionResult -is [System.Array])) -or (-not ($ExpressionResult[$ExpressionResult.Length - 1] -like '*success*'))){
+            throw("revert snapshot error")
+        }
+
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Start-Sleep 60
+        #Restart the machine
         $Arguments=@("-jar",
-            "CSAWrapper-5.0.0.jar",
+            "csa4.1wrapper-4.0.0.jar",
             "subscriptionId=$CSASubscriptionID",
             "actionName=Restart",
             "csaOrganization=ADM",
             "csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest",
             "csaUsername=$CSAAccount",
             "csaPassword=$CSAPwd")
+        if ( $null -ne ${env:managementPortalUrl} -and ("" -ne ${env:managementPortalUrl})) {
+            $Arguments += "managementPortalUrl=" + ${env:managementPortalUrl}
+        }
+        if ( $null -ne ${env:automationUsername} -and ("" -ne ${env:automationUsername})) {
+            $Arguments += "automationUsername=" + ${env:automationUsername}
+        }
+        if ( $null -ne ${env:automationPassword} -and ("" -ne ${env:automationPassword})) {
+            $Arguments += "automationPassword=" + ${env:automationPassword}
+        }
         $JavaExpression = { java $Arguments }
+        Write-Host $Arguments -join " "
         $ExpressionResult = Invoke-Command -ScriptBlock $JavaExpression
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
-        #$ExecProcess=Start-Process -FilePath java.exe -ArgumentList "${Arguments}" -Wait -PassThru 
+        if ( (-not ($ExpressionResult -is [System.Array])) -or (-not ($ExpressionResult[$ExpressionResult.Length - 1] -like '*success*'))){
+            throw("Restart machine error")
+        }
         Start-Sleep 60
         Write-Host "CSAPreparationRevertMachine::RevertSnapshot End" -ForegroundColor Green -BackgroundColor Black
     }

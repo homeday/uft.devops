@@ -19,11 +19,8 @@ param (
 function Update-DeploymentsToDB {
     #[CmdletBinding(SupportsProcess=$True)]
     param (
-        [Parameter(Mandatory=$true)]
         [string]$NotifyUri,
-        [Parameter(Mandatory=$true)]
         [string]$name,
-        [Parameter(Mandatory=$true)]
         [string]$state
     )
     if ("" -eq $NotifyUri) {
