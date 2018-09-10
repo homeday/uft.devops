@@ -1,0 +1,2 @@
+qtp.addins.webbased
+frontend

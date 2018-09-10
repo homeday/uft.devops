@@ -1,7 +1,7 @@
 ﻿[CmdletBinding(SupportsShouldProcess=$True)]
 param (
     [Parameter(Mandatory=$true)]
-    [string]$DeployFile = "UFT_14_50_RnD_Deploy.xml",
+    [string]$DeployFile = "UFT_14_51_QA_Deploy.xml",
     [Parameter(Mandatory=$true)]
     [string]$BUILD_NUMBER = "UFT_14_50_Setup_Last"  ,
     [string]$PRODUCT_RELEASE = ""    
