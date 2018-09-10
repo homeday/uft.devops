@@ -1,2 +1,2 @@
 qtp.addins.webbased
-frontend
+qtp.frontend
