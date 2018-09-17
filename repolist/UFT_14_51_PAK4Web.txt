@@ -1,2 +1,4 @@
 qtp.addins.webbased
 qtp.frontend
+qtp.components
+qtp.setup
