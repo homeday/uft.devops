@@ -1,0 +1,9 @@
+BuildMajorVersion=14
+BuildMinorVersion=51
+BuildLabel=UFT_14_51_PAK4Web
+BuildPostfix=88
+WSPostfix=.ParallelWeb
+Configuration=win32_release
+repo_inclusion=-include=.repos/qtp.addins.webbased -include=.repos/qtp.frontend -include=.repos/qtp.setup -include=.repos/qtp.components
+
+
