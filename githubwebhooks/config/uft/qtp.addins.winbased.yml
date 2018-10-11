@@ -1,0 +1,17 @@
+git_org: uft
+git_repo: qtp.addins.winbased
+
+git_tags:
+
+git_branches:
+  master:
+    push:
+      jenkins: &jenkins_action_build_default
+        enabled: true
+        job_url: 'http://mydtbld0211.swinfra.net:8080/job/Delphi.Agents.Build/buildWithParameters'
+        job_parameters: &jenkins_action_params_default
+          token: UFTBUILDTOKEN
+          Branch:
+            runtime: _branch_name_
+
+  
