@@ -1,6 +1,6 @@
 BuildMajorVersion=14
-BuildMinorVersion=51
-BuildLabel=UFT_14_51
+BuildMinorVersion=52
+BuildLabel=UFT_14_52
 BuildPostfix=0
 Compilation_Configuration=Release
 Configuration=win32_release

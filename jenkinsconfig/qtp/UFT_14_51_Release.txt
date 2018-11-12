@@ -1,10 +1,10 @@
-BuildLabel=UFT_14_52
+BuildLabel=UFT_14_51
 BuildMajorVersion=14
-BuildMinorVersion=52
+BuildMinorVersion=51
 BuildPostfix=0
 Deploy=true
 01_CreateMLU=false
-Create_LeanFT=false
+Create_LeanFT=true
 CodeSign=true
 SignMethod=AUJAS
 srf_windows_executor=false
