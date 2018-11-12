@@ -60,11 +60,11 @@ if (code_freeze_phase) {
         We are in <b>UFT ${release_num} Sprint ${sprint_num} Sanity</b> <span class="emphasize">code freeze</span> now.<br/><br/>
         The <b>${branch_name}</b> branch of all <b>QTP</b> repositories, <b>UFTBase</b> and <b>ST</b> are locked and merging to this branch is not allowed,
         however, you are still able to work on the other branches, create and review pull requests.<br/><br/>
-        Approvals from <a href="mailto:vika.milgrom@hpe.com"><span class="emphasize2">Vika</span></a>,
-        <a href="mailto:tsachi.ben-zur@hpe.com"><span class="emphasize2">Tsachi</span></a>,
-        <a href="mailto:peng-ji.yin@hpe.com"><span class="emphasize2">Jerry</span></a>,
-        <a href="mailto:ran.bachar@hpe.com"><span class="emphasize2">Ran</span></a> and
-        <a href="mailto:jia.xue2@hpe.com"><span class="emphasize2">James</span></a> are required for any exceptions
+        Approvals from <a href="mailto:vika.milgrom@microfocus.com"><span class="emphasize2">Vika</span></a>,
+        <a href="mailto:tsachi.ben-zur@microfocus.com"><span class="emphasize2">Tsachi</span></a>,
+        <a href="mailto:peng-ji.yin@microfocus.com"><span class="emphasize2">Jerry</span></a>,
+        <a href="mailto:ran.bachar@microfocus.com"><span class="emphasize2">Ran</span></a> and
+        <a href="mailto:jia.xue2@microfocus.com"><span class="emphasize2">James</span></a> are required for any exceptions
         before using <a href="${unlock_job_url}">force unlock job</a> (context: <code>${status_checks}</code>)!
     </div>
 
@@ -85,6 +85,6 @@ if (code_freeze_phase) {
     <p>
         <br/>
         Thank you for your cooperation!<br/>
-        <a href="mailto:uft.devops.cn@hpe.com">UFT DevOps Team</a>
+        <a href="mailto:uft.devops.cn@microfocus.com">UFT DevOps Team</a>
     </p>
 </body>
