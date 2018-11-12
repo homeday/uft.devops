@@ -51,4 +51,7 @@ git_branches:
   UFT_12_54_SP_Patches:
     push:
       jenkins: *jenkins_action_push_buildwithparam_default
-  
+
+  UFT_14_51_Release:
+    push:
+      jenkins: *jenkins_action_push_buildwithparam_default 

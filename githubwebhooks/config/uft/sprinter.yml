@@ -18,4 +18,8 @@ git_branches:
   Sprinter_14_50_Release:
     push:
       jenkins: *jenkins_action_build_default
+  
+  Sprinter_14_51_Release:
+    push:
+      jenkins: *jenkins_action_build_default
 
