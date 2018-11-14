@@ -28,13 +28,6 @@
 <!-- ************************************************** Clean Machines ************************************************************************  -->	
 	<hosts>
 		<host>
-			<VM_NAME>myd-vm04269</VM_NAME>
-			<team>Bogdan</team>
-			<USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
-			<SUBSCRIPTION_ID>90bc0b9c5c536144015ca5f45a294e78</SUBSCRIPTION_ID>
-			<CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>
-		<host>
 		  <VM_NAME>myd-vm04295</VM_NAME>
 		  <team>Bogdan</team>
 		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
@@ -42,31 +35,10 @@
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>
 		<host>
-		  <VM_NAME>myd-vm02998</VM_NAME>
-		  <team>Easton</team>
-		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9c5c536144015ca46bc624198a</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>
-		<host>
-		  <VM_NAME>myd-vm04270</VM_NAME>
-		  <team>Easton</team>
-		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9c5c536144015ca5f5e31b58ce</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>
-		<host>
 		  <VM_NAME>myd-vm07310</VM_NAME>
 		  <team>Sagi</team>
 		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>90bc0b9b6119407901611cd29cd609cf</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>
-		<host>
-		  <VM_NAME>myd-vm04294</VM_NAME>
-		  <team>Sagi</team>
-		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9c5c536144015ca6e1facb0ff4</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>
 		<!--<host>
@@ -105,13 +77,6 @@
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>
 		<host>
-		  <VM_NAME>myd-vm04297</VM_NAME>
-		  <team>Functional architects</team>
-		  <USER_EMAIL>ran.bachar@hpe.com,tsachi.ben-zur@hpe.com,tal.halperin@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9c5c536144015ca6eb322f3aa2</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>
-		<host>
 		  <VM_NAME>myd-vm08474</VM_NAME>
 		  <team>Anton</team>
 		  <NOTIFICATION_EMAIL>ftmobile.leanft.dev.roman.il@hpe.com,yguo@hpe.com</NOTIFICATION_EMAIL>
@@ -119,6 +84,9 @@
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		  <Application>lftasfeature</Application>
 		</host>
+		
+		
+		<!--<MLU>-->
 		<host>
 		  <VM_NAME>myd-vm24529</VM_NAME>
 		  <team>L10N S.Chinese</team>
@@ -155,7 +123,7 @@
 		  <SUBSCRIPTION_ID>90bc0b9c54d746a801554d5344487109</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>
-		
+		<!--<MLU>-->
 		
 		<!--<host>
 		  <VM_NAME>myd-vm16780</VM_NAME>
@@ -179,23 +147,23 @@
 		
 		<!--CSA in New Domain start-->
 		<host>
-		  <VM_NAME>myd-vma00413</VM_NAME>
-		  <team>Easton</team>
-		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
-		  <CSAAccount>_ft_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93af6a16ec1</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>
-		<host>
 		  <VM_NAME>myd-vma00414</VM_NAME>
 		  <team>Functional architects</team>
-		  <USER_EMAIL>ran.bachar@hpe.com,tsachi.ben-zur@hpe.com,tal.halperin@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ran.bachar@hpe.com,tsachi.ben-zur@hpe.com,vika.milgrom@hpe.com,bgold@hpe.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
 		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93bce56744c</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vma00882</VM_NAME>
+		  <team>Functional architects</team>
+		  <USER_EMAIL>ran.bachar@hpe.com,tsachi.ben-zur@hpe.com,vika.milgrom@hpe.com,bgold@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d91664b6d4401671119466521bd</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
 		<host>
@@ -209,6 +177,16 @@
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>	
 		<host>
+		  <VM_NAME>myd-vma00878</VM_NAME>
+		  <team>Jason</team>
+		  <USER_EMAIL>ftmobile.dev.sap.cn@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d92664b6d20016710f548d31fa1</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>
+		<host>
 		  <VM_NAME>myd-vma00416</VM_NAME>
 		  <team>Lancer</team>
 		  <USER_EMAIL>ftmobile.dev.infra.cn@hpe.com</USER_EMAIL>
@@ -217,7 +195,17 @@
 		  <CSADomain>swinfra.net</CSADomain>
 		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93f8f267d3d</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>		
+		</host>	
+		<host>
+		  <VM_NAME>myd-vma00877</VM_NAME>
+		  <team>Lancer</team>
+		  <USER_EMAIL>ftmobile.dev.infra.cn@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d91664b6d44016710f436534e77</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>			
 		<host>
 		  <VM_NAME>myd-vma00417</VM_NAME>
 		  <team>Sagi</team>
@@ -229,6 +217,16 @@
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
 		<host>
+		  <VM_NAME>myd-vma00876</VM_NAME>
+		  <team>Sagi</team>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d92664b6d20016710ea7ff91c56</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>
+		<host>
 		  <VM_NAME>myd-vma00418</VM_NAME>
 		  <team>Bogdan</team>
 		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
@@ -236,6 +234,16 @@
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
 		  <SUBSCRIPTION_ID>8a471d9262f2fa5f0163b969680557cd</SUBSCRIPTION_ID>
+		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-vma00863</VM_NAME>
+		  <team>Bogdan</team>
+		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>8a471d92664b6d20016706795adb5457</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
 		<!--CSA in New Domain end-->
