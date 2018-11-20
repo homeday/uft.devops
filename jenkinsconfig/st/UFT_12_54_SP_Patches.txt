@@ -1,7 +1,7 @@
 BuildMajorVersion=12
 BuildMinorVersion=54
 BuildLabel=UFT_12_54_SP_Patches
-BuildPostfix=5
+BuildPostfix=6
 WSPostfix=.SP.Patches
 DebugBuild=false
 
