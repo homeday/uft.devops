@@ -4,5 +4,6 @@ BuildLabel=UFT_12_54_SP_Patches
 BuildPostfix=6
 WSPostfix=.SP.Patches
 DebugBuild=false
+MSBuild_Version=v4
 
 
