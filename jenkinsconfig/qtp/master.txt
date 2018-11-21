@@ -8,9 +8,9 @@ Create_LeanFT=false
 CodeSign=true
 SignMethod=AUJAS
 srf_windows_executor=false
-srf_agents_sync=false
-DVD_Sync_2_SH=false
-DVD_Sync_2_Cluj=false
-E2E=false
+srf_agents_sync=true
+DVD_Sync_2_SH=true
+DVD_Sync_2_Cluj=true
+E2E=true
 
 
