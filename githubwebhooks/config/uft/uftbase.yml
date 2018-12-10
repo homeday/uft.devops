@@ -26,9 +26,9 @@ git_branches:
       opened:
         jenkins: &jenkins_action_pull_request_compile_only
           enabled: true
-          job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTBase.CompileOnlyBuild.Launcher/buildWithParameters'
+          job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTBase.CompileOnlyBuild.Trigger/buildWithParameters'
           job_parameters: &jenkins_action_pull_request_params_default
-            token: UFTBASE_COMIPLEONLY_TOKEN
+            token: UFTBASE_COMPILEONLY_TOKEN
             Git_Repo_Clone_Url:
               runtime: _head_repo_clone_url_
             Head_Branch:
