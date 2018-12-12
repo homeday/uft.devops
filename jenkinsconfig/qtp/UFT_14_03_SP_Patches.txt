@@ -1,0 +1,17 @@
+BuildLabel=UFT_14_03_SP_Patches
+BuildMajorVersion=14
+BuildMinorVersion=3
+BuildPostfix=3
+Deploy=false
+01_CreateMLU=true
+Create_LeanFT=false
+CodeSign=false
+SignMethod=AUJAS
+srf_windows_executor=false
+srf_agents_sync=false
+DVD_Sync_2_SH=true
+DVD_Sync_2_Cluj=true
+E2E=false
+PatchID=UFT_00198
+
+

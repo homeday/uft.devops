@@ -1,0 +1,9 @@
+Branch=UFT_14_03_SP_Patches
+PatchID=UFT_00198
+GaLabel=UFT_14_03_GA
+BuildMajorVersion=14
+BuildMinorVersion=3
+BuildPostfix=3
+BuildLabel=UFT_14_03_SP_Patches
+CodeSign=true
+SignMethod=AUJAS
