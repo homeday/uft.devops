@@ -5,5 +5,5 @@ BuildMajorVersion=14
 BuildMinorVersion=3
 BuildPostfix=3
 BuildLabel=UFT_14_03_SP_Patches
-CodeSign=true
+CodeSign=1
 SignMethod=AUJAS
