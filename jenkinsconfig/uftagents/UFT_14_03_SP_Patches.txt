@@ -1,7 +1,7 @@
 BuildMajorVersion=14
 BuildMinorVersion=3
 BuildLabel=UFT_14_03_SP_Patches
-BuildPostfix=1
+BuildPostfix=3
 WSPostfix=.SP.Patches
 Configuration=win32_release
 repo_inclusion=
