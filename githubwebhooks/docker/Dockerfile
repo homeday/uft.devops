@@ -1,7 +1,14 @@
 FROM python:2.7-alpine
-LABEL maintainer="uft.dev.ops@hpe.com" \
-      version="1.0" \
-      description="Github Enterprise WebHooks (Python)"
+LABEL maintainer="uft.devops.cn@microfocus.com" \
+      version="1.1" \
+      description="GitHub Enterprise WebHooks (Python)"
+
+# Install self-signed root CA
+ADD cert/* /tmp/certs/
+RUN apk add --no-cache ca-certificates && \
+    mkdir -p /usr/local/share/ca-certificates && \
+    cp -R /tmp/certs/* /usr/local/share/ca-certificates/ && \
+    update-ca-certificates
 
 # install all python requirements
 COPY requirements.txt /tmp/

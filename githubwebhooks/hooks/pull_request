@@ -17,6 +17,9 @@ import yaml
 
 exit_code=0
 
+# fix for self-signed certificates for GitHub Enterprise that we need to send requests
+os.environ['REQUESTS_CA_BUNDLE'] = '/etc/ssl/certs/ca-certificates.crt'
+
 # test event which must be "pull_request"
 event = sys.argv[2]
 if event != "pull_request":
