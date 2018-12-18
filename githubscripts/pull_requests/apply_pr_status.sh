@@ -121,6 +121,7 @@ if [ $ret -ne 0 ]; then
             wget -q -O ./jq "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
         chmod +x ./jq
     fi
+	export PATH=$(pwd);$PATH
     echo "Done"
 fi
 
@@ -136,7 +137,7 @@ json=$(curl --silent \
     "${full_api_url}"
 )
 if [ -z "$json" ]; then echo "Failed to send Github API request to get pull request."; exit 9; fi
-sha=$(echo "$json" | ./jq -r '.head.sha')
+sha=$(echo "$json" | jq -r '.head.sha')
 
 
 # apply status
