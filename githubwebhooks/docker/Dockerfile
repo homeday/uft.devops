@@ -4,7 +4,7 @@ LABEL maintainer="uft.devops.cn@microfocus.com" \
       description="GitHub Enterprise WebHooks (Python)"
 
 # Install self-signed root CA
-ADD cert/* /tmp/certs/
+ADD certs/* /tmp/certs/
 RUN apk add --no-cache ca-certificates && \
     mkdir -p /usr/local/share/ca-certificates && \
     cp -R /tmp/certs/* /usr/local/share/ca-certificates/ && \
