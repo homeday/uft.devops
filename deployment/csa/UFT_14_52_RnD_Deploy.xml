@@ -76,14 +76,7 @@
 		  <SUBSCRIPTION_ID>90bc0b9c5c536144015ca6edcf3044f2</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>
-		<host>
-		  <VM_NAME>myd-vm08474</VM_NAME>
-		  <team>Anton</team>
-		  <NOTIFICATION_EMAIL>ftmobile.leanft.dev.roman.il@hpe.com,yguo@hpe.com</NOTIFICATION_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9c61cc97030162f626bcd10fd8</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		  <Application>lftasfeature</Application>
-		</host>
+		
 		
 		
 		<!--<MLU>-->
@@ -146,6 +139,17 @@
 		
 		
 		<!--CSA in New Domain start-->
+		<host>
+		  <VM_NAME>myd-hvm00150</VM_NAME>
+		  <team>Anton</team>
+		  <NOTIFICATION_EMAIL>ftmobile.leanft.dev.roman.il@hpe.com,yguo@hpe.com</NOTIFICATION_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>2c90e49067875cbb0167c521e9d343f4</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+		  <Application>lftasfeature</Application>
+		</host>
 		<host>
 		  <VM_NAME>myd-vma00414</VM_NAME>
 		  <team>Functional architects</team>
