@@ -74,7 +74,8 @@ def main(argv):
             if regex.match(filename):
                 xmlDir = os.path.join(buildreportsfolder, filename)
                 handleXml(xmlDir, filesbasedir, dstbasedir)
-
+                shutil.make_archive("uft3rdparty", 'zip', dstbasedir)
+                break
     except:
         logging.error("Error in handling the releases {0}".format(sys.exc_info()[1]))
    
