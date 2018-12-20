@@ -28,6 +28,8 @@ def handleXml(xmlDir, filesbasedir, dstbasedir):
             files = comp.findall("./files/file")
             for file in files:
                 trg = file.attrib['trg']
+                if trg[0] == '\\':
+                    trg = trg[1:]
                 try:
                     filesrcpath = ""
                     filedstpath = ""
