@@ -55,7 +55,7 @@ def handleXml(xmlDir, filesbasedir, dstbasedir):
                     logging.error("handle file error {0}".format(sys.exc_info()[1]))
                 #print(filesrcpath)
 
-    print(aryextension)
+    #print(aryextension)
             
     
 def main(argv):
