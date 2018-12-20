@@ -26,7 +26,7 @@ git_branches:
       opened:
         jenkins: &jenkins_action_pull_request_compile_only
           enabled: true
-          job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/ST.CompileOnlyBuild.Trigger/buildWithParameters'
+          job_url: 'http://mydtbld0211.swinfra.net:8080/job/ST.CompileOnlyBuild.Trigger/buildWithParameters'
           job_parameters: &jenkins_action_pull_request_params_default
             token: ST_COMPILEONLY_TOKEN
             Git_Repo_Clone_Url:
