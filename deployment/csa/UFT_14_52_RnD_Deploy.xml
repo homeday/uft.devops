@@ -81,13 +81,6 @@
 		
 		<!--<MLU>-->
 		<host>
-		  <VM_NAME>myd-vm24529</VM_NAME>
-		  <team>L10N S.Chinese</team>
-		  <USER_EMAIL>yaron.bracha@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9c54d746a801554cf70c246ef9</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>
-		<host>
 		  <VM_NAME>myd-vm08159</VM_NAME>
 		  <team>L10N S.Chinese</team>
 		  <USER_EMAIL>yaron.bracha@hpe.com</USER_EMAIL>
@@ -104,18 +97,6 @@
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>
 		
-		
-		
-		
-		
-		
-		<host>
-		  <VM_NAME>myd-vm04427</VM_NAME>
-		  <team>L10N Russian</team>
-		  <USER_EMAIL>yaron.bracha@hpe.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9c54d746a801554d5344487109</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>
 		<!--<MLU>-->
 		
 		<!--<host>
@@ -250,6 +231,18 @@
 		  <SUBSCRIPTION_ID>8a471d91664b6d44016782a7b1ed27a6</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
+		<!--mlu-->
+		<host>
+		  <VM_NAME>myd-hvm00095</VM_NAME>
+		  <team>L10N S.Chinese</team>
+		  <USER_EMAIL>yaron.bracha@hpe.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>2c90e49067875cbb0167a696f2ac1876</SUBSCRIPTION_ID>
+		  <CATALOG_ID>c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+		</host>
+		<!---->
 		<!--CSA in New Domain end-->
 	</hosts>
 </Deploy>
