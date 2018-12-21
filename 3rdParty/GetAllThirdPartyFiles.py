@@ -45,7 +45,8 @@ def handleXml(xmlDir, filesbasedir, dstbasedir):
                     else:
                         filesrcpath = os.path.join(filesbasedir, 'TARGETDIR', trg)    
                         filedstpath = os.path.join(dstbasedir, 'TARGETDIR', trg)   
-                    shutil.copyfile(filesrcpath, filedstpath)
+                    os.makedirs(os.path.dirname(filedstpath), exist_ok=True)
+                    shutil.copy(filesrcpath, filedstpath)
                     #filename, file_extension = os.path.splitext(filesrcpath)
 
                     #if not file_extension in aryextension:
@@ -54,7 +55,7 @@ def handleXml(xmlDir, filesbasedir, dstbasedir):
                     logging.error("handle file error {0}".format(sys.exc_info()[1]))
                 #print(filesrcpath)
 
-    print(aryextension)
+    #print(aryextension)
             
     
 def main(argv):
