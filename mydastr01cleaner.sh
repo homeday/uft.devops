@@ -1,13 +1,13 @@
 groupfolder=$1
 
-arycfg=("win32_release" "win32_debug" "master" "linux32_release" "hpux32_release" "sol32_release" "partial_builds" "aix32_release")
-ignoreprods="@LT-PCQC@LT-PCQC-FIST@LeanFT@"
+arycfg=("win32_release" "win32_debug" "master" "mac" "Linux" "linux32_release" "hpux32_release" "sol32_release" "partial_builds" "aix32_release")
+ignoreprods="@LT-PCQC@LT-PCQC-FIST@"
 
 
 search_ignore_list() 
 {
     productname=$1
-    ignoreprods=("LT-PCQC" "LT-PCQC-FIST" "LeanFT")
+    ignoreprods=("LT-PCQC" "LT-PCQC-FIST")
 
     for ignoreprod in "${ignoreprods[@]}"; do
         if [[ "$productname" == "$ignoreprod" ]]; then
