@@ -31,9 +31,7 @@ pipeline {
     stages {
         stage('Get All 3rd party files') {
             steps {
-                
-                sh "pwd"           
-                sh "ls -L /products"
+                sh "python ./3rdParty/GetAllThirdPartyFiles.py -m /products -v ${params.BuildVersion}"
             }
         }
 
