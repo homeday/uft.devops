@@ -29,6 +29,7 @@ def handleXml(xmlDir, filesbasedir, dstbasedir):
             for file in files:
                 trg = file.attrib['trg']
                 if trg[0] == '\\':
+                    logging.info("trg = {0}".format(trg))
                     trg = trg[1:]
                 try:
                     filesrcpath = ""
@@ -44,7 +45,8 @@ def handleXml(xmlDir, filesbasedir, dstbasedir):
                         filedstpath = os.path.join(dstbasedir,  'SystemFolder', trg.replace('windir\\system32\\', ''))   
                     else:
                         filesrcpath = os.path.join(filesbasedir, 'TARGETDIR', trg)    
-                        filedstpath = os.path.join(dstbasedir, 'TARGETDIR', trg)   
+                        filedstpath = os.path.join(dstbasedir, 'TARGETDIR', trg)  
+                        filesrcpath = filesrcpath.replace('\\', '/')
                     os.makedirs(os.path.dirname(filedstpath), exist_ok=True)
                     shutil.copy(filesrcpath, filedstpath)
                     #filename, file_extension = os.path.splitext(filesrcpath)
