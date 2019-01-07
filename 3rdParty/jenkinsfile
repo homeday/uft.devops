@@ -1,0 +1,56 @@
+#!groovy
+import java.io.Serializable
+import org.jenkinsci.plugins.workflow.cps.DSL
+import groovy.lang.Binding;
+import org.jenkinsci.plugins.workflow.cps.CpsScript;
+import org.jenkinsci.plugins.workflow.cps.GlobalVariable;
+import org.jenkinsci.plugins.workflow.cps.DSL;
+import hudson.model.*;
+import jenkins.model.Jenkins;
+
+
+
+pipeline {
+    agent {
+        node {
+            label 'Linux_Docker'
+        }
+    }
+   
+    agent {
+        docker {
+            image 'python:3.7.2-alpine'
+            label 'Linux_Docker'
+            args  '-v /products:/products'
+        }
+    }
+
+    options { 
+        buildDiscarder(logRotator(numToKeepStr: '300'))
+        timestamps() 
+    }
+
+    parameters {         
+        string(name: 'BuildVersion', defaultValue: '', description: 'the build version of UFT')
+    }
+
+     stages {
+        stage('Get All 3rd party files') {
+			steps {
+                dir('/products') {
+                    sh:"ls -l"
+                }
+                sh: "pwd"           
+            }
+        }
+
+        stage('Upload All 3rd party files to ftp') {
+			steps {
+
+            }
+        }
+     }
+
+
+
+}
