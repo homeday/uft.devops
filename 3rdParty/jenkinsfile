@@ -12,12 +12,6 @@ import jenkins.model.Jenkins;
 
 pipeline {
     agent {
-        node {
-            label 'Linux_Docker'
-        }
-    }
-   
-    agent {
         docker {
             image 'python:3.7.2-alpine'
             label 'Linux_Docker'
@@ -34,22 +28,22 @@ pipeline {
         string(name: 'BuildVersion', defaultValue: '', description: 'the build version of UFT')
     }
 
-     stages {
+    stages {
         stage('Get All 3rd party files') {
-			steps {
+            steps {
                 dir('/products') {
-                    sh:"ls -l"
+                    sh "ls -l"
                 }
-                sh: "pwd"           
+                sh  "pwd"           
             }
         }
 
         stage('Upload All 3rd party files to ftp') {
-			steps {
+            steps {
 
             }
         }
-     }
+    }
 
 
 
