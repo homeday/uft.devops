@@ -31,10 +31,9 @@ pipeline {
     stages {
         stage('Get All 3rd party files') {
             steps {
-                dir('/products') {
-                    sh "ls -l"
-                }
-                sh  "pwd"           
+                
+                sh "pwd"           
+                sh "ls -L /products"
             }
         }
 
