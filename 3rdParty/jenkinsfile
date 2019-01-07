@@ -20,20 +20,34 @@ pipeline {
         timestamps() 
     }
 
+    environment {
+        ssh_addr = "16.60.141.63"
+        ssh_acc = "uft"
+        ssh_pwd = "uftsftponly"
+        ssh_subdirectory = "/home/uft/upload/"
+    }
     parameters {         
         string(name: 'BuildVersion', defaultValue: '', description: 'the build version of UFT')
     }
 
     stages {
-        stage('Get All 3rd party files') {
+        stage('Get all 3rd party files') {
             steps {
                 bat "python ./3rdParty/GetAllThirdPartyFiles.py -m ${env.PRODUCTS_STORAGE_WIN} -v ${params.BuildVersion}"
             }
         }
 
-        stage('Upload All 3rd party files to ftp') {
+        stage('Upload all 3rd party files to ftp') {
             steps {
-                echo "abc"
+                script {
+                    def remote = [:]
+                    remote.name = "fortify"
+                    remote.host = env.ssh_addr
+                    remote.allowAnyHosts = true 
+                    remote.user = env.ssh_acc
+                    remote.password = env.ssh_pwd
+                    sshPut remote: remote, from: "uftthirdparty.zip", into: env.ssh_subdirectory, override: true
+                }
 
             }
         }
