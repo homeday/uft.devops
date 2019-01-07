@@ -11,12 +11,8 @@ import jenkins.model.Jenkins;
 
 
 pipeline {
-    agent {
-        docker {
-            image 'python:3.7.2-alpine'
-            label 'Linux_Docker'
-            args  '-v /products:/products'
-        }
+    agent {       
+        label 'ThirdPartyUpload'
     }
 
     options { 
@@ -31,7 +27,7 @@ pipeline {
     stages {
         stage('Get All 3rd party files') {
             steps {
-                sh "python ./3rdParty/GetAllThirdPartyFiles.py -m /products -v ${params.BuildVersion}"
+                cmd "python ./3rdParty/GetAllThirdPartyFiles.py -m /products -v ${params.BuildVersion}"
             }
         }
 
