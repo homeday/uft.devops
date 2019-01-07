@@ -40,6 +40,7 @@ pipeline {
 
         stage('Upload All 3rd party files to ftp') {
             steps {
+                echo "abc"
 
             }
         }
