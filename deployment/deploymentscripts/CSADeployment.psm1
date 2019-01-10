@@ -446,6 +446,9 @@ function Install-Application {
             $csaInstallApp = [CSAInstallUFT]::GetInstance()
             break
         }
+        "rpa" {
+            $csaInstallApp = [CSAInstallRPA]::GetInstance()
+        }
         default {
             $csaInstallApp = [CSAInstallUFT]::GetInstance()
             break

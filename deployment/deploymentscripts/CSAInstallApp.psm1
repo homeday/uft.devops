@@ -48,7 +48,7 @@ class CSAInstallUFT : CSAInstallApp {
     }
     static [CSAInstallUFT] $instance
     static [CSAInstallUFT] GetInstance() {
-        if ([CSAInstallUFT]::instance -eq $null) { 
+        if ($null -eq [CSAInstallUFT]::instance) { 
             [CSAInstallUFT]::instance = [CSAInstallUFT]::new() 
         }
         return [CSAInstallUFT]::instance
@@ -133,7 +133,7 @@ class CSAInstallLFTAsFt : CSAInstallUFT {
     }
     static [CSAInstallLFTAsFt] $instance
     static [CSAInstallLFTAsFt] GetInstance() {
-        if ([CSAInstallLFTAsFt]::instance -eq $null) { 
+        if ($null -eq [CSAInstallLFTAsFt]::instance) { 
             [CSAInstallLFTAsFt]::instance = [CSAInstallLFTAsFt]::new() 
         }
         return [CSAInstallLFTAsFt]::instance
@@ -165,6 +165,48 @@ class CSAInstallLFTAsFt : CSAInstallUFT {
 }
 
 
+
+class CSAInstallRPA : CSAInstallUFT {
+
+    CSAInstallRPA(
+    ) : base(
+    ) {
+        Write-Host "CSAInstallRPA::constructor" -ForegroundColor Green -BackgroundColor Black
+    }
+    static [CSAInstallRPA] $instance
+    static [CSAInstallRPA] GetInstance() {
+        if ($null -eq [CSAInstallRPA]::instance) { 
+            [CSAInstallRPA]::instance = [CSAInstallRPA]::new() 
+        }
+        return [CSAInstallRPA]::instance
+    }
+    [Boolean]InstallApplication(
+        [string]$CSAName,
+        [string]$CSAAccount,
+        [string]$CSAPwd,        
+        [System.Management.Automation.PSCredential]$CSACredential,
+        [string]$BuildVersion
+    ) {
+        Write-Host "CSAInstallRPA::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
+        $sb = [scriptblock]::Create(
+            "CMD.exe /C C:\installUFTOO.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password}" 
+        )
+        $iloop=0
+        $installed=$false
+        do {
+            if ($iloop -ne 0) {
+                Start-Sleep 120
+            }
+            $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
+            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+            $iloop=$iloop+1
+        } until ( ($installed=([CSAInstallUFT]$this).CheckUFTExist($CSAName, $CSAAccount, $CSAPwd)) -eq $true -or $iloop -gt 3)
+        Write-Host "CSAInstallRPA::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
+        return $installed
+    }
+}
+
+
 class CSAInstallPatch : CSAInstallUFT {
 
     CSAInstallPatch(
@@ -174,7 +216,7 @@ class CSAInstallPatch : CSAInstallUFT {
     }
     static [CSAInstallPatch] $instance
     static [CSAInstallPatch] GetInstance() {
-        if ([CSAInstallPatch]::instance -eq $null) { 
+        if ($null -eq [CSAInstallPatch]::instance) { 
             [CSAInstallPatch]::instance = [CSAInstallPatch]::new() 
         }
         return [CSAInstallPatch]::instance

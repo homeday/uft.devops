@@ -36,7 +36,7 @@ class CSAPreparation {
             $WinRmSvr = Invoke-Command -Credential $CSACredential  -ComputerName $CSAName -ScriptBlock {Get-Service -Name winrm}
             Write-Host $WinRmSvr -ForegroundColor Green -BackgroundColor Black
             $iloop = $iloop + 1
-        } until (($WinRmSvr -ne $null -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
+        } until (($null-ne $WinRmSvr -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
         if ($null -eq $WinRmSvr) {
             throw("WinRm Services must be started!")
         }
