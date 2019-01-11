@@ -72,6 +72,7 @@ class CSAPreparation {
         Copy-Item "${PSScriptRoot}\installUFT_Patch.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         Copy-Item "${PSScriptRoot}\installUFT_LFTasFeature.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         Copy-Item "${PSScriptRoot}\HP UFT-licfile.dat" -Destination "C:\" -ToSession $ConnSession -Recurse
+        Copy-Item "${PSScriptRoot}\installUFTOO.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         if ($null -ne $ConnSession) {
             Remove-PSSession -Session $ConnSession
         }
@@ -88,7 +89,7 @@ class CSAPreparationUninstallUFT : CSAPreparation {
     }
     static [CSAPreparationUninstallUFT] $instance
     static [CSAPreparationUninstallUFT] GetInstance() {
-        if ([CSAPreparationUninstallUFT]::instance -eq $null) { 
+        if ($null -eq [CSAPreparationUninstallUFT]::instance) { 
             [CSAPreparationUninstallUFT]::instance = [CSAPreparationUninstallUFT]::new() 
         }
         return [CSAPreparationUninstallUFT]::instance
@@ -182,7 +183,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
    
     static [CSAPreparationRevertMachine] $instance
     static [CSAPreparationRevertMachine] GetInstance() {
-        if ([CSAPreparationRevertMachine]::instance -eq $null) { 
+        if ($null -eq [CSAPreparationRevertMachine]::instance) { 
             [CSAPreparationRevertMachine]::instance = [CSAPreparationRevertMachine]::new() 
         }
         return [CSAPreparationRevertMachine]::instance
@@ -221,6 +222,21 @@ class CSAPreparationRevertMachine : CSAPreparation {
         [string]$CSASubscriptionID
     ) {
         Write-Host "CSAPreparationRevertMachine::RevertSnapshot Start" -ForegroundColor Green -BackgroundColor Black
+        $mnmPortalUrl=""
+        $automationUsername=""
+        $automationPassword=""
+        $jarpackage=""
+        if ( $CSAName.ToLower() -like "*swinfra*" ) {
+            $csaUrl = "https://mydhcm.swinfra.net:8444/csa/rest"
+            $mnmPortalUrl = "https://mydhcmmgmt.swinfra.net:8443/CloudService.svc"
+            $automationUsername = "_ft_admin_auto"
+            $automationPassword = "ShalomAlechem1"
+            $jarpackage="CSAWrapper-5.0.0.jar"
+        } else {
+            $csaUrl = "https://mydswcsa.swinfra.net:8443/csa/rest"
+            $jarpackage="csa4.1wrapper-4.0.0.jar"
+        }
+        
         #Revert the machine
         # $Arguments=@("-jar",
         #     "csa4.1wrapper-4.0.0.jar",
@@ -236,20 +252,23 @@ class CSAPreparationRevertMachine : CSAPreparation {
             $CSAAccount = $aryAcc[1]
         } 
 
-        $command = "cmd /c java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
+        $command = "cmd /c java -jar ${jarpackage}" `
+        + " subscriptionId=" `
         + $CSASubscriptionID `
-        + " actionName=RevertToSnapshot csaOrganization=ADM csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest csaUsername=" `
+        + " actionName=RevertToSnapshot csaOrganization=ADM csaUrl=" `
+        + $csaUrl `
+        + " csaUsername=" `
         + $CSAAccount `
         + " csaPassword=" `
         + $CSAPwd
-        if ( $null -ne ${env:managementPortalUrl} -and ("" -ne ${env:managementPortalUrl})) {
-            $command += " managementPortalUrl=" + ${env:managementPortalUrl}
+        if ( $null -ne $mnmPortalUrl -and ("" -ne $mnmPortalUrl)) {
+            $command += " managementPortalUrl=" + $mnmPortalUrl
         }
-        if ( $null -ne ${env:automationUsername} -and ("" -ne ${env:automationUsername})) {
-            $command += " automationUsername=" + ${env:automationUsername}
+        if ( $null -ne $automationUsername -and ("" -ne $automationUsername)) {
+            $command += " automationUsername=" + $automationUsername
         }
-        if ( $null -ne ${env:automationPassword} -and ("" -ne ${env:automationPassword})) {
-            $command += " automationPassword=" + ${env:automationPassword}
+        if ( $null -ne $automationPassword -and ("" -ne $automationPassword)) {
+            $command += " automationPassword=" + $automationPassword
         }
         #$JavaExpression = { java $Arguments }
         $sb = [scriptblock]::Create(
@@ -263,22 +282,25 @@ class CSAPreparationRevertMachine : CSAPreparation {
         }
 
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
-        Start-Sleep 60
+        Start-Sleep 20
         #Restart the machine
-        $command = "cmd /c java -jar csa4.1wrapper-4.0.0.jar subscriptionId=" `
+        $command = "cmd /c java -jar $jarpackage" `
+        + " subscriptionId=" `
         + $CSASubscriptionID `
-        + " actionName=Restart csaOrganization=ADM csaUrl=https://mydcsa.hpeswlab.net:8443/csa/rest csaUsername=" `
+        + " actionName=Restart csaOrganization=ADM csaUrl=" `
+        + $csaUrl `
+        + " csaUsername=" `
         + $CSAAccount `
         + " csaPassword=" `
         + $CSAPwd
-        if ( $null -ne ${env:managementPortalUrl} -and ("" -ne ${env:managementPortalUrl})) {
-            $command += " managementPortalUrl=" + ${env:managementPortalUrl}
+        if ( $null -ne $mnmPortalUrl -and ("" -ne $mnmPortalUrl)) {
+            $command += " managementPortalUrl=" + $mnmPortalUrl
         }
-        if ( $null -ne ${env:automationUsername} -and ("" -ne ${env:automationUsername})) {
-            $command += " automationUsername=" + ${env:automationUsername}
+        if ( $null -ne $automationUsername -and ("" -ne $automationUsername)) {
+            $command += " automationUsername=" + $automationUsername
         }
-        if ( $null -ne ${env:automationPassword} -and ("" -ne ${env:automationPassword})) {
-            $command += " automationPassword=" + ${env:automationPassword}
+        if ( $null -ne $automationPassword -and ("" -ne $automationPassword)) {
+            $command += " automationPassword=" + $automationPassword
         }
         $sb = [scriptblock]::Create($command)
         Write-Host "restart command" $command
@@ -307,7 +329,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
         if ( (-not ($ExpressionResult -is [System.Array])) -or (-not ($ExpressionResult[$ExpressionResult.Length - 1] -like '*success*'))){
             throw("Restart machine error")
         }
-        Start-Sleep 60
+        Start-Sleep 20
         Write-Host "CSAPreparationRevertMachine::RevertSnapshot End" -ForegroundColor Green -BackgroundColor Black
     }
 

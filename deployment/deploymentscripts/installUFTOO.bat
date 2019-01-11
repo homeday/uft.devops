@@ -15,7 +15,7 @@ IF NOT "%ProgramFiles(x86)%"=="" set MSI_FILE_NAME=Unified_Functional_Testing_x6
 
 
 set FULL_PATH=%CURR_PATH%
-set FULL_PATH=%DVD_Path%
+set FULL_PATH=%DVD_Path%\
 set LicenseAddress=%2
 
 IF NOT EXIST "%FULL_PATH%%MSI_FILE_NAME%" (

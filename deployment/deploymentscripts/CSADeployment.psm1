@@ -309,7 +309,7 @@ class CSADeployment {
         [string]$CSASubscriptionID
     ){
         
-        if (${env:CSADomain} -eq $null -Or ${env:CSADomain} -eq "") {
+        if ($null -eq ${env:CSADomain} -Or ${env:CSADomain} -eq "") {
             $this.CSAAccount = ${env:CSAAccount}
         } else {
             $this.CSAAccount = "${env:CSADomain}\${env:CSAAccount}"
