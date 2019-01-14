@@ -233,7 +233,7 @@ class CSAPreparationRevertMachine : CSAPreparation {
             $automationPassword = "ShalomAlechem1"
             $jarpackage="CSAWrapper-5.0.0.jar"
         } else {
-            $csaUrl = "https://mydswcsa.swinfra.net:8443/csa/rest"
+            $csaUrl = "https://mydcsa.hpeswlab.net:8443/csa/rest"
             $jarpackage="csa4.1wrapper-4.0.0.jar"
         }
         
