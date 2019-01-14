@@ -2,14 +2,14 @@
 #using module ".\CSADeployment.psm1"
 [CmdletBinding(SupportsShouldProcess=$True)]
 param (
-	#[Parameter(Mandatory=$true)]
-    [string]$CSAName="myd-hvm00241.swinfra.net",
-    #[Parameter(Mandatory=$true)]
-    [string]$BuidlVersion="14.52.2233.0",
-    #[Parameter(Mandatory=$true)]
-    [string]$Application = "rpa",
-    [string]$CleanMode = "resnapshot",
-    [string]$SUBSCRIPTION_ID = "2c90d38b6832aec7016835acda59127c",
+	[Parameter(Mandatory=$true)]
+    [string]$CSAName,
+    [Parameter(Mandatory=$true)]
+    [string]$BuidlVersion,
+    [Parameter(Mandatory=$true)]
+    [string]$Application = "uft",
+    [string]$CleanMode = "uninstall",
+    [string]$SUBSCRIPTION_ID = "",
     [string]$GAVersion = "",
     [string]$PatchID = "",    
     [string]$NotifyUri = ""
@@ -45,12 +45,6 @@ function Update-DeploymentsToDB {
         Write-Host "Update-DeploymentsToDB " $name -ForegroundColor Red -BackgroundColor Black
     }
 }
-
-
-$env:Rubicon_Username="EMEA\btoabuild"
-$env:Rubicon_Password="aid.sat-63"
-$env:CSAAccount="swinfra.net\_ft_auto"
-$env:CSAPassword="W3lcome1"
 
 Update-DeploymentsToDB -NotifyUri $NotifyUri -name $CSAName.Split(".")[0] -state "deploying"
 #subscription id = 8a471d9161ccf744016261c2513543e5
