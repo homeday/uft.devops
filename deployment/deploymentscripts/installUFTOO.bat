@@ -3,7 +3,7 @@ SET STORAGE_WIN_SERVER=\\mydastr01.hpeswlab.net
 net use %STORAGE_WIN_SERVER% %4 /USER:%3
 set DVD_Path=C:\temp\UFT
 echo extract the compressed file
-7z x %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\UFTSetup_ForOO.7z -o%DVD_Path%
+7z x %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\UFTSetup_ForOO.zip -o%DVD_Path%
 
 
 
