@@ -16,6 +16,7 @@ SET DVDNUM=%1
 IF "%DVDNUM:~0,5%"=="12.02" goto 12.02 
 IF "%DVDNUM:~0,9%"=="UFT_12_02" goto 12.02
 
+
 goto common
 
 :12.02
