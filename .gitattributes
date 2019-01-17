@@ -11,3 +11,6 @@
 *.jar filter=lfs diff=lfs merge=lfs -text
 *.msu filter=lfs diff=lfs merge=lfs -text
 
+*.bat text eol=crlf
+
+
