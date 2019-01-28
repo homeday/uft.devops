@@ -24,4 +24,5 @@ qtp.setup
 qtp.addins.mobile
 qtp.build
 qtp.addins.qtcustsupport
+qtp.addins.pdf
 qtp.components
