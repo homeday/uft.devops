@@ -1,6 +1,6 @@
 BuildMajorVersion=14
-BuildMinorVersion=52
-BuildLabel=UFT_14_52
+BuildMinorVersion=53
+BuildLabel=UFT_14_53
 BuildPostfix=0
 WSPostfix=
 Configuration=win32_release
