@@ -55,3 +55,7 @@ git_branches:
   UFT_14_51_Release:
     push:
       jenkins: *jenkins_action_push_buildwithparam_default
+      
+  UFT_14_52_Release:
+    push:
+      jenkins: *jenkins_action_push_buildwithparam_default

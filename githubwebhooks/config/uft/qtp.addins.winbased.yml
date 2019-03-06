@@ -15,3 +15,5 @@ git_branches:
             runtime: _branch_name_
 
   UFT_14_51_Release: *jenkins_action_build_default
+  UFT_14_52_Release: *jenkins_action_build_default
+  
