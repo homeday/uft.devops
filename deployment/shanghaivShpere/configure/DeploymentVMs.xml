@@ -69,12 +69,12 @@
 		  <USER_EMAIL>ftmobile_uft_dev_sap_infra@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
-		<host>
+		<!--<host>
 		  <VM_NAME>shcuft029</VM_NAME>
 		  <VM_Description>Jason shcuft029</VM_Description>
 		  <USER_EMAIL>ftmobile.dev.sap.cn@hpe.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN</VM_Template>
-		</host>
+		</host>-->
 		<host>
 		  <VM_NAME>shcuft030</VM_NAME>
 		  <VM_Description>Functional architects shcuft030</VM_Description>
