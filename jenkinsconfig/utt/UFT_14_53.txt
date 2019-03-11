@@ -3,6 +3,18 @@ MinorNumber=0
 Label=UFT_14_53
 Postfix=0
 DebugBuild=false
+br_Product=UTT
+br_RubiconPath=LT\\UTT
+br_Branch=UFT_14_53
+br_IsisId=na
+br_Label=UFT_14_53
+br_LTOPS=UFT_14_53
+br_MailTo=yguo@microfocus.com
+br_CPPConfiguration=/p:AddParameter="false"
+br_restrictToNodeLabel=ALM_Sarah
+br_unitTestsResultsFolder=UnitTestResults
+
+
 
 
 
