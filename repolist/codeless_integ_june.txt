@@ -1,0 +1,9 @@
+qtp.addins.mobile
+qtp.backend
+qtp.frontend
+qtp.services
+qtp.components
+qtp.setup
+
+
+
