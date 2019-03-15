@@ -117,7 +117,7 @@ json=$(curl --silent \
     "${full_api_url}"
 )
 if [ -z "$json" ]; then echo "Failed to send Github API request to get pull request."; exit 9; fi
-sha=$(echo "$json" | ./jq -r '.head.sha')
+sha=$(echo "$json" | jq -r '.head.sha')
 echo "Commit sha: $sha"
 
 
