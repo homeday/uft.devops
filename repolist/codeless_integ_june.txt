@@ -4,6 +4,7 @@ qtp.frontend
 qtp.services
 qtp.components
 qtp.setup
+qtp.build
 
 
 
