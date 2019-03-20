@@ -15,3 +15,5 @@ git_branches:
             runtime: _branch_name_
 
   UFT_14_03_SP_Patches: *jenkins_action_branch_default
+  UFT_14_53: *jenkins_action_branch_default
+  
