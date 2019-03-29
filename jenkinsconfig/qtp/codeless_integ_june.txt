@@ -12,7 +12,7 @@ srf_windows_executor=false
 DVD_Sync_2_SH=true
 E2E=false
 upload3rdparty=false
-repo_inclusion=-include=.repos/qtp.components -include=.repos/qtp.setup -include=.repos/qtp.backend -include=.repos/qtp.frontend -include=.repos/qtp.addins.mobile -include=.repos/qtp.services -include=.repos/qtp.build 
+repo_inclusion=-include=.repos/qtp.components -include=.repos/qtp.setup -include=.repos/qtp.backend -include=.repos/qtp.frontend -include=.repos/qtp.addins.mobile -include=.repos/qtp.services -include=.repos/qtp.build -include=.repos/qtp.addins.ai 
 
 
 
