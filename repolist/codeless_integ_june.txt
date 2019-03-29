@@ -5,6 +5,7 @@ qtp.services
 qtp.components
 qtp.setup
 qtp.build
+qtp.addins.ai
 
 
 
