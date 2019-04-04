@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<!--svn export http://.../svn/Repo/trunk/Folder C:\AnotherFolder-->
+<!--https://jpmelos.com/articles/how-use-chrome-selenium-inside-docker-container-running-python/-->
+<Deploy>
+	<GlobalProperties>
+		<environmentName>UFT 14 53 @ trunk</environmentName>
+		<EmailRole>Nightly</EmailRole>
+		<NOTIFICATION_EMAIL>yguo@microfocus.com</NOTIFICATION_EMAIL>
+		<CSAAccount>_ft_auto</CSAAccount>
+		<CSAPassword>W3lcome1</CSAPassword>
+		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
+		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
+		<buildSystem>jenkins</buildSystem>
+		<component>Deployment</component>
+		<type>Nightly</type>
+		<branch>14.03_QTP</branch>
+		<branchId>14.03_QTP</branchId>
+		<productsToMonitor>"UFT"</productsToMonitor>
+		<CSADomain>swinfra.net</CSADomain>
+		<links>""</links>
+		<machineLinks>""</machineLinks>
+		<CLEAN_MODE>resnapshot</CLEAN_MODE>
+		<DevOpsPortalIP>myd-vma00436.swinfra.net</DevOpsPortalIP>
+		<DevOpsPortalPort>8088</DevOpsPortalPort>
+		<DevOpsPortalPath>/devenvs</DevOpsPortalPath>
+		<Application>uft</Application>
+	</GlobalProperties>
+<!-- ************************************************** Clean Machines ************************************************************************  -->	
+	<hosts>
+		<host>
+		  <VM_NAME>myd-hvm00815</VM_NAME>
+		  <team>CodeLess</team>
+		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90858769c8ed0b0169dd234d40004d</SUBSCRIPTION_ID>
+		</host>
+	</hosts>
+</Deploy>
+    
