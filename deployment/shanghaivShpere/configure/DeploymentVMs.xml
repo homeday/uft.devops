@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <Deploy>
 	<GlobalProperties>
-		<NOTIFICATION_EMAIL>yguo@hpe.com,ran.bachar@hpe.com</NOTIFICATION_EMAIL>
+		<NOTIFICATION_EMAIL>yguo@microfocus.com,ran.bachar@microfocus.com</NOTIFICATION_EMAIL>
 		<VM_USER>appsadmin</VM_USER>
 		<VM_PASSWORD>appsadmin</VM_PASSWORD>
 		<VM_DOMAIN>hpeswlab.net</VM_DOMAIN>
@@ -18,98 +18,98 @@
 		<host>
 		  <VM_NAME>shcuft021</VM_NAME>
 		  <VM_Description>Bogdan shcuft021</VM_Description>
-		  <USER_EMAIL>uft.cluj.dev@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>uft.cluj.dev@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<!--<host>
 		  <VM_NAME>shcuft002</VM_NAME>
 		  <VM_Description>Tech UKR shcuft002</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.tech.ukr@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.tech.ukr@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>-->
 		<host>
 		  <VM_NAME>shcuft023</VM_NAME>
 		  <VM_Description>Sagi shcuft023</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<!--<host>
 		  <VM_NAME>shcuft004</VM_NAME>
 		  <VM_Description>Front End UKR shcuft004</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.frontend.ukr@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.frontend.ukr@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>-->
 		<host>
 		  <VM_NAME>shcuft025</VM_NAME>
 		  <VM_Description>Lancer shcuft025</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.infra.cn@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.infra.cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<!--<host>
 		  <VM_NAME>shcuft006</VM_NAME>
 		  <VM_Description>Back End shcuft006</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.back.end.cn@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.back.end.cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>-->
 		<host>
 		  <VM_NAME>shcuft027</VM_NAME>
 		  <VM_Description>Easton shcuft027</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.web.tech.cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<!--<host>
 		  <VM_NAME>shcuft008</VM_NAME>
 		  <VM_Description>Web shcuft008</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.web.tech.cn@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.web.tech.cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>-->
 		<host>
 		  <VM_NAME>shcuft028</VM_NAME>
 		  <VM_Description>Jerry shcuft028</VM_Description>
-		  <USER_EMAIL>ftmobile_uft_dev_sap_infra@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile_uft_dev_sap_infra@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
-		<!--<host>
+		<host>
 		  <VM_NAME>shcuft029</VM_NAME>
 		  <VM_Description>Jason shcuft029</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.sap.cn@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.sap.cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN</VM_Template>
-		</host>-->
+		</host>
 		<host>
 		  <VM_NAME>shcuft030</VM_NAME>
 		  <VM_Description>Functional architects shcuft030</VM_Description>
-		  <USER_EMAIL>ran.bachar@hpe.com,tal.halperin@hpe.com,tsachi.ben-zur@hpe.com,vika.milgrom@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>ran.bachar@microfocus.com,tal.halperin@microfocus.com,tsachi.ben-zur@microfocus.com,vika.milgrom@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<host>
 		  <VM_NAME>shcuft031</VM_NAME>
 		  <VM_Description>Documentation shcuft031</VM_Description>
-		  <USER_EMAIL>uft.doc@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>uft.doc@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<host>
 		  <VM_NAME>shcuft033</VM_NAME>
 		  <VM_Description>Documentation shcuft033</VM_Description>
-		  <USER_EMAIL>uft.doc@hpe.com,yonit.bisk@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>uft.doc@microfocus.com,yonit.bisk@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_LFT</VM_Template>
 		  <Application>lft</Application>
 		</host>
 		<host>
 		  <VM_NAME>appsuftqa021</VM_NAME>
 		  <VM_Description>Shanghai QA team appsuftqa021</VM_Description>
-		  <USER_EMAIL>jia.xue2@hpe.com,yi-fanc@hpe.com,xin-yuanc@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>jia.xue2@microfocus.com,yi-fanc@microfocus.com,xin-yuanc@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<host>
 		  <VM_NAME>appsuftqa022</VM_NAME>
 		  <VM_Description>Shanghai QA team appsuftqa022</VM_Description>
-		  <USER_EMAIL>jia.xue2@hpe.com,yi-fanc@hpe.com,xin-yuanc@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>jia.xue2@microfocus.com,yi-fanc@microfocus.com,xin-yuanc@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<host>
 		  <VM_NAME>appsuftqa023</VM_NAME>
 		  <VM_Description>Shanghai QA team appsuftqa023</VM_Description>
-		  <USER_EMAIL>hpmc-qa-cn@hpe.com</USER_EMAIL>
+		  <USER_EMAIL>hpmc-qa-cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		
