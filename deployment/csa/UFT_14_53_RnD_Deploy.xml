@@ -255,6 +255,16 @@
 		  <SUBSCRIPTION_ID>2c90e49067875cbb0167a696f2ac1876</SUBSCRIPTION_ID>
 		  <CATALOG_ID>c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
+		<host>
+		  <VM_NAME>myd-hvm00815</VM_NAME>
+		  <team>CodeLess</team>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90858769c8ed0b0169dd234d40004d</SUBSCRIPTION_ID>
+		</host>
 		<!---->
 		<!--CSA in New Domain end-->
 	</hosts>
