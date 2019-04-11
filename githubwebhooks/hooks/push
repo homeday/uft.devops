@@ -20,6 +20,9 @@ exit_code=0
 # fix for self-signed certificates for GitHub Enterprise that we need to send requests
 os.environ['REQUESTS_CA_BUNDLE'] = '/etc/ssl/certs/ca-certificates.crt'
 
+# fix for GHE changed to private mode
+requests_headers = {'Authorization': 'Bearer 0211f662b4b1f6b26aceaa5c1501c4bc67938c41'}
+
 # test event which must be "push"
 event = sys.argv[2]
 if event != "push":
@@ -115,7 +118,7 @@ def _push_action_trigger_jenkins_job(branch_name, push_action_config):
         else:
           jenkins_job_params[pkey] = str(pvalue)
 
-      jenkins_res = requests.get(jenkins_job_url, params=jenkins_job_params)
+      jenkins_res = requests.get(jenkins_job_url, params=jenkins_job_params, headers=requests_headers)
       if jenkins_res.status_code >= 400:
         print('Failed to trigger Jenkins job. Status code: {}. URL: {}'.format(jenkins_res.status_code, jenkins_res.url), file=sys.stderr)
         global exit_code
@@ -132,7 +135,7 @@ def _process_branch_push(branch_name):
   config_file_url = '{}/{}/githubwebhooks/config/{}/{}.yml'.format(webhooks_repo_raw_file_url, webhooks_repo_branch, org_name, repo_name)
 
   # try to request file via url
-  res = requests.get(config_file_url)
+  res = requests.get(config_file_url, headers=requests_headers)
   if res.status_code != 200:
     print('The webhooks configuration file for git repository "{}/{}" is not found. Exit. Request URL: {}'.format(org_name, repo_name, config_file_url))
     sys.exit()
