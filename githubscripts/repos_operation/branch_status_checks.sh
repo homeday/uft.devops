@@ -172,6 +172,7 @@ fi
 
 
 # always list contexts
+echo "The remaining context(s):"
 # https://developer.github.com/v3/repos/branches/#list-required-status-checks-contexts-of-protected-branch
 req_method="GET"
 api_endpoint="/repos/${repo_full_name}/branches/${branch_name}/protection/required_status_checks/contexts"
