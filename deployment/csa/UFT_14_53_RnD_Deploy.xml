@@ -47,14 +47,14 @@
 		  <USER_EMAIL>ftmobile.dev.infra.cn@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>90bc0b9b5cc94c1a015cf41ee3bb636f</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>-->
+		</host>
 		<host>
 		  <VM_NAME>myd-vm05034</VM_NAME>
 		  <team>Lancer</team>
 		  <USER_EMAIL>ftmobile.dev.infra.cn@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>90bc0b9b5cc94c1a015cf41fe42d66a3</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
-		</host>
+		</host>-->
 		<host>
 		  <VM_NAME>myd-vm04310</VM_NAME>
 		  <team>Document</team>
