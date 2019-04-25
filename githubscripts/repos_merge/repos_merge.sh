@@ -4,7 +4,7 @@ label=$1
 srcbranch=$2
 dstbranch=$3
 
-repolist=$(curl -L -s "https://raw.${GITHUB_SERVER}/uft/uft.devops/master/repolist/${label}.txt")
+repolist=$(curl -u ${GitHub_Account}:${GITHUB_USER_TOKEN} -L -s "https://raw.${GITHUB_SERVER}/uft/uft.devops/master/repolist/${label}.txt")
 
 if [[ "$repolist" =~ "404" ]]; then
     echo $repolist
