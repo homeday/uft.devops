@@ -101,6 +101,6 @@ if (prepend_msg?.trim()) {
     <p>
         <br/>
         Thank you for your cooperation!<br/>
-        <a href="mailto:uft.devops.cn@hpe.com">UFT DevOps Team</a>
+        <a href="mailto:uft.devops.cn@microfocus.com">UFT DevOps Team</a>
     </p>
 </body>

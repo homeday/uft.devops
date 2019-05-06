@@ -38,7 +38,7 @@ def release_num = rel_major_num + "." + rel_minor_num
 def sprint_num = build.getEnvironment().Sprint_Number
 def branch_name = build.getEnvironment().GIT_Branch_Name
 def code_freeze_phase = "true".equalsIgnoreCase(build.getEnvironment().Code_Freeze_Phase)
-def unlock_job_url = "http://mydtbld0120.hpeswlab.net:8080/view/Products/view/Git/job/Github.PullRequest.StatusChecks.ForceUnlock/build"
+def unlock_job_url = "http://mydtbld0211.swinfra.net:8080/view/Products/view/Self%20Services/job/Github.PullRequest.StatusChecks.ForceUnlock/build"
 def status_checks = "cd/releases/${rel_major_num}_${rel_minor_num}/code_freeze"
 %>
 
@@ -50,8 +50,7 @@ if (code_freeze_phase) {
 %>
     <p>
         <span class="emphasize2">SPECIAL REMINDER:</span> <span class="emphasize3">WE ARE IN UFT ${release_num} CODE FREEZE PHASE!</span><br/><br/>
-        Approvals from <a href="mailto:vika.milgrom@microfocus.com"><span class="emphasize2">Vika</span></a>,
-        <a href="mailto:tsachi.ben-zur@microfocus.com"><span class="emphasize2">Tsachi</span></a>,
+        Approvals from <a href="mailto:avi.genshaft@microfocus.com"><span class="emphasize2">Avi</span></a>,
         <a href="mailto:peng-ji.yin@microfocus.com"><span class="emphasize2">Jerry</span></a>,
         <a href="mailto:ran.bachar@microfocus.com"><span class="emphasize2">Ran</span></a> and
         <a href="mailto:jia.xue2@microfocus.com"><span class="emphasize2">James</span></a> are required for any exceptions

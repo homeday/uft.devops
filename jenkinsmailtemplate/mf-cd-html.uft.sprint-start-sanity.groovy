@@ -36,9 +36,9 @@ def sprint_num = build.getEnvironment().Sprint_Number
 def branch_name = build.getEnvironment().GIT_Branch_Name
 def code_freeze_phase = "true".equalsIgnoreCase(build.getEnvironment().Code_Freeze_Phase)
 def today = new Date().format('MMM.dd, YYYY')
-def rubicon_install_link = "file:///\\\\mydastr01.hpeswlab.net\\products\\FT\\QTP\\win32_release\\" + build_num + "\\DVD_Wix\\Setup.exe"
+def rubicon_install_link = "file:///\\\\mydanas01.swinfra.net\\products\\FT\\QTP\\win32_release\\" + build_num + "\\DVD_Wix\\Setup.exe"
 def sh206_install_link = "file:///\\\\10.5.32.206\\Builds\\" + build_num
-def unlock_job_url = "http://mydtbld0120.hpeswlab.net:8080/view/Products/view/Git/job/Github.PullRequest.StatusChecks.ForceUnlock/build"
+def unlock_job_url = "http://mydtbld0211.swinfra.net:8080/view/Products/view/Self%20Services/job/Github.PullRequest.StatusChecks.ForceUnlock/build"
 def status_checks = "cd/releases/${rel_major_num}_${rel_minor_num}/sprint${sprint_num}/sanity"
 %>
 
@@ -60,8 +60,7 @@ if (code_freeze_phase) {
         We are in <b>UFT ${release_num} Sprint ${sprint_num} Sanity</b> <span class="emphasize">code freeze</span> now.<br/><br/>
         The <b>${branch_name}</b> branch of all <b>QTP</b> repositories, <b>UFTBase</b> and <b>ST</b> are locked and merging to this branch is not allowed,
         however, you are still able to work on the other branches, create and review pull requests.<br/><br/>
-        Approvals from <a href="mailto:vika.milgrom@microfocus.com"><span class="emphasize2">Vika</span></a>,
-        <a href="mailto:tsachi.ben-zur@microfocus.com"><span class="emphasize2">Tsachi</span></a>,
+        Approvals from <a href="mailto:avi.genshaft@microfocus.com"><span class="emphasize2">Avi</span></a>,
         <a href="mailto:peng-ji.yin@microfocus.com"><span class="emphasize2">Jerry</span></a>,
         <a href="mailto:ran.bachar@microfocus.com"><span class="emphasize2">Ran</span></a> and
         <a href="mailto:jia.xue2@microfocus.com"><span class="emphasize2">James</span></a> are required for any exceptions
@@ -78,7 +77,7 @@ if (code_freeze_phase) {
     <div class="caption">UFT Installation - ${build_num}</div>
     <ul>
         <li>Install from <a href="${rubicon_install_link}">Rubicon</a></li>
-        <li>Install from <a href="${sh206_install_link}">Shanghai 206 Server</a> (need unzip and then install)</li>
+        <li>Install from <a href="${sh206_install_link}">Shanghai 206 Server</a> (requires unzip before installation)</li>
         <li>The <b>Lab’s Virtual Machines</b> shall be deployed automatically. (Re)install this build manually in case of any failures.</li>
     </ul>
 
