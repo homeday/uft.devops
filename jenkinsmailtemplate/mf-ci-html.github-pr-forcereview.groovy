@@ -85,6 +85,6 @@ def jenkins_job_url = build.getEnvironment().BUILD_URL + "consoleText"
         If you have already acknowledged and approved this request, please ignore this email.<br/><br/>
 
         Thanks,<br/>
-        <a href="mailto:uft.devops.cn@hpe.com">UFT DevOps Team</a>
+        <a href="mailto:uft.devops.cn@microfocus.com">UFT DevOps Team</a>
     </p>
 </body>
