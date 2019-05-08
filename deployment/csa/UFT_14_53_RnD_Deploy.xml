@@ -262,7 +262,7 @@
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
 		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
+		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com,CDLSGROUPALL@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>2c90858769c8ed0b0169dd234d40004d</SUBSCRIPTION_ID>
 		</host>
 		<!---->
