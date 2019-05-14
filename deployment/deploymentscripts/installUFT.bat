@@ -2,8 +2,7 @@
 ipconfig /flushdns
 net use * /delete /y
 SET STORAGE_WIN_SERVER=\\mydastr01.hpeswlab.net
-REM IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & 
-net use T: %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release %4 /u:%3 /persistent:no
+REM IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & net use X: %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release %4 /u:%3 /persistent:no
 net use %STORAGE_WIN_SERVER% %4 /u:%3 /persistent:no
 
 set DVD_Path=Z:\FT\QTP\win32_release\%1\DVD_WIX
@@ -58,7 +57,8 @@ cmd /c MsiExec /norestart /qn /i "Unified Functional Testing\MSI\Unified_Functio
 ) ELSE (
 echo installing UFT and LFT as a feature	
 
-cmd /c MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+REM cmd /c MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+cmd /c MsiExec /norestart /qn /i "Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 
 )
 popd
