@@ -4,7 +4,7 @@ net use * /delete /y
 SET STORAGE_WIN_SERVER=\\mydastr01.hpeswlab.net
 REM IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & 
 net use X: %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release %4 /u:%3 /persistent:no
-net use %PRODUCTS_STORAGE_WIN% %4 /u:%3 /persistent:no
+net use %STORAGE_WIN_SERVER% %4 /u:%3 /persistent:no
 
 set DVD_Path=X:\%1\DVD_WIX
 
