@@ -48,7 +48,7 @@ IF %THREE_LETTER_LANG%==ENU (
 	)
 ECHO ##%LOCALE_STRING%##
 
-pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
+REM pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
 IF "%5" == "" (
 echo installing UFT
 
@@ -62,7 +62,7 @@ REM cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\Unified
 cmd /c MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 
 )
-popd
+REM popd
 
 
 if %errorlevel% EQU 3010 goto RESTART
