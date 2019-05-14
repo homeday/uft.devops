@@ -6,7 +6,7 @@ REM IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydastr01.hpeswlab
 net use T: %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release %4 /u:%3 /persistent:no
 net use %STORAGE_WIN_SERVER% %4 /u:%3 /persistent:no
 
-set DVD_Path=T:\%1\DVD_WIX
+set DVD_Path=Z:\FT\QTP\win32_release\%1\DVD_WIX
 
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"
@@ -49,10 +49,11 @@ IF %THREE_LETTER_LANG%==ENU (
 	SET LOCALE_STRING=PRODUCT_LOCALE=%THREE_LETTER_LANG%
 	)
 ECHO ##%LOCALE_STRING%##
-
+pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\DVD_WIX
 IF "%5" == "" (
 echo installing UFT
-cmd /c MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
+REM cmd /c MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
+cmd /c MsiExec /norestart /qn /i "Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
 
 ) ELSE (
 echo installing UFT and LFT as a feature	
@@ -60,7 +61,7 @@ echo installing UFT and LFT as a feature
 cmd /c MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 
 )
-
+popd
 
 if %errorlevel% EQU 3010 goto RESTART
 goto CheckOS
