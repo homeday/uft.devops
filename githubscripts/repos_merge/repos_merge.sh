@@ -3,8 +3,17 @@
 label=$1
 srcbranch=$2
 dstbranch=$3
+all="false"
+if [ "$#" -gt 3 ]; then
+    all=$4
+fi
+
 
 repolist=$(curl -u ${GitHub_Account}:${GITHUB_USER_TOKEN} -L -s "https://raw.${GITHUB_SERVER}/uft/uft.devops/master/repolist/${label}.txt")
+
+if [ "$all" = "true" ]; then
+    repolist="${repolist}"$'\n'"st"$'\n'"uftbase"
+fi
 
 if [[ "$repolist" =~ "404" ]]; then
     echo $repolist
@@ -45,6 +54,7 @@ while IFS='' read -r line; do
             git pull
         fi 
         
+        echo ----------------------------merge from ${srcbranch} to ${dstbranch} ------------------------------
         git merge ${srcbranch}
         if [ "$?" != "0" ]; then
             echo ${dstbranch} >> errorreposities.txt
@@ -57,8 +67,9 @@ while IFS='' read -r line; do
 done <<< "${repolist}"
 
 
+
 if [ -f errorreposities.txt ]; then
-    echo ----------------------------problem repositories------------------------------
+    echo ----------------------------problematic repositories------------------------------
     cat errorreposities.txt
     exit 1
 fi
