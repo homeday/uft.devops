@@ -78,17 +78,19 @@ class VSphereInstallUFT : VSphereInstallApp {
             $ExpressionResult = Invoke-Command -Credential $VSphereCredential -ComputerName $MachineName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             $iloop=$iloop+1
-        } until ( ($installed=$this.CheckUFTExist($MachineName, $UserName, $Password)) -eq $true -or $iloop -gt 3)
+        } until ( ($installed=$this.CheckUFTInstalled($MachineName, $UserName, $Password, $VSphereCredential, $BuildVersion)) -eq $true -or $iloop -gt 3)
         Write-Host "VSphereInstallUFT::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
         return $installed
     }
 
-    [Boolean]CheckUFTExist(
+    [Boolean]CheckUFTInstalled(
         [string]$MachineName,
         [string]$UserName,
-        [string]$Password
+        [string]$Password,
+        [System.Management.Automation.PSCredential]$VSphereCredential,
+        [string]$BuildVersion
     ) {
-        Write-Host "VSphereInstallUFT::CheckUFTExist Start" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "VSphereInstallUFT::CheckUFTInstalled Start" -ForegroundColor Green -BackgroundColor Black
         $IsAppexist=$false
         #$Arguments=@("/C",
         #    "Net Use \\$($this.MachineName)\IPC`$ /USER:$($this.UserName) $($this.Password)"
@@ -116,6 +118,25 @@ class VSphereInstallUFT : VSphereInstallApp {
             Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
         }
 
+          try {
+            if ($IsAppexist) {
+                $IsAppexist = $false
+                Write-Host "Check Version ${BuildVersion}" -ForegroundColor Green -BackgroundColor Black
+                $result = Invoke-Command -ComputerName $MachineName -Credential $VSphereCredential {Get-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Mercury Interactive\QuickTest Professional\CurrentVersion"}
+                #Write-Host "Check Version result =  ${result}" -ForegroundColor Green -BackgroundColor Black
+                if ($result -ne $null) {
+                    $versionInreg = $result.Major + "." + $result.Minor + "." + $result.build + ".0"
+                    Write-Host "versionInreg = ${versionInreg}" -ForegroundColor Green -BackgroundColor Black
+                    if ($versionInreg -eq $BuildVersion) {
+                        $IsAppexist = $true
+                    }
+                }
+            }
+        }
+        catch [Exception] {
+            Write-Host $_.Exception|format-list -force
+        }
+
         #$Arguments=@("/C",
         #    "Net Use \\$($this.MachineName)\IPC`$ /D"
         #)
@@ -124,7 +145,7 @@ class VSphereInstallUFT : VSphereInstallApp {
         $ExpressionResult = Invoke-Command -ScriptBlock $NetUseExpression
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Write-Host "It is ${IsAppexist} UFT exists" -ForegroundColor Green -BackgroundColor Black
-        Write-Host "VSphereInstallUFT::CheckUFTExist End" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "VSphereInstallUFT::CheckUFTInstalled End" -ForegroundColor Green -BackgroundColor Black
         return $IsAppexist
     }
 }
