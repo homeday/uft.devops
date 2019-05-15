@@ -73,17 +73,19 @@ class CSAInstallUFT : CSAInstallApp {
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             $iloop=$iloop+1
-        } until ( ($installed=$this.CheckUFTExist($CSAName, $CSAAccount, $CSAPwd)) -eq $true -or $iloop -gt 3)
+        } until ( ($installed=$this.CheckUFTInstalled($CSAName, $CSAAccount, $CSAPwd, $CSACredential, $BuildVersion)) -eq $true -or $iloop -gt 3)
         Write-Host "CSAInstallUFT::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
         return $installed
     }
 
-    [Boolean]CheckUFTExist(
+    [Boolean]CheckUFTInstalled(
         [string]$CSAName,
         [string]$CSAAccount,
-        [string]$CSAPwd
+        [string]$CSAPwd,
+        [System.Management.Automation.PSCredential]$CSACredential,
+        [string]$BuildVersion
     ) {
-        Write-Host "CSAInstallUFT::CheckUFTExist Start" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "CSAInstallUFT::CheckUFTInstalled Start" -ForegroundColor Green -BackgroundColor Black
         $IsAppexist=$false
         #$Arguments=@("/C",
         #    "Net Use \\$($this.CSAName)\IPC`$ /USER:$($this.CSAAccount) $($this.CSAPwd)"
@@ -111,6 +113,28 @@ class CSAInstallUFT : CSAInstallApp {
             Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
         }
 
+
+        try {
+            if ($IsAppexist) {
+                Write-Host "UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
+                Write-Host "Check Version ${BuildVersion}" -ForegroundColor Green -BackgroundColor Black
+
+                $result = Invoke-Command -ComputerName $CSAName -Credential $CSACredential {Get-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Mercury Interactive\QuickTest Professional\CurrentVersion"}
+                Write-Host "Check Version result =  ${result}" -ForegroundColor Green -BackgroundColor Black
+                if ($result -ne $null) {
+                    $versionInreg = "${result.Major}.${result.Minor}.${result.build}.0"
+                    Write-Host "versionInreg =  ${versionInreg}" -ForegroundColor Green -BackgroundColor Black
+                    $res = $versionInreg -eq $BuildVersion
+                    Write-Host "res = $res" -ForegroundColor Green -BackgroundColor Black
+                }
+            }
+        }
+        catch [Exception] {
+            Write-Host $_.Exception|format-list -force
+        }
+        
+
+
         #$Arguments=@("/C",
         #    "Net Use \\$($this.CSAName)\IPC`$ /D"
         #)
@@ -119,7 +143,7 @@ class CSAInstallUFT : CSAInstallApp {
         $ExpressionResult = Invoke-Command -ScriptBlock $NetUseExpression
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Write-Host "It is ${IsAppexist} UFT exists" -ForegroundColor Green -BackgroundColor Black
-        Write-Host "CSAInstallUFT::CheckUFTExist End" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "CSAInstallUFT::CheckUFTInstalled End" -ForegroundColor Green -BackgroundColor Black
         return $IsAppexist
     }
 }
@@ -158,7 +182,7 @@ class CSAInstallLFTAsFt : CSAInstallUFT {
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             $iloop=$iloop+1
-        } until ( ($installed=([CSAInstallUFT]$this).CheckUFTExist($CSAName, $CSAAccount, $CSAPwd)) -eq $true -or $iloop -gt 3)
+        } until ( ($installed=([CSAInstallUFT]$this).CheckUFTInstalled($CSAName, $CSAAccount, $CSAPwd, $CSACredential, $BuildVersion)) -eq $true -or $iloop -gt 3)
         Write-Host "CSAInstallLFTAsFt::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
         return $installed
     }
@@ -200,7 +224,7 @@ class CSAInstallRPA : CSAInstallUFT {
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             $iloop=$iloop+1
-        } until ( ($installed=([CSAInstallUFT]$this).CheckUFTExist($CSAName, $CSAAccount, $CSAPwd)) -eq $true -or $iloop -gt 3)
+        } until ( ($installed=([CSAInstallUFT]$this).CheckUFTInstalled($CSAName, $CSAAccount, $CSAPwd, $CSACredential, $BuildVersion)) -eq $true -or $iloop -gt 3)
         Write-Host "CSAInstallRPA::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
         return $installed
     }
