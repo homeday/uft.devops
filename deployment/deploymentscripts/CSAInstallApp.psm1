@@ -113,19 +113,17 @@ class CSAInstallUFT : CSAInstallApp {
             Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
         }
 
-
         try {
             if ($IsAppexist) {
-                Write-Host "UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
+                $IsAppexist = $false
                 Write-Host "Check Version ${BuildVersion}" -ForegroundColor Green -BackgroundColor Black
-
                 $result = Invoke-Command -ComputerName $CSAName -Credential $CSACredential {Get-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Mercury Interactive\QuickTest Professional\CurrentVersion"}
-                Write-Host "Check Version result =  ${result}" -ForegroundColor Green -BackgroundColor Black
+                #Write-Host "Check Version result =  ${result}" -ForegroundColor Green -BackgroundColor Black
                 if ($result -ne $null) {
                     $versionInreg = $result.Major + "." + $result.Minor + "." + $result.build + ".0"
-                    Write-Host "versionInreg =  ${versionInreg}" -ForegroundColor Green -BackgroundColor Black
-                    $res = $versionInreg -eq $BuildVersion
-                    Write-Host "res = $res" -ForegroundColor Green -BackgroundColor Black
+                    Write-Host "versionInreg = ${versionInreg}" -ForegroundColor Green -BackgroundColor Black
+                    if ($versionInreg -eq $BuildVersion)
+                        $IsAppexist = $true
                 }
             }
         }
@@ -133,8 +131,6 @@ class CSAInstallUFT : CSAInstallApp {
             Write-Host $_.Exception|format-list -force
         }
         
-
-
         #$Arguments=@("/C",
         #    "Net Use \\$($this.CSAName)\IPC`$ /D"
         #)
