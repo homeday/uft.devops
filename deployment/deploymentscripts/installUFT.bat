@@ -11,6 +11,8 @@ pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\
 cmd /c setup.exe /InstallOnlyPrerequisite /s
 popd 
 
+ping 127.0.0.1 -n 50 > nul 
+
 SET DVDNUM=%1
 IF "%DVDNUM:~0,5%"=="12.02" goto 12.02 
 IF "%DVDNUM:~0,9%"=="UFT_12_02" goto 12.02
