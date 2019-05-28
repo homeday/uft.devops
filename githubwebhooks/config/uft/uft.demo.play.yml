@@ -13,8 +13,9 @@ git_branches:
             body: |
               The compile-only builds (both Debug and Release) will be run in several minutes automatically.
 
-              If the builds are not started in 10 minutes, please trigger the builds manually by clicking <a rel="external" target="_blank" href="${jenkins_build_url}">this link</a>.
-              Once clicked, a new blank tab/page will be opened to trigger the build which is expected. Just close the newly opened tab/page.
+              If the builds are not started in 10 minutes, please trigger the builds manually by clicking <a href="${jenkins_build_url}">this link</a>.
+
+              Once clicked, the current page will be redirected to a blank page. This behavior is expected and just go back to the previous page.
             placeholders:
               jenkins_build_url:
                 URI_BUILDER:
