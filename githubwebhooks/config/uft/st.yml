@@ -39,6 +39,36 @@ git_branches:
               runtime: _base_branch_
             Git_PullRequest_ID:
               runtime: _pull_request_id_
+        robots:
+          notes_writter:
+            enabled: true
+            body: |
+              The compile-only builds (both Debug and Release) will be run in several minutes automatically.
+
+              If the builds are not started in 10 minutes, please trigger the builds manually by clicking <a href="${jenkins_build_url}">this link</a>.
+
+              Once clicked, the current page will be redirected to a blank page in order to trigger a new Jenkins build.
+              This behavior is expected and just go back to the original page.
+
+              Do <b>NOT</b> click the link more than one time.
+            placeholders:
+              jenkins_build_url:
+                URI_BUILDER:
+                  schema: http
+                  host: mydtbld0211.swinfra.net:8080
+                  base_uri: /job/ST.CompileOnlyBuild.Trigger/buildWithParameters
+                  query:
+                    token: ST_COMPILEONLY_TOKEN
+                    Git_Repo_Clone_Url:
+                      runtime: _head_repo_clone_url_
+                    Head_Branch:
+                      runtime: _head_branch_
+                    Head_sha:
+                      runtime: _head_sha_
+                    Base_Branch:
+                      runtime: _base_branch_
+                    Git_PullRequest_ID:
+                      runtime: _pull_request_id_
       reopened:
         jenkins: *jenkins_action_pull_request_compile_only
       synchronize:
