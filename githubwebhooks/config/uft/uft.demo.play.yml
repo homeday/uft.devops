@@ -1,0 +1,35 @@
+git_org: uft
+git_repo: uft.demo.play
+
+git_tags:
+
+git_branches:
+  master:
+    pull_request:
+      opened:
+        robots:
+          notes_writter:
+            enabled: true
+            body: |
+              The compile-only builds (both Debug and Release) will be run in several minutes automatically.
+
+              If the builds are not started in 10 minutes, please trigger the builds manually via the link below:
+              ${jenkins_build_url}
+            placeholders:
+              jenkins_build_url:
+                URI_BUILDER:
+                  schema: http
+                  host: mydtbld0211.swinfra.net:8080
+                  base_uri: /job/solever.test.1/buildWithParameters
+                  query:
+                    token: TEST_TOKEN
+                    Git_Repo_Clone_Url:
+                      runtime: _head_repo_clone_url_
+                    Head_Branch:
+                      runtime: _head_branch_
+                    Head_sha:
+                      runtime: _head_sha_
+                    Base_Branch:
+                      runtime: _base_branch_
+                    Git_PullRequest_ID:
+                      runtime: _pull_request_id_
