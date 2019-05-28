@@ -15,7 +15,10 @@ git_branches:
 
               If the builds are not started in 10 minutes, please trigger the builds manually by clicking <a href="${jenkins_build_url}">this link</a>.
 
-              Once clicked, the current page will be redirected to a blank page. This behavior is expected and just go back to the previous page.
+              Once clicked, the current page will be redirected to a blank page in order to trigger a new Jenkins build.
+              This behavior is expected and just go back to the original page.
+
+              Do <b>NOT</b> click the link more than one time.
             placeholders:
               jenkins_build_url:
                 URI_BUILDER:
