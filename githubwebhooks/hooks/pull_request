@@ -11,6 +11,7 @@ import tempfile
 import json
 import requests
 import yaml
+from string import Template
 
 # this script is called by 'webhooks.py' with arguments:
 # payloadfile event
@@ -22,6 +23,9 @@ os.environ['REQUESTS_CA_BUNDLE'] = '/etc/ssl/certs/ca-certificates.crt'
 
 # fix for GHE changed to private mode
 requests_headers = {'Authorization': 'Bearer 0211f662b4b1f6b26aceaa5c1501c4bc67938c41'}
+
+# GHE base uri
+ghe_base_uri = 'https://github.houston.softwaregrp.net/api/v3'
 
 # test event which must be "pull_request"
 event = sys.argv[2]
@@ -129,6 +133,68 @@ def _pull_request_action_trigger_jenkins_job(pull_request_action_type, base_bran
         print('Jenkins job is triggered successfully. URL: {}'.format(jenkins_res.url))
 
 
+def _pull_request_action_robots(pull_request_action_type, base_branch_name, action_config):
+  robots = _get(action_config, 'robots', {})
+  if 'notes_writter' in robots:
+    _pull_request_action_robot_notes_writter(pull_request_action_type, base_branch_name, robots['notes_writter'])
+
+
+def _pull_request_action_robot_notes_writter(pull_request_action_type, base_branch_name, robot_config):
+  robot_enabled = _get(robot_config, 'enabled', False)
+  if not robot_enabled:
+    print('Robot action "notes_writter" is either not configured or disabled for the PR action "{}" for the branch "{}" in git repository "{}/{}".'.format(
+      pull_request_action_type, base_branch_name, org_name, repo_name))
+  else:
+    t = Template(_get(robot_config, 'body', ''))
+    placeholders = _get(robot_config, 'placeholders', {})
+    for name in placeholders:
+      ph = placeholders[name]
+      if 'URI_BUILDER' in ph:
+        placeholders[name] = _utils_uri_builder(ph['URI_BUILDER'])
+    body = t.safe_substitute(placeholders)
+    # send request
+    api_url = '{base_url}/repos/{org}/{repo}/pulls/{pr}/reviews'.format(base_url=ghe_base_uri, org=org_name, repo=repo_name, pr=pr_number)
+    resp = requests.post(api_url, json={'body': body, 'event': 'COMMENT'}, headers=requests_headers)
+    if resp.status_code >= 400:
+      print('Failed to add pull request review. Status code: {}. URL: {}'.format(resp.status_code, resp.url), file=sys.stderr)
+      global exit_code
+      exit_code = resp.status_code
+    else:
+      print('Pull request comment is added successfully.')
+
+
+def _utils_uri_builder(config={}):
+  d = {}
+  d['schema'] = 'http'
+  d['host'] = 'localhost'
+  d['base_uri'] = '/'
+  d.update(config)
+
+  uri = '{schema}://{host}{base_uri}'.format(**d)
+
+  qStr = '?src=ghe'
+  query = _get(d, 'query', {})
+  for qKey in query:
+    qVal = query[qKey]
+    if isinstance(qVal, dict):
+      runtime_var = _get(qVal, 'runtime')
+      if runtime_var == '_head_repo_clone_url_':
+        qStr += '&{}={}'.format(qKey, src_repo_clone_url)
+      elif runtime_var == '_head_branch_':
+        qStr += '&{}={}'.format(qKey, src_repo_head_branch)
+      elif runtime_var == '_head_sha_':
+        qStr += '&{}={}'.format(qKey, src_repo_head_sha)
+      elif runtime_var == '_base_branch_':
+        qStr += '&{}={}'.format(qKey, dest_repo_base_branch)
+      elif runtime_var == '_pull_request_id_':
+        qStr += '&{}={}'.format(qKey, pr_number)
+      else:
+        qStr += '&{}={}'.format(qKey, str(qVal))
+    else:
+      qStr += '&{}={}'.format(qKey, str(qVal))
+
+  return uri + qStr
+
 
 #
 # main procedure
@@ -160,5 +226,6 @@ else:
   else:
     # do corresponding action(s)
     _pull_request_action_trigger_jenkins_job(pr_action, dest_repo_base_branch, action_cfg)
+    _pull_request_action_robots(pr_action, dest_repo_base_branch, action_cfg)
 
 
