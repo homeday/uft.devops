@@ -134,7 +134,7 @@ while true; do
 
     data='{"state":"success"'
     data="${data},\"context\":\"${status_check}\""
-    data="${data},\"description\":\"Required by '${req_user}': ${req_msg}\""
+    data="${data},\"description\":\"By '${req_user}': ${req_msg}\""
     if [ -n "${status_check_url}" ]; then
         data="${data},\"target_url\":\"${status_check_url}\""
     fi
