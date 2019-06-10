@@ -1,0 +1,8 @@
+BuildMajorVersion=14
+BuildMinorVersion=53
+BuildLabel=UFT_14_53
+BuildPostfix=0
+WSPostfix=
+Configuration=win32_release
+repo_inclusion=
+
