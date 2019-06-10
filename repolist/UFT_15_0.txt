@@ -26,3 +26,4 @@ qtp.build
 qtp.addins.qtcustsupport
 qtp.addins.pdf
 qtp.components
+qtp.addins.ai
