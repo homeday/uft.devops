@@ -90,3 +90,11 @@ git_branches:
     push:
       jenkins: *jenkins_action_push_buildwithparam_default   
       
+  UFT_14_53_Release:
+    push:
+      jenkins: *jenkins_action_push_buildwithparam_default
+
+  UFT_14_53_SP_Patches:
+    push:
+      jenkins: *jenkins_action_push_buildwithparam_default      
+      
