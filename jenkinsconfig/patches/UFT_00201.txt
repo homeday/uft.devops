@@ -1,0 +1,9 @@
+Branch=UFT_14_53_SP_Patches
+PatchID=UFT_00201
+GaLabel=UFT_14_53_RC1
+BuildMajorVersion=14
+BuildMinorVersion=53
+BuildPostfix=1
+BuildLabel=UFT_14_53_SP_Patches
+CodeSign=1
+SignMethod=AUJAS
