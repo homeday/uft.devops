@@ -1,0 +1,7 @@
+BuildMajorVersion=14
+BuildMinorVersion=53
+BuildLabel=Sprinter_14_53
+BuildPostfix=0
+
+
+
