@@ -1,0 +1,8 @@
+BuildMajorVersion=15
+BuildMinorVersion=0
+BuildLabel=UFT_15_0_dotnet48
+BuildPostfix=111
+WSPostfix=
+Configuration=win32_release
+repo_inclusion=
+
