@@ -3,15 +3,37 @@
 label=$1
 srcbranch=$2
 dstbranch=$3
+exclude=
 all="false"
 if [ "$#" -gt 3 ]; then
-    all=$4
+	param=$4
+	if [[ $param == *"exclude="* ]]; then
+		IFS='=' read -r -a array <<< "$param"
+		exclude=${array[1]}
+	fi
+	if [ $param == "-a" ]; then
+		all="true"
+	fi
 fi
+
+if [ "$#" -gt 4 ]; then
+	param=$5
+	if [[ $param == *"exclude="* ]]; then
+		IFS='=' read -r -a array <<< "$param"
+		exclude=${array[1]}
+	fi
+	if [ $param == "-a" ]; then
+		all="true"
+	fi
+fi
+
+echo exclude=${exclude}
+echo all=${all}
 
 
 repolist=$(curl -u ${GitHub_Account}:${GITHUB_USER_TOKEN} -L -s "https://raw.${GITHUB_SERVER}/uft/uft.devops/master/repolist/${label}.txt")
 
-if [ "$all" = "true" ]; then
+if [ "$all" == "true" ]; then
     repolist="${repolist}"$'\n'"st"$'\n'"uftbase"
 fi
 
@@ -27,6 +49,10 @@ fi
 while IFS='' read -r line; do
 	if [ "" != "$line" ]; then
         echo ----------------------------merge of repoistory $line start------------------------------
+		if [[ $exclude == *"${line}"* ]]; then
+			echo "${line} is excluded"
+			continue
+		fi
         git clone https://${GITHUB_USER_TOKEN}@${GITHUB_SERVER}/uft/${line}
         pushd $line
         git ls-remote | grep refs/heads/${srcbranch}
@@ -57,7 +83,7 @@ while IFS='' read -r line; do
         echo ----------------------------merge from ${srcbranch} to ${dstbranch} ------------------------------
         git merge ${srcbranch}
         if [ "$?" != "0" ]; then
-            echo ${dstbranch} >> errorreposities.txt
+            echo ${line} >> errorreposities.txt
             continue
         fi
         git push
