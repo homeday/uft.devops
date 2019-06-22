@@ -1,6 +1,6 @@
 Branch=UFT_14_53_SP_Patches
 PatchID=UFT_00201
-GaLabel=UFT_14_53_RC2
+GaLabel=UFT_14_53_RC3
 BuildMajorVersion=14
 BuildMinorVersion=53
 BuildPostfix=1
