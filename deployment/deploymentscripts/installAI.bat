@@ -19,7 +19,7 @@ For /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set currdate=%%c_%%a_%%b)
 For /f "tokens=1-2 delims=/:" %%a in ('time /t') do (set currtime=%%a%%b)
 SET MSI_LOG_FILE_NAME=UFTSetup_%currdate%_%currtime%.log
 SET MSI_LOG_FILE_NAME=%MSI_LOG_FILE_NAME: =_%
-
+SET ERRORCODE=0
 
 
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\prerequisites
@@ -31,8 +31,9 @@ set AddinsToInstall=Core_Components,Web_Add_in,ALM_Plugin,IDE,Test_Results_Viewe
 set UFTConfiguration=CONF_MSIE=1 ALLOW_RUN_FROM_ALM=1 ALLOW_RUN_FROM_SCRIPTS=1 DLWN_SCRIPT_DBGR=1
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
 cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\Unified Functional Testing\MSI\%MSI_FILE_NAME%" /l*xv C:\UFT_Install_Log.txt %UFTConfiguration% LICSVR=%LicenseAddress% LICID=23078 ADDLOCAL=%AddinsToInstall%
+SET ERRORCODE=%ERRORLEVEL%
 popd
-IF ERRORLEVEL 1 (
+IF %ERRORCODE% NEQ 0 (
 	echo Install UFT error
 	goto ERROR
 )
@@ -43,9 +44,10 @@ cmd /c setup.exe /InstallOnlyPrerequisite /s
 popd 
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
 cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\AI\AI_Installer.msi" /l*xv C:\AI_Install_Log.txt ADDLOCAL=AI_Services,UI_Services
+SET ERRORCODE=%ERRORLEVEL%
 popd
-IF ERRORLEVEL 1 (
-	echo Install UFT error
+IF %ERRORCODE% NEQ 0 (
+	echo Install AI error
 	goto ERROR
 )
 goto END
