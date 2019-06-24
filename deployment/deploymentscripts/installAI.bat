@@ -42,7 +42,7 @@ pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\DVD_Wix\AI
 cmd /c setup.exe /InstallOnlyPrerequisite /s
 popd 
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\AI\MSI\AI_Installer.msi" /l*xv C:\AI_Install_Log.txt ADDLOCAL=AI_Services,UI_Services
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\AI\AI_Installer.msi" /l*xv C:\AI_Install_Log.txt ADDLOCAL=AI_Services,UI_Services
 popd
 IF ERRORLEVEL 1 (
 	echo Install UFT error
