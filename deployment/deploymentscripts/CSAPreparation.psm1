@@ -73,6 +73,7 @@ class CSAPreparation {
         Copy-Item "${PSScriptRoot}\installUFT_LFTasFeature.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         Copy-Item "${PSScriptRoot}\HP UFT-licfile.dat" -Destination "C:\" -ToSession $ConnSession -Recurse
         Copy-Item "${PSScriptRoot}\installUFTOO.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
+		Copy-Item "${PSScriptRoot}\installAI.bat" -Destination "C:\" -ToSession $ConnSession -Recurse
         if ($null -ne $ConnSession) {
             Remove-PSSession -Session $ConnSession
         }
