@@ -258,6 +258,7 @@
 		<host>
 		  <VM_NAME>myd-hvm00815</VM_NAME>
 		  <team>CodeLess</team>
+		  <Application>ai</Application>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
@@ -268,6 +269,7 @@
 		<host>
 		  <VM_NAME>myd-hvm01336</VM_NAME>
 		  <team>CodeLess</team>
+		  <Application>ai</Application>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
