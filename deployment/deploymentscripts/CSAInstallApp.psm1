@@ -227,6 +227,47 @@ class CSAInstallRPA : CSAInstallUFT {
     }
 }
 
+class CSAInstallAI : CSAInstallUFT {
+
+    CSAInstallAI(
+    ) : base(
+    ) {
+        Write-Host "CSAInstallAI::constructor" -ForegroundColor Green -BackgroundColor Black
+    }
+    static [CSAInstallAI] $instance
+    static [CSAInstallAI] GetInstance() {
+        if ($null -eq [CSAInstallAI]::instance) { 
+            [CSAInstallAI]::instance = [CSAInstallAI]::new() 
+        }
+        return [CSAInstallAI]::instance
+    }
+    [Boolean]InstallApplication(
+        [string]$CSAName,
+        [string]$CSAAccount,
+        [string]$CSAPwd,        
+        [System.Management.Automation.PSCredential]$CSACredential,
+        [string]$BuildVersion
+    ) {
+        Write-Host "CSAInstallAI::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
+        $sb = [scriptblock]::Create(
+            "CMD.exe /C C:\installAI.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password}" 
+        )
+        $iloop=0
+        $installed=$false
+        do {
+            if ($iloop -ne 0) {
+                Start-Sleep 120
+            }
+            $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
+            Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+            $iloop=$iloop+1
+        } until ( ($installed=([CSAInstallUFT]$this).CheckUFTInstalled($CSAName, $CSAAccount, $CSAPwd, $CSACredential, $BuildVersion)) -eq $true -or $iloop -gt 3)
+        Write-Host "CSAInstallAI::InstallApplication End" -ForegroundColor Green -BackgroundColor Black
+        return $installed
+    }
+}
+
+
 
 class CSAInstallPatch : CSAInstallUFT {
 
