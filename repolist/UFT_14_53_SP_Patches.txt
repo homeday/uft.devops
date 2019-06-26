@@ -1,3 +1,4 @@
+qtp.addins.mobile
 qtp.addins.resources
 qtp.devutils
 qtp.addins.core
@@ -21,7 +22,6 @@ qtp.services.utils
 qtp.addins.metro
 qtp.backend
 qtp.setup
-qtp.addins.mobile
 qtp.build
 qtp.addins.qtcustsupport
 qtp.addins.pdf
