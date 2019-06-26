@@ -61,10 +61,12 @@ while IFS='' read -r line; do
         pushd $line
         git ls-remote | grep refs/heads/${srcbranch}
         if [ "$?" != "0" ]; then
+            popd
             continue
         fi
         git ls-remote | grep refs/heads/${dstbranch}
         if [ "$?" != "0" ]; then
+            popd
             continue
         fi
         
@@ -88,6 +90,7 @@ while IFS='' read -r line; do
         git merge ${srcbranch}
         if [ "$?" != "0" ]; then
             echo ${line} >> errorreposities.txt
+            popd
             continue
         fi
         git push
