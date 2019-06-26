@@ -33,14 +33,18 @@ echo all=${all}
 
 repolist=$(curl -u ${GitHub_Account}:${GITHUB_USER_TOKEN} -L -s "https://raw.${GITHUB_SERVER}/uft/uft.devops/master/repolist/${label}.txt")
 
-if [ "$all" == "true" ]; then
-    repolist="${repolist}"$'\n'"st"$'\n'"uftbase"
-fi
-
 if [[ "$repolist" =~ "404" ]]; then
     echo $repolist
     exit 1
 fi
+echo $repolist
+
+if [ "$all" == "true" ]; then
+    repolist="st"$'\n'"uftbase"$'\n'"${repolist}"
+fi
+echo $repolist
+exit 0
+
 
 if [ -f errorreposities.txt ]; then
     rm errorreposities.txt
