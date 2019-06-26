@@ -43,7 +43,7 @@ if [ "$all" == "true" ]; then
     repolist="st"$'\n'"uftbase"$'\n'"${repolist}"
 fi
 echo $repolist
-exit 0
+
 
 
 if [ -f errorreposities.txt ]; then
