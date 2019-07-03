@@ -1,0 +1,7 @@
+BuildMajorVersion=15
+BuildMinorVersion=0
+BuildLabel=UFT_15_0_ALM_Int_Refactor
+BuildPostfix=66
+WSPostfix=
+DebugBuild=false
+
