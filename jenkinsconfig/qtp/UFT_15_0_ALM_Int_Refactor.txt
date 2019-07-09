@@ -1,4 +1,4 @@
-BuildLabel=UFT_15_0
+BuildLabel=UFT_15_0_ALM_Int_Refactor
 BuildMajorVersion=15
 BuildMinorVersion=0
 BuildPostfix=66
