@@ -89,8 +89,8 @@ while IFS='' read -r line; do
         echo ----------------------------merge from ${srcbranch} to ${dstbranch} ------------------------------
         git merge ${srcbranch}
         if [ "$?" != "0" ]; then
-            echo ${line} >> errorreposities.txt
             popd
+            echo ${line} >> errorreposities.txt
             continue
         fi
         git push
