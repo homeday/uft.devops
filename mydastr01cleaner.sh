@@ -26,7 +26,6 @@ remove_expired_folders()
     configname=$3
 	basedir=/products/${groupname}/${productname}/${configname}
 	
-	echo "basedir = ${basedir}"
     outputdir=/products/${groupname}
     if [ ! -d "${basedir}" ]; then
         echo "not existing config folder ${configname}"
