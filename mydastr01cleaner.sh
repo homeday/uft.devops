@@ -23,8 +23,15 @@ remove_expired_folders()
 {
     groupname=$1
     productname=$2
-    configname=$3
-    basedir=/products/${groupname}/${productname}/${configname}
+    configname=""
+	if [ $# -gt 3 ]; then
+		configname=$3
+		basedir=/products/${groupname}/${productname}/${configname}
+	else
+		basedir=/products/${groupname}/${productname}
+	fi
+	
+	echo "basedir = ${basedir}"
     outputdir=/products/${groupname}
     if [ ! -d "${basedir}" ]; then
         echo "not existing config folder ${configname}"
@@ -70,6 +77,19 @@ remove_expired_folders()
     
 }
 
+if [ "${groupfolder}" == "FT" ]; then
+	echo "FT group"
+	find /products/${groupfolder}/CDLS-TOOLS -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | 
+		while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
+			echo "product folder = ${productfolder}"
+			if [ "$?" == "0" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
+				remove_expired_folders $groupfolder $productfolder ""
+			else        
+				echo "not existing the product folder ${productfolder} or ignore it"
+			fi   
+		done
+fi
+
 
 find /products/${groupfolder}/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | 
     while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
@@ -85,6 +105,8 @@ find /products/${groupfolder}/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" |
             echo "not existing the product folder ${productfolder} or ignore it"
         fi   
     done
+	
+
 # for productfolder in $(find /products/${groupfolder}/* -type d -maxdepth 1 -printf "%f\n"); do
 #     if [ -d "${productfolder}" ]; then
 #         echo "productfolder = ${productfolder}"
