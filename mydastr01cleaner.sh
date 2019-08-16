@@ -23,13 +23,8 @@ remove_expired_folders()
 {
     groupname=$1
     productname=$2
-    configname=""
-	if [ $# -gt 3 ]; then
-		configname=$3
-		basedir=/products/${groupname}/${productname}/${configname}
-	else
-		basedir=/products/${groupname}/${productname}
-	fi
+    configname=$3
+	basedir=/products/${groupname}/${productname}/${configname}
 	
 	echo "basedir = ${basedir}"
     outputdir=/products/${groupname}
@@ -83,7 +78,7 @@ if [ "${groupfolder}" == "FT" ]; then
 		while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
 			echo "product folder = ${productfolder}"
 			if  [ -d "/products/${groupfolder}/CDLS-TOOLS/${productfolder}" ]; then
-				remove_expired_folders $groupfolder $productfolder ""
+				remove_expired_folders $groupfolder "CDLS-TOOLS" $productfolder 
 			else        
 				echo "not existing the product folder ${productfolder} or ignore it"
 			fi   
