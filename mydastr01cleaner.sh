@@ -82,12 +82,13 @@ if [ "${groupfolder}" == "FT" ]; then
 	find /products/${groupfolder}/CDLS-TOOLS -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | 
 		while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
 			echo "product folder = ${productfolder}"
-			if [ "$?" == "0" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
+			if [ "$?" == "0" ] && [ -d "/products/${groupfolder}/CDLS-TOOLS/${productfolder}" ]; then
 				remove_expired_folders $groupfolder $productfolder ""
 			else        
 				echo "not existing the product folder ${productfolder} or ignore it"
 			fi   
 		done
+	echo "FT group end"
 fi
 
 
