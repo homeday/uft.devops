@@ -82,7 +82,7 @@ if [ "${groupfolder}" == "FT" ]; then
 	find /products/${groupfolder}/CDLS-TOOLS -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | 
 		while IFS='' read -r productfolder || [[ -n "$productfolder" ]]; do
 			echo "product folder = ${productfolder}"
-			if [ "$?" == "0" ] && [ -d "/products/${groupfolder}/CDLS-TOOLS/${productfolder}" ]; then
+			if  [ -d "/products/${groupfolder}/CDLS-TOOLS/${productfolder}" ]; then
 				remove_expired_folders $groupfolder $productfolder ""
 			else        
 				echo "not existing the product folder ${productfolder} or ignore it"
@@ -99,7 +99,7 @@ find /products/${groupfolder}/ -maxdepth 1 -mindepth 1 -type d -printf "%f\n" |
         search_ignore_list ${productfolder}
         if [ "$?" == "0" ] && [ -d "/products/${groupfolder}/${productfolder}" ]; then
             for cfg in ${arycfg[@]}; do
-                #echo "config folder = ${cfg}"
+                echo "config folder = ${cfg}"
                 remove_expired_folders $groupfolder $productfolder $cfg
             done
         else        
