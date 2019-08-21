@@ -21,7 +21,7 @@ try {
             $DeploymentsURI = "{0}/deployments/{1}" -f $apiurl, $_.name
             if ("shvcenter" -eq $Release) {
                 try {
-                    $Rsp = Invoke-WebRequest -Uri $DeploymentsURI -Method Get
+                    $Rsp = Invoke-WebRequest -Uri $DeploymentsURI -Method Get -UseBasicParsing
                     Write-Host "Get all deployments for release" $Release ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
                     $Deployments = $null
                     if ( $Rsp.StatusCode -eq 200 -and $null -ne $Rsp.Content) {
