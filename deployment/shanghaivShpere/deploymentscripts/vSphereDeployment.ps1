@@ -46,7 +46,7 @@ function Update-DeploymentsToDB {
     }
 }
 
-Add-PSSnapin "VMware.VimAutomation.Core"
+Get-Module -Name VMware* -ListAvailable | Import-Module
 Update-DeploymentsToDB -NotifyUri $NotifyUri -name $MachineName.Split(".")[0] -state "deploying"
 Import-Module -Force ".\vSphereDeployment.psm1"
 
