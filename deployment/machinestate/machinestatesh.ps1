@@ -9,7 +9,7 @@ $ReleaseURI = "{0}/releases/?hasdeployments=true&isvalid=true" -f $apiurl
 [MachineContext]::apiurl = $apiurl
 try {
     $Releases = $null
-    $Rsp = Invoke-WebRequest -Uri $ReleaseURI -Method Get
+    $Rsp = Invoke-WebRequest -Uri $ReleaseURI -Method Get -UseBasicParsing
     Write-Host "Get all vaildate releases :" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
     if ( $Rsp.StatusCode -eq 200 -and $null -ne $Rsp.Content) {
         $Releases = $Rsp.Content | ConvertFrom-Json
