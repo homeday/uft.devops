@@ -1,6 +1,6 @@
 module.exports = {
 	ftpconf : {
-        host: '16.165.216.93',
+        host: 'shcuftjenkins.hpeswlab.net',
         user: 'appsadmin',
         password: 'appsadmin',
         parallel: 15,
