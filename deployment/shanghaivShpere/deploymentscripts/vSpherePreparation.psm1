@@ -115,7 +115,10 @@ class VSphereRevertMachine : VSpherePreparation {
         Write-Host "VSphereRevertMachine::RevertSnapshot Start" -ForegroundColor Green -BackgroundColor Black
         [string[]] $Server = [VSphereRevertMachine]::vCenterSvr
 		
-		Get-Module -Name VMware* -ListAvailable
+		$output = Get-Module -Name VMware* -ListAvailable
+		Write-Host "VSphereRevertMachine::RevertSnapshot "
+		Write-Host  $output
+		Write-Host "VSphereRevertMachine::RevertSnapshot 2"
 		Get-Module -Name VMware* -ListAvailable | Import-Module
         $ShangHaiVM = Connect-VIServer -Server $Server -User "$([VSphereRevertMachine]::vCenterAcc)" -Password "$([VSphereRevertMachine]::vCenterPwd)"
 
