@@ -37,7 +37,7 @@ function Update-DeploymentsToDB {
     try {
         
         Write-Host "NotifyUri = ${NotifyUri}" -ForegroundColor Green -BackgroundColor Black
-        $Rsp = Invoke-WebRequest -Uri $NotifyUri -Method Put -Body $json -ContentType $contentType
+        $Rsp = Invoke-WebRequest -Uri $NotifyUri -Method Put -Body $json -ContentType $contentType -UseBasicParsing
         Write-Host $name ":" $state ":" $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
     }
     catch [Exception] {

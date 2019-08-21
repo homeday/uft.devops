@@ -307,7 +307,7 @@ class MachineContext {
     [State]getState() {
         try {
             $Uri = "{0}/deployments/{1}/?name={2}" -f [MachineContext]::apiurl, $this.Release, $this.MachineName
-            $Rsp = Invoke-WebRequest -Uri $Uri -Method Get 
+            $Rsp = Invoke-WebRequest -Uri $Uri -Method Get -UseBasicParsing
             Write-Host "Get state for machine :" $this.Release"::"$this.MachineName $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
             if ( $Rsp.StatusCode -eq 200 -and $null -ne $Rsp.Content) {
                 $this.MachineInfo = $Rsp.Content | ConvertFrom-Json
@@ -337,7 +337,7 @@ class MachineContext {
             $Uri = "{0}/deployments/{1}" -f [MachineContext]::apiurl, $this.Release
             $contentType = "application/json; charset=utf-8"  
             $json = $this.MachineInfo  | ConvertTo-Json
-            $Rsp = Invoke-WebRequest -Uri $Uri -Method Put -Body $json -ContentType $contentType
+            $Rsp = Invoke-WebRequest -Uri $Uri -Method Put -Body $json -ContentType $contentType -UseBasicParsing
             Write-Host "Put state" $state.ToString() "for machine :" $this.Release"::"$this.MachineName $Rsp.StatusCode -ForegroundColor Green -BackgroundColor Black
             $this.State = $this.machineInfo.state 
         }

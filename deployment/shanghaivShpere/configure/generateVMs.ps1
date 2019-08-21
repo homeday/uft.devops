@@ -25,7 +25,7 @@ function Read-HasDeployments {
     $HasDeployments = $false
     $ReqUri = $DevOpsPortalURL + $ReleasePath
     try {  
-        $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Get
+        $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Get -UseBasicParsing
         if ($Rsp.StatusCode -eq 200) {  
             #try to get job url
             $Content = $Rsp.Content | ConvertFrom-Json
@@ -50,7 +50,7 @@ function Read-DeploymentsFromDB {
     
     $ReqUri = $DevOpsPortalURL + $DeploymentsPath
     try {
-        $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Get
+        $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Get -UseBasicParsing
         if ($Rsp.StatusCode -eq 200) {
          #try to get job url
             $DeploymentsFromDB.Value.Clear()
@@ -106,9 +106,9 @@ function Update-DeploymentsToDB {
     try {
         if ($DeploymentsFromDB.Value.Contains($name)) {
             #update DB  -ContentType "application/json"
-            $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Put -Body $json -ContentType $contentType
+            $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Put -Body $json -ContentType $contentType -UseBasicParsing
         } else {
-            $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Post -Body $json -ContentType $contentType
+            $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Post -Body $json -ContentType $contentType -UseBasicParsing
         }
         Write-Host $name
         Write-Host $Rsp.StatusCode
@@ -131,7 +131,7 @@ function Remove-DeploymentsInDB {
         $contentType = "application/json"
         $json = $Body | ConvertTo-Json
         try {
-            $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Delete -Body $json -ContentType $contentType
+            $Rsp = Invoke-WebRequest -Uri $ReqUri -Method Delete -Body $json -ContentType $contentType -UseBasicParsing
             Write-Host $name
             Write-Host $Rsp.StatusCode
         } catch [Exception] {
