@@ -175,6 +175,7 @@ class CSAInstallLFTAsFt : CSAInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
+                Restart-Computer -Credential $CSACredential -ComputerName $CSAName
                 Start-Sleep 120
             }
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
@@ -217,6 +218,7 @@ class CSAInstallRPA : CSAInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
+                Restart-Computer -Credential $CSACredential -ComputerName $CSAName
                 Start-Sleep 120
             }
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
@@ -257,6 +259,7 @@ class CSAInstallAI : CSAInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
+                Restart-Computer -Credential $CSACredential -ComputerName $CSAName
                 Start-Sleep 120
             }
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb

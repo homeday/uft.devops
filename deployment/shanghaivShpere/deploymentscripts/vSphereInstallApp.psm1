@@ -73,6 +73,8 @@ class VSphereInstallUFT : VSphereInstallApp {
         $installed=$false
         do {
             if ($iloop -ne 0) {
+                #abort machine
+                Restart-Computer -Credential $VSphereCredential -ComputerName $MachineName
                 Start-Sleep 120
             }
             $ExpressionResult = Invoke-Command -Credential $VSphereCredential -ComputerName $MachineName -ScriptBlock $sb
@@ -184,6 +186,7 @@ class VSphereInstallSALFT : VSphereInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
+                Restart-Computer -Credential $VSphereCredential -ComputerName $MachineName
                 Start-Sleep 120
             }
             $ExpressionResult = Invoke-Command -Credential $VSphereCredential -ComputerName $MachineName -ScriptBlock $sb
