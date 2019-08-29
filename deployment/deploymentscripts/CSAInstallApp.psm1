@@ -68,7 +68,7 @@ class CSAInstallUFT : CSAInstallApp {
         $installed=$false
         do {
             if ($iloop -ne 0) {
-                Restart-Computer -Credential $VSphereCredential -ComputerName $MachineName
+                Restart-Computer -Credential $CSACredential -ComputerName $CSAName
                 Start-Sleep 120
             }
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
