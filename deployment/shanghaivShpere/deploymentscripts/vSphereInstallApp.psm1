@@ -74,6 +74,7 @@ class VSphereInstallUFT : VSphereInstallApp {
         do {
             if ($iloop -ne 0) {
                 #abort machine
+                Write-Host "VSphereInstallUFT::InstallApplication Restart the machine" -ForegroundColor Green -BackgroundColor Black
                 Restart-Computer -Credential $VSphereCredential -ComputerName $MachineName
                 Start-Sleep 120
             }
@@ -186,6 +187,7 @@ class VSphereInstallSALFT : VSphereInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
+                Write-Host "VSphereInstallSALFT::InstallApplication Restart the machine" -ForegroundColor Green -BackgroundColor Black
                 Restart-Computer -Credential $VSphereCredential -ComputerName $MachineName
                 Start-Sleep 120
             }
