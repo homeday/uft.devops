@@ -21,6 +21,36 @@ class CSAInstallApp {
         return $false
     }
 
+    [Void]RestartMachine(
+        [string]$CSAName,
+        [System.Management.Automation.PSCredential]$CSACredential
+    ) {
+        Write-Host "CSAInstallApp::RestartMachine Start" -ForegroundColor Green -BackgroundColor Black
+        Restart-Computer -ComputerName $CSAName  -Credential $CSACredential -Wait -Timeout 600 -Force
+        Start-Sleep -s 15 
+        Write-Host "CSAInstallApp::RestartMachine End" -ForegroundColor Green -BackgroundColor Black
+    }
+
+    [Void]WaitWinRM(
+        [string]$CSAName,
+        [System.Management.Automation.PSCredential]$CSACredential
+    ) {
+        $iloop=0
+        $WinRmSvr = $null
+        do {
+            if ($iloop -ne 0) {
+                Start-Sleep 30
+            }
+            $WinRmSvr = Invoke-Command -Credential $CSACredential  -ComputerName $CSAName -ScriptBlock {Get-Service -Name winrm}
+            Write-Host "CSAInstallApp::WaitWinRM Get winrm service result" -ForegroundColor Green -BackgroundColor Black
+            Write-Host $WinRmSvr -ForegroundColor Green -BackgroundColor Black
+            $iloop = $iloop + 1
+        } until (($null-ne $WinRmSvr -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
+        if ($null -eq $WinRmSvr) {
+            throw("WinRm Services must be started!")
+        }
+    }
+
     [Boolean]InstallPatch(
         [string]$CSAName,      
         [System.Management.Automation.PSCredential]$CSACredential,
@@ -68,8 +98,9 @@ class CSAInstallUFT : CSAInstallApp {
         $installed=$false
         do {
             if ($iloop -ne 0) {
-                Restart-Computer -Credential $CSACredential -ComputerName $CSAName -Force
-                Start-Sleep 120
+                ([CSAInstallUFT]$this).RestartMachine($CSAName, $CSACredential)
+                ([CSAInstallUFT]$this).WaitWinRM($CSAName, $CSACredential)
+                Start-Sleep 5
             }
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
@@ -175,8 +206,9 @@ class CSAInstallLFTAsFt : CSAInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
-                Restart-Computer -Credential $CSACredential -ComputerName $CSAName -Force
-                Start-Sleep 120
+                ([CSAInstallUFT]$this).RestartMachine($CSAName, $CSACredential)
+                ([CSAInstallUFT]$this).WaitWinRM($CSAName, $CSACredential)
+                Start-Sleep 5
             }
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
@@ -218,8 +250,9 @@ class CSAInstallRPA : CSAInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
-                Restart-Computer -Credential $CSACredential -ComputerName $CSAName -Force
-                Start-Sleep 120
+                ([CSAInstallUFT]$this).RestartMachine($CSAName, $CSACredential)
+                ([CSAInstallUFT]$this).WaitWinRM($CSAName, $CSACredential)
+                Start-Sleep 5
             }
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
@@ -259,8 +292,9 @@ class CSAInstallAI : CSAInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
-                Restart-Computer -Credential $CSACredential -ComputerName $CSAName -Force
-                Start-Sleep 120
+                ([CSAInstallUFT]$this).RestartMachine($CSAName, $CSACredential)
+                ([CSAInstallUFT]$this).WaitWinRM($CSAName, $CSACredential)
+                Start-Sleep 5
             }
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
