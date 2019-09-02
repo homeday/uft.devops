@@ -25,20 +25,7 @@ class VSpherePreparation {
         #$PSExecExpression = {C:\tools\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
         #$ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
         #Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
-        $iloop=0
-        $WinRmSvr = $null
-        do {
-            if ($iloop -ne 0) {
-                Start-Sleep 120
-            }
-            $WinRmSvr = Invoke-Command -Credential $MachineCredential  -ComputerName $MachineName -ScriptBlock {Get-Service -Name winrm}
-            Write-Host $WinRmSvr -ForegroundColor Green -BackgroundColor Black
-            $iloop = $iloop + 1
-        } until (($WinRmSvr -ne $null -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
-        if ($null -eq $WinRmSvr) {
-            throw("WinRm Services must be started!")
-        }
-
+        $this.WaitWinRM($MachineName, $MachineCredential)
         $this.CopyRelatedFiles($MachineName, $MachineCredential)
         Write-Host "To delete useless files at remote machine" -ForegroundColor Green -BackgroundColor Black
         $ExpressionResult = Invoke-Command -Credential $MachineCredential -ComputerName $MachineName -ScriptBlock `
@@ -47,6 +34,26 @@ class VSpherePreparation {
         } 
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         Write-Host "VSpherePreparation::doAction End" -ForegroundColor Green -BackgroundColor Black
+    }
+
+    [Void]WaitWinRM(
+        [string]$MachineName,
+        [System.Management.Automation.PSCredential]$MachMachineCredential
+    ) {
+        $iloop=0
+        $WinRmSvr = $null
+        do {
+            if ($iloop -ne 0) {
+                Start-Sleep 30
+            }
+            $WinRmSvr = Invoke-Command -Credential $MachMachineCredential  -ComputerName $MachineName -ScriptBlock {Get-Service -Name winrm}
+            Write-Host "CSAInstallApp::WaitWinRM Get winrm service result" -ForegroundColor Green -BackgroundColor Black
+            Write-Host $WinRmSvr -ForegroundColor Green -BackgroundColor Black
+            $iloop = $iloop + 1
+        } until (($null-ne $WinRmSvr -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
+        if ($null -eq $WinRmSvr) {
+            throw("WinRm Services must be started!")
+        }
     }
 
     [Void]RestartMachine(

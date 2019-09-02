@@ -36,6 +36,37 @@ class VSphereInstallApp {
         Write-Host "VSphereInstallApp::InstallPatch End" -ForegroundColor Green -BackgroundColor Black
         return $true
     }
+
+    [Void]WaitWinRM(
+        [string]$MachineName,
+        [System.Management.Automation.PSCredential]$MachMachineCredential
+    ) {
+        $iloop=0
+        $WinRmSvr = $null
+        do {
+            if ($iloop -ne 0) {
+                Start-Sleep 30
+            }
+            $WinRmSvr = Invoke-Command -Credential $MachMachineCredential  -ComputerName $MachineName -ScriptBlock {Get-Service -Name winrm}
+            Write-Host "CSAInstallApp::WaitWinRM Get winrm service result" -ForegroundColor Green -BackgroundColor Black
+            Write-Host $WinRmSvr -ForegroundColor Green -BackgroundColor Black
+            $iloop = $iloop + 1
+        } until (($null-ne $WinRmSvr -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
+        if ($null -eq $WinRmSvr) {
+            throw("WinRm Services must be started!")
+        }
+    }
+
+    [Void]RestartMachine(
+        [string]$MachineName,
+        [System.Management.Automation.PSCredential]$MachMachineCredential
+    ) {
+        Write-Host "VSpherePreparation::RestartMachine Start" -ForegroundColor Green -BackgroundColor Black
+        Restart-Computer -ComputerName $MachineName  -Credential $MachMachineCredential -Wait -Timeout 600 -Force
+        Start-Sleep -s 15 
+        Write-Host "VSpherePreparation::RestartMachine End" -ForegroundColor Green -BackgroundColor Black
+    }
+
 }
 
 
@@ -73,10 +104,9 @@ class VSphereInstallUFT : VSphereInstallApp {
         $installed=$false
         do {
             if ($iloop -ne 0) {
-                #abort machine
-                Write-Host "VSphereInstallUFT::InstallApplication Restart the machine" -ForegroundColor Green -BackgroundColor Black
-                Restart-Computer -Credential $VSphereCredential -ComputerName $MachineName -Force
-                Start-Sleep 120
+                ([VSphereInstallApp]$this).RestartMachine($MachineName, $VSphereCredential)
+                ([VSphereInstallApp]$this).WaitWinRM($MachineName, $VSphereCredential)
+                Start-Sleep 5
             }
             $ExpressionResult = Invoke-Command -Credential $VSphereCredential -ComputerName $MachineName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
@@ -187,9 +217,9 @@ class VSphereInstallSALFT : VSphereInstallUFT {
         $installed=$false
         do {
             if ($iloop -ne 0) {
-                Write-Host "VSphereInstallSALFT::InstallApplication Restart the machine" -ForegroundColor Green -BackgroundColor Black
-                Restart-Computer -Credential $VSphereCredential -ComputerName $MachineName -Force
-                Start-Sleep 120
+                ([VSphereInstallApp]$this).RestartMachine($MachineName, $VSphereCredential)
+                ([VSphereInstallApp]$this).WaitWinRM($MachineName, $VSphereCredential)
+                Start-Sleep 5
             }
             $ExpressionResult = Invoke-Command -Credential $VSphereCredential -ComputerName $MachineName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
