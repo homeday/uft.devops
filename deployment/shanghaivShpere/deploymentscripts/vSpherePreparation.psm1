@@ -23,8 +23,9 @@ class VSpherePreparation {
             $MachineName = "${MachineName}.${env:VM_DOMAIN}"
         }
         #$PSExecExpression = {C:\tools\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
-        #$ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
-        #Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+        $PSExecExpression = {D:\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
+        $ExpressionResult = Invoke-Command -ScriptBlock $PSExecExpression
+        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         $this.WaitWinRM($MachineName, $MachineCredential)
         $this.CopyRelatedFiles($MachineName, $MachineCredential)
         Write-Host "To delete useless files at remote machine" -ForegroundColor Green -BackgroundColor Black

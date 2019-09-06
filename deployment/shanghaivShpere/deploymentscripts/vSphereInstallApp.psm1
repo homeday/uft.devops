@@ -92,7 +92,9 @@ class VSphereInstallUFT : VSphereInstallApp {
         [string]$BuildVersion
     ) {
         Write-Host "VSphereInstallUFT::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
-        $MyIpAddr=(Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4'} | Select-Object -First 1).IPAddress
+        #$MyIpAddr=(Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4'} | Select-Object -First 1).IPAddress
+        $MyIpAddr="shcuftjenkins.hpeswlab.net"
+
         if (Test-Path 'env:VM_DOMAIN')
         { 
             $MachineName = "${MachineName}.${env:VM_DOMAIN}"
@@ -205,7 +207,8 @@ class VSphereInstallSALFT : VSphereInstallUFT {
         [string]$BuildVersion
     ) {
         Write-Host "VSphereInstallSALFT::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
-        $MyIpAddr=(Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4'} | Select-Object -First 1).IPAddress
+        #$MyIpAddr=(Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4'} | Select-Object -First 1).IPAddress
+        $MyIpAddr="shcuftjenkins.hpeswlab.net"
         $sb = [scriptblock]::Create(
             "CMD.exe /C C:\deploySALFT.bat ${BuildVersion} mama.hpeswlab.net ${MyIpAddr}" 
         )
