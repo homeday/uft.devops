@@ -24,7 +24,7 @@ class VSpherePreparation {
         }
         #$PSExecExpression = {C:\tools\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
         $PSExecExpression = {D:\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
-        $job = Invoke-Command -ScriptBlock $PSExecExpression -AsJob 
+        $job = Invoke-Command -AsJob -ScriptBlock $PSExecExpression  
         $int = 0
         while (($job.State -like "Running") -and ($int -lt 3))
         {
