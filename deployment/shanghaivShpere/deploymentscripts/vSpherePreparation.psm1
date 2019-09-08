@@ -26,15 +26,15 @@ class VSpherePreparation {
         #$PSExecExpression = {D:\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password powershell.exe "enable-psremoting -force"}
         $PSExecExpression = {D:\PSTools\PsExec.exe \\$MachineName -u $UserName -p $Password cmd /c winrm quickconfig -quiet}
         Invoke-Command -ScriptBlock $PSExecExpression  
-        $int = 0
-        while (($job.State -like "Running") -and ($int -lt 3))
-        {
-            Start-Sleep -Seconds 15
-            $int++
-        }
-        if ($Job.State -like "Running") { $job | Stop-Job }
-        $job | Receive-Job
-        $job | Remove-Job
+        # $int = 0
+        # while (($job.State -like "Running") -and ($int -lt 3))
+        # {
+        #     Start-Sleep -Seconds 15
+        #     $int++
+        # }
+        # if ($Job.State -like "Running") { $job | Stop-Job }
+        # $job | Receive-Job
+        # $job | Remove-Job
 
         #Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
         $this.WaitWinRM($MachineName, $MachineCredential)
