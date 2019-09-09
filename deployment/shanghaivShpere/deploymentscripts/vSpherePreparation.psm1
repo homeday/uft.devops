@@ -62,7 +62,7 @@ class VSpherePreparation {
             Write-Host "CSAInstallApp::WaitWinRM Get winrm service result" -ForegroundColor Green -BackgroundColor Black
             Write-Host $WinRmSvr -ForegroundColor Green -BackgroundColor Black
             $iloop = $iloop + 1
-        } until (($null-ne $WinRmSvr -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 3)
+        } until (($null-ne $WinRmSvr -and $WinRmSvr[0].Status -eq "Running") -or $iloop -gt 6)
         if ($null -eq $WinRmSvr) {
             throw("WinRm Services must be started!")
         }
