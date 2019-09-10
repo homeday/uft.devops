@@ -32,7 +32,7 @@ goto continue
 echo %AddinsToInstall%
 
 SET msipackage=Unified_Functional_Testing_x64.msi
-IF not defined ProgramFiles(x86) SET msipackage=Unified_Functional_Testing_x32.msi
+IF not defined ProgramFiles(x86) SET msipackage=Unified_Functional_Testing_x86.msi
 echo msipackage=%msipackage%
 
 set UFTConfiguration=CONF_MSIE=1 ALLOW_RUN_FROM_ALM=1 ALLOW_RUN_FROM_SCRIPTS=1 DLWN_SCRIPT_DBGR=1
