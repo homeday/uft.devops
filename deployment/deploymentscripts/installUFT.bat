@@ -31,7 +31,9 @@ goto continue
 :continue
 echo %AddinsToInstall%
 
-
+SET msipackage=Unified_Functional_Testing_x64.msi
+IF not defined ProgramFiles(x86) SET msipackage=Unified_Functional_Testing_x32.msi
+echo msipackage=%msipackage%
 
 set UFTConfiguration=CONF_MSIE=1 ALLOW_RUN_FROM_ALM=1 ALLOW_RUN_FROM_SCRIPTS=1 DLWN_SCRIPT_DBGR=1
 set LeanFTConfiguration=LeanFT,LeanFT_Engine,LeanFT_Client,Vs2012Addin,Vs2013Addin,IntelliJAddin,EclipseAddin ECLIPSE_INSTALLDIR="C:\DevTools\eclipse"
@@ -53,12 +55,12 @@ pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
 IF "%5" == "" (
 echo installing UFT
 
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
 
 ) ELSE (
 echo installing UFT and LFT as a feature	
 
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 
 )
 popd
