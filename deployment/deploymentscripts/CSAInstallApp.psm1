@@ -145,6 +145,24 @@ class CSAInstallUFT : CSAInstallApp {
             Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
         }
 
+        if (-Not $IsAppexist) {
+            $ApplicationDir="\\${CSAName}\C`$\Program Files\Micro Focus\Unified Functional Testing\bin\UFT.exe"
+            $IsAppexist=Test-Path -Path $ApplicationDir
+            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
+        }
+
+        if (-Not $IsAppexist) {
+            $ApplicationDir="\\${CSAName}\C`$\Program Files\HPE\Unified Functional Testing\bin\UFT.exe"
+            $IsAppexist=Test-Path -Path $ApplicationDir
+            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
+        }
+
+        if (-Not $IsAppexist) {
+            $ApplicationDir="\\${CSAName}\C`$\Program Files\HP\Unified Functional Testing\bin\UFT.exe"
+            $IsAppexist=Test-Path -Path $ApplicationDir
+            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
+        }
+
         try {
             if ($IsAppexist) {
                 $IsAppexist = $false
