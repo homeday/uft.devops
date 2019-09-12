@@ -1,7 +1,8 @@
-BuildLabel=UFT_15_0_Web
+BuildLabel=UFT_15_0_VER
 BuildMajorVersion=15
 BuildMinorVersion=0
-BuildPostfix=22
+BuildPostfix=0
+SvcpackVersion=0
 Deploy=false
 01_CreateMLU=true
 Create_LeanFT=false
