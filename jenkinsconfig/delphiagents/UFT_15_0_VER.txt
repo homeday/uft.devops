@@ -1,0 +1,9 @@
+BuildMajorVersion=15
+BuildMinorVersion=0
+SvcpackVersion=0
+BuildLabel=UFT_15_0_VER
+BuildPostfix=0
+Compilation_Configuration=Release
+Configuration=win32_release
+repo_inclusion=
+
