@@ -1,5 +1,6 @@
 BuildMajorVersion=15
 BuildMinorVersion=0
+SvcpackVersion=0
 BuildLabel=UFT_15_0
 BuildPostfix=0
 WSPostfix=

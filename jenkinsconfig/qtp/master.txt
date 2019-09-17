@@ -1,6 +1,7 @@
 BuildLabel=UFT_15_0
 BuildMajorVersion=15
 BuildMinorVersion=0
+SvcpackVersion=0
 BuildPostfix=0
 Deploy=true
 01_CreateMLU=true
