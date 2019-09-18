@@ -160,7 +160,7 @@ class VSphereInstallUFT : VSphereInstallApp {
                 $result = Invoke-Command -ComputerName $MachineName -Credential $VSphereCredential {Get-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Mercury Interactive\QuickTest Professional\CurrentVersion"}
                 #Write-Host "Check Version result =  ${result}" -ForegroundColor Green -BackgroundColor Black
                 if ($result -ne $null) {
-                    $versionInreg = $result.Major + "." + $result.Minor + "." + $result.build + ".0"
+                    $versionInreg = $result.Major + "." + $result.Minor + "." + $result.ServicePack + "." + $result.build
                     Write-Host "versionInreg = ${versionInreg}" -ForegroundColor Green -BackgroundColor Black
                     if ($versionInreg -eq $BuildVersion) {
                         $IsAppexist = $true
