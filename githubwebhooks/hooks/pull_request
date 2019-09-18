@@ -92,6 +92,32 @@ def _get(obj, field_name, fail_value=None, check=False):
   return ret_value
 
 
+def _ghe_retrieve_user_info(usr_payload):
+  # check "type" from payload
+  if usr_payload and usr_payload['type'] == 'User' and usr_payload['url'] != "":
+    usr_res = requests.get(usr_payload['url'], headers=requests_headers)
+    if usr_res.status_code >= 400:
+      print('Failed to retrieve user info from GitHub Enterprise. Status code: {}. URL: {}'.format(usr_res.status_code, usr_res.url), file=sys.stderr)
+    else:
+      return usr_res.json()
+
+
+def _pull_request_notification_email_list():
+  pr_owner = _ghe_retrieve_user_info(_get(payload, 'pull_request.user'))
+  committer = _ghe_retrieve_user_info(_get(payload, 'pull_request.head.user'))
+  hook_sender = _ghe_retrieve_user_info(payload['sender'])
+  email_list = []
+  if pr_owner and pr_owner['email']:
+    email_list.append(pr_owner['email'])
+  if committer and committer['email']:
+    email_list.append(committer['email'])
+  if hook_sender and hook_sender['email']:
+    email_list.append(hook_sender['email'])
+  # remove duplicates
+  email_list = list(set(email_list))
+  return ','.join(email_list)
+
+
 def _pull_request_action_trigger_jenkins_job(pull_request_action_type, base_branch_name, action_config):
   jenkins_enabled = _get(action_config, 'jenkins.enabled', False)
   if not jenkins_enabled:
@@ -119,6 +145,8 @@ def _pull_request_action_trigger_jenkins_job(pull_request_action_type, base_bran
             jenkins_job_params[pkey] = base_branch_name
           elif runtime_var == '_pull_request_id_':
             jenkins_job_params[pkey] = pr_number
+          elif runtime_var == '_notification_email_list_':
+            jenkins_job_params[pkey] = _pull_request_notification_email_list()
           else:
             jenkins_job_params[pkey] = str(pvalue)
         else:
@@ -179,19 +207,21 @@ def _utils_uri_builder(config={}):
     if isinstance(qVal, dict):
       runtime_var = _get(qVal, 'runtime')
       if runtime_var == '_head_repo_clone_url_':
-        qStr += '&{}={}'.format(qKey, src_repo_clone_url)
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(src_repo_clone_url))
       elif runtime_var == '_head_branch_':
-        qStr += '&{}={}'.format(qKey, src_repo_head_branch)
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(src_repo_head_branch))
       elif runtime_var == '_head_sha_':
-        qStr += '&{}={}'.format(qKey, src_repo_head_sha)
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(src_repo_head_sha))
       elif runtime_var == '_base_branch_':
-        qStr += '&{}={}'.format(qKey, dest_repo_base_branch)
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(dest_repo_base_branch))
       elif runtime_var == '_pull_request_id_':
-        qStr += '&{}={}'.format(qKey, pr_number)
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(pr_number))
+      elif runtime_var == '_notification_email_list_':
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(_pull_request_notification_email_list()))
       else:
-        qStr += '&{}={}'.format(qKey, str(qVal))
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(str(qVal)))
     else:
-      qStr += '&{}={}'.format(qKey, str(qVal))
+      qStr += '&{}={}'.format(qKey, requests.utils.quote(str(qVal)))
 
   return uri + qStr
 
