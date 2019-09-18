@@ -207,17 +207,17 @@ def _utils_uri_builder(config={}):
     if isinstance(qVal, dict):
       runtime_var = _get(qVal, 'runtime')
       if runtime_var == '_head_repo_clone_url_':
-        qStr += '&{}={}'.format(qKey, requests.utils.quote(src_repo_clone_url))
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(str(src_repo_clone_url)))
       elif runtime_var == '_head_branch_':
-        qStr += '&{}={}'.format(qKey, requests.utils.quote(src_repo_head_branch))
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(str(src_repo_head_branch)))
       elif runtime_var == '_head_sha_':
-        qStr += '&{}={}'.format(qKey, requests.utils.quote(src_repo_head_sha))
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(str(src_repo_head_sha)))
       elif runtime_var == '_base_branch_':
-        qStr += '&{}={}'.format(qKey, requests.utils.quote(dest_repo_base_branch))
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(str(dest_repo_base_branch)))
       elif runtime_var == '_pull_request_id_':
-        qStr += '&{}={}'.format(qKey, requests.utils.quote(pr_number))
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(str(pr_number)))
       elif runtime_var == '_notification_email_list_':
-        qStr += '&{}={}'.format(qKey, requests.utils.quote(_pull_request_notification_email_list()))
+        qStr += '&{}={}'.format(qKey, requests.utils.quote(str(_pull_request_notification_email_list())))
       else:
         qStr += '&{}={}'.format(qKey, requests.utils.quote(str(qVal)))
     else:

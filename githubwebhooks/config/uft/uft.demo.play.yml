@@ -7,7 +7,7 @@ git_branches:
   master:
     pull_request:
       opened:
-        robots:
+        robots: &pr_robots
           notes_writter:
             enabled: true
             body: |
@@ -39,3 +39,7 @@ git_branches:
                       runtime: _pull_request_id_
                     Email_List:
                       runtime: _notification_email_list_
+      reopened:
+        robots: *pr_robots
+      synchronize:
+        robots: *pr_robots
