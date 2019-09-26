@@ -39,6 +39,8 @@ git_branches:
               runtime: _base_branch_
             Git_PullRequest_ID:
               runtime: _pull_request_id_
+            Email_List:
+              runtime: _notification_email_list_
         robots:
           notes_writter:
             enabled: true
@@ -69,6 +71,8 @@ git_branches:
                       runtime: _base_branch_
                     Git_PullRequest_ID:
                       runtime: _pull_request_id_
+                    Email_List:
+                      runtime: _notification_email_list_
       reopened:
         jenkins: *jenkins_action_pull_request_compile_only
       synchronize:
