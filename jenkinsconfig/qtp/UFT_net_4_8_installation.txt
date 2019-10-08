@@ -1,0 +1,17 @@
+BuildLabel=UFT_net_4_8_installation
+BuildMajorVersion=14
+BuildMinorVersion=99
+BuildPostfix=0
+SvcpackVersion=0
+Deploy=false
+01_CreateMLU=true
+Create_LeanFT=false
+CodeSign=false
+SignMethod=AUJAS
+srf_windows_executor=false
+srf_agents_sync=false
+DVD_Sync_2_SH=false
+DVD_Sync_2_Cluj=false
+E2E=false
+upload3rdparty=false
+repo_inclusion=
