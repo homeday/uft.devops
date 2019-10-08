@@ -87,13 +87,13 @@
 		  <USER_EMAIL>uft.doc@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
-		<host>
+		<!--<host>
 		  <VM_NAME>shcuft033</VM_NAME>
 		  <VM_Description>Documentation shcuft033</VM_Description>
 		  <USER_EMAIL>uft.doc@microfocus.com,yonit.bisk@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_LFT</VM_Template>
 		  <Application>lft</Application>
-		</host>
+		</host>-->
 		<host>
 		  <VM_NAME>appsuftqa021</VM_NAME>
 		  <VM_Description>Shanghai QA team appsuftqa021</VM_Description>
