@@ -120,7 +120,7 @@
 		
 		
 		<!--CSA in New Domain start-->
-		<host>
+		<!--<host>
 		  <VM_NAME>myd-hvm00150</VM_NAME>
 		  <team>Anton</team>
 		  <NOTIFICATION_EMAIL>ftmobile.leanft.dev.roman.il@microfocus.com,yguo@microfocus.com</NOTIFICATION_EMAIL>
@@ -131,7 +131,7 @@
 		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		  <Application>lftasfeature</Application>
 		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		</host>
+		</host>-->
 		<host>
 		  <VM_NAME>myd-vma00414</VM_NAME>
 		  <team>Functional architects</team>
