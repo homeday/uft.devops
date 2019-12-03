@@ -44,10 +44,15 @@ import groovy.transform.Field
 def build_num = build.getEnvironment().UFT_Build_Number
 def rel_major_num = build.getEnvironment().Release_Major_Number
 def rel_minor_num = build.getEnvironment().Release_Minor_Number
+def rel_svcsp_num = build.getEnvironment().SvcpackVersion
+if ( rel_svcsp_num != "0" )
+	release_num = rel_major_num + "." + rel_minor_num + "SP" + rel_svcsp_num
 def release_num = rel_major_num + "." + rel_minor_num
 def rc_num = build.getEnvironment().RC_Number
 def branch_name = build.getEnvironment().GIT_Branch_Name
 def build_label = "UFT_${rel_major_num}_${rel_minor_num}_RC${rc_num}"
+if ( rel_svcsp_num != "0" )
+	build_label = "UFT_${rel_major_num}_${rel_minor_num}_SP${rel_svcsp_num}_RC${rc_num}"
 def build_notes_url = "https://rndwiki.houston.softwaregrp.net/confluence/display/UFT/UFT+${rel_major_num}.${rel_minor_num}+Build+Notes"
 
 def msi_root_uri = "\\\\mydanas01.swinfra.net\\products\\FT\\QTP\\win32_release\\${build_label}"
