@@ -1,0 +1,49 @@
+#
+# Commands (or paths - for specific repository types only)
+#
+commands:
+  git: /usr/bin/git
+#
+# The proxy environment variables will be set for a project's repositories
+# if the 'proxy' property is True.
+#
+proxy:
+  http_proxy: 'web-proxy.sg.softwaregrp.net:8080'
+  https_proxy: 'web-proxy.sg.softwaregrp.net:8080'
+  ftp_proxy: 'web-proxy.sg.softwaregrp.net:8080'
+  no_proxy: 'localhost,127.0.0.1,softwaregrp.net,swinfra.net,hpeswlab.net'
+hookdir: /opengrok/hooks
+# per-project hooks relative to 'hookdir' above
+logdir: /opengrok/log/opengrok-mirror
+command_timeout: 300
+hook_timeout: 1200
+#
+# Per project configuration.
+#
+projects:
+  # opengrok-stable:
+  #   disabled: true
+  # userland:
+  #   proxy: true
+  #   hook_timeout: 3600
+  #   hooks:
+  #     pre: userland-pre.ksh
+  #     post: userland-post.ksh
+  # opengrok-master:
+  #   ignored_repos:
+  #     - testdata/repositories/*
+  # jdk.*:
+  #   proxy: true
+  #   hooks:
+  #     post: jdk_post.sh
+  uftbase:
+    proxy: false
+  st:
+    proxy: false
+  qtp.*:
+    proxy: false
+  utt:
+    proxy: false
+  sprinter:
+    proxy: false
+
