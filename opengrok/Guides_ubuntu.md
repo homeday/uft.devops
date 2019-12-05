@@ -188,3 +188,12 @@ Script files:
 
 - [sync.sh](scripts/sync.sh)
 
+## J. Add new project or repository
+> A OpenGrok **project** typically represents a **git repository**; while a OpenGrok **repository** often represents a **checkout branch** of a git repository.
+1. Stop cron jobs by commenting out the line by running `crontab -e`.
+2. If need to add new OpenGrok project:
+    - run [new-proj.sh](scripts/new-proj.sh) to add new OpenGrok project
+3. If need to add OpenGrok repository to existing OpenGrok project:
+    - run [prep-src.sh](scripts/prep-src.sh) to prepare source of a git repository with a specific branch
+    - run [full-index.sh](scripts/full-index.sh) to run a full index on the source directory
+4. Recover cron jobs.
