@@ -23,6 +23,8 @@ echo
 echo "Synchronizing ..."
 /usr/local/bin/opengrok-sync -c /opengrok/etc/sync-config.yml -d /opengrok/src/
 ret=$?
-echo "Exit code: $ret"
+echo "Return code: $ret"
 
+echo
+date
 echo "Done!"

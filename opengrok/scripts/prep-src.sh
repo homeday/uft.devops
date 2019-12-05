@@ -23,6 +23,7 @@ pushd "$repo"
 git clone -b "$branch" --single-branch "https://github.houston.softwaregrp.net/${org}/${repo}.git" "$branch"
 pushd "$branch"
 git pull
+git branch
 
 popd
 popd
