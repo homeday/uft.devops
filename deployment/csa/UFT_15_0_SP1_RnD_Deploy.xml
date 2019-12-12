@@ -59,8 +59,11 @@
 		  <VM_NAME>myd-vm04310</VM_NAME>
 		  <team>Document</team>
 		  <USER_EMAIL>uft.doc@microfocus.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9b5c0aafda015ca72f667e11b7</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		  <SUBSCRIPTION_ID>2c90e2876b455004016b45777b8f5d6e</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+		  <CSAAccount>_ALM_UFT_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
 		</host>
 		<!--<host>
 		  <VM_NAME>myd-vm04305</VM_NAME>
