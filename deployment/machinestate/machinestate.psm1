@@ -84,7 +84,7 @@ class MachineState
             return "outofdate"
         } catch [Exception] {
             Write-Host $_.Exception -force -ForegroundColor Red -BackgroundColor Black | format-list 
-            return "failure"
+            return "invalid"
         }
 
     }
@@ -393,8 +393,8 @@ class InvalidState : MachineState {
         $machineContext.MachineInfo.rdpusers = $rdpUsers
 
         switch ($installerRes) {
-            "failure" {
-                $machineContext.setState([State]::failure)
+            "invalid" {
+                $machineContext.setState([State]::invalid)
                 break
             }
             "success" {
