@@ -1,0 +1,9 @@
+BuildMajorVersion=14
+BuildMinorVersion=99
+BuildLabel=UFT_15_0_SP1_DarkMode
+SvcpackVersion=1
+BuildPostfix=0
+WSPostfix=
+DebugBuild=false
+
+
