@@ -174,9 +174,11 @@ class CSAInstallUFT : CSAInstallApp {
                     Write-Host "versionInreg = ${versionInreg}" -ForegroundColor Green -BackgroundColor Black
                     if ($versionInreg -eq $BuildVersion) {
                         $IsAppexist = $true
+                        ([CSAInstallApp]$this).RestartMachine($CSAName, $CSACredential)
                     }
                 }
             }
+
         }
         catch [Exception] {
             Write-Host $_.Exception|format-list -force
