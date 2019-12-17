@@ -108,6 +108,8 @@ class CSAPreparationUninstallUFT : CSAPreparation {
 
         if ($isUFTExists) {
             $this.UninstallApplication($CSAName, $CSACredential)
+        } else {
+            ([CSAPreparation]$this).RestartMachine($CSAName, $CSACredential)
         }
         Write-Host "CSAPreparationUninstallUFT::doAction End" -ForegroundColor Green -BackgroundColor Black
 
@@ -198,11 +200,11 @@ class CSAPreparationRevertMachine : CSAPreparation {
         [string]$CSASubscriptionID
     ) {
         Write-Host "CSAPreparationRevertMachine::doAction Start" -ForegroundColor Green -BackgroundColor Black
-        if ( $CSAAccount -eq $null -or $CSAAccount  -eq "") {
+        if ( $null -eq $CSAAccount -or $CSAAccount  -eq "") {
             $CSAAccount = ${env:CSAAccount}
         } 
         
-        if ( $CSAPwd -eq $null -or $CSAPwd  -eq "") {
+        if ( $null -eq $CSAPwd -or $CSAPwd  -eq "") {
             $CSAPwd = ${env:CSAPassword}
         }
         if ($null -eq $CSACredential) {
