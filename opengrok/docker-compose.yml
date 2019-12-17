@@ -3,6 +3,8 @@ services:
   opengroksrc:
     build: ./docker
     image: opengrokcodeupdate:1.0
+    environment:
+      - GITHUB_SERVER=github.houston.softwaregrp.net
     volumes:
      - /src:/src
     container_name: uftopengroksrc

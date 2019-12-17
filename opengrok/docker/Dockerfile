@@ -1,10 +1,10 @@
 FROM bash:4.4
 
-LABEL maintainer="uft.dev.ops@hpe.com" \
+LABEL maintainer="uft.dev.ops@microfocus.com" \
       version="1.0" \
       description="UFT source code update for opengrok"
 
-ARG http_proxy=http://web-proxy.il.hpecorp.net:8080
+ARG http_proxy=http://web-proxy.sg.softwaregrp.net:8080
 ARG https_proxy=$http_proxy
 ARG no_proxy=127.0.0.1,localhost
 

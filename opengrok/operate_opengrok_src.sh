@@ -2,8 +2,10 @@ label=$1
 operate=$2
 branchname=$3
 
-
-repolist=$(curl -L -s "https://raw.${GITHUB_SERVER}/uft/uft.devops/master/repolist/${label}.txt")
+git config --global credential.helper store
+git config --global user.name "Uftgithub"
+git config --global user.password "0211f662b4b1f6b26aceaa5c1501c4bc67938c41"
+repolist=$(curl -u Uftgithub:0211f662b4b1f6b26aceaa5c1501c4bc67938c41 -L -sSL "https://raw.${GITHUB_SERVER}/uft/uft.devops/master/repolist/${label}.txt")
 
 if [[ "$repolist" =~ "404" ]]; then
     echo $repolist
