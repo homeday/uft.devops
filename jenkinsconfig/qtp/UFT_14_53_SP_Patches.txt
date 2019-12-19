@@ -1,7 +1,7 @@
 BuildLabel=UFT_14_53_SP_Patches
 BuildMajorVersion=14
 BuildMinorVersion=53
-BuildPostfix=2
+BuildPostfix=3
 Deploy=false
 01_CreateMLU=false
 Create_LeanFT=false
@@ -13,5 +13,5 @@ DVD_Sync_2_SH=true
 DVD_Sync_2_Cluj=true
 E2E=false
 upload3rdparty=false
-PatchID=UFT_00203
+PatchID=UFT_00204
 
