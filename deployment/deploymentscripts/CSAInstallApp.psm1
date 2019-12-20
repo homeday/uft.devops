@@ -51,6 +51,15 @@ class CSAInstallApp {
         }
     }
 
+    [Void]StopMsiexecProcess(
+        [string]$CSAName,      
+        [System.Management.Automation.PSCredential]$CSACredential  
+    ) {
+        Write-Host "CSAInstallApp::StopMsiexecProcess Start" -ForegroundColor Green -BackgroundColor Black
+        Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { Stop-Process -Name "msiexec" -Force }
+        Write-Host "CSAInstallApp::StopMsiexecProcess Stop" -ForegroundColor Green -BackgroundColor Black
+    }
+    
     [Boolean]InstallPatch(
         [string]$CSAName,      
         [System.Management.Automation.PSCredential]$CSACredential,
@@ -102,7 +111,7 @@ class CSAInstallUFT : CSAInstallApp {
                 ([CSAInstallUFT]$this).WaitWinRM($CSAName, $CSACredential)
                 Start-Sleep 5
             }
-            Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { Stop-Process -Name "msiexec" -Force }
+            $this.StopMsiexecProcess($CSAName, $CSACredential)
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             $iloop=$iloop+1
@@ -231,7 +240,7 @@ class CSAInstallLFTAsFt : CSAInstallUFT {
                 ([CSAInstallUFT]$this).WaitWinRM($CSAName, $CSACredential)
                 Start-Sleep 5
             }
-            Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { Stop-Process -Name "msiexec" -Force }
+            $this.StopMsiexecProcess($CSAName, $CSACredential)
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             $iloop=$iloop+1
@@ -276,7 +285,7 @@ class CSAInstallRPA : CSAInstallUFT {
                 ([CSAInstallUFT]$this).WaitWinRM($CSAName, $CSACredential)
                 Start-Sleep 5
             }
-            Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { Stop-Process -Name "msiexec" -Force }
+            $this.StopMsiexecProcess($CSAName, $CSACredential)
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             $iloop=$iloop+1
@@ -319,7 +328,7 @@ class CSAInstallAI : CSAInstallUFT {
                 ([CSAInstallUFT]$this).WaitWinRM($CSAName, $CSACredential)
                 Start-Sleep 5
             }
-            Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { Stop-Process -Name "msiexec" -Force }
+            $this.StopMsiexecProcess($CSAName, $CSACredential)
             $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock $sb
             Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
             $iloop=$iloop+1
