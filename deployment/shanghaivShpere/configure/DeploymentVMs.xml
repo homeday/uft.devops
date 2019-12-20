@@ -78,7 +78,7 @@
 		<host>
 		  <VM_NAME>shcuft030</VM_NAME>
 		  <VM_Description>Functional architects shcuft030</VM_Description>
-		  <USER_EMAIL>ran.bachar@microfocus.com,tal.halperin@microfocus.com,tsachi.ben-zur@microfocus.com,vika.milgrom@microfocus.com</USER_EMAIL>
+		  <USER_EMAIL>ran.bachar@microfocus.com,avi.genshaft@microfocus.com,mateh@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<host>
