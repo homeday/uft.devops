@@ -56,7 +56,15 @@ class CSAInstallApp {
         [System.Management.Automation.PSCredential]$CSACredential  
     ) {
         Write-Host "CSAInstallApp::StopMsiexecProcess Start" -ForegroundColor Green -BackgroundColor Black
-        Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { Stop-Process -Name "msiexec" -Force }
+        Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { 
+            & { 
+                Write-Host "before"
+                Get-Process -Name "msiexec"
+                Stop-Process -Name "msiexec" -Force 
+                Write-Host "after"
+                Get-Process -Name "msiexec"	
+            }
+        }
         Write-Host "CSAInstallApp::StopMsiexecProcess Stop" -ForegroundColor Green -BackgroundColor Black
     }
     
