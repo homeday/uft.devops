@@ -51,6 +51,10 @@ IF %THREE_LETTER_LANG%==ENU (
 	)
 ECHO ##%LOCALE_STRING%##
 
+pushd C:\Windows\Installer
+cmd /c bash -c "rm -rf MSI*.tmp*"
+popd
+
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
 IF "%5" == "" (
 echo installing UFT
