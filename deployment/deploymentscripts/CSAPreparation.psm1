@@ -160,6 +160,23 @@ class CSAPreparationUninstallUFT : CSAPreparation {
         return $IsAppexist
     }
 
+    [Void]StopMsiexecProcess(
+        [string]$CSAName,      
+        [System.Management.Automation.PSCredential]$CSACredential  
+    ) {
+        Write-Host "CSAPreparationUninstallUFT::StopMsiexecProcess Start" -ForegroundColor Green -BackgroundColor Black
+        Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { 
+            & { 
+                Write-Host "before"
+                Get-Process -Name "msiexec"
+                Stop-Process -Name "msiexec" -Force 
+                Write-Host "after"
+                Get-Process -Name "msiexec"	
+            }
+        }
+        Write-Host "CSAPreparationUninstallUFT::StopMsiexecProcess Stop" -ForegroundColor Green -BackgroundColor Black
+    }
+
     [Void]UninstallApplication(
         [string]$CSAName,
         [System.Management.Automation.PSCredential]$CSACredential
@@ -167,10 +184,7 @@ class CSAPreparationUninstallUFT : CSAPreparation {
         Write-Host "CSAPreparationUninstallUFT::UninstallApplication Start" -ForegroundColor Green -BackgroundColor Black
         ([CSAPreparation]$this).RestartMachine($CSAName, $CSACredential)
         Write-Host "To delete old version UFT with the uninstaller tool" -ForegroundColor Green -BackgroundColor Black
-        $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { 
-            Stop-Process -Name "msiexec" -Force
-        } 
-        Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
+        $this.StopMsiexecProcess()
         $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { 
             Start-Process -FilePath C:\UFTUninstaller_v2.0\UFTUninstaller.exe -ArgumentList -silent -Wait 
         } 
