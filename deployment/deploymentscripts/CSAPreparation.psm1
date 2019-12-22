@@ -184,7 +184,7 @@ class CSAPreparationUninstallUFT : CSAPreparation {
         Write-Host "CSAPreparationUninstallUFT::UninstallApplication Start" -ForegroundColor Green -BackgroundColor Black
         ([CSAPreparation]$this).RestartMachine($CSAName, $CSACredential)
         Write-Host "To delete old version UFT with the uninstaller tool" -ForegroundColor Green -BackgroundColor Black
-        $this.StopMsiexecProcess()
+        $this.StopMsiexecProcess($CSAName, $CSACredential)
         $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { 
             Start-Process -FilePath C:\UFTUninstaller_v2.0\UFTUninstaller.exe -ArgumentList -silent -Wait 
         } 
