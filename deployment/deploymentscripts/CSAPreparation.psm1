@@ -165,14 +165,8 @@ class CSAPreparationUninstallUFT : CSAPreparation {
         [System.Management.Automation.PSCredential]$CSACredential  
     ) {
         Write-Host "CSAPreparationUninstallUFT::StopMsiexecProcess Start" -ForegroundColor Green -BackgroundColor Black
-        Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { 
-            & { 
-                Write-Host "before"
-                Get-Process -Name "msiexec"
-                Stop-Process -Name "msiexec" -Force 
-                Write-Host "after"
-                Get-Process -Name "msiexec"	
-            }
+        Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock {
+            Get-Process -Name "msiexec" | Stop-Process -Force 
         }
         Write-Host "CSAPreparationUninstallUFT::StopMsiexecProcess Stop" -ForegroundColor Green -BackgroundColor Black
     }
