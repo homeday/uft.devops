@@ -104,12 +104,15 @@ class CSAPreparationUninstallUFT : CSAPreparation {
     ) {
         Write-Host "CSAPreparationUninstallUFT::doAction Start" -ForegroundColor Green -BackgroundColor Black        
         ([CSAPreparation]$this).doAction($CSAName, $CSAAccount,$CSAPwd, $CSACredential, $CSASubscriptionID)
-        $isUFTExists = $this.CheckUFTExist($CSAName, $CSAAccount, $CSAPwd);
-
-        if ($isUFTExists) {
+        $iloop=0
+        $isUFTExists = $true
+        while ( ($isUFTExists = $this.CheckUFTExist($CSAName, $CSAAccount, $CSAPwd)) -eq $true -and $iloop -lt 3 ) {
             $this.UninstallApplication($CSAName, $CSACredential)
-        } else {
+        }
+        if (-not $isUFTExists) {
             ([CSAPreparation]$this).RestartMachine($CSAName, $CSACredential)
+        } else {
+            Write-Host "CSAPreparationUninstallUFT::Error UFT still exists" -ForegroundColor Red -BackgroundColor Black    
         }
         Write-Host "CSAPreparationUninstallUFT::doAction End" -ForegroundColor Green -BackgroundColor Black
 
