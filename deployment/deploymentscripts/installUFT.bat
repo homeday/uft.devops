@@ -7,6 +7,7 @@ set DVD_Path=Z:\%1\DVD_WIX
 
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"
+cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\prerequisites
 cmd /c setup.exe /InstallOnlyPrerequisite /s
 popd 
