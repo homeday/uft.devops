@@ -195,7 +195,7 @@
 		  <SUBSCRIPTION_ID>8a471d91664b6d44016710f436534e77</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>	
-		<host>
+		<!--<host>
 		  <VM_NAME>myd-hvm00241</VM_NAME>
 		  <team>RPA</team>
 		  <USER_EMAIL>ftmobile.dev.infra.cn@microfocus.com</USER_EMAIL>
@@ -206,7 +206,7 @@
 		  <Application>rpa</Application>
 		  <SUBSCRIPTION_ID>2c90d38b6832aec7016835acda59127c</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>			
+		</host>			-->
 		<host>
 		  <VM_NAME>myd-vma00952</VM_NAME>
 		  <team>Sagi</team>
