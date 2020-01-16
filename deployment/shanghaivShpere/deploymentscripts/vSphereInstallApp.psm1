@@ -100,7 +100,7 @@ class VSphereInstallUFT : VSphereInstallApp {
             $MachineName = "${MachineName}.${env:VM_DOMAIN}"
         }
         $sb = [scriptblock]::Create(
-            "CMD.exe /C C:\deployUFT.bat ${BuildVersion} mama.hpeswlab.net ${MyIpAddr}"
+            "CMD.exe /C C:\deployUFT.bat ${BuildVersion} mama.swinfra.net ${MyIpAddr}"
         )
         $iloop=0
         $installed=$false
@@ -210,7 +210,7 @@ class VSphereInstallSALFT : VSphereInstallUFT {
         #$MyIpAddr=(Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4'} | Select-Object -First 1).IPAddress
         $MyIpAddr="shcuftjenkins.hpeswlab.net"
         $sb = [scriptblock]::Create(
-            "CMD.exe /C C:\deploySALFT.bat ${BuildVersion} mama.hpeswlab.net ${MyIpAddr}" 
+            "CMD.exe /C C:\deploySALFT.bat ${BuildVersion} mama.swinfra.net ${MyIpAddr}" 
         )
         if (Test-Path 'env:VM_DOMAIN')
         { 

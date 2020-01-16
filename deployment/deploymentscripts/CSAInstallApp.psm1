@@ -103,7 +103,7 @@ class CSAInstallUFT : CSAInstallApp {
     ) {
         Write-Host "CSAInstallUFT::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
         $sb = [scriptblock]::Create(
-            "CMD.exe /C C:\installUFT.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password}"
+            "CMD.exe /C C:\installUFT.bat ${BuildVersion} mama.swinfra.net ${env:Rubicon_Username} ${env:Rubicon_Password}"
         )
         $iloop=0
         $installed=$false
@@ -277,7 +277,7 @@ class CSAInstallRPA : CSAInstallUFT {
     ) {
         Write-Host "CSAInstallRPA::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
         $sb = [scriptblock]::Create(
-            "CMD.exe /C C:\installUFTOO.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password}" 
+            "CMD.exe /C C:\installUFTOO.bat ${BuildVersion} mama.swinfra.net ${env:Rubicon_Username} ${env:Rubicon_Password}" 
         )
         $iloop=0
         $installed=$false
@@ -320,7 +320,7 @@ class CSAInstallAI : CSAInstallUFT {
     ) {
         Write-Host "CSAInstallAI::InstallApplication Start" -ForegroundColor Green -BackgroundColor Black
         $sb = [scriptblock]::Create(
-            "CMD.exe /C C:\installAI.bat ${BuildVersion} mama.hpeswlab.net ${env:Rubicon_Username} ${env:Rubicon_Password}" 
+            "CMD.exe /C C:\installAI.bat ${BuildVersion} mama.swinfra.net ${env:Rubicon_Username} ${env:Rubicon_Password}" 
         )
         $iloop=0
         $installed=$false
