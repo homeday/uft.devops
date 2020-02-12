@@ -124,18 +124,6 @@
 		
 		<!--CSA in New Domain start-->
 		<host>
-		  <VM_NAME>myd-hvm00150</VM_NAME>
-		  <team>Anton</team>
-		  <NOTIFICATION_EMAIL>ftmobile.leanft.dev.roman.il@microfocus.com,yguo@microfocus.com</NOTIFICATION_EMAIL>
-		  <CSAAccount>_ft_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>2c90e49067875cbb0167c521e9d343f4</SUBSCRIPTION_ID>
-		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
-		  <Application>lftasfeature</Application>
-		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		</host>
-		<host>
 		  <VM_NAME>myd-vma00414</VM_NAME>
 		  <team>Functional architects</team>
 		  <USER_EMAIL>ran.bachar@microfocus.com,avi.genshaft@microfocus.com,mateh@microfocus.com</USER_EMAIL>
@@ -260,7 +248,7 @@
 		</host>
 		<host>
 		  <VM_NAME>myd-hvm00815</VM_NAME>
-		  <team>CodeLess</team>
+		  <team>Codeless</team>
 		  <Application>ai</Application>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
@@ -271,7 +259,7 @@
 		</host>
 		<host>
 		  <VM_NAME>myd-hvm01336</VM_NAME>
-		  <team>CodeLess</team>
+		  <team>Codeless</team>
 		  <Application>ai</Application>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
@@ -281,26 +269,38 @@
 		  <SUBSCRIPTION_ID>2c90e28a6ab16445016af74f2b841d9b</SUBSCRIPTION_ID>
 		</host>
 		<host>
-		  <VM_NAME>myd-hvm03835</VM_NAME>
-		  <team>CodeLess-Anton</team>
-		  <Application>ai</Application>
-		  <CSAAccount>_ft_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		  <USER_EMAIL>CDLSTEAMANTON@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>2c9090b36e91b9e1017034b6f27436af</SUBSCRIPTION_ID>
-		</host>
-		<host>
-		  <VM_NAME>myd-hvm03836</VM_NAME>
-		  <team>CodeLess-Amos</team>
+		  <VM_NAME>myd-hvm03853</VM_NAME>
+		  <team>Codeless-Amos</team>
 		  <Application>ai</Application>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
 		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
 		  <USER_EMAIL>CDLSTEAMAMOS@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>2c90e22f6e91b8f6017034b81cf45684</SUBSCRIPTION_ID>
+		  <SUBSCRIPTION_ID>2c9090b36e91b9e10170389b750579e5</SUBSCRIPTION_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-hvm03854</VM_NAME>
+		  <team>Codeless-Anton</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>CDLSTEAMANTON@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90e22f6e91b8f60170389c87db700b</SUBSCRIPTION_ID>
+		</host>
+		<host>
+		  <VM_NAME>myd-hvm00150</VM_NAME>
+		  <team>Codeless-Easton</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>CDLSTEAMEASTON@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90e49067875cbb0167c521e9d343f4</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
 		<!---->
 		<!--CSA in New Domain end-->
