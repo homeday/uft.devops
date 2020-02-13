@@ -1,0 +1,17 @@
+BuildLabel=UFT_15_0_SP1_OICMediator
+BuildMajorVersion=14
+BuildMinorVersion=98
+SvcpackVersion=1
+BuildPostfix=0
+Deploy=false
+01_CreateMLU=true
+Create_LeanFT=false
+CodeSign=false
+SignMethod=AUJAS
+srf_windows_executor=false
+srf_agents_sync=false
+DVD_Sync_2_SH=true
+DVD_Sync_2_Cluj=false
+E2E=false
+upload3rdparty=false
+repo_inclusion=
