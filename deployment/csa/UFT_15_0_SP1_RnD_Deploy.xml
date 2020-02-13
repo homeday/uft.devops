@@ -276,7 +276,7 @@
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
 		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		  <USER_EMAIL>CDLSTEAMAMOS@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
+		  <USER_EMAIL>cdlsteamamos@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>2c9090b36e91b9e10170389b750579e5</SUBSCRIPTION_ID>
 		</host>
 		<host>
@@ -287,7 +287,7 @@
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
 		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		  <USER_EMAIL>CDLSTEAMANTON@MicroFocusInternational.onmicrosoft.com</USER_EMAIL>
+		  <USER_EMAIL>cdlsteamanton@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>2c90e22f6e91b8f60170389c87db700b</SUBSCRIPTION_ID>
 		</host>
 		<host>
