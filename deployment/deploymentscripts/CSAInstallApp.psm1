@@ -178,15 +178,19 @@ class CSAInstallUFT : CSAInstallApp {
         try {
             if ($IsAppexist) {
                 $IsAppexist = $false
-                Write-Host "Check Version ${BuildVersion}" -ForegroundColor Green -BackgroundColor Black
-                $result = Invoke-Command -ComputerName $CSAName -Credential $CSACredential {Get-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Mercury Interactive\QuickTest Professional\CurrentVersion"}
-                #Write-Host "Check Version result =  ${result}" -ForegroundColor Green -BackgroundColor Black
-                if ($result -ne $null) {
-                    $versionInreg = $result.Major + "." + $result.Minor + "." + $result.ServicePack + "." + $result.build
-                    Write-Host "versionInreg = ${versionInreg}" -ForegroundColor Green -BackgroundColor Black
-                    if ($versionInreg -eq $BuildVersion) {
-                        $IsAppexist = $true
-                        ([CSAInstallApp]$this).RestartMachine($CSAName, $CSACredential)
+                if ($BuildVersion -match "[1-9]{2}\.[8|9]{1}[0-9]{1}") {
+                    $IsAppexist = $true
+                } else {
+                    Write-Host "Check Version ${BuildVersion}" -ForegroundColor Green -BackgroundColor Black
+                    $result = Invoke-Command -ComputerName $CSAName -Credential $CSACredential {Get-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Mercury Interactive\QuickTest Professional\CurrentVersion"}
+                    #Write-Host "Check Version result =  ${result}" -ForegroundColor Green -BackgroundColor Black
+                    if ($result -ne $null) {
+                        $versionInreg = $result.Major + "." + $result.Minor + "." + $result.ServicePack + "." + $result.build
+                        Write-Host "versionInreg = ${versionInreg}" -ForegroundColor Green -BackgroundColor Black
+                        if ($versionInreg -eq $BuildVersion) {
+                            $IsAppexist = $true
+                            ([CSAInstallApp]$this).RestartMachine($CSAName, $CSACredential)
+                        }
                     }
                 }
             }
