@@ -59,7 +59,7 @@ var signReport = {
 
         this.objMessage.Configuration.Fields.Item(namespace + "sendusing") = 2;
 
-        this.objMessage.Configuration.Fields.Item(namespace + "smtpserver") = "smtp3.hpe.com";
+        this.objMessage.Configuration.Fields.Item(namespace + "smtpserver") = "smtp.swinfra.net";
         this.objMessage.Configuration.Fields.Item(namespace + "smtpserverport") = 25;
 
 
