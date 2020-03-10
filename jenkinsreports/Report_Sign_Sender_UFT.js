@@ -38,7 +38,7 @@ var signReport = {
             fileContent = this.objFSO.OpenTextFile(path).ReadAll();
         }
 
-        this.objMessage.From = "uft.dev.ops@hpe.com"; 
+        this.objMessage.From = "uft.dev.ops@microfocus.com"; 
         this.objMessage.To = this.mailList; 
 
 
