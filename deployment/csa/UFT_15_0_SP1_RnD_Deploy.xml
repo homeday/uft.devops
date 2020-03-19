@@ -257,7 +257,7 @@
 		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com,tsachi.ben-zur@microfocus.com,tsafrir.lantner@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>2c90858769c8ed0b0169dd234d40004d</SUBSCRIPTION_ID>
 		</host>
-		<host>
+		<!--<host>
 		  <VM_NAME>myd-hvm01336</VM_NAME>
 		  <team>Codeless-Gil</team>
 		  <Application>ai</Application>
@@ -267,7 +267,7 @@
 		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
 		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com,gil.nakache@microfocus.com,tsafrir.lantner@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>2c90e28a6ab16445016af74f2b841d9b</SUBSCRIPTION_ID>
-		</host>
+		</host>-->
 		<host>
 		  <VM_NAME>myd-hvm03853</VM_NAME>
 		  <team>Codeless-Amos</team>
