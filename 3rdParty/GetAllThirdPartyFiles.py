@@ -20,6 +20,7 @@ import shutil
 def handleXml(xmlDir, filesbasedir, dstbasedir):
     root = ET.parse(xmlDir)
     products = root.findall(".//*[@name='LT-TPS']")
+    products.extend(root.findall(".//*[@name='IBA']")) # Add IBA Products
     aryextension = []
     for product in products:
         comps = product.findall("./comp")
