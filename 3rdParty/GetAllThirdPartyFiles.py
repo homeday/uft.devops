@@ -28,6 +28,11 @@ def handleXml(xmlDir, filesbasedir, dstbasedir):
         for comp in comps:
             files = comp.findall("./files/file")
             for file in files:
+                
+                # Ignore files except start with opencv_
+                if(product.find(".//*[@product='IBA']") and file.attrib['src'].find('opencv_') == -1):
+                   continue
+
                 trg = file.attrib['trg']
                 if trg[0] == '\\':
                     logging.info("trg = {0}".format(trg))
