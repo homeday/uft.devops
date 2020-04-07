@@ -1,7 +1,7 @@
 BuildMajorVersion=15
 BuildMinorVersion=0
-SvcpackVersion=1
-BuildLabel=UFT_15_0_SP1
+SvcpackVersion=2
+BuildLabel=UFT_15_0_SP2
 BuildPostfix=0
 WSPostfix=
 Configuration=win32_release

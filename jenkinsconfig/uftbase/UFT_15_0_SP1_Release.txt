@@ -1,8 +1,8 @@
 BuildMajorVersion=15
 BuildMinorVersion=0
-BuildLabel=UFT_15_0_SP2
-SvcpackVersion=2
+BuildLabel=UFT_15_0_SP1
+SvcpackVersion=1
 BuildPostfix=0
 WSPostfix=
-DebugBuild=false
+DebugBuild=true
 
