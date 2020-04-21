@@ -28,5 +28,3 @@ qtp.addins.pdf
 qtp.components
 qtp.addins.ai
 qtp.rpa
-qtp.oic
-
