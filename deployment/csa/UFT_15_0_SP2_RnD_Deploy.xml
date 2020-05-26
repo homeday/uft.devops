@@ -28,11 +28,15 @@
 <!-- ************************************************** Clean Machines ************************************************************************  -->	
 	<hosts>
 		<host>
-		  <VM_NAME>myd-vm04295</VM_NAME>
+		  <VM_NAME>myd-hvm04396</VM_NAME>
+		  <Application>lftasfeature</Application>
 		  <team>Bogdan</team>
 		  <USER_EMAIL>uft.cluj.dev@microfocus.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9b5c0aafda015ca6e2e6ff464c</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>2c90aa6a71f3a77b01724b36aff2793c</SUBSCRIPTION_ID>
+		  <CATALOG_ID>c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
 		<host>
 		  <VM_NAME>myd-vm07310</VM_NAME>
