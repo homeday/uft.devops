@@ -221,6 +221,7 @@
 		</host>
 		<host>
 		  <VM_NAME>myd-vma00863</VM_NAME>
+		  <Application>lftasfeature</Application>
 		  <team>Bogdan</team>
 		  <USER_EMAIL>uft.cluj.dev@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
@@ -231,6 +232,7 @@
 		</host>
 		<host>
 		  <VM_NAME>myd-vma00951</VM_NAME>
+		  <Application>lftasfeature</Application>
 		  <team>Bogdan</team>
 		  <USER_EMAIL>uft.cluj.dev@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
