@@ -4,6 +4,7 @@ BuildMinorVersion=0
 SvcpackVersion=1
 BuildPostfix=0
 Deploy=false
+BuildUFTAgent=false
 01_CreateMLU=true
 Create_LeanFT=false
 CodeSign=true
