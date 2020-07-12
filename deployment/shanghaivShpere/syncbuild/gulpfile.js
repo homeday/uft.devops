@@ -174,8 +174,8 @@ gulp.task('sync', ['prefiles'], function() {
 	return gulp.src( aryfiles, { buffer: false } )
 		//.pipe( conn.newer( '/public_html' ) ) // only upload newer files 
 		.pipe( conn.dest( destFolder ) )
-		.on('error', function() {
-			console.log('Synchronization failed!');
+		.on('error', function(error) {
+			console.log('Synchronization failed! ' + error.toString());
 			process.exit(1);
 		})
 		.on('end', function() {
