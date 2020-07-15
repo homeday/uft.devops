@@ -1,7 +1,7 @@
-BuildLabel=UFT_15_0_SP1_Log_For_Net
+BuildLabel=UFT_15_0_SP2_Log_For_Net
 BuildMajorVersion=14
 BuildMinorVersion=90
-SvcpackVersion=0
+SvcpackVersion=2
 BuildPostfix=0
 Deploy=true
 01_CreateMLU=true
