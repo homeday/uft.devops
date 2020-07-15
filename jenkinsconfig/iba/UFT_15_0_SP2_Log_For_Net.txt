@@ -1,0 +1,8 @@
+BuildMajorVersion=14
+BuildMinorVersion=90
+BuildLabel=UFT_15_0_SP2_Log_For_Net
+SvcpackVersion=2
+BuildPostfix=0
+WSPostfix=
+DebugBuild=false
+

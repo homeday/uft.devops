@@ -1,0 +1,15 @@
+MajorNumber=14
+MinorNumber=90
+Label=UFT_15_0_SP2_Log_For_Net
+Postfix=0
+DebugBuild=false
+br_Product=UTT
+br_RubiconPath=LT\\UTT
+br_Branch=UFT_15_0_SP2_Log_For_Net
+br_IsisId=na
+br_Label=UFT_15_0_SP2_Log_For_Net
+br_LTOPS=UFT_15_0_SP2_Log_For_Net
+br_MailTo=narendrakumar.chejara@microfocus.com
+br_CPPConfiguration=/p:AddParameter="false"
+br_restrictToNodeLabel=ALM_Sarah
+br_unitTestsResultsFolder=UnitTestResults

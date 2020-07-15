@@ -1,0 +1,10 @@
+BuildMajorVersion=14
+BuildMinorVersion=90
+SvcpackVersion=2
+BuildLabel=UFT_15_0_SP2_Log_For_Net
+BuildPostfix=0
+WSPostfix=
+Configuration=win32_release
+Agent_PKG_Name=UFT Connection Agent.pkg
+repo_inclusion=
+

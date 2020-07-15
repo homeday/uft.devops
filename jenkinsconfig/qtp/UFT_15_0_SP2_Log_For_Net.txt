@@ -1,0 +1,16 @@
+BuildLabel=UFT_15_0_SP2_Log_For_Net
+BuildMajorVersion=14
+BuildMinorVersion=90
+SvcpackVersion=2
+BuildPostfix=0
+Deploy=true
+01_CreateMLU=true
+Create_LeanFT=true
+CodeSign=true
+SignMethod=AUJAS
+srf_windows_executor=false
+srf_agents_sync=false
+DVD_Sync_2_SH=true
+DVD_Sync_2_Cluj=true
+E2E=true
+upload3rdparty=true
