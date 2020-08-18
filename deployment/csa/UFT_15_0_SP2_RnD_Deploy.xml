@@ -286,6 +286,17 @@
 		  <SUBSCRIPTION_ID>2c9090b36e91b9e10170389b750579e5</SUBSCRIPTION_ID>
 		</host>
 		<host>
+		  <VM_NAME>myd-hvm01218</VM_NAME>
+		  <team>Codeless-Amos</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>cdlsteamamos@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90e28a6ab16445016abb2ba3862cd8</SUBSCRIPTION_ID>
+		</host>
+		<host>
 		  <VM_NAME>myd-hvm03854</VM_NAME>
 		  <team>Codeless-Anton</team>
 		  <Application>ai</Application>
