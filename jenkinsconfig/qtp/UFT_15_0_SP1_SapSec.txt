@@ -1,4 +1,4 @@
-BuildLabel=UFT_15_0_SP1
+BuildLabel=UFT_15_0_SP1_SapSec
 BuildMajorVersion=15
 BuildMinorVersion=0
 SvcpackVersion=1
