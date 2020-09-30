@@ -3,7 +3,7 @@ net use * /delete /y
 SET STORAGE_WIN_SERVER=\\mydastr01.hpeswlab.net
 REM IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & net use X: \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release %4 /USER:%3
 net use %STORAGE_WIN_SERVER% %4 /USER:%3
-set DVD_Path=Z:\%1\DVD_WIX
+set DVD_Path=Z:\%1\DVD
 
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"
@@ -61,12 +61,12 @@ IF "%5" == "" (
 echo installing UFT
 
 cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
 
 ) ELSE (
 echo installing UFT and LFT as a feature	
 
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 
 )
 popd
