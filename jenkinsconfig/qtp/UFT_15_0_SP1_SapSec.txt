@@ -12,5 +12,5 @@ srf_windows_executor=false
 srf_agents_sync=false
 DVD_Sync_2_SH=true
 DVD_Sync_2_Cluj=true
-E2E=true
+E2E=false
 upload3rdparty=true
