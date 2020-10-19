@@ -1,0 +1,7 @@
+BuildMajorVersion=15
+BuildMinorVersion=0
+SvcpackVersion=1
+BuildLabel=UFT_15_0_SP1_Patches
+BuildPostfix=1
+WSPostfix=.SP.Patches
+DebugBuild=false

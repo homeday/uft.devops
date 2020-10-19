@@ -1,0 +1,17 @@
+BuildLabel=UFT_15_0_SP1_Patches
+BuildMajorVersion=15
+BuildMinorVersion=0
+SvcpackVersion=1
+BuildPostfix=1
+Deploy=false
+01_CreateMLU=false
+Create_LeanFT=false
+CodeSign=false
+SignMethod=AUJAS
+srf_windows_executor=false
+srf_agents_sync=false
+DVD_Sync_2_SH=true
+DVD_Sync_2_Cluj=true
+E2E=false
+upload3rdparty=false
+PatchID=UFT_00206
