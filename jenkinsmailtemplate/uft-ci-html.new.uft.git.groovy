@@ -96,7 +96,7 @@
 				}
 			}
 			
-			def versionNumber = "15.0.2.22" //${SetupBuild.getEnvironment().versionNumber}
+			def versionNumber = ${SetupBuild.getEnvironment().versionNumber}
 			def DVD_Wix_path = "${env.PRODUCTS_STORAGE_WIN}\\FT\\QTP\\${env.Configuration}\\${env.BuildVersion}\\DVD_Wix"
 			def uftSetup = "${DVD_Wix_path}\\Setup.exe"
 			def qcPluginSetup = "${DVD_Wix_path}\\ALMPlugin\\MSI\\HP_Unified_Functional_Add-in_for_ALM.msi"
@@ -106,7 +106,7 @@
 			def Type = env.Type ?: "Nightly"
 			def JobUrl = "${env.JENKINS_URL} + ${build.url}"
 			def Duration = build.durationString
-			def Branch = "Master" // CompilationBuild.getEnvironment().Configuration
+			def Branch = CompilationBuild.getEnvironment().Configuration
 			def ServerName = (build.getBuiltOn().getDisplayName()) ?: ""
 			def Configuration = (env.Configuration) ?: ""
 			
