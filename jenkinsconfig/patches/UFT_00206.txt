@@ -4,6 +4,7 @@ GaLabel=UFT_15_0_SP1_GA
 BuildMajorVersion=15
 BuildMinorVersion=0
 SvcpackVersion=1
+BuildPostfix=1
 BuildLabel=UFT_15_0_SP1_Patches
 CodeSign=1
 SignMethod=AUJAS
