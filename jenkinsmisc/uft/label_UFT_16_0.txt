@@ -1,40 +1,40 @@
 /products/LT/LT-INFRA/win32_release;LRE_LR_2020_GA;UFT_16_0
 /products/LT/LT-INFRA/win32_debug;2020.0.0.267;UFT_16_0
-/products/LT/LT-INFRA/win32_release;UFT_15_0_SP2;UFT_16_0_For_Dev
-/products/LT/LT-INFRA/win32_debug;UFT_15_0_SP2;UFT_16_0_For_Dev
+/products/LT/LT-INFRA/win32_release;UFT_16_0;UFT_16_0_For_Dev
+/products/LT/LT-INFRA/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 
 /products/LT/LT-CORE/win32_release;LRE_LR_2020_GA;UFT_16_0
 /products/LT/LT-CORE/win32_debug;LRE_LR_2020_GA;UFT_16_0
-/products/LT/LT-CORE/win32_release;UFT_15_0_SP2;UFT_16_0_For_Dev
-/products/LT/LT-CORE/win32_debug;UFT_15_0_SP2;UFT_16_0_For_Dev
+/products/LT/LT-CORE/win32_release;UFT_16_0;UFT_16_0_For_Dev
+/products/LT/LT-CORE/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 
 /products/LT/LT-LR/win32_release;LRE_LR_2020_GA;UFT_16_0
 /products/LT/LT-LR/win32_debug;LRE_LR_2020_GA;UFT_16_0
-/products/LT/LT-LR/win32_release;UFT_15_0_SP2;UFT_16_0_For_Dev
-/products/LT/LT-LR/win32_debug;UFT_15_0_SP2;UFT_16_0_For_Dev
+/products/LT/LT-LR/win32_release;UFT_16_0;UFT_16_0_For_Dev
+/products/LT/LT-LR/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 
-/products/LT/LT-TPS/win32_release;2020.0.0.409;UFT_16_0
-/products/LT/LT-TPS/win32_debug;2020.0.0.409;UFT_16_0
-/products/LT/LT-TPS/win32_release;UFT_15_0_SP2;UFT_16_0_For_Dev
-/products/LT/LT-TPS/win32_debug;UFT_15_0_SP2;UFT_16_0_For_Dev
+/products/LT/LT-TPS/win32_release;Default;UFT_16_0
+/products/LT/LT-TPS/win32_debug;Default;UFT_16_0
+/products/LT/LT-TPS/win32_release;UFT_16_0;UFT_16_0_For_Dev
+/products/LT/LT-TPS/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 
 /products/LT/LT-OPS/win32_release;LRE_LR_2020_GA;UFT_16_0
 /products/LT/LT-OPS/win32_debug;14.0.1740.0;UFT_16_0
-/products/LT/LT-OPS/win32_release;UFT_15_0_SP2;UFT_16_0_For_Dev
-/products/LT/LT-OPS/win32_debug;UFT_15_0_SP2;UFT_16_0_For_Dev
+/products/LT/LT-OPS/win32_release;UFT_16_0;UFT_16_0_For_Dev
+/products/LT/LT-OPS/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 
 /products/LT/SV/win32_release;4.20.5797.52377;UFT_16_0
 /products/LT/SV/win32_debug;4.20.5797.52377;UFT_16_0
-/products/LT/SV/win32_release;UFT_15_0_SP2;UFT_16_0_For_Dev
-/products/LT/SV/win32_debug;UFT_15_0_SP2;UFT_16_0_For_Dev
+/products/LT/SV/win32_release;UFT_16_0;UFT_16_0_For_Dev
+/products/LT/SV/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 
 /products/LT/UTT/win32_release;Default;UFT_16_0
 /products/LT/UTT/win32_debug;Default;UFT_16_0
-/products/LT/UTT/win32_release;UFT_15_0_SP2;UFT_16_0_For_Dev
-/products/LT/UTT/win32_debug;UFT_15_0_SP2;UFT_16_0_For_Dev
+/products/LT/UTT/win32_release;UFT_16_0;UFT_16_0_For_Dev
+/products/LT/UTT/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 
-/products/FT/CDLS-AI/win32_release;CDLS_4_0;UFT_16_0
-/products/FT/CDLS-AI/win32_debug;CDLS_4_0;UFT_16_0
+/products/FT/CDLS-AI/win32_release;CDLS_16_0;UFT_16_0
+/products/FT/CDLS-AI/win32_debug;CDLS_16_0;UFT_16_0
 
 
 /products/FT/CodedFT/win32_release;LeanFT_15_2_Setup_Nightly_Last;UFT_16_0
