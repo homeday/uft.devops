@@ -1,0 +1,6 @@
+/products/LT/LT-INFRA/win32_release;LRE_LR_2020_GA;UFT_16_0
+/products/LT/LT-INFRA/win32_debug;2020.0.0.267;UFT_16_0
+/products/LT/LT-CORE/win32_release;LRE_LR_2020_GA;UFT_16_0
+/products/LT/LT-CORE/win32_debug;LRE_LR_2020_GA;UFT_16_0
+/products/LT/LT-LR/win32_release;LRE_LR_2020_GA;UFT_16_0
+/products/LT/LT-LR/win32_debug;LRE_LR_2020_GA;UFT_16_0
