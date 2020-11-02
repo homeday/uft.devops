@@ -4,5 +4,5 @@ BuildLabel=UFT_15_0_SP2
 SvcpackVersion=2
 BuildPostfix=0
 WSPostfix=
-DebugBuild=true
+DebugBuild=false
 
