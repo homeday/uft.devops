@@ -1,0 +1,10 @@
+Branch=UFT_15_0_SP2_Patches
+PatchID=UFT_00207
+GaLabel=UFT_15_0_SP2_GA
+BuildMajorVersion=15
+BuildMinorVersion=0
+SvcpackVersion=2
+BuildPostfix=1
+BuildLabel=UFT_15_0_SP2_Patches
+CodeSign=1
+SignMethod=AUJAS
