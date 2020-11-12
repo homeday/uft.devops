@@ -110,7 +110,7 @@ echo "Unified Functional Testing -- Installation Failed!"
 exit 1
 
 :END
-IF NOT "%RestartNeed%" == "true" goto Finishedas
+IF NOT "%RestartNeed%" == "true" goto Finished
 Echo "Unified Functional Testing -- Installation completed BUT Restart is needed...."
 IF NOT "%5" == "" (
 	"C:\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\HP.UFT.LicenseInstall.exe" seat "C:\HP UFT-licfile.dat"
