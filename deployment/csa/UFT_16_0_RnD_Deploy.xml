@@ -275,6 +275,7 @@
 		  <SUBSCRIPTION_ID>2c90e28a6ab16445016af74f2b841d9b</SUBSCRIPTION_ID>
 		</host>
 		<host>
+		  <!-- Amos Team Machine -->
 		  <VM_NAME>myd-hvm03853</VM_NAME>
 		  <team>Codeless-Amos</team>
 		  <Application>ai</Application>
@@ -286,17 +287,55 @@
 		  <SUBSCRIPTION_ID>2c9090b36e91b9e10170389b750579e5</SUBSCRIPTION_ID>
 		</host>
 		<host>
-		  <VM_NAME>myd-hvm01218</VM_NAME>
+		  <!-- Marina's Machine -->
+		  <VM_NAME>myd-hvm06112</VM_NAME>
 		  <team>Codeless-Amos</team>
 		  <Application>ai</Application>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
 		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		  <USER_EMAIL>cdlsteamamos@microfocus.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>2c90e28a6ab16445016abb2ba3862cd8</SUBSCRIPTION_ID>
+		  <USER_EMAIL>marina.gammer@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90af95748ca4c5017565b83f3b53be</SUBSCRIPTION_ID>
 		</host>
 		<host>
+		  <!-- Yael's Machine -->
+		  <VM_NAME>myd-hvm06122</VM_NAME>
+		  <team>Codeless-Amos</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>yael.chaimov@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90af95748ca4c501756674f4711d47</SUBSCRIPTION_ID>
+		</host>
+		<host>
+		  <!-- Yevgeny's Machine -->
+		  <VM_NAME>myd-hvm06120</VM_NAME>
+		  <team>Codeless-Amos</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>yevgeny.efter@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90af95748ca4c50175665e8c296f43</SUBSCRIPTION_ID>
+		</host>
+		<host>
+		  <!-- Sami's Machine -->
+		  <VM_NAME>myd-hvm06121</VM_NAME>
+		  <team>Codeless-Amos</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>sami.kashbi@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c909068748ca4970175665f563c6181</SUBSCRIPTION_ID>
+		</host>
+		<host>
+		  <!-- Anton Team Machine -->
 		  <VM_NAME>myd-hvm03854</VM_NAME>
 		  <team>Codeless-Anton</team>
 		  <Application>ai</Application>
