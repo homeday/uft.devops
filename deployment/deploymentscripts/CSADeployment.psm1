@@ -92,10 +92,15 @@ class CSAMachineDeploy {
         #$ExpressionResult = Invoke-Expression -Command $NetUseExpression
         $ExpressionResult = Invoke-Command -ScriptBlock $NetUseExpression
         Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
-        $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe"
+        $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\Micro Focus\UFT One\bin\UFT.exe"
         $IsAppexist=Test-Path -Path $ApplicationDir
         Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
 
+        if (-Not $IsAppexist) {
+            $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe"
+            $IsAppexist=Test-Path -Path $ApplicationDir
+            Write-Host "It is ${IsAppexist} that UFT exists in the directory ${ApplicationDir}" -ForegroundColor Green -BackgroundColor Black
+        }
         if (-Not $IsAppexist) {
             $ApplicationDir="\\$($this.CSAName)\C`$\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe"
             $IsAppexist=Test-Path -Path $ApplicationDir
