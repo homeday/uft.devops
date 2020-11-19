@@ -1,0 +1,16 @@
+BuildLabel=UFT_16_0_SharpDevelop
+BuildMajorVersion=16
+BuildMinorVersion=0
+SvcpackVersion=0
+BuildPostfix=0
+Deploy=true
+01_CreateMLU=false
+Create_LeanFT=false
+CodeSign=false
+SignMethod=AUJAS
+srf_windows_executor=false
+srf_agents_sync=false
+DVD_Sync_2_SH=true
+DVD_Sync_2_Cluj=true
+E2E=true
+upload3rdparty=true
