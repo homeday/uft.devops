@@ -1,0 +1,7 @@
+BuildMajorVersion=16
+BuildMinorVersion=0
+BuildLabel=UFT_16_0_SharpDevelop
+SvcpackVersion=0
+BuildPostfix=0
+WSPostfix=
+DebugBuild=true
