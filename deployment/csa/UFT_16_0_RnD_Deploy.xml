@@ -28,6 +28,17 @@
 <!-- ************************************************** Clean Machines ************************************************************************  -->	
 	<hosts>
 		<host>
+		  <VM_NAME>myd-hvm01242</VM_NAME>
+		  <Application>lftasfeature</Application>
+		  <team>Cluj</team>
+		  <USER_EMAIL>uft.cluj.dev@microfocus.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>2c90af95748ca4c50176418d707420c6</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+		</host>
+		<host>
 		  <VM_NAME>myd-hvm04396</VM_NAME>
 		  <Application>lftasfeature</Application>
 		  <team>Bogdan</team>
