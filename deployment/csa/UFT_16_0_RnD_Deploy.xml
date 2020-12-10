@@ -50,6 +50,17 @@
 		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
 		<host>
+		  <VM_NAME>myd-hvm03151</VM_NAME>
+		  <Application>lftasfeature</Application>
+		  <team>Cluj</team>
+		  <USER_EMAIL>uft.cluj.dev@microfocus.com</USER_EMAIL>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <SUBSCRIPTION_ID>2c90af95748ca4c501764a5501c07fa8</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+		</host>
+<!-- 		<host>
 		  <VM_NAME>myd-hvm04396</VM_NAME>
 		  <Application>lftasfeature</Application>
 		  <team>Bogdan</team>
@@ -59,7 +70,7 @@
 		  <CSADomain>swinfra.net</CSADomain>
 		  <SUBSCRIPTION_ID>2c90aa6a71f3a77b01724b36aff2793c</SUBSCRIPTION_ID>
 		  <CATALOG_ID>c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
-		</host>
+		</host> -->
 		<host>
 		  <VM_NAME>myd-vm07310</VM_NAME>
 		  <team>Sagi</team>
@@ -241,7 +252,7 @@
 		  <SUBSCRIPTION_ID>8a471d92664b6d20016710ea7ff91c56</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
-		<host>
+		<!--<host>
 		  <VM_NAME>myd-vma00863</VM_NAME>
 		  <Application>lftasfeature</Application>
 		  <team>Bogdan</team>
@@ -252,7 +263,7 @@
 		  <SUBSCRIPTION_ID>8a471d92664b6d20016706795adb5457</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>
-		<host>
+ 		<host>
 		  <VM_NAME>myd-vma00951</VM_NAME>
 		  <Application>lftasfeature</Application>
 		  <team>Bogdan</team>
@@ -262,7 +273,7 @@
 		  <CSADomain>swinfra.net</CSADomain>
 		  <SUBSCRIPTION_ID>8a471d91664b6d44016782a7b1ed27a6</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>
+		</host> -->
 		<!--mlu-->
 		<host>
 		  <VM_NAME>myd-hvm00095</VM_NAME>
