@@ -10,6 +10,18 @@ git_branches:
                     job_url: 'http://mydtbld0211.swinfra.net:8080/view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters'
                     job_parameters:
                         token: UFTBUILDTOKEN
+                        Git_Repo_Clone_Url:
+                            runtime: _head_repo_clone_url_
+                        Head_Branch:
+                            runtime: _head_branch_
+                        Head_sha:
+                            runtime: _head_sha_
+                        Base_Branch:
+                            runtime: _base_branch_
+                        Git_PullRequest_ID:
+                            runtime: _pull_request_id_
+                        Email_List:
+                            runtime: _notification_email_list_
 
                 robots:
                     notes_writter:
