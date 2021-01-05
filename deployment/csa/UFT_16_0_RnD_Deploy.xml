@@ -286,6 +286,7 @@
 		  <CATALOG_ID>c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
 		<host>
+		  <!-- Tsachi's Machine -->
 		  <VM_NAME>myd-hvm00815</VM_NAME>
 		  <team>Codeless-Tsachi</team>
 		  <Application>ai</Application>
@@ -297,6 +298,7 @@
 		  <SUBSCRIPTION_ID>2c90858769c8ed0b0169dd234d40004d</SUBSCRIPTION_ID>
 		</host>
 		<host>
+		  <!-- Gil's Machine -->
 		  <VM_NAME>myd-hvm01336</VM_NAME>
 		  <team>Codeless-Gil</team>
 		  <Application>ai</Application>
@@ -308,7 +310,19 @@
 		  <SUBSCRIPTION_ID>2c90e28a6ab16445016af74f2b841d9b</SUBSCRIPTION_ID>
 		</host>
 		<host>
-		  <!-- Amos Team Machine -->
+		  <!-- UX Machine -->
+		  <VM_NAME>myd-hvm02164</VM_NAME>
+		  <team>Codeless-UX</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com,tsafrir.lantner@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90b185765081f00176cc98675507a3</SUBSCRIPTION_ID>
+		</host>
+		<host>
+		  <!-- Amos' Team Machine -->
 		  <VM_NAME>myd-hvm03853</VM_NAME>
 		  <team>Codeless-Amos</team>
 		  <Application>ai</Application>
@@ -368,7 +382,7 @@
 		  <SUBSCRIPTION_ID>2c909068748ca4970175665f563c6181</SUBSCRIPTION_ID>
 		</host>
 		<host>
-		  <!-- Anton Team Machine -->
+		  <!-- Anton's Team Machine -->
 		  <VM_NAME>myd-hvm03854</VM_NAME>
 		  <team>Codeless-Anton</team>
 		  <Application>ai</Application>
@@ -380,6 +394,7 @@
 		  <SUBSCRIPTION_ID>2c90e22f6e91b8f60170389c87db700b</SUBSCRIPTION_ID>
 		</host>
 		<host>
+		  <!-- Easton's Team Machine -->
 		  <VM_NAME>myd-hvm00150</VM_NAME>
 		  <team>Codeless-Easton</team>
 		  <Application>ai</Application>
