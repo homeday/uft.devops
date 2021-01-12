@@ -7,7 +7,7 @@
 /products/LT/LT-CORE/win32_release;UFT_16_0;UFT_16_0_For_Dev
 /products/LT/LT-CORE/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 /products/LT/LT-LR/win32_release;LRE_LR_2020_GA;UFT_16_0
-/products/LT/LT-LR/win32_debug;LRE_LR_2020_GA;UFT_16_0
+/products/LT/LT-LR/win32_debug;12.60.830.0_clean;UFT_16_0
 /products/LT/LT-LR/win32_release;UFT_16_0;UFT_16_0_For_Dev
 /products/LT/LT-LR/win32_debug;UFT_16_0;UFT_16_0_For_Dev
 /products/LT/LT-TPS/win32_release;Default;UFT_16_0
