@@ -191,7 +191,7 @@
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
 		</host>	
 		<host>
-		  <VM_NAME>myd-vma00878</VM_NAME>
+		  <VM_NAME>myd-hvm00266</VM_NAME>
 		  <team>Jason</team>
 		  <USER_EMAIL>ftmobile.dev.sap.cn@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
@@ -207,8 +207,8 @@
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>8a471d92664b6d20016782a99c807f9c</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		  <SUBSCRIPTION_ID>2c90b185765081f00176ffbd375b5110</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>	
 		<!--<host>
 		  <VM_NAME>myd-vma00877</VM_NAME>
