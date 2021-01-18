@@ -146,39 +146,27 @@
 		  <SUBSCRIPTION_ID>90bc0b9c4f3a604f014f8e04dfd5099a</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>-->
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		<!--CSA in New Domain start-->
 		<host>
-		  <VM_NAME>myd-vma00414</VM_NAME>
+		  <VM_NAME>myd-hvm03696</VM_NAME>
 		  <team>Functional architects</team>
 		  <USER_EMAIL>ran.bachar@microfocus.com,avi.genshaft@microfocus.com,mateh@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>8a471d9162f2b5da0163b93bce56744c</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		  <SUBSCRIPTION_ID>2c90b185765081f0017704b7f26f319a</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
 		<host>
-		  <VM_NAME>myd-vma00882</VM_NAME>
+		  <VM_NAME>mmyd-hvm03694</VM_NAME>
 		  <team>Functional architects</team>
 		  <USER_EMAIL>ran.bachar@microfocus.com,avi.genshaft@microfocus.com,mateh@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>8a471d91664b6d4401671119466521bd</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
+		  <SUBSCRIPTION_ID>2c90b185765081f0017704b7f26f319a</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
 		<host>
 		  <VM_NAME>myd-vma00954</VM_NAME>
