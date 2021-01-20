@@ -1,0 +1,15 @@
+MajorNumber=16
+MinorNumber=0
+Label=UFT_16_0_Pdf_Addin
+Postfix=0
+DebugBuild=false
+br_Product=UTT
+br_RubiconPath=LT\\UTT
+br_Branch=UFT_16_0_Pdf_Addin
+br_IsisId=na
+br_Label=UFT_16_0_Pdf_Addin
+br_LTOPS=UFT_16_0_Pdf_Addin
+br_MailTo=narendrakumar.chejara@microfocus.com
+br_CPPConfiguration=/p:AddParameter="false"
+br_restrictToNodeLabel=ALM_Sarah
+br_unitTestsResultsFolder=UnitTestResults
