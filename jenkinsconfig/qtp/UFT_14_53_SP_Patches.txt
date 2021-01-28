@@ -1,9 +1,9 @@
 BuildLabel=UFT_14_53_SP_Patches
 BuildMajorVersion=14
 BuildMinorVersion=53
-BuildPostfix=4
+BuildPostfix=5
 Deploy=false
-01_CreateMLU=false
+01_CreateMLU=true
 Create_LeanFT=false
 CodeSign=false
 SignMethod=AUJAS
@@ -13,5 +13,5 @@ DVD_Sync_2_SH=true
 DVD_Sync_2_Cluj=true
 E2E=false
 upload3rdparty=false
-PatchID=UFT_00205
+PatchID=UFT_00208
 
