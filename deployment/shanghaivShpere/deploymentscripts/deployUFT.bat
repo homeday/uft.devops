@@ -52,19 +52,19 @@ IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64BIT) ELSE (GOTO 32BIT)
 
 :64BIT
 
-IF NOT EXIST "C:\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO ERRINSTALL
+IF NOT EXIST "C:\Program Files (x86)\Micro Focus\UFT One\bin\UFT.exe" GOTO ERRINSTALL
 type c:\UFT_Install_Log.txt | findstr /C:%SUCCESS_STRING%>nul
 if NOT "%errorlevel%"=="0" (GOTO ERRINSTALL) ELSE (GOTO END)
 
 :32BIT
 
 
-IF NOT EXIST "C:\Program Files\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO ERRINSTALL
+IF NOT EXIST "C:\Program Files\Micro Focus\UFT One\bin\UFT.exe" GOTO ERRINSTALL
 type c:\UFT_Install_Log.txt | findstr /C:%SUCCESS_STRING%>nul
 if NOT "%errorlevel%"=="0" (GOTO ERRINSTALL) ELSE (GOTO END)
 
 :ERRINSTALL
-echo " Unified Functional Testing -- Installation Failed!"
+echo " UFT One -- Installation Failed!"
 net use * /delete /y 
 exit 1
 
@@ -72,7 +72,7 @@ exit 1
 
 :END
 IF NOT "%RestartNeed%" == "true" goto Finished
-Echo "Unified Functional Testing -- Installation completed BUT Restart is needed...."
+Echo "UFT One -- Installation completed BUT Restart is needed...."
 net use * /delete /y 
 exit 0
 :Finished
