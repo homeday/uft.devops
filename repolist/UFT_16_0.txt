@@ -8,6 +8,7 @@ qtp.addins.teabased
 qtp.frontend
 qtp.addins.erp
 qtp.addins.uiautomation
+qtp.addins.uiautomation2
 qtp.infra
 qtp.addins.flash
 qtp.addins.webbased
