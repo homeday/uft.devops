@@ -1,0 +1,74 @@
+---
+# Reference: https://docs.ansible.com/ansible/2.8/modules/win_service_module.html#examples
+
+- name: Launch jenkins nodes
+  hosts: "{{ host_name }}"
+  gather_facts: no # Disble gathering facts to increase playbook execution
+  vars:
+     service_name: "jenkinsslave-C__Jenkins"
+     display_name: "Jenkins agent (jenkinsslave-C__Jenkins)"
+     path: "C:\\Jenkins\\jenkins-slave.exe"
+     username: "{{ ansible_user }}"
+     password: "{{ ansible_password }}"
+     debug: flase
+
+  tasks:
+
+     - name: Service Status
+       win_service:
+          name: "{{ service_name }}"
+       register: result
+
+     - debug: msg="{{result}}"
+       when: true == debug
+
+     - name: Register jenkins service if it not exist
+       win_service:
+          name: "{{ service_name }}"
+          display_name: "{{ display_name  }}"
+          state: started
+          path: "{{ path }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+       when: false == result.exists
+
+
+     - name: Service Status
+       win_service:
+          name: "{{ service_name }}"
+       register: result
+
+     - name: Exit playbook if service running
+       meta: end_play
+       when: true == result.exists  and "running" == result.state|string
+
+     - name: Start service if stopped
+       win_service:
+          name: "{{ service_name }}"
+          state: started
+       register: result
+       when: true == result.exists and "stopped" == result.state|string
+       ignore_errors: yes
+
+
+     - name: Remove service if failed to start
+       win_service:
+          name: "{{ service_name }}"
+          state: absent
+       register: result
+       when: true == result.exists and "stopped" == result.state|string
+       ignore_errors: yes
+       notify:
+          - create_jenkins_services
+
+  # Call handlers on notify
+  handlers:
+     # Create a services
+     - name: create_jenkins_services
+       win_service:
+          name: "{{ service_name }}"
+          display_name: "{{ display_name  }}"
+          state: started
+          path: "{{ path }}"
+          username: "{{ username }}"
+          password: "{{ password }}"     
