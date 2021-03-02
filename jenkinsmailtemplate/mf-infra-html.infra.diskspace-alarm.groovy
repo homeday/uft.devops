@@ -79,6 +79,7 @@ if (nodeStatusFileExist) {
       <TH>Threshold</TH>
       <TH>Disk: Avail / Total</TH>
       <TH>Disk: Available (%)</TH>
+      <TH> Action </TH>
     </TR>
 
 <%nodeStatusFile.eachLine { line ->
@@ -118,24 +119,26 @@ if (nodeStatusFileExist) {
     <TR>
       <TD>${computer}</TD>
 
-<%if (online == 'Online') { %>
+    <% if (online == 'Online') { %>
       <TD class="online">Online</TD>
-<%} else { %>
+    <% } else { %>
       <TD class="offline">Offline</TD>
-<%} %>
+    <%} %>
 
       <TD>${drive}</TD>
 
       <TD>${threshold}</TD>
 
-<%if (availDisk) { %>
+    <% if (availDisk) { %>
       <TD><span class="disk-warn">${availDisk}</span> / <span>${totalDisk}</span></TD>
-<%} else { %>
+    <% } else { %>
       <TD></TD>
-<%} %>
+    <% } %>
 
       <TD class="disk-warn2">${availPercent}</TD>
-
+    <% if (online == 'Offline') { %>
+      <TD><a href="http://mydtbld0211.swinfra.net:8080/job/Bring_Slave_Online/buildWithParameters?token=UFTBUILDTOKEN&host_name=${computer}">Make it online!</TD>
+    <% } %>
     </TR>
 
 <% }}; %>
