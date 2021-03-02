@@ -7,7 +7,7 @@
   vars:
      service_name: "jenkinsslave-C__Jenkins"
      display_name: "Jenkins agent (jenkinsslave-C__Jenkins)"
-     path: "C:\\Jenkins\\jenkins-slave.exe"
+     path: "E:\\Jenkins2\\jenkins-slave.exe"
      username: "{{ ansible_user }}"
      password: "{{ ansible_password }}"
      debug: flase
