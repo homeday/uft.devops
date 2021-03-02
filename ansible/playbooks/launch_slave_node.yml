@@ -5,8 +5,8 @@
   hosts: "{{ host_name }}"
   gather_facts: no # Disble gathering facts to increase playbook execution
   vars:
-     service_name: "jenkinsslave-C__Jenkins"
-     display_name: "Jenkins agent (jenkinsslave-C__Jenkins)"
+     service_name: "jenkinsslave-E__Jenkins2"
+     display_name: "Jenkins agent (jenkinsslave-E__Jenkins2)"
      path: "E:\\Jenkins2\\jenkins-slave.exe"
      username: "{{ ansible_user }}"
      password: "{{ ansible_password }}"
