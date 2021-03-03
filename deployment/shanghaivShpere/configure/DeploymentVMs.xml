@@ -30,7 +30,7 @@
 		<host>
 		  <VM_NAME>shcuft023</VM_NAME>
 		  <VM_Description>Sagi shcuft023</VM_Description>
-		  <USER_EMAIL>ftmobile.dev.back.end.cn@microfocus.com</USER_EMAIL>
+		  <USER_EMAIL>ftmobile.dev.web.tech.cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
 		</host>
 		<!--<host>
