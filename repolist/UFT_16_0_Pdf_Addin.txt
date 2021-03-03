@@ -29,3 +29,4 @@ qtp.components
 qtp.addins.ai
 qtp.rpa
 qtp.oic
+qtp.addins.uiautomation2
