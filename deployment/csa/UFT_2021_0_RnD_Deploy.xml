@@ -168,7 +168,8 @@
 		  <SUBSCRIPTION_ID>2c90b185765081f0017704b7f26f319a</SUBSCRIPTION_ID>
 		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
-		<host>
+		<!-- Used to deploy PDF feature -->
+		<!-- <host>
 		  <VM_NAME>myd-vma00954</VM_NAME>
 		  <team>Jason</team>
 		  <USER_EMAIL>ftmobile.dev.sap.cn@microfocus.com</USER_EMAIL>
@@ -177,7 +178,7 @@
 		  <CSADomain>swinfra.net</CSADomain>
 		  <SUBSCRIPTION_ID>8a471d91664b6d44016782aa883232cb</SUBSCRIPTION_ID>
 		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>	
+		</host>	 -->
 		<host>
 		  <VM_NAME>myd-hvm00266</VM_NAME>
 		  <team>Jason</team>
