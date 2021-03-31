@@ -14,3 +14,5 @@ DVD_Sync_2_SH=true
 DVD_Sync_2_Cluj=true
 E2E=true
 upload3rdparty=true
+Invoke_UFT_Agents=true
+Invoke_AI_Automation=true
