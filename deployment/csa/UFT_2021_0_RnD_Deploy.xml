@@ -274,8 +274,25 @@
 		  <SUBSCRIPTION_ID>2c90e49067875cbb0167a696f2ac1876</SUBSCRIPTION_ID>
 		  <CATALOG_ID>c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
+		
+		<!-- ******************************************************* -->
+		<!-- Start of Codeless group nightly deployment CSA machines -->
+		<!-- ******************************************************* -->
 		<host>
 		  <!-- Tsachi's Machine -->
+		  <VM_NAME>myd-hvm04000</VM_NAME>
+		  <team>Codeless-Tsachi</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com,tsachi.ben-zur@microfocus.com,tsafrir.lantner@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90b185765081f00178a645571724c5</SUBSCRIPTION_ID>
+		</host>
+		<!--
+		<host>
+		  <!- - Tsachi's Old Machine - ->
 		  <VM_NAME>myd-hvm00815</VM_NAME>
 		  <team>Codeless-Tsachi</team>
 		  <Application>ai</Application>
@@ -285,8 +302,8 @@
 		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
 		  <USER_EMAIL>CDLSSTAFF@MicroFocusInternational.onmicrosoft.com,tsachi.ben-zur@microfocus.com,tsafrir.lantner@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>2c90858769c8ed0b0169dd234d40004d</SUBSCRIPTION_ID>
-		</host>
-		<host>
+		</host> -->
+		<host> 
 		  <!-- Gil's Machine -->
 		  <VM_NAME>myd-hvm01336</VM_NAME>
 		  <team>Codeless-Gil</team>
@@ -395,6 +412,7 @@
 		  <SUBSCRIPTION_ID>2c90e49067875cbb0167c521e9d343f4</SUBSCRIPTION_ID>
 		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
+		<!-- End of Codeless group nightly deployment CSA machines -->
 		<!---->
 		<!--CSA in New Domain end-->
 	</hosts>
