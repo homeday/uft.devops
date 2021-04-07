@@ -31,6 +31,7 @@
 		  <VM_NAME>myd-vma00954</VM_NAME>
 		  <team>Jason</team>
 		  <USER_EMAIL>ftmobile.dev.sap.cn@microfocus.com</USER_EMAIL>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>	
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
