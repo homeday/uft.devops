@@ -1,0 +1,62 @@
+git_org: uft
+git_repo: qtp.setup
+
+git_branches:
+    master:
+        pull_request:
+            opened:
+                jenkins: &jenkins_action_pull_request_compile_only
+                    enabled: true
+                    job_url: 'http://mydtbld0211.swinfra.net:8080/view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters'
+                    job_parameters:
+                        token: UFTBUILDTOKEN
+                        Git_Repo_Clone_Url:
+                            runtime: _head_repo_clone_url_
+                        Head_Branch:
+                            runtime: _head_branch_
+                        Head_sha:
+                            runtime: _head_sha_
+                        Base_Branch:
+                            runtime: _base_branch_
+                        Git_PullRequest_ID:
+                            runtime: _pull_request_id_
+                        Email_List:
+                            runtime: _notification_email_list_
+
+                robots:
+                    notes_writter:
+                        enabled: true
+                        body: |
+                            The UFT.Daily.Quick.CI.Launcher build will be run in several seconds automatically.
+                            If the builds are not started in 1-2 minutes, please trigger the builds manually by clicking <a href="${jenkins_build_url}">this link</a>.
+            
+                            Once clicked, the current page will be redirected to a blank page in order to trigger a new Jenkins build.
+                            This behavior is expected and just go back to the original page.
+            
+                            Do <b>NOT</b> click the link more than one time.
+                        
+                        placeholders:
+                            jenkins_build_url:
+                                URI_BUILDER:
+                                    schema: http
+                                    host: mydtbld0211.swinfra.net:8080
+                                    base_uri: /view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters
+                                    query: 
+                                        token: UFTBUILDTOKEN
+                                        Git_Repo_Clone_Url:
+                                            runtime: _head_repo_clone_url_
+                                        Head_Branch:
+                                            runtime: _head_branch_
+                                        Head_sha:
+                                            runtime: _head_sha_
+                                        Base_Branch:
+                                            runtime: _base_branch_
+                                        Git_PullRequest_ID:
+                                            runtime: _pull_request_id_
+                                        Email_List:
+                                            runtime: _notification_email_list_
+
+            reopened:
+                jenkins: *jenkins_action_pull_request_compile_only
+            synchronize:
+                jenkins: *jenkins_action_pull_request_compile_only
