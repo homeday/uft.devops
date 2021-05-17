@@ -1,0 +1,25 @@
+---
+- name: Copy the latest Aujas form Rubicon to target machine
+  win_command: robocopy {{src}} {{dest}} {{file_name}}
+  register: result_out
+
+- debug: msg="{{result_out}}"
+
+- name: Extract the file
+  win_unzip:
+     src:  "{{dest}}{{file_name}}"
+     dest: "{{dest}}"
+  register: result_out
+
+- debug: msg="{{result_out}}"
+
+#- name: Copy aujas cli
+#  win_copy:
+#     src: "{{dest}}\\Windows\\CodeSign-CLI\\"
+#     dest: "{{dest}}\\"
+#     remote_src: yes
+#  register: result_out
+#  notify: "Remove Folder"
+
+
+#- debug: msg="{{result_out}}"
