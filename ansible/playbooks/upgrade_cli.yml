@@ -1,0 +1,6 @@
+---
+- name: Upgrade Aujas Cli
+  hosts: "{{ host_name }}"
+  gather_facts: no
+  roles:
+    - upgrade_aujas_cli

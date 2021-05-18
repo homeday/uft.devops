@@ -1,0 +1,6 @@
+---
+- name: Remove Folder
+  win_file:
+     path: "{{dest}}\\Windows\\"
+     state: absent
+
