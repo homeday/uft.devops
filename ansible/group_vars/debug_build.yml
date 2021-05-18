@@ -2,4 +2,5 @@ ansible_user: "hpeswlab.net\\_ftmobilebuild"
 ansible_password: "W3lcome1"
 ansible_connection: winrm
 ansible_winrm_server_cert_validation: ignore
-ansible_winrm_transport: ntlm
+#ansible_winrm_transport: ntlm
+ansible_winrm_transport: credssp

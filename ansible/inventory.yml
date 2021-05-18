@@ -12,20 +12,24 @@ Mydwbld0144.hpeswlab.net
 [win_test]
 myd-hvm00005.swinfra.net
 
-[aujas_cli]
-Mydwbld0090.hpeswlab.net
+[aujas_cli_swinfra]
+Mydwbld0179.swinfra.net
+Mydwbld0178.swinfra.net
+Mydwbld0177.swinfra.net
+Mydwbld0176.swinfra.net
+Mydwbld0175.swinfra.net
+
+[aujas_cli_hpeswlab]
+Mydwbld0142.hpeswlab.net
 Mydwbld0163.hpeswlab.net
 Mydwbld0144.hpeswlab.net
-Mydwbld0179.hpeswlab.net
-Mydwbld0178.hpeswlab.net
-Mydwbld0177.hpeswlab.net
-Mydwbld0176.hpeswlab.net
-Mydwbld0175.hpeswlab.net
-Mydwbld0142.hpeswlab.net
-
+Mydwbld0090.hpeswlab.net
 
 [Windows_Mydwbld0090]
 Mydwbld0090.hpeswlab.net
+
+[Windows_Mydwbld0142]
+Mydwbld0142.hpeswlab.net
 
 [Windows_Mydwbld0123]
 Mydwbld0123.hpeswlab.net
