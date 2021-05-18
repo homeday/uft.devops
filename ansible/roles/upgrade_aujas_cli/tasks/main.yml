@@ -1,25 +1,40 @@
 ---
+## Tasks
+
 - name: Copy the latest Aujas form Rubicon to target machine
-  win_command: robocopy {{src}} {{dest}} {{file_name}}
+  win_robocopy:
+     src: "{{ src }}"
+     dest: "{{ dest }}"
+     flags: "{{ file_name }} /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:2 /W:30"
   register: result_out
 
-- debug: msg="{{result_out}}"
+- debug: msg="{{ result_out }}"
 
 - name: Extract the file
   win_unzip:
-     src:  "{{dest}}{{file_name}}"
-     dest: "{{dest}}"
+     src:  "{{ dest }}\\{{ file_name }}"
+     dest: "{{ dest }}"
   register: result_out
 
-- debug: msg="{{result_out}}"
+- debug: msg="{{ result_out }}"
+
+#- name: Replace sign property file
+#  template:
+#     src: ./sign.properties.template.j2
+#     dest: "{{ dest }}\\sign.properties.template"
+#     remote_src: yes
+#  register: result_out
+
+#- debug: msg="{{ result_out }}"
+
 
 #- name: Copy aujas cli
 #  win_copy:
-#     src: "{{dest}}\\Windows\\CodeSign-CLI\\"
-#     dest: "{{dest}}\\"
+#     src: "{{ dest }}\\Windows\\CodeSign-CLI\\"
+#     dest: "{{ dest }}\\"
 #     remote_src: yes
 #  register: result_out
 #  notify: "Remove Folder"
 
 
-#- debug: msg="{{result_out}}"
+#- debug: msg="{{ result_out }}"

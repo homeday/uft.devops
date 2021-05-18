@@ -1,6 +1,7 @@
 ---
-# Variable for the roles
-version: 3.1.4
-file_name: win_cli_{{version}}.zip
+## Variable for the roles
+
+version: latest
+file_name: win_cli_{{ version }}.zip
 src: "\\\\mydastr01.hpeswlab.net\\products\\FT\\UFT_Tools\\CodeSign\\Aujas"
-dest: "D:\\UFT_Tools\\CodeSign\\AUJAS\\win_cli_{{version}}\\"
+dest: "D:\\UFT_Tools\\CodeSign\\AUJAS\\win_cli_{{ version }}"
