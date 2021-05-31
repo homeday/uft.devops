@@ -18,11 +18,24 @@ Mydwbld0178.swinfra.net
 Mydwbld0177.swinfra.net
 Mydwbld0176.swinfra.net
 Mydwbld0175.swinfra.net
-
-[aujas_cli_hpeswlab]
 Mydwbld0142.hpeswlab.net
 Mydwbld0163.hpeswlab.net
 Mydwbld0144.hpeswlab.net
+Mydwbld0090.hpeswlab.net
+
+
+[all_build_machines]
+Mydwbld0179.swinfra.net
+Mydwbld0178.swinfra.net
+Mydwbld0177.swinfra.net
+Mydwbld0176.swinfra.net
+Mydwbld0175.swinfra.net
+Mydwbld0123.hpeswlab.net
+Mydwbld0125.hpeswlab.net
+Mydwbld0126.hpeswlab.net
+Mydwbld0142.hpeswlab.net
+Mydwbld0144.hpeswlab.net
+Mydwbld0163.hpeswlab.net
 Mydwbld0090.hpeswlab.net
 
 [Windows_Mydwbld0090]
