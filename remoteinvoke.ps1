@@ -4,7 +4,8 @@ param (
     [string]$RemoteJobLink = $null,
     [Parameter(Mandatory=$true)]
 	[string]$RemoteJobToken = $null,
-    [string]$RemoteJobLinkParams = $null
+    [string]$RemoteJobLinkParams = $null,
+    [string]$Method = "Post"
 )
 
 
@@ -16,8 +17,13 @@ if (!$RemoteJobLinkParams) {
 }
 
 Write-Output "Invoke URL = ${InvokenURL}"
+Write-Output "Method - ${Method}"
+if($Method -eq "Get") {
+    Invoke-WebRequest -Uri $InvokenURL -Method $Method
+    Exit
+}
 
-$Rsp = Invoke-WebRequest -Uri $InvokenURL -Method Post 
+$Rsp = Invoke-WebRequest -Uri $InvokenURL -Method $Method 
 $Headers = $Rsp.Headers
 $QueueItemURL = "{0}api/json" -f $Headers.Location 
 $Rsp = Invoke-WebRequest -Uri $QueueItemURL -Method Get 
@@ -84,12 +90,3 @@ switch ($result) {
         exit 0
     } 
 }
-
-
-
-
-
-
-
-
-
