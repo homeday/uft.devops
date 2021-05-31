@@ -17,7 +17,7 @@ if (!$RemoteJobLinkParams) {
 }
 
 Write-Output "Invoke URL = ${InvokenURL}"
-
+Write-Output "Method - ${Method}"
 if($Method -eq "Get") {
     Invoke-WebRequest -Uri $InvokenURL -Method $Method
     Exit
