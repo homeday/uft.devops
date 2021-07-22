@@ -1,0 +1,9 @@
+BuildMajorVersion=9999
+BuildMinorVersion=1
+BuildLabel=pseudo_9999_1_SP5
+SvcpackVersion=5
+BuildPostfix=0
+WSPostfix=
+DebugBuild=false
+
+
