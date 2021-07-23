@@ -1,0 +1,10 @@
+BuildMajorVersion=9999
+BuildMinorVersion=1
+SvcpackVersion=8
+BuildLabel=pseudo_9999_1_SP8
+BuildPostfix=0
+WSPostfix=
+Configuration=win32_release
+Agent_PKG_Name=UFT Connection Agent.pkg
+repo_inclusion=
+
