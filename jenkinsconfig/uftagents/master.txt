@@ -1,7 +1,7 @@
 BuildMajorVersion=2021
-BuildMinorVersion=0
+BuildMinorVersion=1
 SvcpackVersion=0
-BuildLabel=UFT_2021_0
+BuildLabel=UFT_2021_1
 BuildPostfix=0
 WSPostfix=
 Configuration=win32_release
