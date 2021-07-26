@@ -29,8 +29,8 @@
 /products/FT/CDLS-AI/win32_release;CDLS_16_0_Setup_Last;UFT_2021_0
 /products/FT/CodedFT/win32_release; LeanFT_16_0_Setup_Nightly_Last;UFT_2021_0
 /products/FT/CodedFT/win32_debug; LeanFT_16_0_Setup_Nightly_Last;UFT_2021_0
-/products/LT/CodedFT/win32_release;UFT_2021_0;UFT_2021_0_For_Dev
-/products/LT/CodedFT/win32_debug;UFT_2021_0;UFT_2021_0_For_Dev
+/products/FT/CodedFT/win32_release;UFT_2021_0;UFT_2021_0_For_Dev
+/products/FT/CodedFT/win32_debug;UFT_2021_0;UFT_2021_0_For_Dev
 /products/FT/QTP/win32_release;UFT_16_0;UFT_2021_0
 /products/FT/QTP/win32_debug;UFT_16_0;UFT_2021_0
 /products/FT/QTP/win32_release;UFT_2021_0;UFT_2021_0_For_Dev
@@ -48,10 +48,6 @@
 /products/FT/UFTBase/win32_release;UFT_2021_0;UFT_2021_0_For_Dev
 /products/FT/UFTBase/win32_debug;UFT_2021_0;UFT_2021_0_For_Dev
 /products/FT/UFTAgents/win32_release;UFT_16_0;UFT_2021_0
-/products/FT/UFTAgents/win32_debug;UFT_16_0;UFT_2021_0
 /products/FT/UFTAgents/win32_release;UFT_2021_0;UFT_2021_0_For_Dev
-/products/FT/UFTAgents/win32_debug;UFT_2021_0;UFT_2021_0_For_Dev
 /products/FT/DelphiAgents/win32_release;UFT_16_0;UFT_2021_0
-/products/FT/DelphiAgents/win32_debug;UFT_16_0;UFT_2021_0
 /products/FT/DelphiAgents/win32_release;UFT_2021_0;UFT_2021_0_For_Dev
-/products/FT/DelphiAgents/win32_debug;UFT_2021_0;UFT_2021_0_For_Dev
