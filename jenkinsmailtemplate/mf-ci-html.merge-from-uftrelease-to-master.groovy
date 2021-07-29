@@ -33,18 +33,18 @@
 			
 			def env = build.getEnvironment()
 
-			def JobUrl = "${env.JENKINS_URL} + ${build.url}"
+			def JobUrl = env.BUILD_URL
 			def ProjectName= (build.getProject().name) ?: ""
+			def ServerName = (build.getBuiltOn().getDisplayName()) ?: ""
 			
 			def build_status_icon = env.JENKINS_URL + "static/ad512159/images/32x32/" + ((build.result.toString() == "SUCCESS") ? "blue.png" : (build.result.toString() == "FAILURE") ? "red.png" : "yellow.png")
 			def icon_base64=new URL("${build_status_icon}").getBytes( useCaches: true, allowUserInteraction: false, requestProperties: ["User-Agent": "Groovy Sample Script"])
 
-			def sourceBranch = build.Source_Branch
-			def targetBranch = build.Target_Branch
-			def excludeRepos = build.exclude_repos
+			def sourceBranch = env.Source_Branch
+			def targetBranch = env.Target_Branch
+			def excludeRepos = env.exclude_repos
 
-			def mergeIncludeFile = build.getWorkspace().child("merge_include.txt")
-			def mergeExcludeFile = build.getWorkspace().child("merge_exclude.txt")
+			def mergeResultsFile = build.getWorkspace().child("merge_results.txt")
 		%>
 		<table width="100%" cellpadding="0" cellspacing="0"><tr><td valign="center"><tr><td>
 			<table style="background-color: #FFF" bgcolor="#FFF" class="shadow" width="80%" align="center" cellpadding="5" cellspacing="0">
@@ -57,7 +57,7 @@
 									<img src="data:image/png;base64, ${icon_base64.encodeBase64().toString()}" />
 								</td>
 								<td>
-									<span class="${build.result.toString()}"><b>${build.result}</b></span>
+									<span style="font-size: 28px" class="${build.result.toString()}"><b>${build.result}</b></span>
 								</td>
 							</tr>
 						</table>
@@ -67,14 +67,14 @@
 				<!-- major description -->
 				<tr>
 					<td>
-						<span><b>${sourceBranch} --&gt; ${targetBranch}</b></span>
+						<span style="font-size: 20px">Merge: <b>${sourceBranch} --&gt; ${targetBranch}</b></span>
 					</td>
 				</tr>
 
 				<!-- parameters and environment info -->
 				<tr>
-					<td>
-						<table width="100%" align="left" cellpadding="0" cellspacing="0" style="border-top:1px solid #A8A8A8">
+					<td style="border-top:1px solid #A8A8A8; padding-top: 8px">
+						<table width="100%" align="left" cellpadding="0" cellspacing="0">
 							<tr>
 								<td class="build_detail_td">Job URL</td>
 								<td valign="top" ><a href="${JobUrl}">${ProjectName}</a></td>
@@ -100,7 +100,7 @@
 							<tr style="background-color: #A8A8A8" bgcolor="#A8A8A8" ><td><h3 style="color: White">Merged Repositories</h3></td></tr>
 							<tr><td><table width="100%" cellpadding="0" cellspacing="0">
 								<%
-									if (mergeIncludeFile.exists()) {
+									if (mergeResultsFile.exists()) {
 								%>
 
 								<tr style="border-bottom: 1px solid #e2e2e2" >
@@ -111,13 +111,13 @@
 								</tr>
 
 								<% 		
-										mergeIncludeFile.readToString().eachLine(){ line -> 
+										mergeResultsFile.readToString().eachLine(){ line -> 
 											def splitArray = line.split(',')
 											def repo = splitArray[0]
 											def incOrExc = splitArray[1]
 											def aheadBefore = splitArray[2]
 											def aheadAfter = splitArray[3]
-											if (aheadBefore == '' || aheadBefore == '0') continue
+											if (aheadBefore == '' || aheadBefore == '0') return
 											def mergeResult = (aheadAfter == '' || aheadAfter == '0') ? 'Merged' : 'Not Merged'
 								%>
 
@@ -145,7 +145,7 @@
 						<p align="center" style="color: darkgray">
 							This is an auto-generated email. If you don't want to receive this mail anymore, contact UFT <a href="mailto:narendrakumar.cheajra@microfocus.com">DevOps</a> team.
 						</p>
-						<hr align="center" width="40%" />
+						<hr align="center" width="60%" />
 					</td>
 				</tr>
 			</table>
