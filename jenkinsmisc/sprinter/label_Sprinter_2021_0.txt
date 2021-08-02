@@ -7,7 +7,7 @@
 /products/LT/UTT/win32_release;UFT_2021_0;Sprinter_2021_0
 /products/FT/CDLS-AI/win32_release;UFT_2021_0;Sprinter_2021_0
 /products/FT/CodedFT/win32_release;UFT_2021_0;Sprinter_2021_0
-/products/FT/QTP/win32_release;UFT_2021_0;Sprinter_2021_0
+/products/FT/QTP/win32_release;UFT_2021_0_Setup_Last;Sprinter_2021_0
 /products/FT/IBA/win32_release;UFT_2021_0;Sprinter_2021_0
 /products/ST/ST/win32_release;UFT_2021_0;Sprinter_2021_0
 /products/FT/UFTBase/win32_release;UFT_2021_0;Sprinter_2021_0
