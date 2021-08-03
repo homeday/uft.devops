@@ -21,7 +21,9 @@
 		.UNSTABLE {color: Yellow;}
 		.shadow {border-radius: 5px; box-shadow: 1px 1px 1px 1px darkgray; }
 		.build_detail_td { width:25%;}
+		.merge-result.merged {color: Green;}
 		.merge-result.not-merged {color: Red;}
+		.repo-Include {color: Green;}
 		.repo-Exclude {color: Red;}
 	  </style>
 	
@@ -92,9 +94,7 @@
 								<td class="build_detail_td">Date of Build</td>
 								<td valign="top">${it.timestampString}</td>
 							</tr>
-						</table>	
-						<br />
-						<br />
+						</table>
 					</td>
 				</tr>
 				<br />
@@ -116,7 +116,8 @@
 
 								<tr style="border-bottom: 1px solid #e2e2e2" >
 									<th align="left">Repository</th>
-									<th align="left">Commits Ahead</th>
+									<th align="left">Ahead</th>
+									<th align="left">Last Commit</th>
 									<th align="left">Merge Result</th>
 									<th align="left">Include/Exclude</th>
 									<th align="left">Dismission</th>
@@ -139,15 +140,21 @@
 												.concat("&Repository=").concat(java.net.URLEncoder.encode(repo, "UTF-8"))
 												.concat("&BranchName=").concat(java.net.URLEncoder.encode(sourceBranch, "UTF-8"))
 												.concat("&CommitSHA=").concat(java.net.URLEncoder.encode(commitSHA, "UTF-8"))
+
+											def commitShortSHA = commitSHA[0..6]
+											def commitGHEUrl = "https://github.houston.softwaregrp.net/uft/${repo}/commit/${commitSHA}"
 								%>
 
 								<tr>
 									<td valign="top">${repo}</td>
 									<td valign="top">${aheadBefore}</td>
+									<td valign="top"><a href="${commitGHEUrl}" target="_blank">${commitShortSHA}</a></td>
 									<td valign="top"><span class="merge-result ${mergeResultClass}">${mergeResultText}</span></td>
 									<td valign="top"><span class="repo-${incOrExc}">${incOrExc}</span></td>
 									<td valign="top">
-								<%			if (dimissionState == "Dismissed") { %>
+								<%			if (isMerged) { %>
+										<span></span>
+								<%			} else if (dimissionState == "Dismissed") { %>
 										<span><b>Dismissed (No need to merge)</b></span>
 								<%			} else { %>
 										<a href="${dismissFullUrl}" target="_blank">Don't merge this commit ${commitSHA}</a>
