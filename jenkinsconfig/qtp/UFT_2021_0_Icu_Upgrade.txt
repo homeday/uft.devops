@@ -6,6 +6,7 @@ BuildPostfix=0
 Deploy=true
 01_CreateMLU=true
 Create_LeanFT=true
+LeanFT_Job_Name=LeanFT_2021_0_Icu_Upgrade
 CodeSign=true
 SignMethod=AUJAS
 srf_windows_executor=false
