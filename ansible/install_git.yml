@@ -3,5 +3,6 @@
 - name: Install GIT for Windows
   hosts: "{{ host_name }}"
   gather_facts: yes
+  
   roles:
-    - install_git
+    - install_git_windows
