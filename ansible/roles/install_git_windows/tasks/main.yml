@@ -1,0 +1,19 @@
+---
+# tasks file for install_git
+
+- debug: msg="{{ ansible_distribution }}"
+
+- name: Download git for Windows
+  win_get_url:
+     url: "https://github.com/git-for-windows/git/releases/download/v{{ git_version }}.windows.1/Git-{{ git_version }}-{{ ansible_architecture }}.exe"
+     dest: "{{ ansible_env['windir'] }}\\Temp"
+  when: "'Windows' in ansible_distribution|string"
+
+- name: Install Git
+  raw: "{{ ansible_env['windir'] }}\\Temp\\Git-{{ git_version }}-{{ ansible_architecture }}.exe /VERYSILENT /NORESTART"
+
+- name: Verify the installation
+  raw: "git --version"
+  register: result
+
+- debug: msg="{{ result }}"

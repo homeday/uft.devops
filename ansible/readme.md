@@ -4,7 +4,9 @@
 Adding slave machines are effortless, You can follow the instructions as described below 
 * **Windows** 
 
-    Ansible communicates with windows slave using [Winrm](https://docs.microsoft.com/en-us/windows/win32/winrm/portal). Make sure winrm is enabled in the slave machine. To enable WinRM, Download and run the [winRM.ps1](https://github.houston.softwaregrp.net/uft/uft.devops/blob/master/ansible/winRM.ps1) power shell in the administrator privilege  
+    Ansible communicates with windows slave using [Winrm](https://docs.microsoft.com/en-us/windows/win32/winrm/portal). Make sure winrm is enabled in the slave machine. To enable WinRM, Download and run the [winRM.ps1](https://github.houston.softwaregrp.net/uft/uft.devops/blob/master/ansible/winRM.ps1) power shell in the administrator privilege.
+
+    Run the script with '-Verbose -EnableCredSSP' parameter to enable [CredSSP](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#credssp).
 
 ## upgrade_cli playbook
 This job upgrade Aujas CLI to target machines
