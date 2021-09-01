@@ -1,4 +1,4 @@
-BuildLabel=UFT_2021_Patches
+BuildLabel=UFT_2021_Test_Patches
 BuildMajorVersion=2021
 BuildMinorVersion=0
 SvcpackVersion=0

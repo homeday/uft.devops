@@ -1,4 +1,4 @@
-Branch=UFT_2021_Patches
+Branch=UFT_2021_Test_Patches
 PatchID=UFT_00210
 GaLabel=UFT_2021_GA
 BuildMajorVersion=2021
