@@ -3,6 +3,7 @@ BuildMinorVersion=0
 SvcpackVersion=0
 PatchVersion=1
 BuildPostfix=1
-BuildLabel=UFT_2021_Patches
-WSPostfix=.SP.Patches
+BuildLabel=UFT_2021_0_Patches
+WSPostfix=
 DebugBuild=false
+
