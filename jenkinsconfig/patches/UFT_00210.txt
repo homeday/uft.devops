@@ -1,6 +1,6 @@
 Branch=UFT_2021_Test_Patches
 PatchID=UFT_00210
-GaLabel=UFT_2021_GA
+GaLabel=UFT_2021_0_RC4
 BuildMajorVersion=2021
 BuildMinorVersion=0
 SvcpackVersion=0
