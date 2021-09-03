@@ -1,0 +1,9 @@
+BuildMajorVersion=2021
+BuildMinorVersion=0
+BuildLabel=UFT_2021_0_Icu_Upgrade
+SvcpackVersion=0
+BuildPostfix=0
+WSPostfix=
+DebugBuild=false
+
+
