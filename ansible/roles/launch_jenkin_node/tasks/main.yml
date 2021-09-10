@@ -4,8 +4,8 @@
      name: "{{ service_name }}"
   register: result
 
-- debug: msg="{{result}}"
-  when: true == debug
+- debug: msg="{{ result }}"
+  when: true == {{ debug }}
 
 - name: Register jenkins service if it not exist
   win_service:
