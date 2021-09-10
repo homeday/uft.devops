@@ -8,4 +8,4 @@
      service_name: "jenkinsslave-E__Jenkins2"
      display_name: "Jenkins agent (jenkinsslave-E__Jenkins2)"
      path: "C:\\Jenkins\\jenkins-slave.exe"
-     debug: flase
+     debug: false
