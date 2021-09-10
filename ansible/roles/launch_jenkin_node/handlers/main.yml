@@ -1,0 +1,11 @@
+---
+# Handlers
+
+- name: create_jenkins_services
+  win_service:
+     name: "{{ service_name }}"
+     display_name: "{{ display_name  }}"
+     state: started
+     path: "{{ path }}"
+     username: "{{ user_name }}"
+     password: "{{ password }}"
