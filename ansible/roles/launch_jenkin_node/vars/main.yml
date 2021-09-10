@@ -1,0 +1,5 @@
+---
+# vars file for install_git
+# ansible_env is get from ansible facts
+user_name: "{{ ansible_env['USERNAME'] }}@{{ ansible_env['USERDNSDOMAIN'] }}"
+password: "{{ ansible_password }}"

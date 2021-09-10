@@ -1,0 +1,11 @@
+---
+- name: Launch jenkins nodes
+  hosts: "{{ host_name }}"
+  gather_facts: yes 
+  roles:
+     - launch_jenkin_node
+  vars:
+     service_name: "jenkinsslave-C__Jenkins"
+     display_name: "Jenkins agent (jenkinsslave-C__Jenkins)"
+     path: "C:\\Jenkins\\jenkins-slave.exe"
+     debug: flase

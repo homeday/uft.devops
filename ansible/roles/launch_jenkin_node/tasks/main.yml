@@ -1,0 +1,47 @@
+---
+- name: Service Status
+  win_service:
+     name: "{{ service_name }}"
+  register: result
+
+- debug: msg="{{result}}"
+  when: true == debug
+
+- name: Register jenkins service if it not exist
+  win_service:
+     name: "{{ service_name }}"
+     display_name: "{{ display_name  }}"
+     state: started
+     path: "{{ path }}"
+     username: "{{ user_name }}"
+     password: "{{ password }}"
+  when: false == result.exists
+
+
+- name: Service Status
+  win_service:
+     name: "{{ service_name }}"
+  register: result
+
+- name: Exit playbook if service running
+  meta: end_play
+  when: true == result.exists  and "running" == result.state|string
+
+- name: Start service if stopped
+  win_service:
+     name: "{{ service_name }}"
+     state: started
+  register: result
+  when: true == result.exists and "stopped" == result.state|string
+  ignore_errors: yes
+
+
+- name: Remove service if failed to start
+  win_service:
+     name: "{{ service_name }}"
+     state: absent
+  register: result
+  when: true == result.exists and "stopped" == result.state|string
+  ignore_errors: yes
+  notify:
+     - create_jenkins_services
