@@ -31,7 +31,7 @@
 		  <VM_NAME>shcuft023</VM_NAME>
 		  <VM_Description>Sagi shcuft023</VM_Description>
 		  <USER_EMAIL>ftmobile.dev.web.tech.cn@microfocus.com</USER_EMAIL>
-		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		  <VM_Template>WIN10_64BIT_60G_4G_EN</VM_Template>
 		</host>
 		<!--<host>
 		  <VM_NAME>shcuft004</VM_NAME>
@@ -43,7 +43,7 @@
 		  <VM_NAME>shcuft025</VM_NAME>
 		  <VM_Description>Lancer shcuft025</VM_Description>
 		  <USER_EMAIL>ftmobile.dev.infra.cn@microfocus.com</USER_EMAIL>
-		  <VM_Template>WIN7_64BIT_50G_4G_EN_2</VM_Template>
+		  <VM_Template>WIN10_64BIT_60G_4G_EN</VM_Template>
 		</host>
 		<!--<host>
 		  <VM_NAME>shcuft006</VM_NAME>
