@@ -23,8 +23,6 @@
 		</host>
 		<host>
 		  <VM_NAME>shcuft011</VM_NAME>
-		  <VM_USER>admin</VM_USER>
-		  <VM_PASSWORD>1Qaz2wsx3edc</VM_PASSWORD>
 		  <VM_Description>Jason shcuft011</VM_Description>
 		  <USER_EMAIL>ftmobile.dev.web.tech.cn@microfocus.com</USER_EMAIL>
 		  <VM_Template>WIN10_64BIT_60G_4G_EN</VM_Template>
