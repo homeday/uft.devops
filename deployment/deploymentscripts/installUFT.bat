@@ -26,7 +26,7 @@ set AddinsToInstall=Core_Components,Web_Add_in,ALM_Plugin,Test_Results_Viewer,Sa
 goto continue
 
 :common
-set AddinsToInstall=Core_Components,Web_Add_in,ALM_Plugin,IDE,Test_Results_Viewer,Samples,ActiveX_Add_in,Visual_Basic_Add_in,Delphi_Add_in,Flex_Add_in,Java_Add_in,_Net_Add_in,Oracle_Add_in,PeopleSoft_Add_in,PowerBuilder_Add_in,Qt_Add_in,SAP_Solutions_Add_in,SAP_eCATT_integration,Siebel_Add_in,Stingray_Add_in,TE_Add_in,VisualAge_Add_in,AIServices,PDF_Add_in
+set AddinsToInstall=Core_Components,Web_Add_in,ALM_Plugin,IDE,Test_Results_Viewer,Samples,ActiveX_Add_in,Visual_Basic_Add_in,Delphi_Add_in,Flex_Add_in,Java_Add_in,_Net_Add_in,Oracle_Add_in,PeopleSoft_Add_in,PowerBuilder_Add_in,Qt_Add_in,SAP_Solutions_Add_in,SAP_eCATT_integration,Siebel_Add_in,Stingray_Add_in,TE_Add_in,VisualAge_Add_in,AIServices,PDF_Add_in,Abbyy_OCR_Engine
 goto continue
 
 :continue
@@ -61,12 +61,12 @@ IF "%5" == "" (
 echo installing UFT
 
 cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% ABBYY_SOURCE="Z:\FT\QTP\FREngine\FREngine.zip" LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
 
 ) ELSE (
 echo installing UFT and LFT as a feature	
 
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% ABBYY_SOURCE="Z:\FT\QTP\FREngine\FREngine.zip" LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING% ABBYY_SOURCE="Z:\FT\QTP\FREngine\FREngine.zip"
 
 )
 popd
