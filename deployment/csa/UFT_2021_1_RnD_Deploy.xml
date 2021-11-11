@@ -151,7 +151,7 @@
 		<host>
 		  <VM_NAME>myd-hvm03696</VM_NAME>
 		  <team>Functional architects</team>
-		  <USER_EMAIL>ran.bachar@microfocus.com,avi.genshaft@microfocus.com,mateh@microfocus.com</USER_EMAIL>
+		  <USER_EMAIL>ran.bachar@microfocus.com,tsafrir.lantner@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
@@ -161,7 +161,7 @@
 		<host>
 		  <VM_NAME>myd-hvm03694</VM_NAME>
 		  <team>Functional architects</team>
-		  <USER_EMAIL>ran.bachar@microfocus.com,avi.genshaft@microfocus.com,mateh@microfocus.com</USER_EMAIL>
+		  <USER_EMAIL>ran.bachar@microfocus.com,tsafrir.lantner@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
