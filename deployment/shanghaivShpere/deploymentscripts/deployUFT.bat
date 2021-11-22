@@ -13,7 +13,7 @@ if "10.0" == "%OS_VERSION%" (
 ) else (
 	wusa.exe C:\Windows6.1-KB2999226-x64.msu /extract:C:\Windows6.1-KB2999226-x64\
 	DISM.exe /Online /Add-Package /PackagePath:C:\Windows6.1-KB2999226-x64\Windows6.1-KB2999226-x64.cab
-	set AddinsToInstall=Core_Components,Web_Add_in,ALM_Plugin,IDE,Test_Results_Viewer,Samples,ActiveX_Add_in,Visual_Basic_Add_in,Delphi_Add_in,Flex_Add_in,Java_Add_in,_Net_Add_in,Oracle_Add_in,PeopleSoft_Add_in,PowerBuilder_Add_in,Qt_Add_in,SAP_Solutions_Add_in,SAP_eCATT_integration,Siebel_Add_in,Stingray_Add_in,TE_Add_in,VisualAge_Add_in,PDF_Add_in
+	set AddinsToInstall=Core_Components,Web_Add_in,ALM_Plugin,IDE,Test_Results_Viewer,Samples,ActiveX_Add_in,Visual_Basic_Add_in,Delphi_Add_in,Flex_Add_in,Java_Add_in,_Net_Add_in,Oracle_Add_in,PeopleSoft_Add_in,PowerBuilder_Add_in,Qt_Add_in,SAP_Solutions_Add_in,SAP_eCATT_integration,Siebel_Add_in,Stingray_Add_in,TE_Add_in,VisualAge_Add_in,PDF_Add_in,Abbyy_OCR
 )
 
 IF NOT EXIST P: ECHO P: was not mounted. mounting it to \\%3\builds & net use P: \\%3\builds /user:WORKGROUP\appsadmin appsadmin /persistent:no
