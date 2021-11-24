@@ -48,7 +48,14 @@ IF %THREE_LETTER_LANG%==ENU (
 	)
 ECHO ##%LOCALE_STRING%##
 
-MsiExec /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
+:: Setting MSI path based on the condition
+SET msi_path = "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi"
+IF EXIST "%DVD_Path%\UFT One\MSI\UFT_One_x64.msi" (
+	SET msi_path = "%DVD_Path%\UFT One\MSI\UFT_One_x64.msi"
+) 
+echo msi_path=%msi_path%
+
+MsiExec /qn /i %msi_path% /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
 
 
 if %errorlevel% EQU 3010 goto RESTART

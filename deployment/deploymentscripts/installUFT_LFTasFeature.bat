@@ -50,7 +50,13 @@ ECHO ##%LOCALE_STRING%##
 
 
 echo installing UFT and LFT as a feature	
-cmd /c MsiExec /norestart /qn /i "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
+
+SET msi_path = "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi"
+IF EXIST "%DVD_Path%\UFT One\MSI\UFT_One_x64.msi" (
+	SET msi_path = "%DVD_Path%\UFT One\MSI\UFT_One_x64.msi"
+) 
+
+cmd /c MsiExec /norestart /qn /i %msi_path% /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 
 
 
