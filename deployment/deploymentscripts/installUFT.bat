@@ -32,10 +32,6 @@ goto continue
 :continue
 echo %AddinsToInstall%
 
-SET msipackage=Unified_Functional_Testing_x64.msi
-IF not defined ProgramFiles(x86) SET msipackage=Unified_Functional_Testing_x86.msi
-echo msipackage=%msipackage%
-
 set UFTConfiguration=CONF_MSIE=1 ALLOW_RUN_FROM_ALM=1 ALLOW_RUN_FROM_SCRIPTS=1 DLWN_SCRIPT_DBGR=1
 set LeanFTConfiguration=LeanFT,LeanFT_Engine,LeanFT_Client,Vs2012Addin,Vs2013Addin,IntelliJAddin,EclipseAddin ECLIPSE_INSTALLDIR="C:\DevTools\eclipse"
 set LicenseAddress=%2
@@ -57,17 +53,25 @@ cmd /c bash -c "rm -rf MSI*.tmp*"
 popd
 
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
+
+SET OS_ARCH=x64
+IF not defined ProgramFiles(x86) SET OS_ARCH=x86
+
+:: Setting MSI path based on the condition
+SET msi_path = "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\Unified_Functional_Testing_%OS_ARCH%.msi"
+IF EXIST "Z:\FT\QTP\win32_release\%1\DVD\UFT One\MSI\%OS_ARCH%.msi" (
+	SET msi_path = "Z:\FT\QTP\win32_release\%1\DVD\UFT One\MSI\UFT_One_%OS_ARCH%.msi"
+) 
+
+echo msi_path=%msi_path%
+
 IF "%5" == "" (
-echo installing UFT
-
-cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
-
+	echo installing UFT
+	cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
+	cmd /c MsiExec /norestart /qn /i %msi_path% /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
 ) ELSE (
-echo installing UFT and LFT as a feature	
-
-cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\%msipackage%" /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
-
+	echo installing UFT and LFT as a feature	
+	cmd /c MsiExec /norestart /qn /i %msi_path% /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall%,%LeanFTConfiguration% LICSVR=%LicenseAddress% %UFTConfiguration% %LOCALE_STRING%	
 )
 popd
 
