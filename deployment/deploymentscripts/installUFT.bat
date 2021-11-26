@@ -58,9 +58,9 @@ SET OS_ARCH=x64
 IF not defined ProgramFiles(x86) SET OS_ARCH=x86
 
 :: Setting MSI path based on the condition
-SET msi_path = "Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\Unified_Functional_Testing_%OS_ARCH%.msi"
+SET msi_path="Z:\FT\QTP\win32_release\%1\DVD\Unified Functional Testing\MSI\Unified_Functional_Testing_%OS_ARCH%.msi"
 IF EXIST "Z:\FT\QTP\win32_release\%1\DVD\UFT One\MSI\%OS_ARCH%.msi" (
-	SET msi_path = "Z:\FT\QTP\win32_release\%1\DVD\UFT One\MSI\UFT_One_%OS_ARCH%.msi"
+	SET msi_path="Z:\FT\QTP\win32_release\%1\DVD\UFT One\MSI\UFT_One_%OS_ARCH%.msi"
 ) 
 
 echo msi_path=%msi_path%
