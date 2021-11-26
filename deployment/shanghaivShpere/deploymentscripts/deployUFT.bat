@@ -49,9 +49,9 @@ IF %THREE_LETTER_LANG%==ENU (
 ECHO ##%LOCALE_STRING%##
 
 :: Setting MSI path based on the condition
-SET msi_path = "%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi"
+SET msi_path="%DVD_Path%\Unified Functional Testing\MSI\Unified_Functional_Testing_x64.msi"
 IF EXIST "%DVD_Path%\UFT One\MSI\UFT_One_x64.msi" (
-	SET msi_path = "%DVD_Path%\UFT One\MSI\UFT_One_x64.msi"
+	SET msi_path="%DVD_Path%\UFT One\MSI\UFT_One_x64.msi"
 ) 
 echo msi_path=%msi_path%
 
