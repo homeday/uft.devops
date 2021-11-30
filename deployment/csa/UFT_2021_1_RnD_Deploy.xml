@@ -120,21 +120,21 @@
 		
 		
 		<!--<MLU>-->
-		<host>
+		<!--<host>
 		  <VM_NAME>myd-vm08159</VM_NAME>
 		  <team>L10N S.Chinese</team>
 		  <USER_EMAIL>yaron.bracha@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>90bc0b9c5a1de007015a6a9a8164213d</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90d9650a36988e5d0136988f03ab000f</CATALOG_ID>
-		</host>
+		</host>-->
 		
 		
 		<host>
-		  <VM_NAME>myd-vm24538</VM_NAME>
+		  <VM_NAME>myd-hvm01120</VM_NAME>
 		  <team>L10N Russian</team>
 		  <USER_EMAIL>yaron.bracha@microfocus.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>90bc0b9c54d746a801554d5348dc71c9</SUBSCRIPTION_ID>
-		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		  <SUBSCRIPTION_ID>2c90e2946a9ddd75016a9f9bc287709d</SUBSCRIPTION_ID>
+		  <CATALOG_ID>0192d00c-8f73-43b3-a2e4-8bf99db51d22</CATALOG_ID>
 		</host>
 		
 		<!--<MLU>-->
