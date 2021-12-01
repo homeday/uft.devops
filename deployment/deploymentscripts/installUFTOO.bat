@@ -1,5 +1,5 @@
 net use * /delete /y
-SET STORAGE_WIN_SERVER=\\mydastr01.hpeswlab.net
+SET STORAGE_WIN_SERVER=\\mydanas01.swinfra.net
 net use %STORAGE_WIN_SERVER% %4 /USER:%3
 set DVD_Path=C:\temp\UFT
 echo extract the compressed file
