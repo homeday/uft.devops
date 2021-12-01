@@ -1,7 +1,7 @@
 
 net use * /delete /y
 
-SET STORAGE_WIN_SERVER=\\mydastr01.hpeswlab.net
+SET STORAGE_WIN_SERVER=\\mydanas01.swinfra.net
 REM IF NOT EXIST X: ECHO X: was not mounted. mounting it to \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release & net use X: \\mydastr01.hpeswlab.net\products\FT\QTP\win32_release %4 /USER:%3
 net use %STORAGE_WIN_SERVER%\IPC$ %4 /USER:%3
 
