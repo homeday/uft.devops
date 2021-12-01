@@ -92,16 +92,6 @@
 		  <SUBSCRIPTION_ID>90bc0b9b5cc94c1a015cf41fe42d66a3</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>-->
-		<host>
-		  <VM_NAME>myd-vm04310</VM_NAME>
-		  <team>Document</team>
-		  <USER_EMAIL>uft.doc@microfocus.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>2c90e2876b455004016b45777b8f5d6e</SUBSCRIPTION_ID>
-		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
-		  <CSAAccount>_ALM_UFT_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		</host>
 		<!--<host>
 		  <VM_NAME>myd-vm04305</VM_NAME>
 		  <team>Installation</team>
@@ -109,15 +99,6 @@
 		  <SUBSCRIPTION_ID>90bc0b9c5c536144015ca701a7b0097f</SUBSCRIPTION_ID>
 		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
 		</host>-->
-		<host>
-		  <VM_NAME>myd-vma00954</VM_NAME>
-		  <team>Jason</team>
-		  <USER_EMAIL>ftmobile.dev.sap.cn@microfocus.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>2c90aa376f9a1d2e01701e9f029c3f4b</SUBSCRIPTION_ID>
-		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
-		</host>
-		
-		
 		
 		<!--<MLU>-->
 		<!--<host>
@@ -169,16 +150,16 @@
 		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
 		<!-- Used to deploy PDF feature -->
-		<!-- <host>
-		  <VM_NAME>myd-vma00954</VM_NAME>
+		<host>
+		  <VM_NAME>myd-hvm02384</VM_NAME>
 		  <team>Jason</team>
 		  <USER_EMAIL>ftmobile.dev.sap.cn@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>8a471d91664b6d44016782aa883232cb</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>	 -->
+		  <SUBSCRIPTION_ID>2c90b1a37d57172b017d74b2b81c5219</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+		</host>
 		<host>
 		  <VM_NAME>myd-hvm00266</VM_NAME>
 		  <team>Jason</team>
@@ -199,28 +180,6 @@
 		  <SUBSCRIPTION_ID>2c90b185765081f00176ffbd375b5110</SUBSCRIPTION_ID>
 		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>	
-		<!--<host>
-		  <VM_NAME>myd-vma00877</VM_NAME>
-		  <team>Lancer</team>
-		  <USER_EMAIL>ftmobile.dev.infra.cn@microfocus.com</USER_EMAIL>
-		  <CSAAccount>_ft_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		  <SUBSCRIPTION_ID>8a471d91664b6d44016710f436534e77</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>-->	
-		<!--<host>
-		  <VM_NAME>myd-hvm00241</VM_NAME>
-		  <team>RPA</team>
-		  <USER_EMAIL>ftmobile.dev.infra.cn@microfocus.com</USER_EMAIL>
-		  <CSAAccount>_ft_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		  <Application>rpa</Application>
-		  <SUBSCRIPTION_ID>2c90d38b6832aec7016835acda59127c</SUBSCRIPTION_ID>
-		  <CATALOG_ID>8a471d916170325b016174057e31037b</CATALOG_ID>
-		</host>			-->
 		<host>
 		  <VM_NAME>myd-vma00952</VM_NAME>
 		  <team>Sagi</team>
