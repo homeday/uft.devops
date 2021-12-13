@@ -1,0 +1,6 @@
+---
+- name: Update Fortify Licenzse
+  hosts: "{{ host_name }}"
+  gather_facts: no
+  roles:
+    - update_fority_license

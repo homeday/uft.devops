@@ -1,0 +1,11 @@
+---
+## Tasks
+
+- name: Copy the latest updated license form Rubicon to target machine
+  win_robocopy:
+     src: "{{ src }}"
+     dest: "{{ dest }}"
+     flags: "{{ file_name }} /S /E /DCOPY:DA /COPY:DAT /XO /NC /NP /NFL /NDL /R:2 /W:30"
+  register: result_out
+
+- debug: msg="{{ result_out }}"

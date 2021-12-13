@@ -1,0 +1,6 @@
+---
+## Variable for the roles
+
+file_name: fortify.license
+src: "\\\\mydastr01.hpeswlab.net\\products\\FT\\UFT_Tools\\HP_Fortify_SCA_and_Apps_4.42"
+dest: "D:\\HP_Fortify_SCA_and_Apps_4.42"
