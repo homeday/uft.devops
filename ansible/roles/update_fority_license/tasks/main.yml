@@ -5,7 +5,7 @@
   win_robocopy:
      src: "{{ src }}"
      dest: "{{ dest }}"
-     flags: "{{ file_name }} /S /E /DCOPY:DA /COPY:DAT /XO /R:2 /W:30"
+     flags: "{{ file_name }} /S /E /DCOPY:DA /COPY:DAT /XO /NC /NP /NFL /NDL /R:2 /W:30"
   register: result_out
 
 - debug: msg="{{ result_out }}"
