@@ -1,11 +1,11 @@
 ---
 ## Tasks
 
-- name: Copy the latest Aujas form Rubicon to target machine
+- name: Copy the latest updated license form Rubicon to target machine
   win_robocopy:
      src: "{{ src }}"
      dest: "{{ dest }}"
-     flags: "{{ file_name }} /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:2 /W:30 /NFL /NDL /NC"
+     flags: "{{ file_name }} /S /E /DCOPY:DA /COPY:DAT /XO /R:2 /W:30"
   register: result_out
 
 - debug: msg="{{ result_out }}"
