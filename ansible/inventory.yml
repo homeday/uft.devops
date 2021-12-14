@@ -23,6 +23,11 @@ Mydwbld0163.hpeswlab.net
 Mydwbld0144.hpeswlab.net
 Mydwbld0090.hpeswlab.net
 
+[Fortify_Scan]
+Mydwbld0142.hpeswlab.net
+Mydwbld0144.hpeswlab.net
+Mydwbld0163.hpeswlab.net
+
 
 [all_build_machines]
 Mydwbld0179.swinfra.net
