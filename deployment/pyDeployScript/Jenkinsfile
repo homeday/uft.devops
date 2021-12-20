@@ -5,7 +5,7 @@
 Pipeline {
     agent {
         node {
-            label ''
+            label 'deploy_py'
         }
     }
 
