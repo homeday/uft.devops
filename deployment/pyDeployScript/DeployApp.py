@@ -9,8 +9,8 @@ hosts = []
 
 
 # Convert yaml to python dict        
-def InitProperties():
-    with open('machines.xml') as f:
+def InitProperties(machineListFile):
+    with open(machineListFile) as f:
         text = f.read()
 
     d = xmltodict.parse(text)
@@ -46,12 +46,15 @@ def PreparingWrapperObject(
 # Get environments from the OS
 VM_NAME = os.environ['VM_NAME']
 ACTION = os.environ['ACTION']
-XML_FILE = os.environ['LABEL'] + "_RnD_Deploy.xml"
+XML_FILE = os.getcwd() + "\\..\\csa\\" + os.environ['LABEL'] + "_RnD_Deploy.xml"
 
 if(ACTION.lower() != "restart" and ACTION.lower() != "revert"):
     raise ValueError("The action (second) aregument value can not be other than these: 'restart', 'revert'")
 
-InitProperties()
+if(not os.path.exists(XML_FILE)):
+    raise ValueError("File is not exists at " + XML_FILE)
+
+InitProperties(XML_FILE)
 
 # print(hosts)
 for host in hosts:
@@ -67,5 +70,3 @@ if(ACTION.lower() == "restart"):
 if(ACTION.lower() == 'revert'):
     wrapper.revert_snapshot()
 
-# print(wrapper.restart_machine())
-#print(wrapper.revert_snapshot())

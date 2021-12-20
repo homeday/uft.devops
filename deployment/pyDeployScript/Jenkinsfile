@@ -1,0 +1,30 @@
+// Jenkisfile (Declarative Pipeline)
+
+// Global Variable
+
+Pipeline {
+    agent {
+        node {
+            label ''
+        }
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        timestamps()
+    }
+
+    parameters {
+        string(name: "BRANCH", defaultValue: "master", description: "")
+        string(name: "VM_NAME", defaultValue: "", description: "Name of the VM")
+        choice(name: "ACTION", choices: [ "Restart", "Revert"], description: "Restart: Restart the machine. \n Revert: Revert to snapshot and restart the machine.")
+        string(name: "LABEL_NAME", defaultValue: "UFT_2021_1", description: "Label name of the current release")
+        // string(name: "", defaultValue: "", description: "")
+    }
+
+    stages {
+        stage("Executing Action") {
+            bat "python DeployApp.py"
+        }
+    }
+}

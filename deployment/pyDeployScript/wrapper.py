@@ -2,7 +2,7 @@
 
 import os
 import time
-import winrm
+#import winrm
 
 class DeployMachineWrapper():
     def __init__(self, vm_name, username, password, domian, subscription_id, catalog_id, portal_url, org,mnm_portal_url,
@@ -60,12 +60,12 @@ class DeployMachineWrapper():
         # Restart
         # Kill MSIexec Process
         print("Target Host: " + self.vm_full_name)
-        session = winrm.Session(self.vm_full_name, auth=('{}@{}'.format(self.username, self.domian), self.password), transport='ntlm')
+        # session = winrm.Session(self.vm_full_name, auth=('{}@{}'.format(self.username, self.domian), self.password), transport='ntlm')
         #session.run_cmd('ipconfig', ['/all']) # To run command in cmd
         
         print("Killing 'msiexec.exe' process if the process is running")
-        std_out = DeployMachineWrapper.kill_process(self, session, 'msiexec.exe')
-        print(std_out)
+        # std_out = DeployMachineWrapper.kill_process(self, session, 'msiexec.exe')
+        # print(std_out)
 
     
     # [Void]UninstallApplication(
