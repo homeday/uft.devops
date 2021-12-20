@@ -64,9 +64,13 @@ for host in hosts:
         domian = host.get('CSADomain', GlobalProperties["CSADomain"])
         wrapper = PreparingWrapperObject(host["VM_NAME"], host["SUBSCRIPTION_ID"], host["CATALOG_ID"], username, password, domian)
 
-if(ACTION.lower() == "restart"):
-    wrapper.restart_machine()
 
-if(ACTION.lower() == 'revert'):
-    wrapper.revert_snapshot()
+if(ACTION.lower() == "restart"):
+    sys.exit(wrapper.restart_machine())
+elif(ACTION.lower() == 'revert'):
+    sys.exit(wrapper.revert_snapshot())
+else:
+    print("'" + ACTION + "' Action is not supported!")
+    sys.exit(-1)
+
 

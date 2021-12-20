@@ -41,7 +41,7 @@ class DeployMachineWrapper():
 
         os.system(cmd) # Revert to Snapshot
         time.sleep(20) # Sleep 20 secs
-        DeployMachineWrapper.restart_machine(self) # Restart
+        return DeployMachineWrapper.restart_machine(self) # Restart
     
     def kill_process(self, win_rm_session, process_name):
         """Kill the process if the process is running"""
