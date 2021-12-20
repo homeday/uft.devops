@@ -16,16 +16,19 @@ pipeline {
 
     parameters {
         string(name: "BRANCH", defaultValue: "master", description: "")
-        string(name: "VM_NAME", defaultValue: "", description: "Name of the VM")
+        string(name: "VM_NAME", defaultValue: "", description: "Name of the VM. Enter the vm name without domaain. </b>For Example:</b> Machine host is 'myd-hvm01120.hpeswlab.net' so the VM_NAME will be 'myd-hvm01120'")
         choice(name: "ACTION", choices: [ "Restart", "Revert"], description: "Restart: Restart the machine. \n Revert: Revert to snapshot and restart the machine.")
-        string(name: "LABEL_NAME", defaultValue: "UFT_2021_1", description: "Label name of the current release")
+        string(name: "LABEL", defaultValue: "UFT_2021_1", description: "Label name of the current release")
         // string(name: "", defaultValue: "", description: "")
     }
 
     stages {
         stage("Executing Action") {
             steps {
-                bat """
+      bat """
+set VM_NAME=${params.VM_NAME}
+set ACTION=${params.ACTION}
+set LABEL=${params.LABEL}
 cd deployment\\pyDeployScript
 python -m venv venv
 venv/Script/activate.bat
