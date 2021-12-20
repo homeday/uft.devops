@@ -2,7 +2,7 @@
 
 // Global Variable
 
-Pipeline {
+pipeline {
     agent {
         node {
             label 'deploy_py'
@@ -24,7 +24,15 @@ Pipeline {
 
     stages {
         stage("Executing Action") {
-            bat "python DeployApp.py"
+            steps {
+                bat """
+cd deployment\\pyDeployScript
+python -m venv venv
+venv/Script/activate.bat
+pip install xmltodict
+py DeployApp.py
+"""
+           }
         }
     }
 }
