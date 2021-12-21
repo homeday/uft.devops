@@ -68,22 +68,6 @@ class DeployMachineWrapper():
         # print(std_out)
 
     
-    # [Void]UninstallApplication(
-    #     [string]$CSAName,
-    #     [System.Management.Automation.PSCredential]$CSACredential
-    # ) {
-    #     Write-Host "CSAPreparationUninstallUFT::UninstallApplication Start" -ForegroundColor Green -BackgroundColor Black
-    #     ([CSAPreparation]$this).RestartMachine($CSAName, $CSACredential)
-    #     $this.StopMsiexecProcess($CSAName, $CSACredential)
-    #     Write-Host "To delete old version UFT with the uninstaller tool" -ForegroundColor Green -BackgroundColor Black
-    #     $ExpressionResult = Invoke-Command -Credential $CSACredential -ComputerName $CSAName -ScriptBlock { 
-    #         Start-Process -FilePath "C:\UFTUninstaller_v2.0\UFTUninstaller.exe" -ArgumentList -silent -Wait 
-    #     } 
-    #     Write-Host $ExpressionResult -ForegroundColor DarkBlue -BackgroundColor Gray -Separator "`n"
-    #     ([CSAPreparation]$this).RestartMachine($CSAName, $CSACredential)
-    #     Write-Host "CSAPreparationUninstallUFT::UninstallApplication End" -ForegroundColor Green -BackgroundColor Black
-    # }
-
     def __map_drive(self):
         """Map the server to grant the access"""
         
