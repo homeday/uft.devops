@@ -1,0 +1,8 @@
+BuildMajorVersion=2021
+BuildMinorVersion=1
+BuildLabel=UFT_2021_1
+SvcpackVersion=0
+BuildPostfix=0
+WSPostfix=
+DebugBuild=false
+
