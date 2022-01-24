@@ -1,6 +1,6 @@
-BuildMajorVersion=2021
-BuildMinorVersion=1
-BuildLabel=UFT_2021_1
+BuildMajorVersion=2022
+BuildMinorVersion=0
+BuildLabel=UFT_2022_0
 SvcpackVersion=0
 BuildPostfix=0
 Compilation_Configuration=Release
