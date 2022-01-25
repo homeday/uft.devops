@@ -1,0 +1,11 @@
+Branch=UFT_2021_1_Patches
+PatchID=UFT_00211
+GaLabel=UFT_2021_1_RC1
+BuildMajorVersion=2021
+BuildMinorVersion=1
+SvcpackVersion=0
+PatchVersion=1
+BuildPostfix=1
+BuildLabel=UFT_2021_1_Patches
+CodeSign=1
+SignMethod=AUJAS
