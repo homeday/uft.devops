@@ -347,18 +347,6 @@
 		  <SUBSCRIPTION_ID>2c909068748ca4970175665f563c6181</SUBSCRIPTION_ID>
 		</host>
 		<host>
-		  <!-- Anton's Team Machine -->
-		  <VM_NAME>myd-hvm03854</VM_NAME>
-		  <team>Codeless-Anton</team>
-		  <Application>ai</Application>
-		  <CSAAccount>_ft_auto</CSAAccount>
-		  <CSAPassword>W3lcome1</CSAPassword>
-		  <CSADomain>swinfra.net</CSADomain>
-		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		  <USER_EMAIL>cdlsteamanton@microfocus.com</USER_EMAIL>
-		  <SUBSCRIPTION_ID>2c90e22f6e91b8f60170389c87db700b</SUBSCRIPTION_ID>
-		</host>
-		<host>
 		  <!-- Easton's Team Machine -->
 		  <VM_NAME>myd-hvm00150</VM_NAME>
 		  <team>Codeless-Easton</team>

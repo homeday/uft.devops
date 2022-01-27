@@ -1,0 +1,46 @@
+<?xml version='1.0'?>
+<!--svn export http://.../svn/Repo/trunk/Folder C:\AnotherFolder-->
+<!--https://jpmelos.com/articles/how-use-chrome-selenium-inside-docker-container-running-python/-->
+<Deploy>
+	<GlobalProperties>
+		<environmentName>UFT 2021 R1 P1 @ trunk</environmentName>
+		<EmailRole>Nightly</EmailRole>
+		<NOTIFICATION_EMAIL>ran.bachar@microfocus.com,yguo@microfocus.com,yuanhai.xu@microfocus.com, narendrakumar.chejara@microfocus.com</NOTIFICATION_EMAIL>
+		<CSAAccount>alm_uft_auto</CSAAccount>
+		<CSAPassword>W3lcome1</CSAPassword>
+		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
+		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
+		<buildSystem>jenkins</buildSystem>
+		<component>Deployment</component>
+		<type>Nightly</type>
+		<branch>14.03_QTP</branch>
+		<branchId>14.03_QTP</branchId>
+		<productsToMonitor>"UFT"</productsToMonitor>
+		<CSADomain>hpeswlab.net</CSADomain>
+		<links>""</links>
+		<machineLinks>""</machineLinks>
+		<CLEAN_MODE>uninstall</CLEAN_MODE>
+		<DevOpsPortalIP>myd-vma00436.swinfra.net</DevOpsPortalIP>
+		<DevOpsPortalPort>8088</DevOpsPortalPort>
+		<DevOpsPortalPath>/devenvs</DevOpsPortalPath>
+		<Application>uft</Application>
+	</GlobalProperties>
+<!-- ************************************************** Clean Machines ************************************************************************  -->	
+	<hosts>
+		<host>
+		  <!-- Anton's Team Machine -->
+		  <VM_NAME>myd-hvm03854</VM_NAME>
+		  <team>Codeless-Anton</team>
+		  <Application>ai</Application>
+		  <CSAAccount>_ft_auto</CSAAccount>
+		  <CSAPassword>W3lcome1</CSAPassword>
+		  <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
+		  <USER_EMAIL>cdlsteamanton@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>2c90e22f6e91b8f60170389c87db700b</SUBSCRIPTION_ID>
+		</host>
+		<!-- End of Codeless group nightly deployment CSA machines -->
+		<!---->
+		<!--CSA in New Domain end-->
+	</hosts>
+</Deploy>
