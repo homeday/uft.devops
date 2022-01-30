@@ -1,0 +1,212 @@
+<?xml version='1.0'?>
+<Deploy>
+	<GlobalProperties>
+		<NOTIFICATION_EMAIL>qian-ru.dong@microfocus.com,yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</NOTIFICATION_EMAIL>
+		<CSAAccount>alm_uft_auto</CSAAccount>
+		<CSAPassword>W3lcome1</CSAPassword>
+		<!--<CSA_USER>alm_uft_auto</CSA_USER>
+		<CSA_PASSWORD>W3lcome1</CSA_PASSWORD>-->
+		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
+		<ONLY_INSTALLATION>true</ONLY_INSTALLATION>
+		<CLEAN_MODE>uninstall</CLEAN_MODE> 
+		<CSADomain>hpeswlab.net</CSADomain>
+		<DevOpsPortalIP>myd-vma00436.swinfra.net</DevOpsPortalIP>
+		<DevOpsPortalPort>8088</DevOpsPortalPort>
+		<Application>uft</Application>
+	</GlobalProperties>
+<!-- ************************************************** Clean Machines ************************************************************************  -->	
+	<hosts>
+<!--		<host>
+		  <VM_NAME>myd-vm20511</VM_NAME>
+		  <team>UFT 2021.1 Win2012 64bit ITA</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9B50D7019F01515DFE38A43707</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+	
+		<host>
+		  <VM_NAME>myd-vm06686</VM_NAME>
+		  <team>UFT 2021.1 Win2008R2 64bit PTB</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9C569E90A50156D014C6FD3E3F</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+
+		<host>
+		  <VM_NAME>myd-vm21098</VM_NAME>
+		  <team>UFT 2021.1 Win2012 64bit NLD</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9B518B54CD01519AF491F141CD</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+
+		<host>
+		  <VM_NAME>myd-vm02608</VM_NAME>
+		  <team>UFT 2021.1 Win7 64bit JPN</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9B5F481FAF016007536930665A</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+
+		<host>
+		  <VM_NAME>myd-vm24784</VM_NAME>
+		  <team>UFT 2021.1 Win10 64bit ESP</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9C54D746A80155592BE2494F19</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		
+		<host>
+		  <VM_NAME>myd-vm24674</VM_NAME>
+		  <team>UFT 2021.1 Win8.1 64bit FRA</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9C54D746A80155537EC4A4005E</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		
+		<host>
+		  <VM_NAME>myd-vm24712</VM_NAME>
+		  <team>UFT 2021.1 Win7 64bit ENG</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9C54D746A8015554026C4D3772</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+		
+		<host>
+		  <VM_NAME>myd-vm14302</VM_NAME>
+		  <team>UFT 2021.1 Win7 64bit KOR</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9C560931C7015620F404F02766</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+
+		<host>
+		  <VM_NAME>myd-vm02361</VM_NAME>
+		  <team>UFT 2021.1 Win2012 64bit CHS</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9B5F481FAF0160073EF50E5398</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+
+		<host>
+		  <VM_NAME>myd-vm02610</VM_NAME>
+		  <team>UFT 2021.1 Win8.1 64bit DEU</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9B5F481FAF01600754F0156A8C</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+
+		<host>
+		  <VM_NAME>myd-vm03308</VM_NAME>
+		  <team>UFT 2021.1 Win8.1 64bit RUS</team>
+		  <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+		  <SUBSCRIPTION_ID>90BC0B9C585CED6401585D21A3C35557</SUBSCRIPTION_ID>
+		  <CATALOG_ID>90bc0b9c4daef4dd014db8fde95209d1</CATALOG_ID>
+		</host>
+-->
+
+<!-- HCM machines -->
+<!-- On each machine run: winrm quickconfig -->
+	
+		<host>
+          <VM_NAME>myd-hvm02828</VM_NAME>
+          <team>UFT 2021.1 Win10 64bit CHS</team>
+          <Application>UFT</Application>
+          <CSAAccount>_ft_auto</CSAAccount>
+          <CSAPassword>W3lcome1</CSAPassword>
+          <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>uninstall</CLEAN_MODE>
+          <!-- <CLEAN_MODE>resnapshot</CLEAN_MODE> -->
+          <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+          <SUBSCRIPTION_ID>2c908a6c6d6c5cfe016d6dad91e10a57</SUBSCRIPTION_ID>
+  		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+        </host>
+		
+		<host>
+          <VM_NAME>myd-hvm02325</VM_NAME>
+          <team>UFT 2021.1 Win10 64bit ENG</team>
+          <Application>UFT</Application>
+          <CSAAccount>_ft_auto</CSAAccount>
+          <CSAPassword>W3lcome1</CSAPassword>
+          <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>uninstall</CLEAN_MODE>
+          <!-- <CLEAN_MODE>resnapshot</CLEAN_MODE> -->
+          <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+          <SUBSCRIPTION_ID>2c90e2876c2c7623016c6b24db0d040d</SUBSCRIPTION_ID>
+  		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+        </host>
+		
+		<host>
+          <VM_NAME>myd-hvm02328</VM_NAME>
+          <team>UFT 2021.1 Win2016 64bit RUS</team>
+          <Application>UFT</Application>
+          <CSAAccount>_ft_auto</CSAAccount>
+          <CSAPassword>W3lcome1</CSAPassword>
+          <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>uninstall</CLEAN_MODE>
+          <!-- <CLEAN_MODE>resnapshot</CLEAN_MODE> -->
+          <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+          <SUBSCRIPTION_ID>2c9085876c2c86c7016c6b7bf64d3753</SUBSCRIPTION_ID>
+  		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+        </host>
+		
+	<host>
+          <VM_NAME>myd-hvm02329</VM_NAME>
+          <team>UFT 2021.1 Win2016 64bit ESP</team>
+          <Application>UFT</Application>
+          <CSAAccount>_ft_auto</CSAAccount>
+          <CSAPassword>W3lcome1</CSAPassword>
+          <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>uninstall</CLEAN_MODE>
+          <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+          <SUBSCRIPTION_ID>2c9085876c2c86c7016c6b8133ba450c</SUBSCRIPTION_ID>
+  		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+        </host>
+
+		<host>
+          <VM_NAME>myd-hvm02344</VM_NAME>
+          <team>UFT 2021.1 Win10 64bit DEU</team>
+          <Application>UFT</Application>
+          <CSAAccount>_ft_auto</CSAAccount>
+          <CSAPassword>W3lcome1</CSAPassword>
+          <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>uninstall</CLEAN_MODE>
+          <!-- <CLEAN_MODE>resnapshot</CLEAN_MODE> -->
+          <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+          <SUBSCRIPTION_ID>2c9085876c2c86c7016c6fed295b673d</SUBSCRIPTION_ID>
+  		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+        </host>
+		
+		<host>
+          <VM_NAME>myd-hvm02346</VM_NAME>
+          <team>UFT 2021.1 Win2016 64bit JPN</team>
+          <Application>UFT</Application>
+          <CSAAccount>_ft_auto</CSAAccount>
+          <CSAPassword>W3lcome1</CSAPassword>
+          <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>uninstall</CLEAN_MODE>
+          <!-- <CLEAN_MODE>resnapshot</CLEAN_MODE> -->
+          <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+          <SUBSCRIPTION_ID>2c90e2876c2c7623016c6feef5a4631b</SUBSCRIPTION_ID>
+  		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+        </host>
+		
+		<host>
+          <VM_NAME>myd-hvm02343</VM_NAME>
+          <team>UFT 2021.1 Win2012 R2 64bit FRA</team>
+          <Application>UFT</Application>
+          <CSAAccount>_ft_auto</CSAAccount>
+          <CSAPassword>W3lcome1</CSAPassword>
+          <CSADomain>swinfra.net</CSADomain>
+		  <CLEAN_MODE>uninstall</CLEAN_MODE>
+          <!-- <CLEAN_MODE>resnapshot</CLEAN_MODE> -->
+          <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
+          <SUBSCRIPTION_ID>2c90e2876c2c7623016c6feb42975c59</SUBSCRIPTION_ID>
+  		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+        </host>
+
+	</hosts>
+	
+	
+		
+</Deploy>

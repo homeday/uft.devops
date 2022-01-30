@@ -1,0 +1,130 @@
+<Deploy>
+  <GlobalProperties>
+    <NOTIFICATION_EMAIL>jia.xue2@hpe.com</NOTIFICATION_EMAIL>
+    <CSAAccount>_ft_auto</CSAAccount>
+    <CSAPassword>W3lcome1</CSAPassword>
+    <CSADomain>swinfra.net</CSADomain>
+    <LICENSE_SERVER>mama.swinfra.net</LICENSE_SERVER>
+    <ONLY_INSTALLATION>true</ONLY_INSTALLATION>
+    <CLEAN_MODE>resnapshot</CLEAN_MODE>
+    <DevOpsPortalIP>myd-vma00436.swinfra.net</DevOpsPortalIP>
+    <DevOpsPortalPort>8088</DevOpsPortalPort>
+    <DevOpsPortalPath>/devenvs</DevOpsPortalPath>
+    <Application>uft</Application>
+    <IsQAVM>true</IsQAVM>
+  </GlobalProperties>
+  <hosts>
+    <host>
+      <VM_NAME>myd-hvm01797</VM_NAME>
+      <Description>Win10 64 bit - 1903 Lionel</Description>
+      <team>Win10 64 bit - 1903 Lionel</team>
+      <USER_EMAIL>wen-tao.qin@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90e2876bc20e08016bda495b303638</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm01804</VM_NAME>
+      <Description>Win2016 64 bit - Jessie</Description>
+      <team>Win2016 64 bit - Jessie</team>
+      <USER_EMAIL>na.li3@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90e2876bc20e08016bda7f41685e8a</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm01806</VM_NAME>
+      <Description>Suzy's machine</Description>
+      <team>Suzy's machine</team>
+      <USER_EMAIL>ya-xin.guo@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90e2876bc20e08016bda876283038e</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm01758</VM_NAME>
+      <Description>Mihai's machine</Description>
+      <team>Mihai's machine</team>
+      <USER_EMAIL>mihai.campean@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90e2876bc20e08016bd636d14769aa</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm01767</VM_NAME>
+      <Description>Silviu's Machine</Description>
+      <team>Silviu's Machine</team>
+      <USER_EMAIL>silviu.pogana@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90e2876bc20e08016bd6d527b66a92</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm01816</VM_NAME>
+      <Description>Fabian's Machine</Description>
+      <team>Fabian's Machine</team>
+      <USER_EMAIL>fabian-vasile.gandila@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90e2876bc20e08016bdb7ce1a71161</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-vm02366</VM_NAME>
+      <Description>UFT SEL Nightly machine Win8.1 - Cindy</Description>
+      <team>UFT SEL Nightly machine Win8.1 - Cindy</team>
+      <USER_EMAIL>jia-hong.zhu@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c9090b36e91b9e1016ed5b760637c09</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm02323</VM_NAME>
+      <Description>AOssian_nightly</Description>
+      <team>AOssian_nightly</team>
+      <USER_EMAIL>adrian.ossian@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90903173b7419a0173c37e77987719</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm06066</VM_NAME>
+      <Description>[Win10] Nightly Paula</Description>
+      <team>[Win10] Nightly Paula</team>
+      <USER_EMAIL>paula.paltinisanu@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90af95748ca4c501754b803e3b0ca6</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm03054</VM_NAME>
+      <Description>Hilda's Nightly</Description>
+      <team>Hilda's Nightly</team>
+      <USER_EMAIL>hilda.fodor@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90af95748ca4c50175738185bf4218</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm06172</VM_NAME>
+      <Description>[Win10] Nightly Ioana</Description>
+      <team>[Win10] Nightly Ioana</team>
+      <USER_EMAIL>ioana.tarau@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c909068748ca49701759cd616e02510</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm01480</VM_NAME>
+      <Description>Mango's Nightly</Description>
+      <team>Mango's Nightly</team>
+      <USER_EMAIL>bing.jia@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c909068748ca4970175afee03451907</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm01416</VM_NAME>
+      <Description>Angel's Nightly</Description>
+      <team>Angel's Nightly</team>
+      <USER_EMAIL>wang.anqi@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90af95748ca4c5017617c28e715d3e</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+    <host>
+      <VM_NAME>myd-hvm00020</VM_NAME>
+      <Description>Win10 x64 Nightly - SEL - Cindy</Description>
+      <team>Win10 x64 Nightly - SEL - Cindy</team>
+      <USER_EMAIL>xin-yi.chen@microfocus.com</USER_EMAIL>
+      <SUBSCRIPTION_ID>2c90bb9379f695db017a5ac355a65b2f</SUBSCRIPTION_ID>
+      <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
+    </host>
+  </hosts>
+</Deploy>
