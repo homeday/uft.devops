@@ -32,9 +32,10 @@ set MODE=${params.MODE}
 set LABEL=${params.LABEL}
 set BUILD_VERSION=${params.BUILD_VERSION}
 cd deployment\\pyDeployScript
-python -m venv venv
-venv/Script/activate.bat
-pip install xmltodict winrm
+D:\\UFT_Tools\\Python3.7.1_32\\python.exe -m venv venv
+call venv\\Scripts\\activate.bat
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 py DeployAppTest.py
 """
            }
