@@ -46,6 +46,7 @@ is_vm_exist = False
 for host in hosts:
     if host["VM_NAME"] == VM_NAME:
         is_vm_exist = True
+        hostname = "{0}.{1}".format(VM_NAME, host.get('CSADomain', GlobalProperties["CSADomain"]))
         username = host.get('CSAAccount', GlobalProperties["CSAAccount"])
         password = host.get('CSAPassword', GlobalProperties["CSAPassword"])
         domian = host.get('CSADomain', GlobalProperties["CSADomain"])
@@ -59,6 +60,7 @@ if is_vm_exist == False:
     for host in hosts:
         if host["VM_NAME"] == VM_NAME:
             is_vm_exist = True
+            hostname = "{0}.{1}".format(VM_NAME, host.get('CSADomain', GlobalProperties["CSADomain"]))
             username = host.get('CSAAccount', GlobalProperties["CSAAccount"])
             password = host.get('CSAPassword', GlobalProperties["CSAPassword"])
             domian = host.get('CSADomain', GlobalProperties["CSADomain"])
@@ -72,6 +74,7 @@ if is_vm_exist == False:
     for host in hosts:
         if host["VM_NAME"] == VM_NAME:
             is_vm_exist = True
+            hostname = "{0}.{1}".format(VM_NAME, host.get('CSADomain', GlobalProperties["CSADomain"]))
             username = host.get('CSAAccount', GlobalProperties["CSAAccount"])
             password = host.get('CSAPassword', GlobalProperties["CSAPassword"])
             domian = host.get('CSADomain', GlobalProperties["CSADomain"])
@@ -80,25 +83,8 @@ if is_vm_exist == False:
     print("The '{}' host info does not exist in '{}'".format(VM_NAME, MLU_XML))
     print("'{0}' host was not configured in the HCM XML file.".format(VM_NAME)) 
     sys.exit(-1)
-    
-
-# for host in hosts:
-#     if(host["VM_NAME"] == VM_NAME):
-#         username = host.get('CSAAccount', GlobalProperties["CSAAccount"])
-#         password = host.get('CSAPassword', GlobalProperties["CSAPassword"])
-#         domian = host.get('CSADomain', GlobalProperties["CSADomain"])
+ 
 
 
-
-deploy = Deploy("{0}.{1}".format(host["VM_NAME"], domian), host["SUBSCRIPTION_ID"], host["CATALOG_ID"], username, password, domian)
+deploy = Deploy(hostname, host["SUBSCRIPTION_ID"], host["CATALOG_ID"], username, password, domian)
 sys.exit(deploy.install_uft(BUILD_VERSION, MODE.lower()))
-
-# if(MODE.lower() == "restart"):
-#     sys.exit(wrapper.restart_machine())
-# elif(MODE.lower() == 'revert'):
-#     sys.exit(wrapper.revert_snapshot())
-# else:
-#     print("'" + MODE + "' Action is not supported!")
-#     sys.exit(-1)
-
-
