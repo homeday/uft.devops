@@ -3,6 +3,9 @@ from DeployMachineCore import DeployMachine
 from config import Config
 from ConnectMachine import ConnectMachine
 
+import logging
+logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
+
 class Deploy():
 
     def __init__(self, 
@@ -42,6 +45,7 @@ class Deploy():
     
     def revert_snapshot(self):
         """Revert to snapshot."""
+        
         if self.machine == None:
             raise "The 'machine' object is not initialized!"
             
@@ -58,19 +62,19 @@ class Deploy():
         return self.conn.WaitForWinRMReady()
         
     def prepare_machine(self):
-        print("Copying require file to the machine ...")
+        logging.info("Copying require file to the machine ...")
         return self.conn.CopyFile(".\\Preparation_files\\*", "C:\\")
 
     def uninstall(self, prodcutName="uft"):
         """Uninstall product like uft| st"""
         
-        print("[Info]: Copying relevent files to remote machine")
+        logging.info("Copying relevent files to remote machine")
         self.conn.CopyFile(".\\Preparation_files\\UFTUninstaller_v2.0\\*", "C:\\UFTUninstaller_v2.0\\")
         self.conn.CopyFile(".\\Preparation_files\\del.bat", "C:\\UFTUninstaller_v2.0\\del.bat")
-        print("[Info]: Uninstllation started!")
+        logging.info("Uninstllation has started!")
         
         self.conn.runCommand("C:\\UFTUninstaller_v2.0\\UFTUninstaller.exe -product:"+ prodcutName + " -silent ")
-        print("[Info]: Uninstllation done!")
+        logging.info("Uninstllation done!")
         
         return self.conn.runCommand("C:\\del.bat")
         
@@ -88,7 +92,7 @@ class Deploy():
            resnapshot: This mode will revert the machine to snapshot and install the UFT (more like installing UFT on a clean machine)
            uninstall: This mode will uninstall the UFT if exist and install it
         """
-        print("[Info]: Installing UFT with '" + mode + "' mode ...")
+        logging.info("Installing UFT with '" + mode + "' mode ...")
         
         if mode == "uninstall":
             self.uninstall("uft")
@@ -112,7 +116,7 @@ class Deploy():
 
     def install_Test(self):
         """Install UFT"""
-        print("Running dummy command to test ...")
+        logging.info("Running dummy command to test ...")
         return self.conn.runCommand("C:\\test.bat 2021.1.0.860 " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
 
     

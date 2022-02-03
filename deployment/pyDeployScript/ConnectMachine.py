@@ -1,6 +1,7 @@
 import winrm
 import subprocess
-
+import logging
+logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 
 # Reference- https://www.tutorialspoint.com/How-to-copy-files-from-one-server-to-another-using-Python
 class ConnectMachine():
@@ -18,7 +19,7 @@ class ConnectMachine():
         self.transport = transport
     
     def connect(self):
-        print("[Info]: Connecting to '" + self.host +"'")
+        logging.info("Connecting to '" + self.host +"'")
         
         return winrm.Session(
             self.host, 
@@ -28,7 +29,7 @@ class ConnectMachine():
    
 
     def runCommand(self, cmd, args=[]):
-        print("[Info]: Running command '" + cmd +"'")
+        logging.info("Running command '" + cmd +"'")
         
         session = None
 
@@ -38,12 +39,12 @@ class ConnectMachine():
             return "Failed to established connection. Reason: " + ex
 
         if session != None:
-            print("[Info]: The connection established successfully!")
+            logging.info("The connection established successfully!")
 
         result = session.run_cmd(cmd, args)
         
         if result.status_code == 0:
-            print("[Info]: The command executed successfully!")
+            logging.info("The command executed successfully!")
 
         if result.std_err:
             return result.std_err.decode("UTF-8")
@@ -51,7 +52,7 @@ class ConnectMachine():
         return result.std_out.decode("UTF-8")
     
     def run_ps(self, script):
-        print("Running PS command: " + script +"'")
+        logging.info("Running PS command: " + script +"'")
         session = self.connect()
         result = session.run_ps(script) 
         
@@ -60,7 +61,7 @@ class ConnectMachine():
             return result.std_err.decode("UTF-8")
 
         return result.std_out.decode("UTF-8")
-    def kill_process(self, proccess_name):
+    def kill_process(self, process_name):
         """Kill the process if the process is running"""
         
         session = None
@@ -71,7 +72,7 @@ class ConnectMachine():
             return "Failed to established connection. Reason: " + ex
 
         if session != None:
-            print("[Info]: The connection established successfully!")
+            logging.info("The connection established successfully!")
 
         output = session.run_cmd('taskkill', ['/F', '/IM', process_name]) # taskkill /F /IM Process Name
         std_out = output.std_out.decode("utf-8")
@@ -89,7 +90,7 @@ class ConnectMachine():
 
         # Log errors if a hook failed
         if proc.returncode != 0:
-            print('{} : {} \n{}'.format(args[0], proc.returncode, stderr))
+            logging.info('{} : {} \n{}'.format(args[0], proc.returncode, stderr))
 
         
         if stderr.decode('UTF-8') != "":
@@ -119,7 +120,7 @@ class ConnectMachine():
 
         # Log errors if a hook failed
         if return_code != 0:
-            print('{} : {} \n{}'.format(args[0], return_code, proc.stderr), end='')
+            logging.info('{} : {} \n{}'.format(args[0], return_code, proc.stderr), end='')
         
         return return_code
 

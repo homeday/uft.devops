@@ -3,6 +3,8 @@ from ConnectMachine import ConnectMachine
 from Deploy import Deploy
 import xmltodict
 import os
+import logging
+logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 
 GlobalProperties = {}
 hosts = []
@@ -23,15 +25,18 @@ def InitProperties(machineListFile):
                 for key, value in gp.items():
                     for host in value:
                         hosts.append(dict(host))
+
 def GetConfigFilePath(label, xml_type="dev"):
 
+    file_to_read = "{0}\\..\\csa\\{1}_RnD_Deploy.xml".format(os.getcwd(), label)
     if xml_type.lower() == "qa":
-        return "{0}\\..\\csa_{1}\\{2}_QA_Deploy_HCM".format(os.getcwd(), xml_type, label)
+        file_to_read = "{0}\\..\\csa_{1}\\{2}_QA_Deploy_HCM".format(os.getcwd(), xml_type, label)
 
     if xml_type.lower() == "mlu":
-        return "{0}\\..\\csa_{1}\\{2}_QA_Deploy_G11N.xml".format(os.getcwd(), xml_type, label)
+        file_to_read = "{0}\\..\\csa_{1}\\{2}_QA_Deploy_G11N.xml".format(os.getcwd(), xml_type, label)
 
-    return "{0}\\..\\csa\\{1}_RnD_Deploy.xml".format(os.getcwd(), label)
+    logging.info("Machine configuration filename: " + file_to_read)
+    return file_to_read
 
 # Get environments from the OS
 VM_NAME = os.environ['VM_NAME']
@@ -47,7 +52,7 @@ if(MODE.lower() != "resnapshot" and MODE.lower() != "uninstall"):
 # if(not os.path.exists(DEV_XML)):
 #     raise ValueError("File is not exists at " + DEV_XML)
 
-print("Reading the '{0}' host information in '{1}'".format(VM_NAME, DEV_XML))
+logging.info("Reading the '{0}' host information in '{1}'".format(VM_NAME, DEV_XML))
 InitProperties(DEV_XML)
 
 is_vm_exist = False
@@ -61,8 +66,8 @@ for host in hosts:
 
 
 if is_vm_exist == False:
-    print("The '{}' host info does not exist in '{}'".format(VM_NAME, DEV_XML))
-    print("Reading the '{0}' host information in '{1}'".format(VM_NAME, QA_XML))
+    logging.info("The '{}' host info does not exist in '{}'".format(VM_NAME, DEV_XML))
+    logging.info("Reading the '{0}' host information in '{1}'".format(VM_NAME, QA_XML))
     InitProperties(QA_XML)
 
     for host in hosts:
@@ -75,8 +80,8 @@ if is_vm_exist == False:
 
 
 if is_vm_exist == False:
-    print("The '{}' host info does not exist in '{}'".format(VM_NAME, QA_XML))
-    print("Reading the '{0}' host information from '{1}'".format(VM_NAME, MLU_XML))
+    logging.info("The '{}' host info does not exist in '{}'".format(VM_NAME, QA_XML))
+    logging.info("Reading the '{0}' host information from '{1}'".format(VM_NAME, MLU_XML))
     InitProperties(MLU_XML)
 
     for host in hosts:
@@ -88,11 +93,11 @@ if is_vm_exist == False:
             domian = host.get('CSADomain', GlobalProperties["CSADomain"])
 
 if is_vm_exist == False:
-    print("The '{}' host info does not exist in '{}'".format(VM_NAME, MLU_XML))
-    print("'{0}' host was not configured in the HCM XML file.".format(VM_NAME)) 
+    logging.info("The '{}' host info does not exist in '{}'".format(VM_NAME, MLU_XML))
+    logging.info("'{0}' host was not configured in the HCM XML file.".format(VM_NAME)) 
     sys.exit(-1)
  
-print("Hostname: " + hostname)
+logging.info("Hostname: " + hostname)
 
 
 deploy = Deploy(hostname, host["SUBSCRIPTION_ID"], host["CATALOG_ID"], username, password, domian)
