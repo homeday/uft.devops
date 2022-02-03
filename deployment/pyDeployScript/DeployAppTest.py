@@ -105,13 +105,15 @@ if is_vm_exist == False:
     sys.exit(-1)
  
 logging.info("Hostname: " + hostname)
+logging.info("Subscription_Id: " + sub_id)
 
 if hostname == "":
     logging.ERROR("Hostname cannot be empty")
     sys.exit(-1)
+
 if sub_id == "":
     logging.ERROR("Subscription cannot be empty")
     sys.exit(-1)
 
-deploy = Deploy(hostname, host["SUBSCRIPTION_ID"], host["CATALOG_ID"], username, password, domian)
+deploy = Deploy(hostname, sub_id, cat_id, username, password, domian)
 sys.exit(deploy.install_uft(BUILD_VERSION, MODE.lower()))
