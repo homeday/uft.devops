@@ -20,7 +20,7 @@ class DeployMachine():
         self.automation_username = automation_username
         self.automation_password = automation_password
         self.account_name = domian + "\\" + username
-        self.vm_full_name = vm_name + "." + domian
+        
 
     def revert_snapshot(self):
         """Revert snapshot of CSA and restart the machine"""
@@ -63,7 +63,7 @@ class DeployMachine():
             return os.system(cmd)
 
         # DeployMachine.__map_drive(self)
-        cmd = "cmd /c shutdown /r /m \\\\{0} /f".format(self.vm_full_name)
+        cmd = "cmd /c shutdown /r /m \\\\{0} /f".format(self.vm_name)
         print("Restart from command line!")
         # print(cmd)
         return os.system(cmd)

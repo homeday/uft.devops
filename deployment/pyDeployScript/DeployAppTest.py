@@ -35,13 +35,14 @@ def GetConfigFilePath(label, xml_type="dev"):
     if xml_type.lower() == "mlu":
         file_to_read = "{0}\\..\\csa_{1}\\{2}_QA_Deploy_G11N.xml".format(os.getcwd(), xml_type, label)
 
-    logging.info("Machine configuration filename: " + file_to_read)
+    # logging.info("Machine configuration filename: " + file_to_read)
     return file_to_read
 
 # Get environments from the OS
 VM_NAME = os.environ['VM_NAME']
 MODE = os.environ['MODE']
 BUILD_VERSION = os.environ['BUILD_VERSION']
+
 DEV_XML = GetConfigFilePath(os.environ['LABEL'])
 QA_XML = GetConfigFilePath(os.environ['LABEL'], "qa")
 MLU_XML = GetConfigFilePath(os.environ['LABEL'], "mlu")
@@ -60,6 +61,8 @@ for host in hosts:
     if host["VM_NAME"] == VM_NAME:
         is_vm_exist = True
         hostname = "{0}.{1}".format(VM_NAME, host.get('CSADomain', GlobalProperties["CSADomain"]))
+        sub_id = host.get('SUBSCRIPTION_ID', '')
+        cat_id = host.get('CATALOG_ID', '')
         username = host.get('CSAAccount', GlobalProperties["CSAAccount"])
         password = host.get('CSAPassword', GlobalProperties["CSAPassword"])
         domian = host.get('CSADomain', GlobalProperties["CSADomain"])
@@ -74,6 +77,8 @@ if is_vm_exist == False:
         if host["VM_NAME"] == VM_NAME:
             is_vm_exist = True
             hostname = "{0}.{1}".format(VM_NAME, host.get('CSADomain', GlobalProperties["CSADomain"]))
+            sub_id = host.get('SUBSCRIPTION_ID', '')
+            cat_id = host.get('CATALOG_ID', '')
             username = host.get('CSAAccount', GlobalProperties["CSAAccount"])
             password = host.get('CSAPassword', GlobalProperties["CSAPassword"])
             domian = host.get('CSADomain', GlobalProperties["CSADomain"])
@@ -88,6 +93,8 @@ if is_vm_exist == False:
         if host["VM_NAME"] == VM_NAME:
             is_vm_exist = True
             hostname = "{0}.{1}".format(VM_NAME, host.get('CSADomain', GlobalProperties["CSADomain"]))
+            sub_id = host.get('SUBSCRIPTION_ID', '')
+            cat_id = host.get('CATALOG_ID', '')
             username = host.get('CSAAccount', GlobalProperties["CSAAccount"])
             password = host.get('CSAPassword', GlobalProperties["CSAPassword"])
             domian = host.get('CSADomain', GlobalProperties["CSADomain"])
@@ -99,6 +106,12 @@ if is_vm_exist == False:
  
 logging.info("Hostname: " + hostname)
 
+if hostname == "":
+    logging.ERROR("Hostname cannot be empty")
+    sys.exit(-1)
+if sub_id == "":
+    logging.ERROR("Subscription cannot be empty")
+    sys.exit(-1)
 
 deploy = Deploy(hostname, host["SUBSCRIPTION_ID"], host["CATALOG_ID"], username, password, domian)
 sys.exit(deploy.install_uft(BUILD_VERSION, MODE.lower()))
