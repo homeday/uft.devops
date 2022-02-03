@@ -23,15 +23,23 @@ def InitProperties(machineListFile):
                 for key, value in gp.items():
                     for host in value:
                         hosts.append(dict(host))
+def GetConfigFilePath(label, xml_type="dev"):
 
+    if xml_type.lower() == "qa":
+        return "{0}\\..\\csa_{1}\\{2}_QA_Deploy_HCM".format(os.getcwd(), xml_type, label)
+
+    if xml_type.lower() == "mlu":
+        return "{0}\\..\\csa_{1}\\{2}_QA_Deploy_G11N.xml".format(os.getcwd(), xml_type, label)
+
+    return "{0}\\..\\csa\\{1}_RnD_Deploy.xml".format(os.getcwd(), label)
 
 # Get environments from the OS
 VM_NAME = os.environ['VM_NAME']
 MODE = os.environ['MODE']
 BUILD_VERSION = os.environ['BUILD_VERSION']
-DEV_XML = os.getcwd() + "\\..\\csa\\" + os.environ['LABEL'] + "_RnD_Deploy.xml"
-QA_XML = os.getcwd() + "\\..\\csa_qa\\" + os.environ['LABEL'] + "_QA_Deploy_HCM.xml"
-MLU_XML = os.getcwd() + "\\..\\csa_mlu\\" + os.environ['LABEL'] + "_QA_Deploy_G11N.xml"
+DEV_XML = GetConfigFilePath(os.environ['LABEL'])
+QA_XML = GetConfigFilePath(os.environ['LABEL'], "qa")
+MLU_XML = GetConfigFilePath(os.environ['LABEL'], "mlu")
 
 if(MODE.lower() != "resnapshot" and MODE.lower() != "uninstall"):
     raise ValueError("The MODE (second) aregument value can not be other than these: 'resnapshot', 'uninstall'")
@@ -84,6 +92,7 @@ if is_vm_exist == False:
     print("'{0}' host was not configured in the HCM XML file.".format(VM_NAME)) 
     sys.exit(-1)
  
+print("Hostname: " + hostname)
 
 
 deploy = Deploy(hostname, host["SUBSCRIPTION_ID"], host["CATALOG_ID"], username, password, domian)

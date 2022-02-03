@@ -98,6 +98,7 @@ class Deploy():
         
         self.WaitForWinrmServices()
         self.prepare_machine()
+        self.conn.kill_process("msiexec")
         return self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
     
     def install_patch_on_uft(self, buildNumber):
