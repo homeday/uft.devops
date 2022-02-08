@@ -3,7 +3,7 @@ import subprocess
 import logging
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 
-# Reference- https://www.tutorialspoint.com/How-to-copy-files-from-one-server-to-another-using-Python
+
 class ConnectMachine():
     def __init__(self, 
         host, 
@@ -24,7 +24,8 @@ class ConnectMachine():
         return winrm.Session(
             self.host, 
             auth=('{}@{}'.format(self.username, self.domian), self.password),
-            transport=self.transport
+            transport=self.transport,
+            server_cert_validation='ignore'
         )
    
 

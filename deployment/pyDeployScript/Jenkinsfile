@@ -23,21 +23,57 @@ pipeline {
         // string(name: "", defaultValue: "", description: "")
     }
 
+    environment {
+        VM_NAME = ${params.VM_NAME}
+        MODE = ${params.MODE}
+        LABEL = ${params.LABEL}
+        BUILD_VERSION = ${params.BUILD_VERSION}
+    }
+
     stages {
-        stage("Executing Action") {
+        stage("Prepare python virtual env"){
             steps {
-      bat """
-set VM_NAME=${params.VM_NAME}
-set MODE=${params.MODE}
-set LABEL=${params.LABEL}
-set BUILD_VERSION=${params.BUILD_VERSION}
+                bat """
 cd deployment\\pyDeployScript
 D:\\UFT_Tools\\Python3.7.1_32\\python.exe -m venv venv
 call venv\\Scripts\\activate.bat
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-python DeployAppTest.py
 """
+            }
+
+        }
+        stage("Uninstall UFT"){
+            when {
+                expression {
+                    params.MODE == "uninstall"
+                }
+            }
+            steps {
+                bat """
+cd deployment\\pyDeployScript
+python jenkins_script\\uinstall_uft.py
+"""
+            }
+        }
+
+        stage("Uninstall UFT"){
+            when {
+                expression {
+                    params.MODE == "resnapshot"
+                }
+            }
+            steps {
+                bat """
+cd deployment\\pyDeployScript
+python jenkins_script\\resnapshot.py
+"""
+            }
+        }
+
+        stage("Executing Action") {
+            steps {
+      bat """python jenkins_script\\DeployAppTest.py"""
            }
         }
     }

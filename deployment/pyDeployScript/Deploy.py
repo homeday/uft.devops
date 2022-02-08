@@ -105,6 +105,12 @@ class Deploy():
         self.conn.kill_process("msiexec")
         return self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
     
+    def install_uft_from_jenkins(self, buildNumber):
+        self.WaitForWinrmServices()
+        self.prepare_machine()
+        self.conn.kill_process("msiexec")
+        return self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
+
     def install_patch_on_uft(self, buildNumber):
         pass
 
@@ -118,5 +124,4 @@ class Deploy():
         """Install UFT"""
         logging.info("Running dummy command to test ...")
         return self.conn.runCommand("C:\\test.bat 2021.1.0.860 " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
-
-    
+        
