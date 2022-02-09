@@ -24,10 +24,10 @@ pipeline {
     }
 
     environment {
-        VM_NAME = ${params.VM_NAME}
-        MODE = ${params.MODE}
-        LABEL = ${params.LABEL}
-        BUILD_VERSION = ${params.BUILD_VERSION}
+        VM_NAME = "${params.VM_NAME}"
+        MODE = "${params.MODE}"
+        LABEL = "${params.LABEL}"
+        BUILD_VERSION = "${params.BUILD_VERSION}"
     }
 
     stages {
@@ -52,12 +52,13 @@ python -m pip install -r requirements.txt
             steps {
                 bat """
 cd deployment\\pyDeployScript
+call venv\\Scripts\\activate.bat
 python jenkins_script\\uinstall_uft.py
 """
             }
         }
 
-        stage("Uninstall UFT"){
+        stage("Reverting Snapshot"){
             when {
                 expression {
                     params.MODE == "resnapshot"
@@ -66,6 +67,7 @@ python jenkins_script\\uinstall_uft.py
             steps {
                 bat """
 cd deployment\\pyDeployScript
+call venv\\Scripts\\activate.bat
 python jenkins_script\\resnapshot.py
 """
             }
@@ -73,7 +75,10 @@ python jenkins_script\\resnapshot.py
 
         stage("Executing Action") {
             steps {
-      bat """python jenkins_script\\DeployAppTest.py"""
+      bat """
+call venv\\Scripts\\activate.bat
+python jenkins_script\\install_uft.py
+"""
            }
         }
     }
