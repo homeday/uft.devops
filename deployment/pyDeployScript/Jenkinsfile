@@ -53,7 +53,7 @@ python -m pip install -r requirements.txt
                 bat """
 cd deployment\\pyDeployScript
 call venv\\Scripts\\activate.bat
-python jenkins_script\\uinstall_uft.py
+python uninstall_uft_script.py
 """
             }
         }
@@ -68,7 +68,7 @@ python jenkins_script\\uinstall_uft.py
                 bat """
 cd deployment\\pyDeployScript
 call venv\\Scripts\\activate.bat
-python jenkins_script\\resnapshot.py
+python resnapshot_script.py
 """
             }
         }
@@ -77,7 +77,7 @@ python jenkins_script\\resnapshot.py
             steps {
       bat """
 call venv\\Scripts\\activate.bat
-python jenkins_script\\install_uft.py
+python install_uft_script.py
 """
            }
         }
