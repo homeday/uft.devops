@@ -2,6 +2,7 @@
 from DeployMachineCore import DeployMachine
 from config import Config
 from ConnectMachine import ConnectMachine
+import os
 
 import logging
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
@@ -63,14 +64,18 @@ class Deploy():
         
     def prepare_machine(self):
         logging.info("Copying require file to the machine ...")
-        return self.conn.CopyFile(".\\Preparation_files\\*", "C:\\")
+        source = os.path.dirname(os.path.abspath(__file__)) + "\\Preparation_files\\*"
+        print(source)
+        return self.conn.CopyFile(source, "C:\\")
 
     def uninstall(self, prodcutName="uft"):
         """Uninstall product like uft| st"""
         
         logging.info("Copying relevent files to remote machine")
-        self.conn.CopyFile(".\\Preparation_files\\UFTUninstaller_v2.0\\*", "C:\\UFTUninstaller_v2.0\\")
-        self.conn.CopyFile(".\\Preparation_files\\del.bat", "C:\\UFTUninstaller_v2.0\\del.bat")
+        source = os.path.dirname(os.path.abspath(__file__))
+        print(source)
+        self.conn.CopyFile(source + "\\Preparation_files\\UFTUninstaller_v2.0\\*", "C:\\UFTUninstaller_v2.0\\")
+        self.conn.CopyFile(source + "\\Preparation_files\\del.bat", "C:\\UFTUninstaller_v2.0\\del.bat")
         logging.info("Uninstllation has started!")
         
         self.conn.runCommand("C:\\UFTUninstaller_v2.0\\UFTUninstaller.exe -product:"+ prodcutName + " -silent ")

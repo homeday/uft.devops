@@ -141,9 +141,9 @@ class ConnectMachine():
         return self.RunProcess([
             "powershell.exe", 
             ".\\ps_script\\CopyToRemote.ps1",
-            "-hostname " + self.host,
-            "-username {0}@{1}".format(self.username, self.domian),
-            "-password " + self.password,
-            "-source " + CopyFrom,
-            "-destination " + CopyTo
+            -hostname + " " + self.host,
+            -username + " " + "{0}@{1}".format(self.username, self.domian),
+            -password + " " + self.password,
+            -source  + " " + CopyFrom,
+            -destination + " " + CopyTo
         ])
