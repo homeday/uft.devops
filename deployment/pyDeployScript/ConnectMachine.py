@@ -130,9 +130,9 @@ class ConnectMachine():
        return self.RunProcess([
             "powershell.exe", 
             ".\\ps_script\\CheckWinrmStatus.ps1",
-            "-hostname " + self.host,
-            "-username {0}@{1}".format(self.username, self.domian),
-            "-password " + self.password
+            -hostname + " " + self.host,
+            -username + " " + "{0}@{1}".format(self.username, self.domian),
+            -password + " " + self.password
         ])
 
     def CopyFile(self, CopyFrom, CopyTo):
