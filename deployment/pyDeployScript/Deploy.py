@@ -65,17 +65,15 @@ class Deploy():
     def prepare_machine(self):
         logging.info("Copying require file to the machine ...")
         source = os.path.dirname(os.path.abspath(__file__)) + "\\Preparation_files\\*"
-        print(source)
-        return self.conn.CopyFile(source, "C:\\")
+        logging.info(source)
+        return self.conn.CopyFile(".\\Preparation_files\\*", "C:\\")
 
     def uninstall(self, prodcutName="uft"):
         """Uninstall product like uft| st"""
         
         logging.info("Copying relevent files to remote machine")
-        source = os.path.dirname(os.path.abspath(__file__))
-        print(source)
-        self.conn.CopyFile(source + "\\Preparation_files\\UFTUninstaller_v2.0\\*", "C:\\UFTUninstaller_v2.0\\")
-        self.conn.CopyFile(source + "\\Preparation_files\\del.bat", "C:\\UFTUninstaller_v2.0\\del.bat")
+        self.conn.CopyFile(".\\Preparation_files\\UFTUninstaller_v2.0\\*", "C:\\UFTUninstaller_v2.0\\")
+        self.conn.CopyFile(".\\Preparation_files\\del.bat", "C:\\UFTUninstaller_v2.0\\del.bat")
         logging.info("Uninstllation has started!")
         
         self.conn.runCommand("C:\\UFTUninstaller_v2.0\\UFTUninstaller.exe -product:"+ prodcutName + " -silent ")
