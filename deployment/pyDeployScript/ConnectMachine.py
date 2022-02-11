@@ -141,7 +141,7 @@ class ConnectMachine():
         "Copy file from local to remote (Windows) machine. The function used Powershell to copy file!"
         
         return self.RunProcess([
-            "powershell.exe", 
+            os.environ['SYSTEMROOT'] + "\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
              ".\\ps_script\\CheckWinrmStatus.ps1",
             "-hostname " + self.host,
             "-username " + "{0}@{1}".format(self.username, self.domian),
