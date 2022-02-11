@@ -9,7 +9,7 @@ param(
 
 ($credential = New-Object System.Management.Automation.PSCredential($username, (ConvertTo-Securestring $pass -AsPlainText -Force)))
 
-Write-Host "[Info]: Connecting to $host"
+Write-Host "[Info]: Connecting to $hostname"
 $session = New-PSSession -Credential $credential -ComputerName $hostname
 
 Write-Host "[Info]: Copying file from '$source' to '$destination'"
