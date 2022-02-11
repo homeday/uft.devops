@@ -1,6 +1,7 @@
 import winrm
 import subprocess
 import logging
+import os
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 
 
@@ -101,7 +102,8 @@ class ConnectMachine():
 
     def RunProcess(self, args):
         """ Run process on the local machine and return stderr, stdout """
-    
+        logging.info("Arguments pass to process")
+        logging.info(args)
         proc = subprocess.Popen(args, stdout = subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
        
         # Handling err
@@ -128,7 +130,7 @@ class ConnectMachine():
     def WaitForWinRMReady(self):
        """Wait for WinRM service to ready"""
        return self.RunProcess([
-            "powershell.exe", 
+            os.environ['SYSTEMROOT'] + "\\System32\\WindowsPowerShell\\v1.0\\powershell.exe", 
             ".\\ps_script\\CheckWinrmStatus.ps1",
             "-hostname " + self.host,
             "-username " + "{0}@{1}".format(self.username, self.domian),
