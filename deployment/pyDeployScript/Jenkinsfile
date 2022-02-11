@@ -73,9 +73,10 @@ python resnapshot_script.py
             }
         }
 
-        stage("Executing Action") {
+        stage("Install UFT") {
             steps {
       bat """
+cd deployment\\pyDeployScript
 call venv\\Scripts\\activate.bat
 python install_uft_script.py
 """

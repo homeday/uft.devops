@@ -137,9 +137,13 @@ class ConnectMachine():
 
     def CopyFile(self, CopyFrom, CopyTo):
         "Copy file from local to remote (Windows) machine. The function used Powershell to copy file!"
-
+        
         return self.RunProcess([
             "powershell.exe", 
-            ".\\ps_script\\CopyToRemote.ps1 -hostname {0} -username {1} -password {2} -source {3} -destination {4}".format(
-                self.host, self.username + "@" + self.domian, self.password, CopyFrom, CopyTo)
+             ".\\ps_script\\CheckWinrmStatus.ps1",
+            "-hostname " + self.host,
+            "-username " + "{0}@{1}".format(self.username, self.domian),
+            "-password " + self.password,
+            "-source " +  CopyFrom, 
+            "-destination " + CopyTo
         ])
