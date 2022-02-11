@@ -3,6 +3,7 @@ from DeployMachineCore import DeployMachine
 from config import Config
 from ConnectMachine import ConnectMachine
 import os
+import sys
 
 import logging
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
@@ -64,21 +65,25 @@ class Deploy():
         
     def prepare_machine(self):
         logging.info("Copying files to the remote machine ...")
-        source = os.path.dirname(os.path.abspath(__file__))
-        logging.info(source)
-        return self.conn.CopyFile(source + "\\Preparation_files\\*", "C:\\")
-
+        return self.conn.CopyFile(os.path.dirname(os.path.abspath(__file__)) + "\\Preparation_files\\*", "C:\\")
+    
     def uninstall(self, prodcutName="uft"):
         """Uninstall product like uft| st"""
         
         logging.info("Copying files to remote machine")
         source = os.path.dirname(os.path.abspath(__file__))
-        logging.info(source)
         self.conn.CopyFile(source + "\\Preparation_files\\UFTUninstaller_v2.0\\*", "C:\\UFTUninstaller_v2.0\\")
         self.conn.CopyFile(source + "\\Preparation_files\\del.bat", "C:\\UFTUninstaller_v2.0\\del.bat")
-        logging.info("Uninstllation has started!")
         
-        self.conn.runCommand("C:\\UFTUninstaller_v2.0\\UFTUninstaller.exe -product:"+ prodcutName + " -silent ")
+        uninstallerEXE = "C:\\UFTUninstaller_v2.0\\UFTUninstaller.exe"
+        
+        status = self.conn.IsFileExist(uninstallerEXE)
+        if status == -1:
+            logging.error("'{0}' file does not exist, Make sure the copy action executed successfully!".format(uninstallerEXE))
+            return sys.exit(status)
+
+        logging.info("Uninstllation has started!")
+        self.conn.runCommand("{0} -product:{1} -silent ".format(uninstallerEXE, prodcutName))
         logging.info("Uninstllation done!")
         
         return self.conn.runCommand("C:\\del.bat")
@@ -113,8 +118,11 @@ class Deploy():
     def install_uft_from_jenkins(self, buildNumber):
         self.WaitForWinrmServices()
         self.prepare_machine()
-        self.conn.kill_process("msiexec")
-        return self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
+        status = self.conn.kill_process("msiexec")
+        logging.info("Kill Process status: " + status)
+        status = self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
+        logging.info("Install status: " + status)
+        return status
 
     def install_patch_on_uft(self, buildNumber):
         pass

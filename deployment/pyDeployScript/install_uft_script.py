@@ -35,5 +35,6 @@ logging.info("Subscription_Id: " + machine_info["sub_id"])
 deploy = Deploy(
     machine_info["hostname"], machine_info["sub_id"], machine_info["cat_id"], 
     machine_info["username"], machine_info["password"], machine_info["domian"])
-deploy.install_uft_from_jenkins(BUILD_VERSION)
+status = deploy.install_uft_from_jenkins(BUILD_VERSION)
 deploy = None # reset 
+sys.exit(status)

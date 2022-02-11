@@ -80,9 +80,16 @@ class ConnectMachine():
         std_out = output.std_out.decode("utf-8")
         
         if std_out == '':
-            return "The '" + process_name + "' process is not running."
+            logging.info("The '" + process_name + "' process is not running.")
+            return 0
 
         return std_out
+        
+    def IsFileExist(self, filename):
+        """Checking the file exist or not exist. Return 0 if exist else return 1"""
+        logging.info("Checking '{0}' file is exist.".format(filename))
+        
+        return self.runCommand("IF EXIST {0} (echo 0) else (echo -1)".format(filename))
 
     def RunProcess_old(self, args):
         """ Run process on the local machine and return stderr, stdout """
