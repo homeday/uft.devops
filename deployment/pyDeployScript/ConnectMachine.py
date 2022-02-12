@@ -1,10 +1,11 @@
 import winrm
 import subprocess
-import logging
 import os
+import logging
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 
 
+# Reference- https://www.tutorialspoint.com/How-to-copy-files-from-one-server-to-another-using-Python
 class ConnectMachine():
     def __init__(self, 
         host, 
@@ -20,8 +21,10 @@ class ConnectMachine():
         self.transport = transport
     
     def connect(self):
-        logging.info("Connecting to '" + self.host +"'")
-        
+        print("[Info]: Connecting to '" + self.host +"'")
+        print("Hostname: " + self.host)
+        print("username: " + self.username)
+        print("password: " + self.password)
         return winrm.Session(
             self.host, 
             auth=('{}@{}'.format(self.username, self.domian), self.password),
@@ -36,60 +39,62 @@ class ConnectMachine():
         session = None
 
         try:
+
             session = self.connect()
+
         except Exception as ex: 
-            return "Failed to established connection. Reason: " + ex
+            return { "status_code": "-1", "std_err": ex, "std_out": None}
 
         if session != None:
             logging.info("The connection established successfully!")
 
-        result = session.run_cmd(cmd, args)
+        # Return std object. std.status_code, std._std_err, std.std_out 
+        return session.run_cmd(cmd, args)
         
-        if result.status_code == 0:
-            logging.info("The command executed successfully!")
-
-        if result.std_err:
-            return result.std_err.decode("UTF-8")
-
-        return result.std_out.decode("UTF-8")
     
     def run_ps(self, script):
-        logging.info("Running PS command: " + script +"'")
-        session = self.connect()
-        result = session.run_ps(script) 
-        
-        print(result.status_code)
-        if result.std_err:
-            return result.std_err.decode("UTF-8")
+        print("Running PS command: " + script +"'")
 
-        return result.std_out.decode("UTF-8")
-    def kill_process(self, process_name):
-        """Kill the process if the process is running"""
-        
         session = None
 
         try:
+
             session = self.connect()
+
         except Exception as ex: 
-            return "Failed to established connection. Reason: " + ex
+            return { "status_code": "-1", "std_err": ex, "std_out": None}
 
         if session != None:
             logging.info("The connection established successfully!")
 
-        output = session.run_cmd('taskkill', ['/F', '/IM', process_name]) # taskkill /F /IM Process Name
-        std_out = output.std_out.decode("utf-8")
-        
-        if std_out == '':
-            logging.info("The '" + process_name + "' process is not running.")
-            return 0
-
-        return std_out
-        
+        # Return std object. std.status_code, std._std_err, std.std_out 
+        return session.run_ps(script)
+    
+    # Return 0 or 1 on the std out. 0 means exist and 1 means not exist 
     def IsFileExist(self, filename):
         """Checking the file exist or not exist. Return 0 if exist else return 1"""
         logging.info("Checking '{0}' file is exist.".format(filename))
         
-        return self.runCommand("IF EXIST {0} (echo 0) else (echo -1)".format(filename))
+        result = self.runCommand("IF EXIST {0} (echo 0) else (echo 1)".format(filename))
+        return result.std_out.decode("utf-8")
+    
+    def kill_process(self, process_name):
+        """Kill the process if the process is running"""
+        
+        output = self.runCommand('taskkill', ['/F', '/IM', process_name]) # taskkill /F /IM Process Name
+        return_code = output.status_code
+        
+        if output.std_err:
+            logging.error(output.std_err.decode("utf-8"))
+
+        if output.std_err:
+            logging.info(output.std_out.decode("utf-8"))
+        
+        # Return code 128 for not found the process
+        if int(return_code) == 128:
+            return str(0)
+
+        return return_code
 
     def RunProcess_old(self, args):
         """ Run process on the local machine and return stderr, stdout """
@@ -99,7 +104,7 @@ class ConnectMachine():
 
         # Log errors if a hook failed
         if proc.returncode != 0:
-            logging.info('{} : {} \n{}'.format(args[0], proc.returncode, stderr))
+            print('{} : {} \n{}'.format(args[0], proc.returncode, stderr))
 
         
         if stderr.decode('UTF-8') != "":
@@ -109,8 +114,7 @@ class ConnectMachine():
 
     def RunProcess(self, args):
         """ Run process on the local machine and return stderr, stdout """
-        logging.info("Arguments pass to process")
-        logging.info(args)
+    
         proc = subprocess.Popen(args, stdout = subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
        
         # Handling err
@@ -130,17 +134,40 @@ class ConnectMachine():
 
         # Log errors if a hook failed
         if return_code != 0:
-            logging.info('{} : {} \n{}'.format(args[0], return_code, proc.stderr), end='')
+            print('{} : {} \n{}'.format(args[0], return_code, proc.stderr), end='')
         
         return return_code
 
+    def RunProcessSync(self, args):
+        """ Run process on the local machine and return stderr, stdout """
+    
+        proc = subprocess.Popen(args, stdout = subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines=True)
+        (output, err) = proc.communicate()  
+
+        #This makes the wait possible
+        return_code = proc.wait()
+
+        if err:
+            print("error")
+            print(err)
+        print(output)
+
+        # Log errors if a hook failed
+        if return_code != 0:
+            logging.error('{} : {} \n{}'.format(args[0], return_code, proc.stderr), end='')
+        
+        return return_code
+        
     def WaitForWinRMReady(self):
        """Wait for WinRM service to ready"""
-       return self.RunProcess([
+       source = os.path.dirname(os.path.abspath(__file__))
+       print(source)
+
+       return self.RunProcessSync([
             os.environ['SYSTEMROOT'] + "\\System32\\WindowsPowerShell\\v1.0\\powershell.exe", 
-            ".\\ps_script\\CheckWinrmStatus.ps1",
+            source +  "\\ps_script\\CheckWinrmStatus.ps1",
             "-hostname " + self.host,
-            "-username " + "{0}@{1}".format(self.username, self.domian),
+            "-username {0}@{1}".format(self.username, self.domian),
             "-password " + self.password
         ])
 
@@ -148,7 +175,8 @@ class ConnectMachine():
         "Copy file from local to remote (Windows) machine. The function used Powershell to copy file!"
         source = os.path.dirname(os.path.abspath(__file__))
         logging.info(source)
-        return self.RunProcess([
+
+        return self.RunProcessSync([
             os.environ['SYSTEMROOT'] + "\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             source + "\\ps_script\\CopyToRemote.ps1",
             "-hostname " + self.host,
