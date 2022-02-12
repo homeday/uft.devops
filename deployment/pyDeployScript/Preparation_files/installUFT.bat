@@ -7,7 +7,7 @@ set DVD_Path=Z:\%1\DVD
 
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"
-:: cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
+cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\prerequisites
 cmd /c setup.exe /InstallOnlyPrerequisite /s
 popd 
@@ -67,7 +67,7 @@ echo msi_path=%msi_path%
 
 IF "%5" == "" (
 	echo installing UFT
-	:: cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
+	cmd /c powershell.exe Stop-Process -Name "msiexec" -Force 
 	cmd /c MsiExec /norestart /qn /i %msi_path% /l*xv C:\UFT_Install_Log.txt ADDLOCAL=%AddinsToInstall% LICSVR=%LicenseAddress% LICID=23078 %UFTConfiguration% %LOCALE_STRING%
 ) ELSE (
 	echo installing UFT and LFT as a feature	
