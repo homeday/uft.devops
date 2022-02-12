@@ -141,7 +141,7 @@ class Deploy():
 
         output = self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
                 
-        loging.info("Installation logs")
+        logging.info("Installation logs")
         if output.std_err:
             logging.info(output.std_err)
 
