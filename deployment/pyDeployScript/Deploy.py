@@ -143,10 +143,10 @@ class Deploy():
                 
         logging.info("Installation logs")
         if output.std_err:
-            logging.info(output.std_err)
+            logging.info(output.std_err.decode('UTF-8'))
 
         if output.std_out:
-            logging.info(output.std_out)    
+            logging.info(output.std_out.decode('UTF-8'))    
 
         return output.status_code    
     
