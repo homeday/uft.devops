@@ -1,3 +1,9 @@
+:: Supported parameters
+:: BuildNumber
+:: Patch_ID
+:: Rubicon Username
+:: Rubicon Password
+
 net use * /delete /y
 REM IF NOT EXIST P: ECHO P: was not mounted. mounting it to \\\mydastr01.hpeswlab.net\products & net use P: \\\mydastr01.hpeswlab.net\products %4 /USER:%3
 SET STORAGE_WIN_SERVER=\\mydanas01.swinfra.net

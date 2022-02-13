@@ -123,9 +123,25 @@ class Deploy():
             self.revert_snapshot()
         
         self.WaitForWinrmServices()
-        self.prepare_machine()
-        self.conn.kill_process("msiexec")
-        return self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
+        ret_code = self.prepare_machine()
+        
+        if int(ret_code) != 0:
+            return ret_code
+
+        status = self.conn.kill_process("msiexec")
+        if int(ret_code) != 0:
+            return ret_code
+
+        output = self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
+                
+        logging.info("Installation logs")
+        if output.std_err:
+            logging.info(output.std_err.decode('UTF-8'))
+
+        if output.std_out:
+            logging.info(output.std_out.decode('UTF-8'))    
+
+        return output.status_code
     
     def install_uft_from_jenkins(self, buildNumber):
 
@@ -151,8 +167,21 @@ class Deploy():
         return output.status_code    
     
 
-    def install_patch_on_uft(self, buildNumber):
-        pass
+    def install_uft_patch(self, buildNumber, patch_id):
+        status = self.conn.kill_process("msiexec")
+        if int(ret_code) != 0:
+            return ret_code
+
+        output = self.install("C:\installUFT_Patch.bat " + buildNumber + " " + patch_id + " " + Config.rubicon_username + " " + Config.rubicon_password)
+                
+        logging.info("Installation logs")
+        if output.std_err:
+            logging.info(output.std_err.decode('UTF-8'))
+
+        if output.std_out:
+            logging.info(output.std_out.decode('UTF-8'))    
+
+        return output.status_code    
 
     def install_codeless_on_uft(self, buildNumber):
         pass

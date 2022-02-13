@@ -20,6 +20,11 @@ pipeline {
         choice(name: "MODE", choices: [ "resnapshot", "uninstall"], description: "Restart: Restart the machine. \n Revert: Revert to snapshot and restart the machine.")
         string(name: "LABEL", defaultValue: "UFT_2022_0", description: "The label name is used to read the xml file. ")
         string(name: "BUILD_VERSION", defaultValue: "2022.0.0.24", description: "The label name is used to read the xml file. ")
+        booleanParam(name: "INSTALL_UFT", defaultValue: true, description: "Install UFT if set true")
+        booleanParam(name: "INSTALL_UFT_PATCH", defaultValue: false, description: "Install UFT Patch on top of UFT if set true. Make sure INSTALL_UFT checkbox checked")
+        string(name: "PATCH_ID", defaultValue: "UFT_00211", description: "Patch ID cannot be empty if INSTALL_UFT_PATCH set true. ")
+        booleanParam(name: "INSTALL_CODELESS", defaultValue: false, description: "Install codeless on top of UFT if set true. Make sure INSTALL_UFT checkbox checked")
+        
         // string(name: "", defaultValue: "", description: "")
     }
 
@@ -28,6 +33,7 @@ pipeline {
         MODE = "${params.MODE}"
         LABEL = "${params.LABEL}"
         BUILD_VERSION = "${params.BUILD_VERSION}"
+        PATCH_ID = "${params.PATCH_ID}"
     }
 
     stages {
@@ -74,11 +80,46 @@ python resnapshot_script.py
         }
 
         stage("Install UFT") {
+             when {
+                expression {
+                    params.INSTALL_UFT == "true"
+                }
+            }
             steps {
       bat """
 cd deployment\\pyDeployScript
 call venv\\Scripts\\activate.bat
 python install_uft_script.py
+"""
+           }
+        }
+
+        stage("Install Patch on top of UFT") {
+             when {
+                expression {
+                    params.INSTALL_UFT == "true"
+                }
+            }
+            steps {
+      bat """
+cd deployment\\pyDeployScript
+call venv\\Scripts\\activate.bat
+python install_uft_patch_script.py
+"""
+           }
+        }
+
+        stage("Install codeless on top of uft") {
+             when {
+                expression {
+                    params.INSTALL_CODELESS == "true"
+                }
+            }
+            steps {
+      bat """
+cd deployment\\pyDeployScript
+call venv\\Scripts\\activate.bat
+python install_uft_patch_script.py
 """
            }
         }
