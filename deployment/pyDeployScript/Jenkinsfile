@@ -35,7 +35,7 @@ pipeline {
         LABEL = "${params.LABEL}"
         BUILD_VERSION = "${params.BUILD_VERSION}"
         PATCH_ID = "${params.PATCH_ID}"
-        CDLS_BUILD_NUMBER = "${param.CDLS_BUILD_NUMBER}"
+        CDLS_BUILD_NUMBER = "${params.CDLS_BUILD_NUMBER}"
     }
 
     stages {
