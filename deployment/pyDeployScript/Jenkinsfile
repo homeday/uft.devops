@@ -24,6 +24,7 @@ pipeline {
         booleanParam(name: "INSTALL_UFT_PATCH", defaultValue: false, description: "Install UFT Patch on top of UFT if set true. Make sure INSTALL_UFT checkbox checked")
         string(name: "PATCH_ID", defaultValue: "UFT_00211", description: "Patch ID cannot be empty if INSTALL_UFT_PATCH set true. ")
         booleanParam(name: "INSTALL_CODELESS", defaultValue: false, description: "Install codeless on top of UFT if set true. Make sure INSTALL_UFT checkbox checked")
+        string(name: "CDLS_BUILD_NUMBER", defaultValue: "CDLS_UI_2022_0_Setup_Last", description: "Patch ID cannot be empty if INSTALL_UFT_PATCH set true. ")
         
         // string(name: "", defaultValue: "", description: "")
     }
@@ -34,6 +35,7 @@ pipeline {
         LABEL = "${params.LABEL}"
         BUILD_VERSION = "${params.BUILD_VERSION}"
         PATCH_ID = "${params.PATCH_ID}"
+        CDLS_BUILD_NUMBER = "${param.CDLS_BUILD_NUMBER}"
     }
 
     stages {
@@ -81,9 +83,7 @@ python resnapshot_script.py
 
         stage("Install UFT") {
              when {
-                expression {
-                    params.INSTALL_UFT == "true"
-                }
+                expression { return params.INSTALL_UFT }
             }
             steps {
       bat """
@@ -96,9 +96,7 @@ python install_uft_script.py
 
         stage("Install Patch on top of UFT") {
              when {
-                expression {
-                    params.INSTALL_UFT == "true"
-                }
+                expression { return params.INSTALL_UFT }
             }
             steps {
       bat """
@@ -111,9 +109,7 @@ python install_uft_patch_script.py
 
         stage("Install codeless on top of uft") {
              when {
-                expression {
-                    params.INSTALL_CODELESS == "true"
-                }
+                expression { return params.INSTALL_CODELESS }
             }
             steps {
       bat """

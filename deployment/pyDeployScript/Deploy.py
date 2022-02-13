@@ -183,6 +183,22 @@ class Deploy():
 
         return output.status_code    
 
+    def install_ai(self, buildNumber):
+        status = self.conn.kill_process("msiexec")
+        if int(ret_code) != 0:
+            return ret_code
+
+        output = self.install("C:\install_codeless.bat " + buildNumber + " " + Config.rubicon_username + " " + Config.rubicon_password)
+                
+        logging.info("Installation logs")
+        if output.std_err:
+            logging.info(output.std_err.decode('UTF-8'))
+
+        if output.std_out:
+            logging.info(output.std_out.decode('UTF-8'))    
+
+        return output.status_code    
+
     def install_codeless_on_uft(self, buildNumber):
         pass
 
