@@ -92,6 +92,6 @@ goto CheckOS
 	echo "Unified Functional Testing -- Installation Failed!"
 	exit 1
 
-
-exit 0
+:END
+	exit 0
 

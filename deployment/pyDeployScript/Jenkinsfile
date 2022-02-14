@@ -22,9 +22,10 @@ pipeline {
         string(name: "BUILD_VERSION", defaultValue: "2022.0.0.24", description: "The label name is used to read the xml file. ")
         booleanParam(name: "INSTALL_UFT", defaultValue: true, description: "Install UFT if set true")
         booleanParam(name: "INSTALL_UFT_PATCH", defaultValue: false, description: "Install UFT Patch on top of UFT if set true. Make sure INSTALL_UFT checkbox checked")
+        string(name: "PATCH_BUILD_NUMBER", defaultValue: "UFT_2021_1_Patches", description: "Patch build number or patch build label.")
         string(name: "PATCH_ID", defaultValue: "UFT_00211", description: "Patch ID cannot be empty if INSTALL_UFT_PATCH set true. ")
         booleanParam(name: "INSTALL_CODELESS", defaultValue: false, description: "Install codeless on top of UFT if set true. Make sure INSTALL_UFT checkbox checked")
-        string(name: "CDLS_BUILD_NUMBER", defaultValue: "CDLS_UI_2022_0_Setup_Last", description: "Patch ID cannot be empty if INSTALL_UFT_PATCH set true. ")
+        string(name: "CDLS_BUILD_NUMBER", defaultValue: "CDLS_UI_2022_0_Setup_Last", description: "Codeless buld number or label.")
         
         // string(name: "", defaultValue: "", description: "")
     }
@@ -36,6 +37,7 @@ pipeline {
         BUILD_VERSION = "${params.BUILD_VERSION}"
         PATCH_ID = "${params.PATCH_ID}"
         CDLS_BUILD_NUMBER = "${params.CDLS_BUILD_NUMBER}"
+        PATCH_BUILD_NUMBER = "${params.PATCH_BUILD_NUMBER}"
     }
 
     stages {

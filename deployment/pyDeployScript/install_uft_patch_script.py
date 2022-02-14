@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
  
 # Get environments from the OS
 VM_NAME = os.environ['VM_NAME'].strip()
-BUILD_VERSION = os.environ['BUILD_VERSION'].strip()
+PATCH_BUILD_NUMBER = os.environ['PATCH_BUILD_NUMBER'].strip()
 LABEL = os.environ['LABEL'].strip()
 PATCH_ID = os.environ['PATCH_ID'].strip()
 
@@ -33,6 +33,6 @@ deploy = Deploy(
     machine_info["hostname"], machine_info["sub_id"], machine_info["cat_id"], 
     machine_info["username"], machine_info["password"], machine_info["domian"])
 
-ret_code = deploy.install_uft_patch(BUILD_VERSION, PATCH_ID)
+ret_code = deploy.install_uft_patch(PATCH_BUILD_NUMBER, PATCH_ID)
 deploy = None # reset 
 sys.exit(ret_code)
