@@ -14,8 +14,6 @@ This small library helps to install UFT, UFT Patch, LFT, and Codeless on the rem
 
 ```
     SET VM_NAME = "<vmname>"
-    SET MODE = " uninstall | resnepshot"
-    SET BUILD_VERSION = "<UFT_BUILD_NUMBER>"
     SET LABEL = "<UFT Build Label>"
 
     python uninstall_uft_script.py

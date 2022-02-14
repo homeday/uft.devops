@@ -8,13 +8,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
  
 # Get environments from the OS
 VM_NAME = os.environ['VM_NAME'].strip()
-MODE = os.environ['MODE'].strip()
-BUILD_VERSION = os.environ['BUILD_VERSION'].strip()
 LABEL = os.environ['LABEL'].strip()
-
-if(MODE.lower() != "resnapshot" and MODE.lower() != "uninstall"):
-    raise ValueError("The MODE aregument should be: 'resnapshot', 'uninstall'")
-
 
 machine_info = util.get_machine_info(VM_NAME, LABEL)
 if not machine_info["is_vm_exists"]:
