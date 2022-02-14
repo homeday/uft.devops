@@ -10,30 +10,114 @@ pipeline {
     }
 
     options {
-        buildDiscarder(logRotator(numToKeepStr: '30'))
+        buildDiscarder(logRotator(numToKeepStr: '5'))
         timestamps()
     }
 
     parameters {
         string(name: "BRANCH", defaultValue: "master", description: "")
         string(name: "VM_NAME", defaultValue: "", description: "Name of the VM. Enter the vm name without domaain. </b>For Example:</b> Machine host is 'myd-hvm01120.hpeswlab.net' so the VM_NAME will be 'myd-hvm01120'")
-        choice(name: "ACTION", choices: [ "Restart", "Revert"], description: "Restart: Restart the machine. \n Revert: Revert to snapshot and restart the machine.")
-        string(name: "LABEL", defaultValue: "UFT_2021_1", description: "Label name of the current release")
+        choice(name: "MODE", choices: [ "resnapshot", "uninstall"], description: "Restart: Restart the machine. \n Revert: Revert to snapshot and restart the machine.")
+        string(name: "LABEL", defaultValue: "UFT_2022_0", description: "The label name is used to read the xml file. ")
+        string(name: "BUILD_VERSION", defaultValue: "2022.0.0.24", description: "The label name is used to read the xml file. ")
+        booleanParam(name: "INSTALL_UFT", defaultValue: true, description: "Install UFT if set true")
+        booleanParam(name: "INSTALL_UFT_PATCH", defaultValue: false, description: "Install UFT Patch on top of UFT if set true. Make sure INSTALL_UFT checkbox checked")
+        string(name: "PATCH_BUILD_NUMBER", defaultValue: "UFT_2021_1_Patches", description: "Patch build number or patch build label.")
+        string(name: "PATCH_ID", defaultValue: "UFT_00211", description: "Patch ID cannot be empty if INSTALL_UFT_PATCH set true. ")
+        booleanParam(name: "INSTALL_CODELESS", defaultValue: false, description: "Install codeless on top of UFT if set true. Make sure INSTALL_UFT checkbox checked")
+        string(name: "CDLS_BUILD_NUMBER", defaultValue: "CDLS_UI_2022_0_Setup_Last", description: "Codeless buld number or label.")
+        
         // string(name: "", defaultValue: "", description: "")
     }
 
+    environment {
+        VM_NAME = "${params.VM_NAME}"
+        MODE = "${params.MODE}"
+        LABEL = "${params.LABEL}"
+        BUILD_VERSION = "${params.BUILD_VERSION}"
+        PATCH_ID = "${params.PATCH_ID}"
+        CDLS_BUILD_NUMBER = "${params.CDLS_BUILD_NUMBER}"
+        PATCH_BUILD_NUMBER = "${params.PATCH_BUILD_NUMBER}"
+    }
+
     stages {
-        stage("Executing Action") {
+        stage("Prepare python virtual env"){
+            steps {
+                bat """
+cd deployment\\pyDeployScript
+D:\\UFT_Tools\\Python3.7.1_32\\python.exe -m venv venv
+call venv\\Scripts\\activate.bat
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+"""
+            }
+
+        }
+        stage("Uninstall UFT"){
+            when {
+                expression {
+                    params.MODE == "uninstall"
+                }
+            }
+            steps {
+                bat """
+cd deployment\\pyDeployScript
+call venv\\Scripts\\activate.bat
+python uninstall_uft_script.py
+"""
+            }
+        }
+
+        stage("Reverting Snapshot"){
+            when {
+                expression {
+                    params.MODE == "resnapshot"
+                }
+            }
+            steps {
+                bat """
+cd deployment\\pyDeployScript
+call venv\\Scripts\\activate.bat
+python resnapshot_script.py
+"""
+            }
+        }
+
+        stage("Install UFT") {
+             when {
+                expression { return params.INSTALL_UFT }
+            }
             steps {
       bat """
-set VM_NAME=${params.VM_NAME}
-set ACTION=${params.ACTION}
-set LABEL=${params.LABEL}
 cd deployment\\pyDeployScript
-python -m venv venv
-venv/Script/activate.bat
-pip install xmltodict
-py DeployApp.py
+call venv\\Scripts\\activate.bat
+python install_uft_script.py
+"""
+           }
+        }
+
+        stage("Install Patch on top of UFT") {
+             when {
+                expression { return params.INSTALL_UFT }
+            }
+            steps {
+      bat """
+cd deployment\\pyDeployScript
+call venv\\Scripts\\activate.bat
+python install_uft_patch_script.py
+"""
+           }
+        }
+
+        stage("Install codeless on top of uft") {
+             when {
+                expression { return params.INSTALL_CODELESS }
+            }
+            steps {
+      bat """
+cd deployment\\pyDeployScript
+call venv\\Scripts\\activate.bat
+python install_uft_patch_script.py
 """
            }
         }
