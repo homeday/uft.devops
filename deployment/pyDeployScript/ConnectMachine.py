@@ -96,7 +96,7 @@ class ConnectMachine():
 
         return return_code
 
-    def RunProcess_old(self, args):
+    def RunProcess_depricated(self, args):
         """ Run process on the local machine and return stderr, stdout """
     
         proc = subprocess.Popen(args, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
@@ -148,13 +148,14 @@ class ConnectMachine():
         return_code = proc.wait()
 
         if err:
-            print("error")
             print(err)
-        print(output)
+        
+        if output:
+            print(output)
 
         # Log errors if a hook failed
         if return_code != 0:
-            logging.error('{} : {} \n{}'.format(args[0], return_code, proc.stderr), end='')
+            logging.error('{} : {} \n{}'.format(args[0], return_code, err), end='')
         
         return return_code
         

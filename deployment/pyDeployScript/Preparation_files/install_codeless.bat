@@ -14,7 +14,7 @@ cmd /c setup.exe /InstallOnlyPrerequisite /s
 popd 
 
 pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
-cmd /c MsiExec /norestart /qn /i "%STORAGE_WIN_SERVER%\FT\CDLS-AI\win32_release\%1\DVD\AI_Installer.msi" /l*xv C:\AI_Install_Log.txt 
+cmd /c MsiExec /norestart /qn /i "%STORAGE_WIN_SERVER%\products\FT\CDLS-AI\win32_release\%1\DVD\AI_Installer.msi" /l*xv C:\AI_Install_Log.txt 
 SET ERRORCODE=%ERRORLEVEL%
 popd
 

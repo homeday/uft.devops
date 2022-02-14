@@ -95,11 +95,23 @@ class Deploy():
             logging.info("File copied successfully!")    
 
         logging.info("Uninstllation has started!")
-        self.conn.runCommand("{0} -product:{1} -silent ".format(uninstallerEXE, prodcutName))
+        output = self.conn.runCommand("{0} -product:{1} -silent ".format(uninstallerEXE, prodcutName))
+        if int(output.status_code) != 0:
+            logging.error("Uninstllation failed!")
+            return output.status_code
+
         logging.info("Uninstllation done!")
+        output = self.conn.runCommand("C:\\del.bat")
         
-        return self.conn.runCommand("C:\\del.bat")
-        
+        logging.info("Logs from del.bat")
+        if output.std_err:
+            logging.info(output.std_err.decode('UTF-8'))
+
+        if output.std_out:
+            logging.info(output.std_out.decode('UTF-8')) 
+
+        return output.status_code
+
 
     def install_lft(self):
         """Install LeanFT"""
@@ -107,7 +119,15 @@ class Deploy():
 
     
     def install(self, command):
-        return self.conn.runCommand(command)
+        output = self.conn.runCommand(command)
+        logging.info("Installation logs")
+        if output.std_err:
+            logging.info(output.std_err.decode('UTF-8'))
+
+        if output.std_out:
+            logging.info(output.std_out.decode('UTF-8')) 
+
+        return output.status_code
 
     def install_uft(self, buildNumber, mode="resnapshot"):
         """This function support two installtion mode; resnapshot or uninstallation
@@ -132,16 +152,8 @@ class Deploy():
         if int(ret_code) != 0:
             return ret_code
 
-        output = self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
-                
-        logging.info("Installation logs")
-        if output.std_err:
-            logging.info(output.std_err.decode('UTF-8'))
-
-        if output.std_out:
-            logging.info(output.std_out.decode('UTF-8'))    
-
-        return output.status_code
+        cmd = "C:\installUFT.bat {0} {1} {2} {3}".format(buildNumber, Config.license_server, Config.rubicon_username, Config.rubicon_password)
+        return self.install(cmd)
     
     def install_uft_from_jenkins(self, buildNumber):
 
@@ -151,53 +163,32 @@ class Deploy():
         if int(ret_code) != 0:
             return ret_code
 
-        status = self.conn.kill_process("msiexec")
+        ret_code = self.conn.kill_process("msiexec")
         if int(ret_code) != 0:
             return ret_code
 
-        output = self.install("C:\installUFT.bat " + buildNumber + " " + Config.license_server + " " + Config.rubicon_username + " " + Config.rubicon_password)
-                
-        logging.info("Installation logs")
-        if output.std_err:
-            logging.info(output.std_err.decode('UTF-8'))
-
-        if output.std_out:
-            logging.info(output.std_out.decode('UTF-8'))    
-
-        return output.status_code    
+        cmd = "C:\installUFT.bat {0} {1} {2} {3}".format(buildNumber, Config.license_server, Config.rubicon_username, Config.rubicon_password)
+        return self.install(cmd)
     
 
     def install_uft_patch(self, buildNumber, patch_id):
-        status = self.conn.kill_process("msiexec")
+
+        ret_code = self.conn.kill_process("msiexec")
         if int(ret_code) != 0:
             return ret_code
 
-        output = self.install("C:\installUFT_Patch.bat " + buildNumber + " " + patch_id + " " + Config.rubicon_username + " " + Config.rubicon_password)
-                
-        logging.info("Installation logs")
-        if output.std_err:
-            logging.info(output.std_err.decode('UTF-8'))
-
-        if output.std_out:
-            logging.info(output.std_out.decode('UTF-8'))    
-
-        return output.status_code    
+        cmd = "C:\installUFT_Patch.bat {0} {1} {2} {3}".format(buildNumber, patch_id, Config.rubicon_username, Config.rubicon_password)
+        return self.install(cmd)
 
     def install_ai(self, buildNumber):
-        status = self.conn.kill_process("msiexec")
+
+        ret_code = self.conn.kill_process("msiexec")
         if int(ret_code) != 0:
             return ret_code
-
-        output = self.install("C:\install_codeless.bat " + buildNumber + " " + Config.rubicon_username + " " + Config.rubicon_password)
-                
-        logging.info("Installation logs")
-        if output.std_err:
-            logging.info(output.std_err.decode('UTF-8'))
-
-        if output.std_out:
-            logging.info(output.std_out.decode('UTF-8'))    
-
-        return output.status_code    
+        
+        cmd = "C:\install_codeless.bat {0} {1} {2} ".format(buildNumber, Config.rubicon_username, Config.rubicon_password)
+        return self.install(cmd)
+       
 
     def install_codeless_on_uft(self, buildNumber):
         pass
