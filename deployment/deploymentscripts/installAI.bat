@@ -94,11 +94,13 @@ goto CheckOS
 
 :END
 	echo Installing AI
-	pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\DVD_Wix\AI
+	@REM pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release\%1\DVD_Wix\AI
+	pushd %STORAGE_WIN_SERVER%\products\FT\CDLS-AI\win32_release\CDLS_UI_2022_0_Setup_Last\DVD
 	cmd /c setup.exe /InstallOnlyPrerequisite /s
 	popd 
 	pushd %STORAGE_WIN_SERVER%\products\FT\QTP\win32_release
-	cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\AI\AI_Installer.msi" /l*xv C:\AI_Install_Log.txt ADDLOCAL=AI_Services,UI_Services
+	@REM cmd /c MsiExec /norestart /qn /i "Z:\FT\QTP\win32_release\%1\DVD_WIX\AI\AI_Installer.msi" /l*xv C:\AI_Install_Log.txt ADDLOCAL=AI_Services,UI_Services
+	cmd /c MsiExec /norestart /qn /i "Z:\FT\CDLS-AI\win32_release\CDLS_UI_2022_0_Setup_Last\DVD\AI_Installer.msi" /l*xv C:\AI_Install_Log.txt ADDLOCAL=AI_Services,UI_Services
 	SET ERRORCODE=%ERRORLEVEL%
 	popd
 
