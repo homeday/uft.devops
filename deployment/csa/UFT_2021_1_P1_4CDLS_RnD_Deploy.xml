@@ -5,7 +5,7 @@
 	<GlobalProperties>
 		<environmentName>UFT 2021 R1 P1 @ trunk</environmentName>
 		<EmailRole>Nightly</EmailRole>
-		<NOTIFICATION_EMAIL>ran.bachar@microfocus.com,yguo@microfocus.com,yuanhai.xu@microfocus.com, narendrakumar.chejara@microfocus.com</NOTIFICATION_EMAIL>
+		<NOTIFICATION_EMAIL>ran.bachar@microfocus.com,yguo@microfocus.com,yuanhai.xu@microfocus.com, narendrakumar.chejara@microfocus.com, ronen.shimon@microfocus.com</NOTIFICATION_EMAIL>
 		<CSAAccount>alm_uft_auto</CSAAccount>
 		<CSAPassword>W3lcome1</CSAPassword>
 		<LICENSE_SERVER>mama.hpeswlab.net</LICENSE_SERVER>
@@ -30,14 +30,14 @@
 		<host>
 		  <!-- Anton's Team Machine -->
 		  <VM_NAME>myd-hvm03854</VM_NAME>
-		  <team>Codeless-Anton</team>
 		  <Application>ai</Application>
+		  <team>Codeless-Anton</team>
+		  <USER_EMAIL>cdlsteamanton@microfocus.com</USER_EMAIL>
 		  <CSAAccount>_ft_auto</CSAAccount>
 		  <CSAPassword>W3lcome1</CSAPassword>
 		  <CSADomain>swinfra.net</CSADomain>
-		  <CLEAN_MODE>resnapshot</CLEAN_MODE>
-		  <USER_EMAIL>cdlsteamanton@microfocus.com</USER_EMAIL>
 		  <SUBSCRIPTION_ID>2c90e22f6e91b8f60170389c87db700b</SUBSCRIPTION_ID>
+		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
 		</host>
 		<!-- End of Codeless group nightly deployment CSA machines -->
 		<!---->
