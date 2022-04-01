@@ -1,10 +1,9 @@
 BuildMajorVersion=2022
 BuildMinorVersion=0
-SvcpackVersion=0
 BuildLabel=UFT_2022_0_MV_EXT
+SvcpackVersion=0
 BuildPostfix=0
-WSPostfix=
+Compilation_Configuration=Release
 Configuration=win32_release
-Agent_PKG_Name=UFT Connection Agent.pkg
 repo_inclusion=
-RunSafari=false
+
