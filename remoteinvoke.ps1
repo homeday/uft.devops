@@ -5,7 +5,8 @@ param (
     [Parameter(Mandatory=$true)]
 	[string]$RemoteJobToken = $null,
     [string]$RemoteJobLinkParams = $null,
-    [string]$Method = "Post"
+    [string]$Method = "Post",
+    [System.Object]$RequestHeaders = $null # Parameter used to get the crumb value
 )
 
 
@@ -18,12 +19,21 @@ if (!$RemoteJobLinkParams) {
 
 Write-Output "Invoke URL = ${InvokenURL}"
 Write-Output "Method - ${Method}"
+Write-Output "RequestHeaders - ${RequestHeaders}"
 if($Method -eq "Get") {
     Invoke-WebRequest -Uri $InvokenURL -Method $Method
     Exit
 }
 
-$Rsp = Invoke-WebRequest -Uri $InvokenURL -Method $Method 
+$Rsp = ""
+if(!$RequestHeaders){
+    $Rsp = Invoke-WebRequest -Uri $InvokenURL -Method $Method 
+} else {
+    Write-Output $RequestHeaders
+    $Rsp = Invoke-WebRequest -Uri $InvokenURL -Method $Method -Headers $RequestHeaders
+}
+
+
 $Headers = $Rsp.Headers
 $QueueItemURL = "{0}api/json" -f $Headers.Location 
 $Rsp = Invoke-WebRequest -Uri $QueueItemURL -Method Get 
