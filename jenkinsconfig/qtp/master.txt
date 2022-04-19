@@ -16,3 +16,4 @@ E2E=true
 upload3rdparty=true
 Invoke_UFT_Agents=true
 Invoke_AI_Automation=true
+MSBuildVersion=2015
