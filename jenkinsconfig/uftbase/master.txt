@@ -5,4 +5,4 @@ SvcpackVersion=0
 BuildPostfix=0
 WSPostfix=
 DebugBuild=true
-
+MSBuild_Version=v22
