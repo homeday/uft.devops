@@ -4,6 +4,12 @@
 ## 1. Prepare the source
 Run 'scripts/uft-projs.sh' script with **git username** and **token**. The script will clone all repositories mentioned in repos-uft.list and checkout branches mentioned in branch.list.
 
+```
+For Example:
+mkdir -p /opengrok/src
+sh ./scripts/uft-projs.sh <git_username> <git_token>
+```
+
 ## 2. Install docker and launch container
 
 1. Run 'init.sh': This will reboot the server
