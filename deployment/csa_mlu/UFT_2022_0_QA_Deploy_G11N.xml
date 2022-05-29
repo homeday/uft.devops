@@ -177,29 +177,29 @@
   		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
         </host>
 		
-		<host>
+	<host>
           <VM_NAME>myd-hvm02346</VM_NAME>
           <team>UFT 2021.1 Win2016 64bit JPN</team>
           <Application>UFT</Application>
           <CSAAccount>_ft_auto</CSAAccount>
           <CSAPassword>W3lcome1</CSAPassword>
           <CSADomain>swinfra.net</CSADomain>
-		  <CLEAN_MODE>uninstall</CLEAN_MODE>
-          <!-- <CLEAN_MODE>resnapshot</CLEAN_MODE> -->
+          <!-- <CLEAN_MODE>uninstall</CLEAN_MODE> -->
+          <CLEAN_MODE>resnapshot</CLEAN_MODE>
           <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
           <SUBSCRIPTION_ID>2c90e2876c2c7623016c6feef5a4631b</SUBSCRIPTION_ID>
   		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
         </host>
 		
-		<host>
+	<host>
           <VM_NAME>myd-hvm02343</VM_NAME>
           <team>UFT 2021.1 Win2012 R2 64bit FRA</team>
           <Application>UFT</Application>
           <CSAAccount>_ft_auto</CSAAccount>
           <CSAPassword>W3lcome1</CSAPassword>
           <CSADomain>swinfra.net</CSADomain>
-		  <CLEAN_MODE>uninstall</CLEAN_MODE>
-          <!-- <CLEAN_MODE>resnapshot</CLEAN_MODE> -->
+          <!-- <CLEAN_MODE>uninstall</CLEAN_MODE> -->
+          <CLEAN_MODE>resnapshot</CLEAN_MODE>
           <USER_EMAIL>yaron.bracha@microfocus.com,narendrakumar.chejara@microfocus.com,yi.shi3@microfocus.com</USER_EMAIL>
           <SUBSCRIPTION_ID>2c90e2876c2c7623016c6feb42975c59</SUBSCRIPTION_ID>
   		  <CATALOG_ID>2c90cc8666c9333901671be4e80c4cd6</CATALOG_ID>
