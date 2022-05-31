@@ -1,7 +1,7 @@
 BuildMajorVersion=15
 BuildMinorVersion=0
 SvcpackVersion=2
-BuildPostfix=1
+BuildPostfix=2
 BuildLabel=UFT_15_0_SP2_Patches
 WSPostfix=.SP.Patches
 DebugBuild=false
