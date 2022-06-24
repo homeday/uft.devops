@@ -7,4 +7,4 @@ WSPostfix=
 Configuration=win32_release
 Agent_PKG_Name=UFT Connection Agent.pkg
 repo_inclusion=
-RunSafari=false
+RunSafari=true
