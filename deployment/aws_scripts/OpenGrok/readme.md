@@ -17,6 +17,12 @@ sh ./scripts/uft-projs.sh <git_username> <git_token>
 
 ## Sync
 
+Add a schedule job
+```
+$crontab -e
+// Append below line
+0 1 * * * sh /opengrok/scripts/uft-projs.sh uftgithub 0211f662b4b1f6b26aceaa5c1501c4bc67938c41 > /opengrok/sync.log 2>&1
+```
 
 
 ## References
