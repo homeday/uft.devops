@@ -12,8 +12,8 @@ fi
 
 
 function prepsrc {
-    repo="$3"
-
+    repo="$1"
+    echo "Repo Name: $1"	
     while IFS= read -r line
     do
         branch="$line"
