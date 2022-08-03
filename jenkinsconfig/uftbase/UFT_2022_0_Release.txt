@@ -1,5 +1,5 @@
 BuildMajorVersion=2022
-BuildMinorVersion=1
+BuildMinorVersion=0
 BuildLabel=UFT_2022_0
 SvcpackVersion=0
 BuildPostfix=0
