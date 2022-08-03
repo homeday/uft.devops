@@ -1,0 +1,6 @@
+BuildMajorVersion=2022
+BuildMinorVersion=1
+BuildLabel=UFT_2022_0
+SvcpackVersion=0
+BuildPostfix=0
+MSBuild_Version=v22
