@@ -1,6 +1,6 @@
-BuildLabel=UFT_2022_1
-BuildMajorVersion=2022
-BuildMinorVersion=1
+BuildLabel=UFT_2023_0
+BuildMajorVersion=2023
+BuildMinorVersion=0
 SvcpackVersion=0
 BuildPostfix=0
 Deploy=true
