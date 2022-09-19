@@ -43,7 +43,7 @@ AWS Migration Checklist
 #### <a name="ghe-webhooks-phase-1"></a>Phase I - Initiate
 - :white_check_mark: Create sever in AWS ([Host](#ghe-webhooks-host))
 - :white_check_mark: Deploy GitHub web hooks service ([Serivce port](#ghe-webhooks-port))
-- :white_large_square: Deploy load balance for multiple web hooks backends ([Serivce port](#ghe-webhooks-port))
+- :white_check_mark: Deploy load balance for multiple web hooks backends ([Serivce port](#ghe-webhooks-port))
 
 #### <a name="ghe-webhooks-phase-2"></a>Phase II - Staging
 - :white_check_mark: The GitHub web hooks service is accessible ([URL](#ghe-webhooks-payload-url))
@@ -51,8 +51,8 @@ AWS Migration Checklist
 - :white_large_square: Modify web hooks config files in `uft.devops` repo, `upgrad_jenkins` branch, and the web hooks work properly when receiving GitHub payloads for the commits in `UFT_2023_0_Migration` branch of UFT One repos
   |      | Git org | Git repo | Event | Jenkins job to be triggered | Comments |
   | ---- | ------- | -------- | ----- | --------------------------- | -------- |
-  | :white_large_square: | UFT | UFTBase | `push` | `UFTBase.Build.Launcher` | |
-  | :white_large_square: | UFT | UFTBase | `pull_request` | `UFTBase.CompileOnlyBuild.Trigger` | compile-only build |
+  | :white_check_mark: | UFT | UFTBase | `push` | `UFTBase.Build.Launcher` | |
+  | :white_check_mark: | UFT | UFTBase | `pull_request` | `UFTBase.CompileOnlyBuild.Trigger` | compile-only build |
   | :white_large_square: | UFT | ST | `push` | `ST.Build.Launcher` | |
   | :white_large_square: | UFT | ST | `pull_request` | `ST.CompileOnlyBuild.Trigger` | compile-only build |
   | :white_large_square: | UFT | IBA | `push` | `IBA.Build.Launcher` | |
