@@ -1,5 +1,8 @@
 #!/bin/bash
 
+##########################################
+# Run a single web hooks docker container.
+##########################################
 # #command line:
 # run_docker.sh [NAME]
 # - [NAME]: Optional. If specified, used as the container's name.
@@ -27,7 +30,7 @@ if [ -f "${env_file}" ]; then
     set +o allexport
 fi
 
-contianer_name="$1"
+container_name="$1"
 host_port="${WEBHOOKS_DOCKER_PUB_HOST_PORT}"
 docker_image="${WEBHOOKS_DOCKER_IMAGE}"
 network="${WEBHOOKS_DOCKER_NETWORK}"
@@ -44,7 +47,7 @@ if [ "${host_port}" = "0" ]; then docker_pub_port_flag=" "; fi
 
 # refine docker run flag: --name
 docker_name_flag=" "
-if [ ! -z "${contianer_name}" ]; then docker_name_flag=" --name ${contianer_name} "; fi
+if [ ! -z "${container_name}" ]; then docker_name_flag=" --name ${container_name} "; fi
 
 # refine docker network flag: --network
 docker_network_flag=" "
