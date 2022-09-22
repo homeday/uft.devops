@@ -53,8 +53,8 @@ AWS Migration Checklist
   | ---- | ------- | -------- | ----- | --------------------------- | -------- |
   | :white_check_mark: | UFT | UFTBase | `push` | `UFTBase.Build.Launcher` | |
   | :white_check_mark: | UFT | UFTBase | `pull_request` | `UFTBase.CompileOnlyBuild.Trigger` | compile-only build |
-  | :white_large_square: | UFT | ST | `push` | `ST.Build.Launcher` | |
-  | :white_large_square: | UFT | ST | `pull_request` | `ST.CompileOnlyBuild.Trigger` | compile-only build |
+  | :white_check_mark: | UFT | ST | `push` | `ST.Build.Launcher` | |
+  | :white_check_mark: | UFT | ST | `pull_request` | `ST.CompileOnlyBuild.Trigger` | compile-only build |
   | :white_large_square: | UFT | IBA | `push` | `IBA.Build.Launcher` | |
   | :white_large_square: | UFT | qtp.addins.erp | `push` | `UFT.Agents.Build` | |
   | :white_large_square: | UFT | qtp.addins.webbased | `push` | `UFT.Agents.Build` | |
