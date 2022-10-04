@@ -1,0 +1,79 @@
+# this text file contains the necessary information for OpenGrok sync
+# the sync process will fetch this file and read in the particular way
+# so, must keep the content in this file with restrictions as below
+#
+# [org:xxx] where xxx is the org name in GitHubEnterprise
+#     under this section, list all repositories to be sync
+#
+# [branch] - under this section, list all branches to be sync
+#     wildcard is supported
+#
+# [branch-skip] - under this section, list all branches that need be
+#     skipped, if the branch matches the wildcard in [branch]
+#     NOTE: wildcard is NOT supported for branch-skip section
+#
+# [branch-spec] - under this section, list specific branches for sync
+#     the format is: "<org>/<repo>/<branch>"
+#
+# "#" in the line as first character will make the line ignored by
+# the sync process
+#
+# do NOT add any space before section, otherwise the section line will
+# not be recognized correctly
+
+
+[org:uft]
+sprinter
+uftbase
+st
+qtp.addins.resources
+qtp.devutils
+qtp.addins.core
+qtp.addins.te
+qtp.doc
+qtp.addins.dotnet
+qtp.addins.teabased
+qtp.frontend
+qtp.addins.erp
+qtp.addins.uiautomation
+qtp.addins.uiautomation2
+qtp.infra
+qtp.addins.flash
+qtp.addins.webbased
+qtp.mlu
+qtp.addins.iba
+qtp.addins.webservices
+qtp.services
+qtp.addins.java
+qtp.addins.winbased
+qtp.services.utils
+qtp.addins.metro
+qtp.backend
+qtp.setup
+qtp.addins.mobile
+qtp.build
+qtp.addins.qtcustsupport
+qtp.addins.pdf
+qtp.components
+qtp.addins.ai
+qtp.rpa
+qtp.oic
+
+
+[org:Performance-Engineering]
+utt
+
+
+[branch]
+master
+UFT_*_Patches
+
+
+[branch-skip]
+UFT_2021_Test_Patches
+
+
+[branch-spec]
+
+
+
