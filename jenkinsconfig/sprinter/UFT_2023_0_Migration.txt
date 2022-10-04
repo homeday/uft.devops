@@ -1,6 +1,0 @@
-BuildMajorVersion=2023
-BuildMinorVersion=0
-BuildLabel=UFT_2023_0_Migration
-SvcpackVersion=0
-BuildPostfix=0
-MSBuild_Version=v22
