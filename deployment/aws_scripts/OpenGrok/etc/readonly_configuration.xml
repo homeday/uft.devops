@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.14.1" class="java.beans.XMLDecoder">
+ <object class="org.opengrok.indexer.configuration.Configuration">
+  <!--URL used to display links to user info in the Author column in the History view, e.g. http://www.myserver.org/viewProfile.jspa?username="-->
+  <void property="userPage">
+   <string>https://github.houston.softwaregrp.net/</string>
+  </void>
+  <!--display verbose information on the status page (e.g. http://YOURHOST:8080/source/status.jsp)-->
+  <void property="chattyStatusPage">
+   <boolean>false</boolean>
+  </void>
+  <!--Authentication Bearer tokens. These are necessary to access some parts of the RESTful API.-->
+  <void property="authenticationTokens">
+   <void method="add">
+    <string>ogk-ufto-devops</string>
+   </void>
+   <void method="add">
+    <string>ogkapitoken</string>
+   </void>
+  </void>
+  <!--allow API tokens to be used over insecure channel (i.e. HTTP as opposed to HTTPS). Normally they are allowed over HTTPS only.-->
+  <void property="allowInsecureTokens">
+   <boolean>true</boolean>
+  </void>
+  <!--Used to set server name in an environment where the application server runs behind reverse proxy. This is needed to generate correct URLs for OpenSearch and RSS.-->
+  <void property="serverName">
+   <string>uftopengrok.uftone.admlabs.aws.swinfra.net</string>
+  </void>
+ </object>
+</java>

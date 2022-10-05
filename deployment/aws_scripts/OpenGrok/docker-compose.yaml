@@ -2,17 +2,38 @@ version: "3"
 
 # More info at https://github.com/oracle/opengrok/docker/
 services:
-  opengrok:
-    container_name: opengrok
-    image: opengrok/docker:latest
+  opengrok_all:
+    container_name: opengrok_all
+    image: opengrok/docker:1.7.35
+    ports:
+      - "80:8080/tcp"
+    restart: always
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      NOMIRROR: 'true'
+      READONLY_CONFIG_FILE: '/opengrok/etc/readonly_configuration.xml'
+
+
+    # Volumes store your data between container upgrades
+    volumes:
+       - '/opengrok/src/:/opengrok/src/:ro'   # source code
+       - '/opengrok/etc/:/opengrok/etc/'      # folder contains configuration.xml
+       - '/opengrok/data/:/opengrok/data/'    # index and other things for source code
+
+  # master branch only
+  opengrok_master:
+    container_name: opengrok_master
+    image: opengrok/docker:1.7.35
     ports:
       - "8080:8080/tcp"
     restart: always
     environment:
-      SYNC_PERIOD_MINUTES: '60'
+      SYNC_PERIOD_MINUTES: '0'
+      NOMIRROR: 'true'
+      READONLY_CONFIG_FILE: '/opengrok/etc/readonly_configuration.xml'
 
     # Volumes store your data between container upgrades
     volumes:
-       - '/opengrok/src/:/opengrok/src/'  # source code
-       - '/opengrok/etc/:/opengrok/etc/'  # folder contains configuration.xml
-       - '/opengrok/data/:/opengrok/data/'  # index and other things for source code
+       - '/opengrok-master/src/:/opengrok/src/:ro'  # source code
+       - '/opengrok-master/etc/:/opengrok/etc/'     # folder contains configuration.xml
+       - '/opengrok-master/data/:/opengrok/data/'   # index and other things for source code

@@ -1,0 +1,19 @@
+<style>
+    html.index\.jsp #Masthead {
+        display: none;
+    }
+
+    html.xref #whole_header,
+    html.history #whole_header,
+    html.more #whole_header,
+    html.diff #whole_header {
+        height: 121px;
+    }
+    
+    html.xref #content,
+    html.diff #content,
+    html.more #content,
+    html.history #content {
+        margin-top: 121px;
+    }
+</style>

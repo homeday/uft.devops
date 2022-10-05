@@ -1,0 +1,10 @@
+<div style="background-color: #0079ef; color: white; font-family: Roboto,Arial,sans-serif;">
+    <div style="font-size: 18px; font-weight: 700; align-items: center; display: flex;">
+        <div style=" background-color: #014272; height: 56px; align-items: center; display: flex; padding: 0 16px;">
+            OpenGrok
+        </div>
+        <div style=" margin-left: 24px; font-weight: 400;">
+            UFT One Code Repositories (master branch only)
+        </div>
+    </div>
+</div>

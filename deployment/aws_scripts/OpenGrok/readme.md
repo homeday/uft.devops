@@ -1,27 +1,47 @@
 
-# Configure and Run OpenGrok
+OpenGrok Deployment
+====================
 
-## 1. Prepare the source
-Run 'scripts/uft-projs.sh' script with **git username** and **token**. The script will clone all repositories mentioned in repos-uft.list and checkout branches mentioned in branch.list.
+# Background
+It is easy to utilize the [official Docker image](https://hub.docker.com/r/opengrok/docker/) for deployment, however, as documented in the page, _The indexer and the web container are not tuned for large workloads_, we may have to move the repository sync process out of the docker and do the sync by our own means and then schedule to trigger indexing through the Docker container. This can gain more control than doing that inside docker container.
 
+
+# System Prerequisites
+1. Run 'init.sh': Configure firewall and reboot the server
+2. Run 'centos.sh': Configure and install Docker engine
+
+
+# Deploy OpenGrok
+1. Download the `OpenGrokDeployment.zip` package from **Release** page on the target machine.
+2. Unzip the `OpenGrokDeployment.zip` package to any location on the target machine.
+3. Go to the unzipped folder, run the following command:
+    ```sh
+    chmod +x ./start_opengrok.sh
+    ./start_opengrok.sh
+    ```
+    This will create `/opengrok/` and `/opengrok-master` folders, and copy files to those folders.
+4. Follow the instructions on screen to check accessibility of OpenGrok web page, run first-time sync and index and add cron job. Please note that you are required to prepare the **Git username** and **token** for the sync and index script to access internal GitHub Enterprise.
+5. By default, two OpenGrok containers will be deployed: one is serving on port 80 with all branches (`master` and `UFT_*_Patches`); and the other is serving on port 8080 with only `master` branches. You can choose to use both or either one. If you decide to use only one OpenGrok container, just run sync and index script upon that container and stop/remove the other container.
+
+#### Required Folders and Files for Deployment
+The `OpenGrokDeployment.zip` package at least contains the following folders and files that support to deploy the OpenGrok containers.
 ```
-For Example:
-mkdir -p /opengrok/src
-sh ./scripts/uft-projs.sh <git_username> <git_token>
-```
-
-## 2. Install docker and launch container
-
-1. Run 'init.sh': This will reboot the server
-2. Run 'centos.sh': This will install docker, doker-compose and launch container
-
-## Sync
-
-Add a schedule job
-```
-$crontab -e
-// Append below line
-0 1 * * * sh /opengrok/scripts/uft-projs.sh uftgithub 0211f662b4b1f6b26aceaa5c1501c4bc67938c41 > /opengrok/sync.log 2>&1
+- data
+    footer_include
+    header_include
+    header_include-masteronly
+    http_header_include
+- etc
+    readonly_configuration.xml
+    readonly_configuration-masteronly.xml
+- scripts
+    index-src.sh
+    sync-index.sh
+    sync-src.sh
+centos.sh
+docker-compose.yaml
+init.sh
+start_opengrok.sh
 ```
 
 
