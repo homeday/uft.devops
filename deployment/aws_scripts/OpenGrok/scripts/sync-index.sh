@@ -36,14 +36,14 @@ index_script="${this_dir}/index-src.sh"
 # function: log text
 #   log <text>
 log () {
-    echo "sync-index: [INFO] $1"
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <sync-index> [INFO] $1"
 }
 
 # function: log debug text
 #   log_debug <text>
 log_debug () {
     if [ ! -z "$debug" ]; then
-        echo "sync-index: [DEBUG] $1"
+        echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <sync-index> [DEBUG] $1"
     fi
 }
 
@@ -51,13 +51,13 @@ log_debug () {
 #   log_err <code> <text>
 log_err () {
     code=$1
-    echo "sync-index: [ERROR ${code}] $2" 1>&2
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <sync-index> [ERROR ${code}] $2" 1>&2
 }
 
 # function: log warning text
 #   log_warn <text>
 log_warn () {
-    echo "sync-index: [WARN] $1"
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <sync-index> [WARN] $1"
 }
 
 
@@ -69,8 +69,8 @@ echo "================================================="
 echo "Sync and OpenGrok Indexing v${VERSION}"
 echo "- Sync source code and trigger OpenGrok index -"
 echo "================================================="
-log "Start at: $(date)"
 echo ""
+log "Sync and index started"
 
 if [ -z "$username" -o -z "$token" -o -z "$src_dir" -o -z "$sync_file_git_path" -o -z "$name_prefix" ]; then
     log_err ${ERRCODE_WRONGARG} "Incorrect argument(s)"
@@ -110,4 +110,4 @@ done
 
 
 echo ""
-log "Finished at: $(date)"
+log "Sync and index completed"

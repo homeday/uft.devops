@@ -32,14 +32,14 @@ state_key_index_trigger_time=index_trigger_time
 # function: log text
 #   log <text>
 log () {
-    echo "index-src: [INFO] $1"
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <index-src> [INFO] $1"
 }
 
 # function: log debug text
 #   log_debug <text>
 log_debug () {
     if [ ! -z "$debug" ]; then
-        echo "index-src: [DEBUG] $1"
+        echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <index-src> [DEBUG] $1"
     fi
 }
 
@@ -47,13 +47,13 @@ log_debug () {
 #   log_err <code> <text>
 log_err () {
     code=$1
-    echo "index-src: [ERROR ${code}] $2" 1>&2
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <index-src> [ERROR ${code}] $2" 1>&2
 }
 
 # function: log warning text
 #   log_warn <text>
 log_warn () {
-    echo "index-src: [WARN] $1"
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <index-src> [WARN] $1"
 }
 
 # function: return the full id of the given container name or id
@@ -78,8 +78,8 @@ echo "==================================================="
 echo "OpenGrok Indexing Trigger v${VERSION}"
 echo "- Trigger indexing upon OpenGrok docker container -"
 echo "==================================================="
-log "Start at: $(date)"
 echo ""
+log "Index trigger started"
 
 if [ -z "${container_name_or_id}" ]; then
     log_err ${ERRCODE_WRONGARG} "Incorrect argument(s)"
@@ -187,4 +187,4 @@ echo "${state_key_index_trigger_time}=${this_trigger_time}" >> "${state_file}"
 log_debug "Line is added to state file '${state_file}': ${state_key_index_trigger_time}=${this_trigger_time}"
 
 echo ""
-log "Finished at: $(date)"
+log "Index trigger completed"

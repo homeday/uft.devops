@@ -41,14 +41,14 @@ debug="$6"
 # function: log text
 #   log <text>
 log () {
-    echo "sync-src: [INFO] $1"
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <sync-src> [INFO] $1"
 }
 
 # function: log debug text
 #   log_debug <text>
 log_debug () {
     if [ ! -z "$debug" ]; then
-        echo "sync-src: [DEBUG] $1"
+        echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <sync-src> [DEBUG] $1"
     fi
 }
 
@@ -56,13 +56,13 @@ log_debug () {
 #   log_err <code> <text>
 log_err () {
     code=$1
-    echo "sync-src: [ERROR ${code}] $2" 1>&2
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <sync-src> [ERROR ${code}] $2" 1>&2
 }
 
 # function: log warning text
 #   log_warn <text>
 log_warn () {
-    echo "sync-src: [WARN] $1"
+    echo "$(date +"%Y-%m-%d %H:%M:%S %Z") <sync-src> [WARN] $1"
 }
 
 # function: donwload sync file
@@ -212,8 +212,8 @@ echo "======================================"
 echo "GitHub Source Sync v${VERSION}"
 echo "- Clone or update Git repositories -"
 echo "======================================"
-log "Start at: $(date)"
 echo ""
+log "Sync started"
 
 if [ -z "$username" -o -z "$token" -o -z "$src_dir" -o -z "$sync_file_git_path" ]; then
     log_err ${ERRCODE_WRONGARG} "Incorrect argument(s)"
@@ -281,4 +281,4 @@ for branch in "${branches_spec[@]}"; do
 done
 
 echo ""
-log "Finished at: $(date)"
+log "Sync completed"
