@@ -44,6 +44,21 @@ init.sh
 start_opengrok.sh
 ```
 
+#### Add Cron Job
+For you convenient, here you can copy the command below and paste to the terminal to add the sync-index job to crontab. Don't forget to change the Git username and token.
+
+##### Sync and index for all repository container
+The sync and index script will be run every 3 hours per day, from 00:12 to 21:12.
+```sh
+(crontab -l ; echo "12 0,3,6,9,12,15,18,21 * * * /bin/bash -c '/opengrok/scripts/sync-index.sh \"<GIT-USER>\" \"<GIT-TOKEN>\" \"/opengrok/src\" \"uft/uft.devops/master/repolist/opengrok_sync.txt\" opengrok_all > \"/opengrok/sync.log\" 2>&1'") | crontab -
+```
+
+##### Sync and index for master-only repository container
+The sync and index script will be run every 3 hours per day, from 02:47 to 23:47.
+```sh
+(crontab -l ; echo "47 2,5,8,11,14,17,20,23 * * * /bin/bash -c '/opengrok-master/scripts/sync-index.sh \"<GIT-USER>\" \"<GIT-TOKEN>\" \"/opengrok-master/src\" \"uft/uft.devops/master/repolist/opengrok_sync_master.txt\" opengrok_master > \"/opengrok-master/sync.log\" 2>&1'") | crontab -
+```
+
 
 ## References
 ```
