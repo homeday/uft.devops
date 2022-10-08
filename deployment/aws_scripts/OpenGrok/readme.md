@@ -59,6 +59,11 @@ The sync and index script will be run every 3 hours per day, from 02:47 to 23:47
 (crontab -l ; echo "47 2,5,8,11,14,17,20,23 * * * /bin/bash -c '/opengrok-master/scripts/sync-index.sh \"<GIT-USER>\" \"<GIT-TOKEN>\" \"/opengrok-master/src\" \"uft/uft.devops/master/repolist/opengrok_sync_master.txt\" opengrok_master > \"/opengrok-master/sync.log\" 2>&1'") | crontab -
 ```
 
+#### Container Auto-restart For Stuck Indexing
+The indexing process may stuck in the container occasionally. The `index-src.sh` script could detect that and try to restart the container if the last triggered index did not completed in time.
+
+The period before the script restarts the container is called **Restart Threshold**, in hours. It can be changed in the `index-src.sh` file in the deployment folder (`/opengrok/scripts/index-src.sh` and `/opengrok-master/scripts/index-src.sh`). The default value is `48` hours.
+
 
 ## References
 ```
