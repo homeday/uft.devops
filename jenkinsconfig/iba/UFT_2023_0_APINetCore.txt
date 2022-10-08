@@ -1,0 +1,8 @@
+BuildMajorVersion=2023
+BuildMinorVersion=0
+BuildLabel=UFT_2023_0_APINetCore
+SvcpackVersion=0
+BuildPostfix=0
+WSPostfix=
+DebugBuild=false
+MSBuild_Version=v22

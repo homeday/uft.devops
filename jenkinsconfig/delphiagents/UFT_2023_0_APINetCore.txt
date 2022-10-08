@@ -1,0 +1,8 @@
+BuildMajorVersion=2023
+BuildMinorVersion=0
+BuildLabel=UFT_2023_0_APINetCore
+SvcpackVersion=0
+BuildPostfix=0
+Compilation_Configuration=Release
+Configuration=win32_release
+repo_inclusion=
