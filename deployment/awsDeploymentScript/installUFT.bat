@@ -17,7 +17,8 @@ set DVD_Path=C:\Installation_uft\%1
 set SEE_MASK_NOZONECHECKS=1
 set SUCCESS_STRING="completed successfully"
 
-pushd P:\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\prerequisites
+REM pushd P:\FT\QTP\win32_release\%1\SetupBuilder\Output\UFT\prerequisites
+pushd "%DVD_Path%\Unified Functional Testing\EN"
 cmd /c setup.exe /InstallOnlyPrerequisite /s
 popd 
 
