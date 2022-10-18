@@ -1,5 +1,5 @@
 @echo off
-bash -c "rm -rf c:\windows\installer\MSI*.tmp*"
+del /s /q c:\windows\installer\MSI*.tmp*"
 for /D  %%G  IN (C:\Installation_uft\*) DO (call :subLoop1 %%G)
 GOTO :DONE1
 :subLoop1
