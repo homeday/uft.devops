@@ -17,3 +17,4 @@ upload3rdparty=true
 Invoke_UFT_Agents=flase
 Invoke_AI_Automation=flase
 MSBuildVersion=2022
+PDB_GenIndex=true

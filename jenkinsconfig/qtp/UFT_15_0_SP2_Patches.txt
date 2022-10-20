@@ -14,4 +14,5 @@ DVD_Sync_2_SH=true
 DVD_Sync_2_Cluj=true
 E2E=false
 upload3rdparty=false
+PDB_GenIndex=true
 PatchID=UFT_00212
