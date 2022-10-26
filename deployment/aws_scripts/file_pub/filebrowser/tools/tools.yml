@@ -1,0 +1,8 @@
+address: '127.0.0.1'
+port: 8321
+baseurl: '/tools'
+root: '/www/tools'
+database: '/etc/filebrowser/tools.db'
+log: '/var/log/filebrowser/tools.log'
+singleclick: true
+noauth: true

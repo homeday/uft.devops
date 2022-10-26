@@ -1,0 +1,8 @@
+address: '127.0.0.1'
+port: 8317
+baseurl: '/products'
+root: '/mnt/rubicon/products'
+database: '/etc/filebrowser/rubicon_products.db'
+log: '/var/log/filebrowser/rubicon_products.log'
+singleclick: true
+noauth: true

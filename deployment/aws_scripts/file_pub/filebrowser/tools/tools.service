@@ -1,0 +1,9 @@
+[Unit]
+Description=File Browser for Tools
+
+[Service]
+ExecStart=/bin/filebrowser -c "/etc/filebrowser/tools.yml" --cache-dir "/tmp/filebrowser/cache"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

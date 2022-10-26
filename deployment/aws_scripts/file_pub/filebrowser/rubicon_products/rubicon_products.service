@@ -1,0 +1,9 @@
+[Unit]
+Description=File Browser for Rubicon Products
+
+[Service]
+ExecStart=/bin/filebrowser -c "/etc/filebrowser/rubicon_products.yml" --cache-dir "/tmp/filebrowser/cache"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
