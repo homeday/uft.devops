@@ -4,7 +4,7 @@ net use * /delete /y
 fsutil behavior set SymlinkEvaluation R2L:1 
 fsutil behavior set SymlinkEvaluation R2R:1
 
-SET STORAGE_WIN_SERVER=\\rubicon.cross.admlabs.aws.swinfra.net\fsx
+SET STORAGE_WIN_SERVER=\\rubicon.cross.admlabs.aws.swinfra.net\NAS_NTPP
 net use P: %STORAGE_WIN_SERVER%\products /PERSISTENT:YES
 
 echo *********************************
