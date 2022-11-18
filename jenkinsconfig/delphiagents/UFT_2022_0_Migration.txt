@@ -1,0 +1,8 @@
+BuildMajorVersion=2022
+BuildMinorVersion=0
+BuildLabel=UFT_2022_0_Migration
+SvcpackVersion=0
+BuildPostfix=0
+Compilation_Configuration=Release
+Configuration=win32_release
+repo_inclusion=
