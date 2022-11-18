@@ -4,5 +4,5 @@ BuildLabel=UFT_2023_0
 SvcpackVersion=0
 BuildPostfix=0
 WSPostfix=
-DebugBuild=true
+DebugBuild=false
 MSBuild_Version=v22
