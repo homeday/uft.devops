@@ -2,7 +2,7 @@
 - Name: Naren
   Team: DevOps
   Owner_Email: narendrakumar.chejara@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com
+  Group_Email: uft.devops.cn@microfocus.com
 
 - Name: Phoenix
   Team: QA
@@ -12,4 +12,24 @@
 - Name: James
   Team: QA
   Owner_Email: jia.xue2@microfocus.com
+  Group_Email: narendrakumar.chejara@microfocus.com
+
+- Name: Lancer
+  Team: Dev
+  Owner_Email: honghai.fan@microfocus.com
+  Group_Email: narendrakumar.chejara@microfocus.com
+
+- Name: Jason
+  Team: Dev
+  Owner_Email: chengzhe.xu@microfocus.com
+  Group_Email: narendrakumar.chejara@microfocus.com
+  
+- Name: Sagi
+  Team: PMO
+  Owner_Email: jie.zhang8@microfocus.com
+  Group_Email: narendrakumar.chejara@microfocus.com,kai.zhou@microfocus.com
+  
+- Name: Corneliu
+  Team: Dev
+  Owner_Email: corneliu.cincea@microfocus.com
   Group_Email: narendrakumar.chejara@microfocus.com
