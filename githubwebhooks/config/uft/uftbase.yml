@@ -3,105 +3,81 @@ git_repo: uftbase
 
 git_tags:
 
-git_branches:
-  UFT_14_50_Release:
-    push:
-      jenkins:
+git_branch_templates:
+  push: &branch_push_default
+    jenkins: &jenkins_action_push_buildwithparam_default
         enabled: true
-        job_url: 'http://mydtbld0120.hpeswlab.net:8080/job/UFTBase.14.50.Build.Launcher/build'
-        job_parameters:
-          token: UFTBUILDTOKEN
-
-  master:
-    push:
-      jenkins: &jenkins_action_push_buildwithparam_default
-        enabled: true
-        job_url: 'http://mydtbld0211.swinfra.net:8080/job/UFTBase.Build.Launcher/buildWithParameters'
+        job_url: 'http://10.168.86.161:8080/job/UFTBase.Build.Launcher/buildWithParameters'
         job_parameters:
           token: UFTBUILDTOKEN
           Branch:
             runtime: _branch_name_
-
-    pull_request:
-      opened:
-        jenkins: &jenkins_action_pull_request_compile_only
+  pull_request: &branch_pull_request_default
+    opened: &pr_default
+      jenkins: &jenkins_action_pull_request_compile_only
+        enabled: true
+        job_url: 'http://10.168.86.161:8080/job/UFTBase.CompileOnlyBuild.Trigger/buildWithParameters'
+        job_parameters: &jenkins_action_pull_request_params_default
+          token: UFTBASE_COMPILEONLY_TOKEN
+          Git_Repo_Clone_Url:
+            runtime: _head_repo_clone_url_
+          Head_Branch:
+            runtime: _head_branch_
+          Head_sha:
+            runtime: _head_sha_
+          Base_Branch:
+            runtime: _base_branch_
+          Git_PullRequest_ID:
+            runtime: _pull_request_id_
+          Email_List:
+            runtime: _notification_email_list_
+      robots:
+        notes_writter:
           enabled: true
-          job_url: 'http://mydtbld0211.swinfra.net:8080/job/UFTBase.CompileOnlyBuild.Trigger/buildWithParameters'
-          job_parameters: &jenkins_action_pull_request_params_default
-            token: UFTBASE_COMPILEONLY_TOKEN
-            Git_Repo_Clone_Url:
-              runtime: _head_repo_clone_url_
-            Head_Branch:
-              runtime: _head_branch_
-            Head_sha:
-              runtime: _head_sha_
-            Base_Branch:
-              runtime: _base_branch_
-            Git_PullRequest_ID:
-              runtime: _pull_request_id_
-            Email_List:
-              runtime: _notification_email_list_
-        robots:
-          notes_writter:
-            enabled: true
-            body: |
-              The compile-only builds (both Debug and Release) will be run in several minutes automatically.
+          body: |
+            The compile-only builds (both Debug and Release) will be run in several minutes automatically.
 
-              If the builds are not started in 10 minutes, please trigger the builds manually by clicking <a href="${jenkins_build_url}">this link</a>.
+            If the builds are not started in 10 minutes, please trigger the builds manually by clicking <a href="${jenkins_build_url}">this link</a>.
 
-              Once clicked, the current page will be redirected to a blank page in order to trigger a new Jenkins build.
-              This behavior is expected and just go back to the original page.
+            Once clicked, the current page will be redirected to a blank page in order to trigger a new Jenkins build.
+            This behavior is expected and just go back to the original page.
 
-              Do <b>NOT</b> click the link more than one time.
-            placeholders:
-              jenkins_build_url:
-                URI_BUILDER:
-                  schema: http
-                  host: mydtbld0211.swinfra.net:8080
-                  base_uri: /job/UFTBase.CompileOnlyBuild.Trigger/buildWithParameters
-                  query:
-                    token: UFTBASE_COMPILEONLY_TOKEN
-                    Git_Repo_Clone_Url:
-                      runtime: _head_repo_clone_url_
-                    Head_Branch:
-                      runtime: _head_branch_
-                    Head_sha:
-                      runtime: _head_sha_
-                    Base_Branch:
-                      runtime: _base_branch_
-                    Git_PullRequest_ID:
-                      runtime: _pull_request_id_
-                    Email_List:
-                      runtime: _notification_email_list_
-      reopened:
-        jenkins: *jenkins_action_pull_request_compile_only
-      synchronize:
-        jenkins: *jenkins_action_pull_request_compile_only
+            Do <b>NOT</b> click the link more than once.
+          placeholders:
+            jenkins_build_url:
+              URI_BUILDER:
+                schema: http
+                host: 10.168.86.161:8080
+                base_uri: /job/UFTBase.CompileOnlyBuild.Trigger/buildWithParameters
+                query:
+                  token: UFTBASE_COMPILEONLY_TOKEN
+                  Git_Repo_Clone_Url:
+                    runtime: _head_repo_clone_url_
+                  Head_Branch:
+                    runtime: _head_branch_
+                  Head_sha:
+                    runtime: _head_sha_
+                  Base_Branch:
+                    runtime: _base_branch_
+                  Git_PullRequest_ID:
+                    runtime: _pull_request_id_
+                  Email_List:
+                    runtime: _notification_email_list_
+    reopened: *pr_default
+    synchronize: *pr_default
 
-  UFT_14_03_SP_Patches:
-    push:
-      jenkins: *jenkins_action_push_buildwithparam_default
 
-  UFT_12_54_SP_Patches:
-    push:
-      jenkins: *jenkins_action_push_buildwithparam_default
+git_branches:
+  UFT_2023_0_Migration:
+    push: *branch_push_default
+    pull_request: *branch_pull_request_default
 
-  UFT_14_51_Release:
-    push:
-      jenkins: *jenkins_action_push_buildwithparam_default 
-      
-  UFT_14_52_Release:
-    push:
-      jenkins: *jenkins_action_push_buildwithparam_default   
-      
-  UFT_14_53_Release:
-    push:
-      jenkins: *jenkins_action_push_buildwithparam_default
+  # master:
+  #   push: *branch_push_default
+  #   pull_request: *branch_pull_request_default
 
-  UFT_14_53_SP_Patches:
-    push:
-      jenkins: *jenkins_action_push_buildwithparam_default      
+  # UFT_14_53_SP_Patches:
+  #   push: *branch_push_default      
   
-  UFT_15_0_SP1_RPA:
-    push:
-      jenkins: *jenkins_action_push_buildwithparam_default
+  # UFT_15_0_SP2_Patches:
+  #   push: *branch_push_default

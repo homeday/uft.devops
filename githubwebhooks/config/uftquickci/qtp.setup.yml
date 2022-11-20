@@ -7,7 +7,7 @@ git_branches:
             opened:
                 jenkins: &jenkins_action_pull_request_compile_only
                     enabled: true
-                    job_url: 'http://mydtbld0211.swinfra.net:8080/view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters'
+                    job_url: 'https://10.168.86.161:8080/view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters'
                     job_parameters:
                         token: UFTBUILDTOKEN
                         Git_Repo_Clone_Url:
@@ -38,8 +38,8 @@ git_branches:
                         placeholders:
                             jenkins_build_url:
                                 URI_BUILDER:
-                                    schema: http
-                                    host: mydtbld0211.swinfra.net:8080
+                                    schema: https
+                                    host: internal-uftojenkins-1210469136.eu-central-1.elb.amazonaws.com
                                     base_uri: /view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters
                                     query: 
                                         token: UFTBUILDTOKEN

@@ -3,43 +3,74 @@ git_repo: uft.demo.play
 
 git_tags:
 
+git_branch_templates:
+  push: &branch_push_default
+    jenkins: &jenkins_action_push_buildwithparam_default
+        enabled: true
+        job_url: 'http://10.168.86.161:8080/job/GHE.WebHooks.Launcher.UFT.uft.demo.play/buildWithParameters'
+        job_parameters:
+          token: GHE_WEBHOOKS
+          GitHubEvent: push
+          Branch:
+            runtime: _branch_name_
+  pull_request: &branch_pull_request_default
+    opened: &pr_default
+      jenkins: &jenkins_action_pull_request_compile_only
+        enabled: true
+        job_url: 'http://10.168.86.161:8080/job/GHE.WebHooks.Launcher.UFT.uft.demo.play/buildWithParameters'
+        job_parameters: &jenkins_action_pull_request_params_default
+          token: GHE_WEBHOOKS
+          GitHubEvent: pull_request
+          Git_Repo_Clone_Url:
+            runtime: _head_repo_clone_url_
+          Head_Branch:
+            runtime: _head_branch_
+          Head_sha:
+            runtime: _head_sha_
+          Base_Branch:
+            runtime: _base_branch_
+          Git_PullRequest_ID:
+            runtime: _pull_request_id_
+          Email_List:
+            runtime: _notification_email_list_
+      robots:
+        notes_writter:
+          enabled: true
+          body: |
+            The compile-only builds (both Debug and Release) will be run in several minutes automatically.
+
+            If the builds are not started in 10 minutes, please trigger the builds manually by clicking <a href="${jenkins_build_url}">this link</a>.
+
+            Once clicked, the current page will be redirected to a blank page in order to trigger a new Jenkins build.
+            This behavior is expected and just go back to the original page.
+
+            Do <b>NOT</b> click the link more than one time.
+          placeholders:
+            jenkins_build_url:
+              URI_BUILDER:
+                schema: http
+                host: 10.168.86.161:8080
+                base_uri: /job/GHE.WebHooks.Launcher.UFT.uft.demo.play/buildWithParameters
+                query:
+                  token: GHE_WEBHOOKS
+                  GitHubEvent: pull_request
+                  Git_Repo_Clone_Url:
+                    runtime: _head_repo_clone_url_
+                  Head_Branch:
+                    runtime: _head_branch_
+                  Head_sha:
+                    runtime: _head_sha_
+                  Base_Branch:
+                    runtime: _base_branch_
+                  Git_PullRequest_ID:
+                    runtime: _pull_request_id_
+                  Email_List:
+                    runtime: _notification_email_list_
+    reopened: *pr_default
+    synchronize: *pr_default
+
+
 git_branches:
-  master:
-    pull_request:
-      opened:
-        robots: &pr_robots
-          notes_writter:
-            enabled: true
-            body: |
-              The compile-only builds (both Debug and Release) will be run in several minutes automatically.
-
-              If the builds are not started in 10 minutes, please trigger the builds manually by clicking <a href="${jenkins_build_url}">this link</a>.
-
-              Once clicked, the current page will be redirected to a blank page in order to trigger a new Jenkins build.
-              This behavior is expected and just go back to the original page.
-
-              Do <b>NOT</b> click the link more than one time.
-            placeholders:
-              jenkins_build_url:
-                URI_BUILDER:
-                  schema: http
-                  host: mydtbld0211.swinfra.net:8080
-                  base_uri: /job/solever.test.1/buildWithParameters
-                  query:
-                    token: TEST_TOKEN
-                    Git_Repo_Clone_Url:
-                      runtime: _head_repo_clone_url_
-                    Head_Branch:
-                      runtime: _head_branch_
-                    Head_sha:
-                      runtime: _head_sha_
-                    Base_Branch:
-                      runtime: _base_branch_
-                    Git_PullRequest_ID:
-                      runtime: _pull_request_id_
-                    Email_List:
-                      runtime: _notification_email_list_
-      reopened:
-        robots: *pr_robots
-      synchronize:
-        robots: *pr_robots
+  UFT_2023_0_Migration:
+    push: *branch_push_default
+    pull_request: *branch_pull_request_default
