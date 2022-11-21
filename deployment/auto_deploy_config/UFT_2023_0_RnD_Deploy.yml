@@ -25,7 +25,7 @@
   Group_Email: narendrakumar.chejara@microfocus.com
   
 - Name: Sagi
-  Team: PMO
+  Team: Dev
   Owner_Email: jie.zhang8@microfocus.com
   Group_Email: narendrakumar.chejara@microfocus.com,kai.zhou@microfocus.com
   
@@ -33,3 +33,8 @@
   Team: Dev
   Owner_Email: corneliu.cincea@microfocus.com
   Group_Email: narendrakumar.chejara@microfocus.com
+
+- Name: Helen,Ryan
+  Team: L10N
+  Owner_Email: yi.shi3@microfocus.com,qi-geng.xi@microfocus.com
+  Group_Email: narendrakumar.chejara@microfocus.com,jia.xue2@microfocus.com
