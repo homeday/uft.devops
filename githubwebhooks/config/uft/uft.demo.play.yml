@@ -71,6 +71,6 @@ git_branch_templates:
 
 
 git_branches:
-  UFT_2023_0_Migration:
+    master:
     push: *branch_push_default
     pull_request: *branch_pull_request_default

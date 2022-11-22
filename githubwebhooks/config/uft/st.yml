@@ -68,13 +68,13 @@ git_branch_templates:
 
 
 git_branches:
-  UFT_2023_0_Migration:
-    push: *branch_push_default
-    pull_request: *branch_pull_request_default
-
-  # master:
+  # UFT_2023_0_Migration:
   #   push: *branch_push_default
   #   pull_request: *branch_pull_request_default
+
+  master:
+    push: *branch_push_default
+    pull_request: *branch_pull_request_default
 
   # UFT_14_53_SP_Patches:
   #   push: *branch_push_default      
