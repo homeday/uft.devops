@@ -9,3 +9,4 @@ BuildPostfix=1
 BuildLabel=UFT_2022_0_Patches
 CodeSign=0
 SignMethod=AUJAS
+MSBuildVersion=2022
