@@ -20,3 +20,4 @@ PatchID=UFT_00213
 Invoke_UFT_Agents=false
 Invoke_AI_Automation=false
 MSBuildVersion=2022
+PatchID=UFT_00213
