@@ -13,7 +13,17 @@
   Team: QA
   Owner_Email: jia.xue2@microfocus.com
   Group_Email: narendrakumar.chejara@microfocus.com
-
+  
+- Name: James
+  Team: QA
+  Owner_Email: jia.xue2@microfocus.com
+  Group_Email: narendrakumar.chejara@microfocus.com
+ 
+- Name: James
+  Team: QA
+  Owner_Email: jia.xue2@microfocus.com
+  Group_Email: narendrakumar.chejara@microfocus.com
+  
 - Name: Lancer
   Team: Dev
   Owner_Email: honghai.fan@microfocus.com
@@ -28,12 +38,7 @@
   Team: Dev
   Owner_Email: jie.zhang8@microfocus.com
   Group_Email: narendrakumar.chejara@microfocus.com,kai.zhou@microfocus.com
-  
-- Name: Corneliu
-  Team: Dev
-  Owner_Email: corneliu.cincea@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com
-
+ 
 - Name: Helen,Ryan
   Team: L10N
   Owner_Email: yi.shi3@microfocus.com,qi-geng.xi@microfocus.com
