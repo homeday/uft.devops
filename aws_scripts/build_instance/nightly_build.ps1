@@ -131,6 +131,10 @@ Install-WindowsFeature Net-Framework-Features
 
 # Open VS2022 -> Tools -> Options -> Project & Solution -> Build and Run -> Set max parallel setting from 8 to 24
 
+# Install Fortify SCA
+# Step -1: Run 'Fortify_SCA_and_Apps_21.1.4_windows_x64.exe' EXE from D:UFT_Tools
+# 	** Installation location: C:\Fortify_SCA_and_Apps_21.1.4
+#	** License file Location: D:\UFT_Tools\Fortify_SCA_and_Apps_21.1.4\fortify.license
 # Install Windows Kits 10
 # Download "Windows 10 SDK, version 2004 (10.0.19041.0)" from https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/
 
