@@ -8,7 +8,7 @@ git_branches:
     push:
       jenkins: &jenkins_action_build_default
         enabled: true
-        job_url: 'http://10.168.86.161:8080/job/UFT.Agents.Build/buildWithParameters'
+        job_url: 'http://10.168.86.44:8080/job/UFT.Agents.Build/buildWithParameters'
         job_parameters: &jenkins_action_params_default
           token: UFTBUILDTOKEN
           Branch:

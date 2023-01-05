@@ -7,7 +7,7 @@ git_branch_templates:
   push: &branch_push_default
     jenkins: &jenkins_action_push_buildwithparam_default
         enabled: true
-        job_url: 'http://10.168.86.161:8080/job/GHE.WebHooks.Launcher.UFT.uft.demo.play/buildWithParameters'
+        job_url: 'http://10.168.86.44:8080/job/GHE.WebHooks.Launcher.UFT.uft.demo.play/buildWithParameters'
         job_parameters:
           token: GHE_WEBHOOKS
           GitHubEvent: push
@@ -17,7 +17,7 @@ git_branch_templates:
     opened: &pr_default
       jenkins: &jenkins_action_pull_request_compile_only
         enabled: true
-        job_url: 'http://10.168.86.161:8080/job/GHE.WebHooks.Launcher.UFT.uft.demo.play/buildWithParameters'
+        job_url: 'http://10.168.86.44:8080/job/GHE.WebHooks.Launcher.UFT.uft.demo.play/buildWithParameters'
         job_parameters: &jenkins_action_pull_request_params_default
           token: GHE_WEBHOOKS
           GitHubEvent: pull_request
@@ -49,7 +49,7 @@ git_branch_templates:
             jenkins_build_url:
               URI_BUILDER:
                 schema: http
-                host: 10.168.86.161:8080
+                host: 10.168.86.44:8080
                 base_uri: /job/GHE.WebHooks.Launcher.UFT.uft.demo.play/buildWithParameters
                 query:
                   token: GHE_WEBHOOKS
