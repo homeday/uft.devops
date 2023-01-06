@@ -39,7 +39,7 @@ git_branches:
                             jenkins_build_url:
                                 URI_BUILDER:
                                     schema: https
-                                    host: internal-uftojenkins-1210469136.eu-central-1.elb.amazonaws.com
+                                    host: 10.168.86.44:8080
                                     base_uri: /view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters
                                     query: 
                                         token: UFTBUILDTOKEN
