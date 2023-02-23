@@ -1,0 +1,67 @@
+pipeline {
+    
+    agent { node { lable 'artifact_backup' } }
+
+    options {
+
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timestamps()
+    }
+
+    parameters {
+
+       string(name: "Branch", defaultValue: "master", description: "")
+       string(name: "Build_Label", defaultValue: "Label name of Build", description: "")
+       string(name: "Build_Number", defaultValue: "", description: "")
+       string(name: "Source", defaultValue: "", description: "")
+       string(name: "Destination", defaultValue: "", description: "")
+
+    }
+
+    stages {
+
+        stage("Prepare python virtual env") {
+
+           steps {
+                bat """
+D:\\UFT_Tools\\Python3.7.1_32\\python.exe -m venv venv
+call venv\\Scripts\\activate.bat
+python -m pip install --upgrade pip
+"""
+            } 
+
+        }
+
+        stage("Prepare local copy") {
+
+            steps {
+
+            }
+
+        }
+
+        stage("create archive from local copy") {
+
+            steps {
+                echo "Not Implemented!"
+            }
+
+        }
+
+        stage("Copy archive to storage") {
+
+            steps {
+                echo "Not Implemented!"
+            }
+
+        }
+
+        stage("clean up local copy and archive") {
+
+            steps {
+                echo "Not Implemented!"
+            }
+
+        }
+    }
+}
