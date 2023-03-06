@@ -1,6 +1,6 @@
 BuildMajorVersion=2023
-BuildMinorVersion=0
-BuildLabel=Sprinter_2023_0
+BuildMinorVersion=1
+BuildLabel=Sprinter_2023_1
 SvcpackVersion=0
 BuildPostfix=0
 MSBuild_Version=v22
