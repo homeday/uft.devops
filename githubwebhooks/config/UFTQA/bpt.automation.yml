@@ -8,7 +8,7 @@ git_branches:
     push:
       jenkins: &jenkins_action_default
         enabled: true
-        job_url: 'http://10.168.86.44:8080/job/BPT.Automation.ALM.Build/buildWithParameters'
+        job_url: 'http://10.168.86.228:8080/job/BPT.Automation.ALM.Build/buildWithParameters'
         job_parameters: &jenkins_action_params_default
           token: UFTQABUILDTOKEN
           Branch:
