@@ -1,4 +1,4 @@
-BuildLabel=UFT_2023_0_JAVA
+BuildLabel=UFT_2023_1_JAVA
 BuildMajorVersion=2023
 BuildMinorVersion=1
 SvcpackVersion=0
@@ -15,6 +15,6 @@ DVD_Sync_2_Cluj=flase
 E2E=false
 upload3rdparty=true
 Invoke_UFT_Agents=true
-Invoke_AI_Automation=true
+Invoke_AI_Automation=false
 MSBuildVersion=2022
 PDB_GenIndex=true
