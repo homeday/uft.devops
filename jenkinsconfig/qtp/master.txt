@@ -18,3 +18,4 @@ Invoke_UFT_Agents=true
 Invoke_AI_Automation=true
 MSBuildVersion=2022
 PDB_GenIndex=true
+cost_optimize=true
