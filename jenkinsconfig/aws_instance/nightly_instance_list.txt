@@ -1,0 +1,11 @@
+uftci-nightly
+uftmlucinode01
+uftmlucinode02
+uftmlucinode03
+uftmlucinode04
+uftmlucinode05
+uftmlucinode06
+uftmlucinode07
+uftmlucinode08
+uftmlucinode09
+uftmlucinode10
