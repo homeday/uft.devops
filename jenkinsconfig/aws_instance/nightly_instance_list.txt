@@ -1,4 +1,3 @@
-uftci-nightly
 uftmlucinode01
 uftmlucinode02
 uftmlucinode03
