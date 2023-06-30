@@ -78,9 +78,10 @@ set RestartNeed=true
 IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64BIT) ELSE (GOTO 32BIT)
 
 :64BIT
-IF EXIST "C:\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
-IF EXIST "C:\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
-IF EXIST "C:\Program Files (x86)\HP\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
+	IF EXIST "C:\Program Files (x86)\OpenText\UFT One\bin\UFT.exe" GOTO SUCCESS
+	IF EXIST "C:\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
+	IF EXIST "C:\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
+	IF EXIST "C:\Program Files (x86)\HP\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
 
 
 :SUCCESS
@@ -89,10 +90,10 @@ if NOT "%errorlevel%"=="0" (GOTO ERRINSTALL) ELSE (GOTO END)
 
 
 :32BIT
-
-IF EXIST "C:\Program Files\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
-IF EXIST "C:\Program Files\HPE\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
-IF EXIST "C:\Program Files\HP\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
+	IF EXIST "C:\Program Files\OpenText\UFT One\bin\UFT.exe" GOTO SUCCESS
+	IF EXIST "C:\Program Files\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
+	IF EXIST "C:\Program Files\HPE\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
+	IF EXIST "C:\Program Files\HP\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
 
 :SUCCESS32
 type c:\UFT_Install_Log.txt | findstr /C:%SUCCESS_STRING%>nul
@@ -106,11 +107,11 @@ exit 1
 :END
 IF NOT "%RestartNeed%" == "true" goto Finished
 Echo "Unified Functional Testing -- Installation completed BUT Restart is needed...."
-"C:\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\HP.UFT.LicenseInstall.exe" seat "C:\HP UFT-licfile.dat"
+"C:\Program Files (x86)\OpenText\Unified Functional Testing\bin\HP.UFT.LicenseInstall.exe" seat "C:\HP UFT-licfile.dat"
 
 exit 0
 :Finished
-"C:\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\HP.UFT.LicenseInstall.exe" seat "C:\HP UFT-licfile.dat"
+"C:\Program Files (x86)\OpenText\Unified Functional Testing\bin\HP.UFT.LicenseInstall.exe" seat "C:\HP UFT-licfile.dat"
 
 echo %SUCCESS_STRING%
 exit 0

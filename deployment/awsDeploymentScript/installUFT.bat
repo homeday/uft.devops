@@ -76,6 +76,7 @@ goto CheckOS
 	IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64BIT) ELSE (GOTO 32BIT)
 
 :64BIT
+	IF EXIST "C:\Program Files (x86)\OpenText\UFT One\bin\UFT.exe" GOTO SUCCESS
 	IF EXIST "C:\Program Files (x86)\Micro Focus\UFT One\bin\UFT.exe" GOTO SUCCESS
 	IF EXIST "C:\Program Files (x86)\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
 	IF EXIST "C:\Program Files (x86)\HPE\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS
@@ -86,6 +87,7 @@ goto CheckOS
 	if NOT "%errorlevel%"=="0" (GOTO ERRINSTALL) ELSE (GOTO END)
 
 :32BIT
+	IF EXIST "C:\Program Files\OpenText\UFT One\bin\UFT.exe" GOTO SUCCESS
 	IF EXIST "C:\Program Files\Micro Focus\UFT One\bin\UFT.exe" GOTO SUCCESS32
 	IF EXIST "C:\Program Files\Micro Focus\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
 	IF EXIST "C:\Program Files\HPE\Unified Functional Testing\bin\UFT.exe" GOTO SUCCESS32
