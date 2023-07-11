@@ -7,7 +7,7 @@ git_branches:
             opened:
                 jenkins: &jenkins_action_pull_request_compile_only
                     enabled: true
-                    job_url: 'http://10.168.86.228:8080/view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters'
+                    job_url: 'http://10.168.86.30:8080/view/Products/view/CI_Quick/job/UFT.Daily.Quick.CI.Launcher/buildWithParameters'
                     job_parameters:
                         token: UFTBUILDTOKEN
                         Git_Repo_Clone_Url:
