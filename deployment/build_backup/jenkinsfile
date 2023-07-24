@@ -1,5 +1,6 @@
+
 pipeline {
-    
+        
     agent { node { lable 'artifact_backup' } }
 
     options {
@@ -11,11 +12,9 @@ pipeline {
     parameters {
 
        string(name: "Branch", defaultValue: "master", description: "")
-       string(name: "Build_Label", defaultValue: "Label name of Build", description: "")
-       string(name: "Build_Number", defaultValue: "", description: "")
-       string(name: "Source", defaultValue: "", description: "")
-       string(name: "Destination", defaultValue: "", description: "")
-
+       string(name: "BuildNumber", defaultValue: "", description: "")
+       choice(name: "Repository", choices: ["QTP", "LeanFT", "CDSL-AI"], description: "")
+       
     }
 
     stages {
@@ -32,36 +31,38 @@ python -m pip install --upgrade pip
 
         }
 
-        stage("Prepare local copy") {
+        stage("Move build to artifactory") {
 
             steps {
 
+                py backup_build_to_artifactory.py params.Repository, params.BuildNumber
+                
             }
 
         }
 
-        stage("create archive from local copy") {
+        // stage("create archive from local copy") {
 
-            steps {
-                echo "Not Implemented!"
-            }
+        //     steps {
+        //         echo "Not Implemented!"
+        //     }
 
-        }
+        // }
 
-        stage("Copy archive to storage") {
+        // stage("Copy archive to storage") {
 
-            steps {
-                echo "Not Implemented!"
-            }
+        //     steps {
+        //         echo "Not Implemented!"
+        //     }
 
-        }
+        // }
 
-        stage("clean up local copy and archive") {
+        // stage("clean up local copy and archive") {
 
-            steps {
-                echo "Not Implemented!"
-            }
+        //     steps {
+        //         echo "Not Implemented!"
+        //     }
 
-        }
+        // }
     }
 }
