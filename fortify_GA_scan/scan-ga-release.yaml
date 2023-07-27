@@ -1,5 +1,5 @@
 ---
-- release_name: UFT_2023_0
-  module_name: &module_name UFT_One_2023_DVD
-  filename: *module_name
-  source_path: "P:\\\\FT\\\\QTP\\\\UFT_2023_MR_Bits"
+- RELEASE_NAME: UFT_2023_0
+  MODULE_NAME: &module_name UFT_One_2023_DVD
+  FILENAME: *module_name
+  SOURCE_PATH: "P:\\\\FT\\\\QTP\\\\UFT_2023_MR_Bits"
