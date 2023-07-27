@@ -74,6 +74,6 @@ for config in scan_configs:
         else:
             text += "%s=%s\n" % (k, config[k])
 
-    filename = "uft_deploy_config_%s.txt" % (getRandomString())
+    filename = "scan-ga-release_%s.txt" % (getRandomString())
     writefile(filename, text)
 
