@@ -1,7 +1,7 @@
 
 pipeline {
         
-    agent { node { lable 'artifact_backup' } }
+    agent { node { label 'artifact_backup' } }
 
     options {
 
@@ -23,7 +23,8 @@ pipeline {
 
            steps {
                 bat """
-D:\\UFT_Tools\\Python3.7.1_32\\python.exe -m venv venv
+                cd deployment\\build_backup
+python.exe -m venv venv
 call venv\\Scripts\\activate.bat
 python -m pip install --upgrade pip
 """
@@ -34,9 +35,9 @@ python -m pip install --upgrade pip
         stage("Move build to artifactory") {
 
             steps {
-
-                py backup_build_to_artifactory.py params.Repository, params.BuildNumber
-                
+                dir("deployment\\build_backup") {
+                    bat """python backup_build_to_artifactory.py ${params.BuildNumber} ${params.Repository}"""
+                }
             }
 
         }

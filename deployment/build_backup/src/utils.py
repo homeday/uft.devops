@@ -26,7 +26,7 @@ def robocopy_only_missing_file(source, dest):
 
 def robocopy(source, dest, file_to_copy="", exclude=""):
     cmd = ("robocopy \"%s\" \"%s\" \"%s\" /XD \"%s\" /NDL /NFL /E /NP /R:10 /MT:64" % (source, dest, file_to_copy, exclude))
-    os.system(cmd)
+    return os.system(cmd)
 
 def run_subprocess1(command):
     # Start the subprocess
