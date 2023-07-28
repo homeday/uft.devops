@@ -69,7 +69,7 @@ for config in scan_configs:
     
     text = ""
     for k in config.keys():
-        if k == "filename":
+        if k == "FILENAME":
             text += "%s=%s\n" % (k, config[k]  + ".zip")
         else:
             text += "%s=%s\n" % (k, config[k])
