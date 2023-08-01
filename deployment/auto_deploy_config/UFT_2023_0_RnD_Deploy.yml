@@ -1,55 +1,55 @@
 ---
 - Name: Naren
   Team: DevOps
-  Owner_Email: narendrakumar.chejara@microfocus.com,li.guo@microfocus.com,mazzy.azmon@microfocus.com
-  Group_Email: uft.devops.cn@microfocus.com
+  Owner_Email: nchejara@opentext.com,lguo2@opentext.com,mazmon@opentext.com
+  Group_Email: MFI-uft.devops.cn@opentext.com
 
 - Name: Phoenix
   Team: QA
-  Owner_Email: jia-hong.zhu@microfocus.com
-  Group_Email: jia.xue2@microfocus.com,narendrakumar.chejara@microfocus.com
+  Owner_Email: jzhu3@opentext.com
+  Group_Email: jxue@opentext.com,nchejara@opentext.com
 
 - Name: James 1
   Team: QA
-  Owner_Email: jia.xue2@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com
+  Owner_Email: jxue@opentext.com
+  Group_Email: nchejara@opentext.com
   
 - Name: James 2
   Team: QA
-  Owner_Email: jia.xue2@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com
+  Owner_Email: jxue@opentext.com
+  Group_Email: nchejara@opentext.com
  
 - Name: James 3
   Team: QA
-  Owner_Email: jia.xue2@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com
+  Owner_Email: jxue@opentext.com
+  Group_Email: nchejara@opentext.com
   
 - Name: Lancer
   Team: Dev
-  Owner_Email: honghai.fan@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com
+  Owner_Email: hfan@opentext.com
+  Group_Email: nchejara@opentext.com
 
 - Name: Jason
   Team: Dev
-  Owner_Email: chengzhe.xu@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com,MFI-pdlftdevsapcn@opentext.com,hli4@opentext.com
+  Owner_Email: cxu3@opentext.com
+  Group_Email: nchejara@opentext.com,MFI-pdlftdevsapcn@opentext.com,hli4@opentext.com
   
 - Name: Sagi
   Team: Dev
-  Owner_Email: jie.zhang8@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com,kai.zhou@microfocus.com
+  Owner_Email: jzhang3@opentext.com
+  Group_Email: nchejara@opentext.com,kzhou2@opentext.com
  
 - Name: Helen
   Team: L10N
-  Owner_Email: yi.shi3@microfocus.com,qi-geng.xi@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com,jia.xue2@microfocus.com
+  Owner_Email: yshi2@opentext.com,rxi@opentext.com
+  Group_Email: nchejara@opentext.com,jxue@opentext.com
 
 - Name: Claudiu
   Team: Cluj
-  Owner_Email: cristian.danila@microfocus.com,
-  Group_Email: corneliu.cincea@microfocus.com,narendrakumar.chejara@microfocus.com,andrei-viorel.draghici@microfocus.com
+  Owner_Email: cdanila@opentext.com
+  Group_Email: ccincea@opentext.com,nchejara@opentext.com,adraghici@opentext.com
   
 - Name: Mandy
   Team: FA
-  Owner_Email: xin-yuanc@microfocus.com
-  Group_Email: narendrakumar.chejara@microfocus.com
+  Owner_Email: xyuan@opentext.com
+  Group_Email: nchejara@opentext.com
