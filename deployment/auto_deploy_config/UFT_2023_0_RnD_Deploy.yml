@@ -1,7 +1,7 @@
 ---
 - Name: Naren
   Team: DevOps
-  Owner_Email: nchejara@opentext.com,lguo2@opentext.com,mazmon@opentext.com
+  Owner_Email: nchejara@opentext.com,lguo2@opentext.com,matzmon@opentext.com
   Group_Email: MFI-uft.devops.cn@opentext.com
 
 - Name: Phoenix
@@ -51,5 +51,5 @@
   
 - Name: Mandy
   Team: FA
-  Owner_Email: xyuan@opentext.com
+  Owner_Email: mchen4@opentext.com
   Group_Email: nchejara@opentext.com
