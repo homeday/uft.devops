@@ -1,0 +1,9 @@
+BuildMajorVersion=2023
+BuildMinorVersion=0
+SvcpackVersion=0
+PatchVersion=1
+BuildPostfix=1
+BuildLabel=UFT_2023_0_Patches
+WSPostfix=
+DebugBuild=false
+MSBuild_Version=v22

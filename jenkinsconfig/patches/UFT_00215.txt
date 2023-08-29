@@ -1,0 +1,12 @@
+Branch=UFT_2023_0_Patches
+PatchID=UFT_00215
+GaLabel=UFT_2023_0_GA
+BuildMajorVersion=2023
+BuildMinorVersion=0
+SvcpackVersion=0
+PatchVersion=1
+BuildPostfix=1
+BuildLabel=UFT_2023_0_Patches
+CodeSign=1
+SignMethod=MFSIGN
+MSBuildVersion=2022
