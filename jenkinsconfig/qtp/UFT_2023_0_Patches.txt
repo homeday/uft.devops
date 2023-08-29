@@ -17,6 +17,6 @@ E2E=false
 upload3rdparty=false
 PDB_GenIndex=true
 PatchID=UFT_00215
-Invoke_UFT_Agents=true
+Invoke_UFT_Agents=false
 Invoke_AI_Automation=false
 MSBuildVersion=2022
