@@ -1,55 +1,72 @@
 ---
 - Name: Naren
+  Machine_Name: "for team"
   Team: DevOps
   Owner_Email: nchejara@opentext.com,lguo2@opentext.com,matzmon@opentext.com
   Group_Email: MFI-uft.devops.cn@opentext.com
 
-- Name: Phoenix
-  Team: QA
-  Owner_Email: jzhu3@opentext.com
-  Group_Email: jxue@opentext.com,nchejara@opentext.com
-
-- Name: James 1
+- Name: James
+  Machine_Name: James_Nightly
   Team: QA
   Owner_Email: jxue@opentext.com
+  Group_Email: nchejara@opentext.com
+
+- Name: Angel, Louisa
+  Machine_Name: Web_Nightly
+  Team: QA
+  Owner_Email: lwang4@opentext.com,aanqi@opentext.com
   Group_Email: nchejara@opentext.com
   
-- Name: James 2
+- Name: Jessie, Winnie
+  Machine_Name: Integration_Nightly
   Team: QA
-  Owner_Email: jxue@opentext.com
+  Owner_Email: nli2@opentext.com,wxie2@opentext.com
   Group_Email: nchejara@opentext.com
  
-- Name: James 3
+- Name: Cindy, Rosie
+  Machine_Name: Technology_Nightly
   Team: QA
-  Owner_Email: jxue@opentext.com
+  Owner_Email: xchen5@opentext.com,jmi@opentext.com
+  Group_Email: nchejara@opentext.com
+
+- Name: Phoenix, Lionel
+  Machine_Name: Automation_Nightly
+  Team: QA
+  Owner_Email: jzhu3@opentext.com,wqin@opentext.com
+  Group_Email: nchejara@opentext.com
+
+- Name: Lisa, Zoe
+  Machine_Name: SAP_Nightly
+  Team: QA
+  Owner_Email: zzhang2@opentext.com,bshang@opentext.com
   Group_Email: nchejara@opentext.com
   
 - Name: Lancer
+  Machine_Name: Lancer_Nightly
   Team: Dev
   Owner_Email: hfan@opentext.com
   Group_Email: nchejara@opentext.com
 
 - Name: Jason
+  Machine_Name: Jason_Nightly
   Team: Dev
   Owner_Email: cxu3@opentext.com
   Group_Email: nchejara@opentext.com,MFI-pdlftdevsapcn@opentext.com,hli4@opentext.com
   
 - Name: Sagi
+  Machine_Name: Sagi_Nightly
   Team: Dev
   Owner_Email: szhang3@opentext.com
   Group_Email: nchejara@opentext.com,kzhou2@opentext.com
  
-- Name: Helen
-  Team: L10N
-  Owner_Email: yshi2@opentext.com,rxi@opentext.com
-  Group_Email: nchejara@opentext.com,jxue@opentext.com
-
 - Name: Claudiu
+  Machine_Name: Claudiu_Nightly
   Team: Cluj
   Owner_Email: cdanila@opentext.com
   Group_Email: ccincea@opentext.com,nchejara@opentext.com,adraghici@opentext.com
   
 - Name: Mandy
+  Machine_Name: Mandy_Nightly
   Team: FA
   Owner_Email: mchen4@opentext.com
   Group_Email: nchejara@opentext.com
