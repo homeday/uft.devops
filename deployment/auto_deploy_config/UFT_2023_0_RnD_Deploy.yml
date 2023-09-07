@@ -1,6 +1,6 @@
 ---
 - Name: Naren
-  Machine_Name: "for team"
+  Machine_Name: "Naren_Nightly"
   Team: DevOps
   Owner_Email: nchejara@opentext.com,lguo2@opentext.com,matzmon@opentext.com
   Group_Email: MFI-uft.devops.cn@opentext.com
