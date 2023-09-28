@@ -1,6 +1,6 @@
-BuildMajorVersion=2023
-BuildMinorVersion=4
-BuildLabel=UFT_2023_4
+BuildMajorVersion=2024
+BuildMinorVersion=2
+BuildLabel=UFT_2024_2
 SvcpackVersion=0
 BuildPostfix=0
 Compilation_Configuration=Release
