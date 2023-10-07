@@ -1,6 +1,0 @@
-BuildMajorVersion=2023
-BuildMinorVersion=1
-BuildLabel=UFT_2023_1_JAVA
-SvcpackVersion=0
-BuildPostfix=0
-MSBuild_Version=v22
