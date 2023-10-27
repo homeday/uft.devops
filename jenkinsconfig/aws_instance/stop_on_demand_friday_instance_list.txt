@@ -10,6 +10,7 @@ saps4hana01
 saps4hana02
 saps4hana03
 saps4hana04
+saps4hana05
 saprouter
 netweaver1
 sapsolman01
