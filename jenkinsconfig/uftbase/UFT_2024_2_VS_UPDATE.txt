@@ -1,0 +1,8 @@
+BuildMajorVersion=2024
+BuildMinorVersion=2
+BuildLabel=UFT_2024_2_VS_UPDATE
+SvcpackVersion=0
+BuildPostfix=0
+WSPostfix=
+DebugBuild=false
+MSBuild_Version=v22
