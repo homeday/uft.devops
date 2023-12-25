@@ -1,8 +1,6 @@
-uftci01
 uftci02
 uftci03
 uftci04
-uftcicdnodes01
 uftcicdnodes02
 uftcicdnodes03
 uftcicdnodes04
