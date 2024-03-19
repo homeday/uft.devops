@@ -1,6 +1,6 @@
 BuildMajorVersion=2024
-BuildMinorVersion=2
-BuildLabel=UFT_2024_2
+BuildMinorVersion=4
+BuildLabel=UFT_2024_4
 SvcpackVersion=0
 BuildPostfix=0
 WSPostfix=
