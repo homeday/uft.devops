@@ -6,6 +6,7 @@ BuildPostfix=0
 Deploy=true
 01_CreateMLU=true
 Create_LeanFT=true
+LeanFT_Job_Name=CodedFT.2024.4.RUN.Nightly
 CodeSign=True
 SignMethod=MFSIGN
 srf_windows_executor=false
