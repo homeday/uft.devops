@@ -1,0 +1,8 @@
+BuildMajorVersion=2024
+BuildMinorVersion=4
+BuildLabel=UFT_2024_4_VS_UPGRADE
+SvcpackVersion=0
+BuildPostfix=0
+Compilation_Configuration=Release
+Configuration=win32_release
+repo_inclusion=
