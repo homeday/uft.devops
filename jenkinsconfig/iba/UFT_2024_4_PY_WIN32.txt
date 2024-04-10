@@ -1,0 +1,8 @@
+BuildMajorVersion=2024
+BuildMinorVersion=4
+BuildLabel=UFT_2024_4_PY_WIN32
+SvcpackVersion=0
+BuildPostfix=0
+WSPostfix=
+DebugBuild=false
+MSBuild_Version=v22
