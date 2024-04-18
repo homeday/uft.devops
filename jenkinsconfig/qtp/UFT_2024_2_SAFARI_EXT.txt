@@ -1,4 +1,4 @@
-BuildLabel=UFT_2024_2
+BuildLabel=UFT_2024_2_SAFARI_EXT
 BuildMajorVersion=2024
 BuildMinorVersion=2
 SvcpackVersion=0
