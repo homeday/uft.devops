@@ -7,7 +7,7 @@ git_branch_templates:
   push: &branch_push_default
     jenkins: &jenkins_action_push_buildwithparam_default
         enabled: true
-        job_url: 'http://10.168.86.30:8080/job/ST.Build.Launcher/buildWithParameters'
+        job_url: 'http://10.168.86.8:8080/job/ST.Build.Launcher/buildWithParameters'
         job_parameters:
           token: UFTBUILDTOKEN
           Branch:
@@ -16,7 +16,7 @@ git_branch_templates:
     opened: &pr_default
       jenkins: &jenkins_action_pull_request_compile_only
         enabled: true
-        job_url: 'http://10.168.86.30:8080/job/ST.CompileOnlyBuild.Trigger/buildWithParameters'
+        job_url: 'http://10.168.86.8:8080/job/ST.CompileOnlyBuild.Trigger/buildWithParameters'
         job_parameters: &jenkins_action_pull_request_params_default
           token: ST_COMPILEONLY_TOKEN
           Git_Repo_Clone_Url:
@@ -47,7 +47,7 @@ git_branch_templates:
             jenkins_build_url:
               URI_BUILDER:
                 schema: http
-                host: 10.168.86.30:8080
+                host: 10.168.86.8:8080
                 base_uri: /job/ST.CompileOnlyBuild.Trigger/buildWithParameters
                 query:
                   token: ST_COMPILEONLY_TOKEN
