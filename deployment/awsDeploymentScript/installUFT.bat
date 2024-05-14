@@ -40,7 +40,7 @@ goto common
 	echo %AddinsToInstall%
 
 set UFTConfiguration=CONF_MSIE=1 ALLOW_RUN_FROM_ALM=1 ALLOW_RUN_FROM_SCRIPTS=1 DLWN_SCRIPT_DBGR=1
-set LeanFTConfiguration=UFTDeveloper,UFTDeveloper_Engine,UFTDeveloper_Client,Vs2015Addin,IntelliJAddin,EclipseAddin ECLIPSE_INSTALLDIR="C:\DevTools\eclipse"
+set LeanFTConfiguration=UFTDeveloper,UFTDeveloper_Engine,UFTDeveloper_Client,IntelliJAddin,EclipseAddin ECLIPSE_INSTALLDIR="C:\DevTools\eclipse"
 set LicenseAddress=%2
 
 
