@@ -8,4 +8,4 @@ PatchVersion=1
 BuildPostfix=1
 BuildLabel=UFT_2021_1_Patches
 CodeSign=0
-SignMethod=AUJAS
+SignMethod=MFSIGN
