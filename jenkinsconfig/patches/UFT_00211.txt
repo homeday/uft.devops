@@ -7,5 +7,5 @@ SvcpackVersion=0
 PatchVersion=1
 BuildPostfix=1
 BuildLabel=UFT_2021_1_Patches
-CodeSign=1
+CodeSign=0
 SignMethod=MFSIGN
