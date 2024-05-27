@@ -1,0 +1,15 @@
+MajorNumber=2024
+MinorNumber=4
+Label=UFT_2024_4_PY_WIN32
+Postfix=0
+DebugBuild=false
+br_Product=UTT
+br_RubiconPath=LT\\UTT
+br_Branch=UFT_2024_4_PY_WIN32
+br_IsisId=na
+br_Label=UFT_2024_4_PY_WIN32
+br_LTOPS=UFT_2024_4_PY_WIN32
+br_MailTo=narendrakumar.chejara@microfocus.com
+br_CPPConfiguration=/p:AddParameter="false"
+br_restrictToNodeLabel=ALM_Sarah
+br_unitTestsResultsFolder=UnitTestResults
