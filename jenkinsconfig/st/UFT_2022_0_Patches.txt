@@ -1,8 +1,8 @@
 BuildMajorVersion=2022
 BuildMinorVersion=0
 SvcpackVersion=0
-PatchVersion=1
-BuildPostfix=1
+PatchVersion=2
+BuildPostfix=2
 BuildLabel=UFT_2022_0_Patches
 WSPostfix=.SP.Patches
 DebugBuild=false
