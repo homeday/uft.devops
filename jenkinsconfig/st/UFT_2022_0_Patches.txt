@@ -6,3 +6,4 @@ BuildPostfix=2
 BuildLabel=UFT_2022_0_Patches
 WSPostfix=
 DebugBuild=false
+MSBuild_Version=v22
