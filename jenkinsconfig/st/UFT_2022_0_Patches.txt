@@ -4,5 +4,5 @@ SvcpackVersion=0
 PatchVersion=2
 BuildPostfix=2
 BuildLabel=UFT_2022_0_Patches
-WSPostfix=.SP.Patches
+WSPostfix=
 DebugBuild=false
