@@ -34,7 +34,7 @@ client = ArtifactoryClient(
             ARTIFACTORY_PASSWORD
         )
 
-client.upload_artifact(source, destinaton)
+client.upload_artifacts(source, destinaton)
 
 
 
