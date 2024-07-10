@@ -1,0 +1,33 @@
+// Jenkinsfile 
+
+// Global Variables
+
+pipeline {
+
+    agent { node { label "UFTCI" } }
+
+    options {
+
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timestamps()
+
+    }
+
+
+    parameters {
+
+        string(name: "Branch", defaultValue: "master", description: "")
+        string(name: "Repo_name", defaultValue: "adm-ufto-ft-generic-local", description: "")
+        string(name: "Source", defaultValue: "", description: "Place to get files")
+        string(name: "Destination", defaultValue: "", description: "Place to put files")
+        choice(name: "Action", choices: [
+            "upload_file",
+            "download_file",
+            "upload_folder",
+            "download_folder"
+        ], description: "Choose one action")
+    
+    }
+
+    
+}
